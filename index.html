@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gênesis Elétrica</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-color: #000;
+    }
+    .hero {
+      background: url('qdc.jpg') no-repeat center center;
+      background-size: cover;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero h1, .hero p, .hero a {
+      z-index: 2;
+      position: relative;
+    }
+    .logo-footer {
+      text-align: center;
+      padding: 40px 0;
+      background-color: #111;
+    }
+    .logo-footer img {
+      max-width: 200px;
+    }
+    .contacts {
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>GÊNESIS ELÉTRICA</h1>
+    <p>Energia com segurança, profissionalismo e excelência.</p>
+    <a href="https://wa.me/5531975002129" style="color:#00ffcc; font-weight:bold; text-decoration: none;">Fale conosco pelo WhatsApp</a>
+  </div>
+  <div class="logo-footer">
+    <img src="logo.png" alt="Logo Gênesis Elétrica"/>
+  </div>
+  <div class="contacts">
+    <p>📞 WhatsApp: (31) 97500-2129</p>
+    <p>📧 E-mail: genesiseletricca@gmail.com</p>
+    <p>📸 Instagram: @genesis_eletrica</p>
+  </div>
+</body>
+</html>
