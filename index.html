@@ -15,21 +15,7 @@
       max-height: 150px;
       filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
     }
-    nav {
-      background-color: #bfa04d;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      padding: 10px 0;
-      gap: 20px;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-    nav a {
-      white-space: nowrap;
-      font-size: 1em;
-    }
+    nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
     nav a { color: #000; text-decoration: none; font-weight: bold; }
     .hero { position: relative; text-align: center; }
     .hero img { width: 100%; height: auto; }
@@ -60,7 +46,65 @@
       margin-top: 10px; padding: 10px; width: 80%; max-width: 400px; font-size: 1em;
     }
     .form-section button { background-color: #bfa04d; border: none; cursor: pointer; color: #000; font-weight: bold; }
-  </style>
+  
+  @media (max-width: 768px) {
+    header {
+      padding: 25px 0;
+    }
+
+    nav {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .hero-text {
+      font-size: 1.2em;
+      padding: 15px;
+    }
+
+    .section-title {
+      font-size: 1.1em;
+      padding: 10px;
+    }
+
+    .form-section {
+      padding: 10px;
+    }
+
+    .form-section select,
+    .form-section input[type=text],
+    .form-section button {
+      width: 95%;
+      font-size: 0.95em;
+    }
+
+    .services-grid {
+      padding: 10px;
+      gap: 10px;
+    }
+
+    .service-box {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .highlight-section {
+      font-size: 1.2em;
+      padding: 20px 10px;
+    }
+
+    .blog-section {
+      font-size: 1.4em;
+      padding: 30px 10px;
+    }
+
+    footer {
+      padding: 15px;
+    }
+  }
+
+</style>
 </head>
 <body>
   <header>
