@@ -413,5 +413,22 @@ function enviarWhatsAppFinal() {
   }
 }
   </script>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+  const telefoneInput = document.getElementById("telefone");
+  telefoneInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+
+    let formatado = "";
+    if (value.length > 0) formatado += "(" + value.substring(0, 2);
+    if (value.length >= 3) formatado += ") " + value.substring(2, 7);
+    if (value.length >= 8) formatado += "-" + value.substring(7, 11);
+    else if (value.length > 7) formatado += value.substring(7);
+
+    e.target.value = formatado;
+  });
+});
+  </script>
  </body>
 </html>
