@@ -155,106 +155,127 @@
   </section>
   <section class="form-section" id="servico">
    <p>
-    <strong>
-     Qual serviço de eletricista está precisando?
-    </strong>
+    Qual serviço de eletricista está precisando?
    </p>
-   <select id="servico">
+   <select id="tipoServico" onchange="preencherTipoServico(this.value)">
     <option value="">
      Selecione uma opção
     </option>
-    <option>
+    <option value="Instalação ou restauração de quadros de distribuição">
      Instalação ou restauração de quadros de distribuição
     </option>
-    <option>
+    <option value="Instalação elétrica do zero">
      Instalação elétrica do zero
     </option>
-    <option>
+    <option value="Criação de projeto elétrico residencial e comercial">
      Criação de projeto elétrico residencial e comercial
     </option>
-    <option>
+    <option value="Sistema de aterramento">
      Sistema de aterramento
     </option>
-    <option>
+    <option value="Instalação de CVEs – carregadores veiculares elétricos">
      Instalação de CVEs – carregadores veiculares elétricos
     </option>
-    <option>
+    <option value="Padrão CEMIG">
      Padrão CEMIG
     </option>
-    <option>
+    <option value="Restauração elétrica">
      Restauração elétrica
     </option>
-    <option>
+    <option value="Reparação de pontos elétrico">
      Reparação de pontos elétrico
     </option>
-    <option>
+    <option value="Passagem de fiação">
      Passagem de fiação
     </option>
-    <option>
+    <option value="Troca de disjuntor, IDR, DPS">
      Troca de disjuntor, IDR, DPS
     </option>
-    <option>
+    <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">
      Instalação e dimensionamento de disjuntor, IDR, DPS
     </option>
-    <option>
+    <option value="Manutenção elétrica">
      Manutenção elétrica
     </option>
-    <option>
+    <option value="Instalação de tomada simples">
      Instalação de tomada simples
     </option>
-    <option>
+    <option value="Instalação de tomada dupla">
      Instalação de tomada dupla
     </option>
-    <option>
+    <option value="Instalação de interruptor simples">
      Instalação de interruptor simples
     </option>
-    <option>
+    <option value="Instalação de interruptor three way">
      Instalação de interruptor three way
     </option>
-    <option>
+    <option value="Instalação de interruptor four way">
      Instalação de interruptor four way
     </option>
-    <option>
+    <option value="Instalação de plafon soquete teto">
      Instalação de plafon soquete teto
     </option>
-    <option>
+    <option value="Instalação de plafon led teto ou parede">
      Instalação de plafon led teto ou parede
     </option>
-    <option>
+    <option value="Instalação de arandela">
      Instalação de arandela
     </option>
-    <option>
+    <option value="Iluminação para jardim">
      Iluminação para jardim
     </option>
-    <option>
+    <option value="Iluminação externa">
      Iluminação externa
     </option>
-    <option>
+    <option value="Instalação de sinaleiros para jardim ou piscina">
      Instalação de sinaleiros para jardim ou piscina
     </option>
-    <option>
+    <option value="Instalação de perfil de led">
      Instalação de perfil de led
     </option>
-    <option>
+    <option value="Instalação de spot">
      Instalação de spot
     </option>
-    <option>
+    <option value="Instalação de chuveiro">
      Instalação de chuveiro
     </option>
-    <option>
+    <option value="Instalação de ventilador de parede ou teto">
      Instalação de ventilador de parede ou teto
     </option>
-    <option>
+    <option value="Preparação e criação de circuito elétrico para ar condicionado">
      Preparação e criação de circuito elétrico para ar condicionado
     </option>
-    <option>
+    <option value="Outros">
      Outros
     </option>
    </select>
-   <input id="descricao" placeholder="Digite aqui qual suporte precisa" type="text"/>
-   <button onclick="enviarWhatsApp()">
-    Enviar serviço solicitado
+   <input id="suporte" placeholder="Ou digite aqui qual suporte precisa" type="text"/>
+   <button onclick="mostrarFormulario()" type="button">
+    Avançar para formulário
    </button>
+   <div id="formularioExtra" style="display:none; margin-top:20px;">
+    <input id="nome" placeholder="Seu nome" required="" type="text"/>
+    <br/>
+    <br/>
+    <input id="telefone" placeholder="Telefone" required="" type="text"/>
+    <br/>
+    <br/>
+    <input id="email" placeholder="E-mail" required="" type="email"/>
+    <br/>
+    <br/>
+    <input id="localizacao" placeholder="Bairro / Cidade" required="" type="text"/>
+    <br/>
+    <br/>
+    <input id="tipoFinal" placeholder="Tipo de serviço" readonly="" type="text"/>
+    <br/>
+    <br/>
+    <textarea id="observacao" placeholder="Observação (opcional)"></textarea>
+    <br/>
+    <br/>
+    <button onclick="enviarWhatsAppFinal()" type="button">
+     Enviar via WhatsApp
+    </button>
+   </div>
   </section>
   <div class="services-grid">
    <div class="service-box">
@@ -337,6 +358,40 @@
       const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
       window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
     }
+  </script>
+  <script>
+   function mostrarFormulario() {
+  let servicoSelecionado = document.getElementById("tipoServico").value;
+  let servicoDigitado = document.getElementById("suporte").value;
+  let tipo = servicoSelecionado || servicoDigitado;
+  if (!tipo) {
+    alert("Por favor, selecione ou digite o serviço.");
+    return;
+  }
+  document.getElementById("formularioExtra").style.display = "block";
+  document.getElementById("tipoFinal").value = tipo;
+}
+
+function enviarWhatsAppFinal() {
+  let nome = document.getElementById("nome").value;
+  let telefone = document.getElementById("telefone").value;
+  let email = document.getElementById("email").value;
+  let local = document.getElementById("localizacao").value;
+  let tipo = document.getElementById("tipoFinal").value;
+  let obs = document.getElementById("observacao").value;
+
+  let mensagem = `Olá! Gostaria de solicitar um serviço.%0A` +
+                 `Nome: ${nome}%0A` +
+                 `Telefone: ${telefone}%0A` +
+                 `E-mail: ${email}%0A` +
+                 `Localização: ${local}%0A` +
+                 `Serviço: ${tipo}%0A` +
+                 `Observação: ${obs}`;
+
+  window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+}
+  </script>
+  <script>
   </script>
  </body>
 </html>
