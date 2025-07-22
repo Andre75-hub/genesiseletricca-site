@@ -250,9 +250,15 @@
     </option>
    </select>
    <input id="suporte" placeholder="Ou digite aqui qual suporte precisa" type="text"/>
-   <button onclick="mostrarFormulario()" type="button">
-    Avançar para formulário
+   <button onclick="mostrarFormulario()" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;" type="button">
+    Enviar pedido
    </button>
+   <div id="botaoUrgencia" style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: 10px; margin-top: 30px; margin-bottom: 20px; transform: translateX(-40px);">
+    <img alt="Serviço de urgência" src="alerta.jpg" style="width: 58.5px; height: auto; margin-right: 15px;"/>
+    <button onclick="abrirUrgencia()" style="background-color: red; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold;" type="button">
+     Serviço de urgência
+    </button>
+   </div>
    <div id="formularioExtra" style="display:none; margin-top:20px;">
     <input id="nome" placeholder="Seu nome" required="" type="text"/>
     <br/>
@@ -266,10 +272,10 @@
     <input id="localizacao" placeholder="Bairro / Cidade" required="" type="text"/>
     <br/>
     <br/>
-    <input id="tipoFinal" placeholder="Tipo de serviço" readonly="" type="text"/>
+    <input id="tipoFinal" placeholder="Tipo de serviço" readonly="" type="text" value=""/>
     <br/>
     <br/>
-    <textarea id="observacao" placeholder="Observação (opcional)"></textarea>
+    <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height: 60px; width: 47%;"></textarea>
     <br/>
     <br/>
     <button onclick="enviarWhatsAppFinal()" type="button">
@@ -392,6 +398,20 @@ function enviarWhatsAppFinal() {
 }
   </script>
   <script>
+  </script>
+  <script>
+   function abrirUrgencia() {
+  const form = document.getElementById("formularioExtra");
+  if (form) {
+    form.style.display = "block";
+    const tipoServico = document.getElementById("tipoFinal");
+    if (tipoServico) {
+      tipoServico.value = "";
+      tipoServico.placeholder = "Tipo de serviço";
+      tipoServico.focus();
+    }
+  }
+}
   </script>
  </body>
 </html>
