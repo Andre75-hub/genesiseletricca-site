@@ -15,7 +15,21 @@
       max-height: 150px;
       filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
     }
-    nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
+    nav {
+      background-color: #bfa04d;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+      gap: 20px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    nav a {
+      white-space: nowrap;
+      font-size: 1em;
+    }
     nav a { color: #000; text-decoration: none; font-weight: bold; }
     .hero { position: relative; text-align: center; }
     .hero img { width: 100%; height: auto; }
@@ -131,21 +145,6 @@
       <h3>Instalação de CVEs</h3>
       <p>Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.</p>
     </div>
-    <div class="service-box">
-      <img src="disjuntor.jpg" alt="Disjuntores e proteção">
-      <h3>Disjuntores, IDR e DPS</h3>
-      <p>Instalação, troca e dimensionamento de proteção elétrica com precisão e segurança.</p>
-    </div>
-    <div class="service-box">
-      <img src="tomada.jpg" alt="Tomada simples">
-      <h3>Instalação de Tomada</h3>
-      <p>Colocação de tomada simples com verificação da carga e segurança da instalação.</p>
-    </div>
-    <div class="service-box">
-      <img src="ventilador.jpg" alt="Ventilador de parede ou teto">
-      <h3>Ventilador de Parede ou Teto</h3>
-      <p>Instalação completa de ventiladores com suporte firme e ligação correta do circuito.</p>
-    </div>
   </div>
 
   <section class="highlight-section" id="localizacao">
@@ -163,7 +162,6 @@
       <a href="mailto:genesiseletricca@gmail.com">E-mail</a> |
       <a href="https://www.instagram.com/genesis_eletrica" target="_blank">Instagram</a>
     </p>
-    <p style="margin-top: 10px; font-size: 0.9em;">© 2025 Gênesis Elétrica. Todos os direitos reservados.</p>
   </footer>
 
   <script>
