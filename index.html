@@ -1,121 +1,178 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eletricista em Contagem - Gênesis Elétrica</title>
-  <meta name="description" content="Eletricista em Contagem e região metropolitana. Serviços elétricos residenciais e comerciais com atendimento 24 horas.">
-  <meta name="keywords" content="eletricista em Contagem, eletricista 24h, serviços elétricos Contagem, instalação elétrica, padrão CEMIG, manutenção elétrica">
-  <meta name="author" content="Gênesis Elétrica">
+  <title>Gênesis Elétrica</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      background-color: #000;
-      line-height: 1.6;
-    }
-    .hero {
-      background: url('qdc.jpg') no-repeat center center;
-      background-size: cover;
-      height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
+    header {
+      background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%);
+      padding: 45px 0;
       text-align: center;
-      background-attachment: fixed;
-      position: relative;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1;
+    header img {
+      max-height: 150px;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
     }
-    .hero h1, .hero p {
-      z-index: 2;
-      position: relative;
-    }
-    .content {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .divider {
+    nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
+    nav a { color: #000; text-decoration: none; font-weight: bold; }
+    .hero { position: relative; text-align: center; }
+    .hero img { width: 100%; height: auto; }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.6); color: #fff; padding: 30px; font-size: 2.25em; }
+    .section-title { background-color: #222; color: #fff; text-align: center; padding: 15px; font-size: 1.3em; }
+    .service-search { text-align: center; padding: 20px; background-color: #f4f4f4; }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .service-box { width: 250px; background: #fff; border: 1px solid #ccc; border-radius: 8px; text-align: center; padding: 15px; }
+    .service-box img { width: 100%; height: 160px; object-fit: cover; border-radius: 5px; }
+    .service-box h3 { margin: 10px 0; color: #bfa04d; }
+    .highlight-section { background-color: #ffe58a; padding: 30px; text-align: center; font-size: 1.8em; font-weight: bold; }
+    .blog-section {
+      background-color: #4a5c6a;
+      padding: 60px 20px;
       text-align: center;
-      margin: 30px 0;
-    }
-    .divider::before {
-      content: "⸻";
-      color: #ff6600;
-      font-size: 24px;
-    }
-    .services ul {
-      padding-left: 20px;
-    }
-    .logo-footer {
-      text-align: center;
-      padding: 30px 0 10px;
-    }
-    .logo-footer img {
-      max-width: 250px;
-    }
-    .contacts {
-      text-align: center;
-      padding-bottom: 40px;
-    }
-    .contacts a {
-      color: #00ffcc;
-      text-decoration: none;
+      font-size: 2.4em;
       font-weight: bold;
     }
+    .blog-section a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer { background-color: #000; color: #fff; padding: 20px; text-align: center; }
+    footer img { max-height: 40px; }
+    footer a { color: #fff; text-decoration: none; margin: 0 10px; }
+    .form-section { text-align: center; padding: 20px; }
+    .form-section select, .form-section input[type=text], .form-section button {
+      margin-top: 10px; padding: 10px; width: 80%; max-width: 400px; font-size: 1em;
+    }
+    .form-section button { background-color: #bfa04d; border: none; cursor: pointer; color: #000; font-weight: bold; }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <h1>GÊNESIS ELÉTRICA</h1>
-    <p>Energia com segurança, profissionalismo e excelência!</p>
-  </div>
+  <header>
+    <img src="ÍCONE GENESIS ELETRICA.png" alt="Ícone Gênesis Elétrica">
+  </header>
 
-  <div class="content">
-    <div class="divider"></div>
-    <h2>Quem Somos</h2>
-    <p>
-      A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas.
-      Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes
-      para residências e comércios. Atendemos priorizando a qualidade, agilidade e total transparência
-      com nossos clientes.
-    </p>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#empresa">Empresa</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#blog">Blog</a>
+    <a href="#contato">Contato</a>
+  </nav>
 
-    <div class="divider"></div>
-    <h2>Serviços Oferecidos:</h2>
-    <div class="services">
-      <ul>
-        <li>Instalação de quadros de distribuição, disjuntores, IDR, DPS e barramentos;</li>
-        <li>Instalação de sistema de aterramento completo;</li>
-        <li>Montagem de padrão Cemig conforme ND 5.1;</li>
-        <li>Instalação de carregadores para veículos elétricos;</li>
-        <li>Instalações elétricas residencial, comercial e predial;</li>
-        <li>Manutenção preventiva e corretiva;</li>
-        <li>Projetos elétricos residenciais e comerciais.</li>
-      </ul>
+  <section class="hero">
+    <img src="QDC principal.jpg" alt="QDC principal">
+    <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
+  </section>
+
+  <section class="form-section">
+    <p><strong>Qual serviço de eletricista está precisando?</strong></p>
+    <select id="servico">
+      <option value="">Selecione uma opção</option>
+      <option>Instalação ou restauração de quadros de distribuição</option>
+      <option>Instalação elétrica do zero</option>
+      <option>Criação de projeto elétrico residencial e comercial</option>
+      <option>Sistema de aterramento</option>
+      <option>Instalação de CVEs – carregadores veiculares elétricos</option>
+      <option>Padrão CEMIG</option>
+      <option>Restauração elétrica</option>
+      <option>Reparação de pontos elétrico</option>
+      <option>Passagem de fiação</option>
+      <option>Troca de disjuntor, IDR, DPS</option>
+      <option>Instalação e dimensionamento de disjuntor, IDR, DPS</option>
+      <option>Manutenção elétrica</option>
+      <option>Instalação de tomada simples</option>
+      <option>Instalação de tomada dupla</option>
+      <option>Instalação de interruptor simples</option>
+      <option>Instalação de interruptor three way</option>
+      <option>Instalação de interruptor four way</option>
+      <option>Instalação de plafon soquete teto</option>
+      <option>Instalação de plafon led teto ou parede</option>
+      <option>Instalação de arandela</option>
+      <option>Iluminação para jardim</option>
+      <option>Iluminação externa</option>
+      <option>Instalação de sinaleiros para jardim ou piscina</option>
+      <option>Instalação de perfil de led</option>
+      <option>Instalação de spot</option>
+      <option>Instalação de chuveiro</option>
+      <option>Instalação de ventilador de parede ou teto</option>
+      <option>Preparação e criação de circuito elétrico para ar condicionado</option>
+      <option>Outros</option>
+    </select>
+    <input type="text" id="descricao" placeholder="Digite aqui qual suporte precisa">
+    <button onclick="enviarWhatsApp()">Enviar serviço solicitado</button>
+  </section>
+
+  <div class="services-grid">
+    <div class="service-box">
+      <img src="QDC Site.jpg" alt="Quadro de distribuição">
+      <h3>Quadro de Distribuição</h3>
+      <p>Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.</p>
     </div>
-
-    <div class="divider"></div>
-    <h2>Região de Atuação</h2>
-    <p>Eletricista em Contagem e região metropolitana - atendimento 24h - para serviços elétricos residenciais e comerciais.</p>
+    <div class="service-box">
+      <img src="cabos.jpg" alt="Instalação elétrica do zero">
+      <h3>Instalação Elétrica do Zero</h3>
+      <p>Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.</p>
+    </div>
+    <div class="service-box">
+      <img src="projeto eletrico.jpg" alt="Projeto elétrico">
+      <h3>Projeto Elétrico</h3>
+      <p>Desenvolvemos projetos personalizados para residências e comércios.</p>
+    </div>
+    <div class="service-box">
+      <img src="aterrammento.png" alt="Aterramento">
+      <h3>Sistema de Aterramento</h3>
+      <p>Instalação completa com haste, condutores e medições conforme NBR 5410.</p>
+    </div>
+    <div class="service-box">
+      <img src="CVE.jpg" alt="Carregadores EV">
+      <h3>Instalação de CVEs</h3>
+      <p>Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.</p>
+    </div>
+    <div class="service-box">
+      <img src="disjuntor.jpg" alt="Disjuntores e proteção">
+      <h3>Disjuntores, IDR e DPS</h3>
+      <p>Instalação, troca e dimensionamento de proteção elétrica com precisão e segurança.</p>
+    </div>
+    <div class="service-box">
+      <img src="tomada.jpg" alt="Tomada simples">
+      <h3>Instalação de Tomada</h3>
+      <p>Colocação de tomada simples com verificação da carga e segurança da instalação.</p>
+    </div>
+    <div class="service-box">
+      <img src="ventilador.jpg" alt="Ventilador de parede ou teto">
+      <h3>Ventilador de Parede ou Teto</h3>
+      <p>Instalação completa de ventiladores com suporte firme e ligação correta do circuito.</p>
+    </div>
   </div>
 
-  <div class="logo-footer">
-    <img src="logo.png" alt="Logo Gênesis Elétrica">
-  </div>
-  <div class="contacts">
-    <p><a href="https://wa.me/5531975002129">📞 WhatsApp: (31) 97500-2129</a></p>
-    <p>📧 E-mail: genesiseletricca@gmail.com</p>
-    <p>📸 Instagram: @genesis_eletrica</p>
-  </div>
+  <section class="highlight-section" id="localizacao">
+    Eletricista em Contagem e região metropolitana - atendimento 24h - para serviços elétricos residenciais e comerciais.
+  </section>
+
+  <section class="blog-section" id="blog">
+    <a href="https://blog.genesiseletrica.com.br" target="_blank">Blog com dicas e informações relevantes sobre eletricidade.</a>
+  </section>
+
+  <footer id="contato">
+    <img src="LOGO GENESIS ELETRICA.jpg" alt="Logo pequena">
+    <p>
+      <a href="https://wa.me/5531975002129" target="_blank">WhatsApp</a> |
+      <a href="mailto:genesiseletricca@gmail.com">E-mail</a> |
+      <a href="https://www.instagram.com/genesis_eletrica" target="_blank">Instagram</a>
+    </p>
+    <p style="margin-top: 10px; font-size: 0.9em;">© 2025 Gênesis Elétrica. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function enviarWhatsApp() {
+      const servico = document.getElementById('servico').value;
+      const descricao = document.getElementById('descricao').value;
+      const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
+      window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+    }
+  </script>
 </body>
 </html>
