@@ -16,28 +16,22 @@
         header {
             background: url('tijolo.jpg') no-repeat center center;
             background-size: cover;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .header-content {
+            padding: 30px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
+            justify-content: flex-start;
             gap: 20px;
         }
 
-        .header-content img.marca {
-            max-height: 100px;
-            height: auto;
+        header img.marca {
+            height: 90px;
         }
 
-        .header-content h1 {
-            font-size: 2.2em;
+        header h1 {
+            font-size: 2em;
             color: #e4c1a1;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin: 0;
         }
 
@@ -123,20 +117,25 @@
         }
 
         @media (max-width: 600px) {
-            .header-content {
+            header {
                 flex-direction: column;
+                text-align: center;
             }
 
-            .header-content h1 {
-                font-size: 1.6em;
+            header img.marca {
+                height: 60px;
             }
 
-            .container {
-                padding: 10px;
+            header h1 {
+                font-size: 1.4em;
             }
 
             .post {
                 padding: 15px;
+            }
+
+            .container {
+                padding: 10px;
             }
         }
     </style>
@@ -144,10 +143,8 @@
 <body>
 
 <header>
-    <div class="header-content">
-        <img src="icone-ge.png" alt="Ícone Gênesis Elétrica" class="marca">
-        <h1>Blog Gênesis Elétrica</h1>
-    </div>
+    <img src="ICONE GE.png" alt="Ícone Gênesis Elétrica" class="marca">
+    <h1>Blog Gênesis Elétrica</h1>
 </header>
 
 <nav>
@@ -177,7 +174,7 @@
 </section>
 
 <footer id="contato">
-    <img src="logo-genesis-eletrica.jpg" alt="Logo Rodapé">
+    <img src="LOGO GENESIS ELETRICA.jpg" alt="Logo Rodapé">
     <div class="endereco">
         Rua Rio Mantiqueira, 898, Novo Riacho<br>
         Contagem/MG, CEP: 32280-620
