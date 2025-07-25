@@ -7,9 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
     }
     header, footer {
       background-color: #222;
@@ -33,45 +32,12 @@
       margin: 0 auto;
       padding: 40px 20px;
     }
-    .section {
-      padding: 40px 20px;
+    section {
+      padding: 40px 0;
     }
-    .blog-section {
-      background-color: #f7f7f7;
-    }
-    .blog-section h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 30px;
-    }
-    .blog-post {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 800px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .blog-post h3 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-    .blog-post p {
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #d35400;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-    .btn:hover {
-      background-color: #b84300;
+    h2 {
+      color: #d35400;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -79,22 +45,22 @@
 
   <header>
     <h1>Gênesis Elétrica</h1>
+    <p>Energia com segurança, profissionalismo e excelência</p>
   </header>
 
   <nav>
     <a href="#servicos">Serviços</a>
     <a href="#formulario">Formulário</a>
-    <a href="#blog">Blog</a>
+    <a href="#contato">Contato</a>
   </nav>
 
   <main class="container">
-
-    <section id="servicos" class="section">
+    <section id="servicos">
       <h2>Qual serviço de eletricista está precisando?</h2>
-      <p>Instalações, manutenção, quadros de distribuição, padrão Cemig e muito mais. Atendimento 24h em Contagem e região metropolitana.</p>
+      <p>Instalação de quadros, padrão Cemig, carregadores veiculares, iluminação técnica, aterramento, e muito mais.</p>
     </section>
 
-    <section id="formulario" class="section">
+    <section id="formulario">
       <h2>Solicite um Orçamento</h2>
       <form action="https://api.whatsapp.com/send" method="get" target="_blank">
         <label for="nome">Nome:</label><br>
@@ -105,39 +71,17 @@
       </form>
     </section>
 
-    <section id="blog" class="blog-section section">
-      <h2>Fique por dentro das últimas informações no Blog Gênesis Elétrica</h2>
-      <div id="posts-container">
-        <!-- Os posts serão carregados aqui via JavaScript -->
-      </div>
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>WhatsApp: (31) 97500-2129<br>
+      E-mail: genesiseletricca@gmail.com<br>
+      Instagram: @genesis_eletrica</p>
     </section>
-
   </main>
 
   <footer>
     <p>&copy; 2025 Gênesis Elétrica. Todos os direitos reservados.</p>
   </footer>
-
-  <script>
-    fetch('blog.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('posts-container');
-        data.forEach(post => {
-          const postEl = document.createElement('div');
-          postEl.className = 'blog-post';
-          postEl.innerHTML = `
-            <h3><a href="${post.link}">${post.titulo}</a></h3>
-            <p>${post.descricao}</p>
-            <a class="btn" href="${post.link}">Saiba mais</a>
-          `;
-          container.appendChild(postEl);
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao carregar o blog.json:', error);
-      });
-  </script>
 
 </body>
 </html>
