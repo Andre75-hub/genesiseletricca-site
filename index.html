@@ -14,8 +14,8 @@
       margin: 0;
       padding: 0;
     }
-    header {
-      background: #222;
+    header, footer {
+      background-color: #222;
       color: white;
       padding: 20px;
       text-align: center;
@@ -34,70 +34,86 @@
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 40px 20px;
     }
     section {
-      padding: 40px 0;
+      margin-bottom: 40px;
     }
     h2 {
       color: #d35400;
       margin-bottom: 10px;
     }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    .contato-icons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
+    form input, form textarea, form button {
+      display: block;
+      width: 100%;
       margin-top: 10px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #d35400;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    form button:hover {
+      background-color: #b84300;
+    }
+    .contato-info p {
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Gênesis Elétrica</h1>
-    <p>Energia com segurança, profissionalismo e excelência</p>
-  </header>
+<header>
+  <h1>Gênesis Elétrica</h1>
+  <p>Energia com segurança, profissionalismo e excelência</p>
+</header>
 
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#formulario">Orçamento</a>
-    <a href="#contato">Contato</a>
-  </nav>
+<nav>
+  <a href="#servicos">Serviços</a>
+  <a href="#formulario">Orçamento</a>
+  <a href="#contato">Contato</a>
+  <a href="#blog">Blog</a>
+</nav>
 
-  <main>
-    <section id="servicos">
-      <h2>Qual serviço de eletricista está precisando?</h2>
-      <p>Instalações de quadros, IDR, DPS, barramentos, aterramento, padrão Cemig, iluminação técnica, carregadores veiculares, projetos elétricos e mais. Atendimento em Contagem e região metropolitana 24h.</p>
-    </section>
+<main>
+  <section id="servicos">
+    <h2>Qual serviço de eletricista está precisando?</h2>
+    <p>Instalação de quadros, IDR, DPS, barramentos, aterramento, padrão Cemig, iluminação técnica, carregadores veiculares e projetos elétricos.</p>
+  </section>
 
-    <section id="formulario">
-      <h2>Solicite seu orçamento</h2>
-      <form action="https://api.whatsapp.com/send" method="get" target="_blank">
-        <label>Nome:</label><br>
-        <input type="text" name="nome" required><br><br>
-        <label>Descreva o serviço desejado:</label><br>
-        <textarea name="mensagem" rows="4" required></textarea><br><br>
-        <button type="submit">Enviar Pedido</button>
-      </form>
-    </section>
+  <section id="formulario">
+    <h2>Solicite um orçamento</h2>
+    <form action="https://api.whatsapp.com/send" method="get" target="_blank">
+      <label>Nome:</label>
+      <input type="text" name="nome" required>
+      <label>Descreva o serviço desejado:</label>
+      <textarea name="mensagem" rows="4" required></textarea>
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </section>
 
-    <section id="contato">
-      <h2>Contato</h2>
+  <section id="contato">
+    <h2>Contato</h2>
+    <div class="contato-info">
       <p>WhatsApp: (31) 97500-2129</p>
       <p>E-mail: genesiseletricca@gmail.com</p>
       <p>Instagram: @genesis_eletrica</p>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 Gênesis Elétrica. Todos os direitos reservados.</p>
-  </footer>
+  <section id="blog">
+    <h2>Fique por dentro das últimas informações no Blog Gênesis Elétrica</h2>
+    <p><a href="https://genesiseletricca.com.br/blog" target="_blank">Acesse nosso blog com dicas e informações relevantes sobre eletricidade</a></p>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Gênesis Elétrica. Todos os direitos reservados.</p>
+</footer>
 
 </body>
 </html>
