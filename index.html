@@ -471,5 +471,133 @@ function enviarWhatsAppFinal() {
   });
 });
   </script>
+
+<style>
+  .urgencia-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .urgencia-form {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 9998;
+    width: 300px;
+  }
+
+  .urgencia-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .urgencia-form input, .urgencia-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+  }
+
+  .urgencia-form small {
+    color: red;
+    display: none;
+  }
+
+  .urgencia-form button {
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+<button class="urgencia-button" onclick="toggleUrgenciaForm()">
+<span>🚨 Serviço de Urgência</span>
+</button>
+<div class="urgencia-form" id="urgenciaForm">
+<label>Seu nome* <input id="urgNome" type="text"/><small>Campo obrigatório</small></label>
+<label>Telefone* <input id="urgTelefone" placeholder="(31) 90000-0000" type="text"/><small>Campo obrigatório</small></label>
+<label>Bairro / Município* <input id="urgEndereco" type="text"/><small>Campo obrigatório</small></label>
+<label>Tipo de serviço* <input id="urgServico" type="text"/><small>Campo obrigatório</small></label>
+<label>Observação <textarea id="urgObs"></textarea></label>
+<button onclick="enviarUrgencia()">Enviar Pedido</button>
+</div>
+<script>
+function toggleUrgenciaForm() {
+  const form = document.getElementById('urgenciaForm');
+  form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+}
+
+function validarCampo(id) {
+  const campo = document.getElementById(id);
+  const aviso = campo.nextElementSibling;
+  if (!campo.value.trim()) {
+    aviso.style.display = 'block';
+    return false;
+  } else {
+    aviso.style.display = 'none';
+    return true;
+  }
+}
+
+function validarEndereco(id) {
+  const campo = document.getElementById(id);
+  const aviso = campo.nextElementSibling;
+  if (!campo.value.includes('/')) {
+    aviso.style.display = 'block';
+    return false;
+  } else {
+    aviso.style.display = 'none';
+    return true;
+  }
+}
+
+function enviarUrgencia() {
+  const nomeOk = validarCampo('urgNome');
+  const telOk = validarCampo('urgTelefone');
+  const endOk = validarEndereco('urgEndereco');
+  const servicoOk = validarCampo('urgServico');
+
+  if (nomeOk && telOk && endOk && servicoOk) {
+    const nome = document.getElementById('urgNome').value;
+    const tel = document.getElementById('urgTelefone').value;
+    const end = document.getElementById('urgEndereco').value;
+    const serv = document.getElementById('urgServico').value;
+    const obs = document.getElementById('urgObs').value;
+
+    const mensagem = `Olá! PRECISO DO SERVIÇO COM URGÊNCIA.%0A
+Nome: ${nome}%0A
+Telefone: ${tel}%0A
+Endereço: ${end}%0A
+Serviço: ${serv}%0A
+Observações: ${obs}`;
+
+    window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+  }
+}
+</script>
 </body>
 </html>
