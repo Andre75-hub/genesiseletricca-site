@@ -471,7 +471,6 @@ function enviarWhatsAppFinal() {
   });
 });
   </script>
-
 <style>
   .urgencia-button {
     position: fixed;
@@ -589,6 +588,114 @@ function enviarUrgencia() {
     const obs = document.getElementById('urgObs').value;
 
     const mensagem = `Olá! PRECISO DO SERVIÇO COM URGÊNCIA.%0A
+Nome: ${nome}%0A
+Telefone: ${tel}%0A
+Endereço: ${end}%0A
+Serviço: ${serv}%0A
+Observações: ${obs}`;
+
+    window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+  }
+}
+</script>
+
+<style>
+  .pedido-form {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 9998;
+    width: 300px;
+  }
+
+  .pedido-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .pedido-form input, .pedido-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+  }
+
+  .pedido-form small {
+    color: red;
+    display: none;
+  }
+
+  .pedido-form button {
+    margin-top: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+<div class="pedido-form" id="pedidoForm">
+<label>Seu nome* <input id="nomePedido" type="text"/><small>Campo obrigatório</small></label>
+<label>Telefone* <input id="telPedido" placeholder="(31) 90000-0000" type="text"/><small>Campo obrigatório</small></label>
+<label>Bairro / Município* <input id="bairroPedido" type="text"/><small>Campo obrigatório</small></label>
+<label>Tipo de serviço <input id="servicoPedido" readonly="" type="text"/></label>
+<label>Observação <textarea id="obsPedido"></textarea></label>
+<button onclick="enviarPedido()">Enviar Pedido</button>
+</div>
+<script>
+function abrirFormularioPedido() {
+  const servicoSelecionado = document.getElementById('servico').value;
+  if (!servicoSelecionado) return;
+  document.getElementById('servicoPedido').value = servicoSelecionado;
+  document.getElementById('pedidoForm').style.display = 'block';
+}
+
+function validarCampoPedido(id) {
+  const campo = document.getElementById(id);
+  const aviso = campo.nextElementSibling;
+  if (!campo.value.trim()) {
+    aviso.style.display = 'block';
+    return false;
+  } else {
+    aviso.style.display = 'none';
+    return true;
+  }
+}
+
+function validarEnderecoPedido(id) {
+  const campo = document.getElementById(id);
+  const aviso = campo.nextElementSibling;
+  if (!campo.value.includes('/')) {
+    aviso.style.display = 'block';
+    return false;
+  } else {
+    aviso.style.display = 'none';
+    return true;
+  }
+}
+
+function enviarPedido() {
+  const nomeOk = validarCampoPedido('nomePedido');
+  const telOk = validarCampoPedido('telPedido');
+  const endOk = validarEnderecoPedido('bairroPedido');
+
+  if (nomeOk && telOk && endOk) {
+    const nome = document.getElementById('nomePedido').value;
+    const tel = document.getElementById('telPedido').value;
+    const end = document.getElementById('bairroPedido').value;
+    const serv = document.getElementById('servicoPedido').value;
+    const obs = document.getElementById('obsPedido').value;
+
+    const mensagem = `Olá! Gostaria de solicitar um serviço.%0A
 Nome: ${nome}%0A
 Telefone: ${tel}%0A
 Endereço: ${end}%0A
