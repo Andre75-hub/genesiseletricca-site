@@ -1,116 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulário de Serviço Gênesis Elétrica</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gênesis Elétrica</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    label { display: block; margin-top: 10px; font-weight: bold; }
-    input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
-    button { padding: 10px 20px; margin-top: 20px; font-weight: bold; background: #bfa04d; color: #000; border: none; cursor: pointer; }
-    .required::after { content: " *"; color: red; }
-    .error { color: red; font-size: 0.9em; display: none; }
-    #btnUrgencia { position: fixed; bottom: 20px; right: 20px; background-color: red; color: white; border: none; border-radius: 5px; padding: 15px 20px; z-index: 999; font-weight: bold; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #000;
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    nav {
+      background-color: #bfa04d;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 15px;
+    }
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .botao-formulario {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #bfa04d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+    .botao-formulario:hover {
+      background-color: #a78f3a;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Gênesis Elétrica</h1>
+    <p>Energia com segurança, profissionalismo e excelência.</p>
+  </header>
 
-<h2>Qual serviço de eletricista está precisando?</h2>
-<select id="opcaoServico">
-  <option value="">Selecione uma opção</option>
-  <option value="Instalação de tomadas">Instalação de tomadas</option>
-  <option value="Quadro de distribuição">Quadro de distribuição</option>
-  <option value="Outros">Outros</option>
-</select>
-<br><br>
-<button onclick="abrirFormulario('normal')">Enviar Pedido</button>
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+    <a href="formulario_genesis_eletrica.html">Formulário</a>
+  </nav>
 
-<button id="btnUrgencia" onclick="abrirFormulario('urgente')">⚡ Serviço de Urgência</button>
+  <section id="inicio">
+    <h2>Bem-vindo ao nosso site!</h2>
+    <p>Solicite agora mesmo seu serviço elétrico com rapidez e confiança.</p>
+    <a href="formulario_genesis_eletrica.html" class="botao-formulario">Solicitar Serviço</a>
+  </section>
 
-<div id="formulario" style="display:none; margin-top: 30px;">
-  <label class="required">Seu nome</label>
-  <input type="text" id="nome">
-  <div class="error" id="erro-nome">campo de preenchimento obrigatório</div>
-
-  <label class="required">Telefone</label>
-  <input type="text" id="telefone" placeholder="(31) 91234-5678">
-  <div class="error" id="erro-telefone">campo de preenchimento obrigatório</div>
-
-  <label class="required">Bairro / Município</label>
-  <input type="text" id="bairro">
-  <div class="error" id="erro-bairro">campo de preenchimento obrigatório</div>
-
-  <label class="required" id="label-servico">Tipo de serviço</label>
-  <input type="text" id="tipoServico">
-  <div class="error" id="erro-servico">campo de preenchimento obrigatório</div>
-
-  <label>Observação relevante</label>
-  <textarea id="observacao"></textarea>
-
-  <button onclick="enviarWhatsApp()">Enviar via WhatsApp</button>
-</div>
-
-<script>
-  let modoFormulario = 'normal';
-
-  function abrirFormulario(modo) {
-    modoFormulario = modo;
-    const form = document.getElementById("formulario");
-    form.style.display = 'block';
-    const tipoInput = document.getElementById("tipoServico");
-
-    if (modo === 'urgente') {
-      tipoInput.value = "";
-      tipoInput.placeholder = "Preencha livremente";
-      tipoInput.readOnly = false;
-    } else {
-      const servicoSelecionado = document.getElementById("opcaoServico").value;
-      if (!servicoSelecionado) {
-        alert("Selecione um tipo de serviço antes de continuar.");
-        form.style.display = 'none';
-        return;
-      }
-      tipoInput.value = servicoSelecionado;
-      tipoInput.readOnly = true;
-    }
-  }
-
-  function enviarWhatsApp() {
-    const nome = document.getElementById("nome").value.trim();
-    const telefone = document.getElementById("telefone").value.trim();
-    const bairro = document.getElementById("bairro").value.trim();
-    const tipo = document.getElementById("tipoServico").value.trim();
-    const obs = document.getElementById("observacao").value.trim();
-
-    document.getElementById("erro-nome").style.display = nome ? 'none' : 'block';
-    document.getElementById("erro-telefone").style.display = telefone ? 'none' : 'block';
-    document.getElementById("erro-bairro").style.display = bairro.includes('/') ? 'none' : 'block';
-    document.getElementById("erro-servico").style.display = tipo ? 'none' : 'block';
-
-    if (!nome || !telefone || !bairro.includes('/') || !tipo) return;
-
-    const mensagem = encodeURIComponent((modoFormulario === 'urgente' ? "Olá! PRECISO DO SERVIÇO COM URGÊNCIA." : "Olá! Gostaria de solicitar um serviço.") +
-      `
-Nome: ${nome}
-Telefone: ${telefone}
-Bairro/Município: ${bairro}
-Tipo de serviço: ${tipo}${obs ? `
-Observação: ${obs}` : ''}`);
-
-    window.open(`https://wa.me/5531975002129?text=${mensagem}`, "_blank");
-  }
-
-  document.getElementById("telefone").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, "");
-    if (value.length > 11) value = value.slice(0, 11);
-    let formatado = "";
-    if (value.length > 0) formatado += "(" + value.substring(0, 2);
-    if (value.length >= 3) formatado += ") " + value.substring(2, 7);
-    if (value.length >= 8) formatado += "-" + value.substring(7);
-    e.target.value = formatado;
-  });
-</script>
-
+  <footer style="background-color: #000; color: white; text-align: center; padding: 20px;">
+    © 2025 Gênesis Elétrica - Todos os direitos reservados
+  </footer>
 </body>
 </html>
