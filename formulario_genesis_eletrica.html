@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário Gênesis Elétrica</title>
+</head>
+<body>
+<!-- FORMULÁRIO "QUAL SERVIÇO DE ELETRICISTA ESTÁ PRECISANDO?" -->
+<section id="formulario-servico" style="padding: 40px 20px; max-width: 600px; margin: auto;">
+  <h2 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Qual serviço de eletricista está precisando?</h2>
+
+  <label for="tipo-servico-select">Selecione uma opção:</label>
+  <select id="tipo-servico-select" onchange="abrirFormularioPadrao()" style="width: 100%; padding: 10px; margin: 10px 0;">
+    <option value="">-- Escolha um serviço --</option>
+    <option value="instalacao">Instalação elétrica</option>
+    <option value="manutencao">Manutenção elétrica</option>
+    <option value="projeto">Projeto elétrico</option>
+    <option value="outro">Outro</option>
+  </select>
+
+  <form id="formulario-padrao" style="display: none; flex-direction: column; gap: 12px;">
+    <label for="nome">Seu nome<span style="color: red;">*</span></label>
+    <input type="text" id="nome" required>
+    <small class="erro" id="erro-nome"></small>
+
+    <label for="telefone">Telefone<span style="color: red;">*</span></label>
+    <input type="tel" id="telefone" placeholder="(31) 91234-5678" required>
+    <small class="erro" id="erro-telefone"></small>
+
+    <label for="bairro">Bairro / Município<span style="color: red;">*</span></label>
+    <input type="text" id="bairro" placeholder="Ex: Riacho / Contagem" required>
+    <small class="erro" id="erro-bairro"></small>
+
+    <label for="servico">Tipo de serviço</label>
+    <input type="text" id="servico" readonly>
+
+    <label for="observacao">Observação relevante</label>
+    <textarea id="observacao" rows="3"></textarea>
+
+    <button type="button" onclick="enviarFormularioPadrao()" style="padding: 10px; background-color: #bfa04d; border: none; color: white; font-weight: bold; cursor: pointer;">Enviar Pedido</button>
+  </form>
+</section>
+
+<!-- BOTÃO FLUTUANTE DE SERVIÇO DE URGÊNCIA -->
+<div id="urgencia-btn" onclick="abrirFormularioUrgencia()">Serviço de Urgência</div>
+
+<!-- FORMULÁRIO DE URGÊNCIA -->
+<div id="form-urgencia" style="display: none; position: fixed; bottom: 80px; right: 20px; background: #fff; border: 2px solid #bfa04d; border-radius: 10px; padding: 20px; max-width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 1000;">
+  <label for="urg-nome">Seu nome<span style="color: red;">*</span></label>
+  <input type="text" id="urg-nome">
+  <small class="erro" id="erro-urg-nome"></small>
+
+  <label for="urg-telefone">Telefone<span style="color: red;">*</span></label>
+  <input type="tel" id="urg-telefone" placeholder="(31) 91234-5678">
+  <small class="erro" id="erro-urg-telefone"></small>
+
+  <label for="urg-bairro">Bairro / Município<span style="color: red;">*</span></label>
+  <input type="text" id="urg-bairro" placeholder="Ex: Riacho / Contagem">
+  <small class="erro" id="erro-urg-bairro"></small>
+
+  <label for="urg-servico">Tipo de serviço<span style="color: red;">*</span></label>
+  <input type="text" id="urg-servico">
+  <small class="erro" id="erro-urg-servico"></small>
+
+  <button onclick="enviarFormularioUrgencia()" style="margin-top: 10px; background-color: #bfa04d; color: white; padding: 10px; border: none; font-weight: bold; cursor: pointer; width: 100%;">Enviar Pedido</button>
+</div>
+
+<script>
+function abrirFormularioPadrao() {
+  const tipo = document.getElementById('tipo-servico-select').value;
+  if (tipo) {
+    document.getElementById('formulario-padrao').style.display = 'flex';
+    document.getElementById('servico').value = document.getElementById('tipo-servico-select').options[document.getElementById('tipo-servico-select').selectedIndex].text;
+  } else {
+    document.getElementById('formulario-padrao').style.display = 'none';
+  }
+}
+
+function enviarFormularioPadrao() {
+  const nome = document.getElementById('nome');
+  const telefone = document.getElementById('telefone');
+  const bairro = document.getElementById('bairro');
+  const servico = document.getElementById('servico');
+  const observacao = document.getElementById('observacao');
+  let validado = true;
+  document.querySelectorAll('.erro').forEach(el => el.innerText = "");
+
+  if (!nome.value.trim()) {
+    document.getElementById('erro-nome').innerText = 'Campo de preenchimento obrigatório';
+    validado = false;
+  }
+  if (!telefone.value.trim().match(/^\(\d{2}\) \d{5}-\d{4}$/)) {
+    document.getElementById('erro-telefone').innerText = 'Informe o telefone corretamente';
+    validado = false;
+  }
+  if (!bairro.value.includes('/')) {
+    document.getElementById('erro-bairro').innerText = 'Informe bairro e município separados por "/"';
+    validado = false;
+  }
+  if (!validado) return;
+  const msg = `Olá! Gostaria de solicitar um serviço.%0A%0ANome: ${nome.value}%0ATelefone: ${telefone.value}%0ABairro/Município: ${bairro.value}%0ATipo de serviço: ${servico.value}%0AObservação: ${observacao.value}`;
+  window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
+}
+
+function abrirFormularioUrgencia() {
+  const urgenciaForm = document.getElementById('form-urgencia');
+  urgenciaForm.style.display = urgenciaForm.style.display === 'none' ? 'block' : 'none';
+}
+
+function enviarFormularioUrgencia() {
+  const nome = document.getElementById('urg-nome');
+  const telefone = document.getElementById('urg-telefone');
+  const bairro = document.getElementById('urg-bairro');
+  const servico = document.getElementById('urg-servico');
+  let validado = true;
+  document.querySelectorAll('.erro').forEach(el => el.innerText = "");
+
+  if (!nome.value.trim()) {
+    document.getElementById('erro-urg-nome').innerText = 'Campo de preenchimento obrigatório';
+    validado = false;
+  }
+  if (!telefone.value.trim().match(/^\(\d{2}\) \d{5}-\d{4}$/)) {
+    document.getElementById('erro-urg-telefone').innerText = 'Informe o telefone corretamente';
+    validado = false;
+  }
+  if (!bairro.value.includes('/')) {
+    document.getElementById('erro-urg-bairro').innerText = 'Informe bairro e município separados por "/"';
+    validado = false;
+  }
+  if (!servico.value.trim()) {
+    document.getElementById('erro-urg-servico').innerText = 'Campo de preenchimento obrigatório';
+    validado = false;
+  }
+  if (!validado) return;
+  const msg = `Olá! PRECISO DO SERVIÇO COM URGÊNCIA.%0A%0ANome: ${nome.value}%0ATelefone: ${telefone.value}%0ABairro/Município: ${bairro.value}%0ATipo de serviço: ${servico.value}`;
+  window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
+}
+</script>
+
+<style>
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+  }
+  .erro {
+    color: red;
+    font-size: 12px;
+    margin-top: -8px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  button:hover {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+  #urgencia-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #d32f2f;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    section#formulario-servico { padding: 20px 10px; }
+    #form-urgencia { max-width: 90%; right: 5%; bottom: 100px; }
+  }
+</style>
+</body>
+</html>
