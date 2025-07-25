@@ -1,93 +1,470 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Gênesis Elétrica | Eletricista em Contagem e Região Metropolitana</title>
-<style>
-  body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
-  header { background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%); padding: 45px 0; text-align: center; }
-  header img { max-height: 150px; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1)); }
-  nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; flex-wrap: wrap; }
-  nav a { color: #000; text-decoration: none; font-weight: bold; }
-  .hero { position: relative; text-align: center; }
-  .hero img { width: 100%; height: auto; }
-  .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.6); color: #fff; padding: 30px; font-size: 2.25em; }
-  .section-title { background-color: #222; color: #fff; text-align: center; padding: 15px; font-size: 1.3em; }
-  .blog-section { background-color: #4a5c6a; padding: 60px 20px; text-align: center; color: #fff; }
-  .blog-section h2 { font-size: 2.2em; margin-bottom: 20px; }
-  .blog-posts { display: flex; flex-direction: column; align-items: center; gap: 30px; }
-  .blog-card { background-color: #fff; color: #000; padding: 20px; border-radius: 8px; max-width: 700px; width: 100%; text-align: left; }
-  .blog-card h3 { color: #bfa04d; margin-top: 0; }
-  .blog-card a { color: #007bff; text-decoration: none; font-weight: bold; }
-  footer { background-color: #000; color: #fff; padding: 20px; text-align: center; }
-  footer img { max-height: 90px; }
-  footer a { color: #fff; text-decoration: none; margin: 0 10px; }
-  @media (max-width: 768px) {
-    .hero-text { font-size: 1.2em; padding: 20px; }
-    nav { gap: 10px; }
-    .blog-card { padding: 15px; }
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Gênesis Elétrica | Eletricista em Contagem e Região Metropolitana
+  </title>
+  <style>
+   body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
+    header {
+      background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%);
+      padding: 45px 0;
+      text-align: center;
+    }
+    header img {
+      max-height: 150px;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    }
+    nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
+    nav a { color: #000; text-decoration: none; font-weight: bold; }
+    .hero { position: relative; text-align: center; }
+    .hero img { width: 100%; height: auto; }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.6); color: #fff; padding: 30px; font-size: 2.25em; }
+    .section-title { background-color: #222; color: #fff; text-align: center; padding: 15px; font-size: 1.3em; }
+    .service-search { text-align: center; padding: 20px; background-color: #f4f4f4; }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .service-box { width: 250px; background: #fff; border: 1px solid #ccc; border-radius: 8px; text-align: center; padding: 15px; }
+    .service-box img { width: 100%; height: 160px; object-fit: cover; border-radius: 5px; }
+    .service-box h3 { margin: 10px 0; color: #bfa04d; }
+    .highlight-section { background-color: #ffe58a; padding: 30px; text-align: center; font-size: 1.8em; font-weight: bold; }
+    .blog-section {
+      background-color: #4a5c6a;
+      padding: 60px 20px;
+      text-align: center;
+      font-size: 2.4em;
+      font-weight: bold;
+    }
+    .blog-section a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer { background-color: #000; color: #fff; padding: 20px; text-align: center; }
+    footer img { max-height: 40px; }
+    footer a { color: #fff; text-decoration: none; margin: 0 10px; }
+    .form-section { text-align: center; padding: 20px; }
+    .form-section select, .form-section input[type=text], .form-section button {
+      margin-top: 10px; padding: 10px; width: 80%; max-width: 400px; font-size: 1em;
+    }
+    .form-section button { background-color: #bfa04d; border: none; cursor: pointer; color: #000; font-weight: bold; }
+  
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        gap: 10px;
+        padding: 8px;
+        overflow-x: auto;
+      }
+
+      nav a {
+        font-size: 0.85em;
+        white-space: nowrap;
+        padding: 4px 8px;
+      }
+      .hero-text {
+        font-size: 1em;
+        padding: 10px;
+        top: 40%;
+        transform: translate(-50%, -40%);
+      }
+
+      .highlight-section {
+        font-size: 1.1em;
+        padding: 20px;
+      }
+
+      .blog-section {
+        font-size: 1.3em;
+        padding: 30px 15px;
+      }
+      .services-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .service-box {
+        width: 90%;
+      }
+      .form-section input[type="text"],
+      .form-section select,
+      .form-section button {
+        width: 95%;
+      }
+      .section-title {
+        font-size: 1.1em;
+        padding: 10px;
+      }
+      footer img {
+        max-height: 70px !important;
+      }
+    }
+  </style>
+  <meta content="Eletricista 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência." name="description"/>
+  <meta content="eletricista Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial" name="keywords"/>
+  <meta content="Gênesis Elétrica" name="author"/>
+ </head>
+ <body>
+  <header>
+   <img alt="Ícone Gênesis Elétrica" src="ÍCONE GENESIS ELETRICA.png"/>
+  </header>
+  <nav>
+   <a href="#">
+    Home
+   </a>
+   <a href="#formulario">
+    Serviços
+   </a>
+   <a href="#quemsomos">
+    Empresa
+   </a>
+   <a href="#localizacao">
+    Localização
+   </a>
+   <a href="#blog">
+    Blog
+   </a>
+   <a href="#contato">
+    Contato
+   </a>
+  </nav>
+  <section class="hero">
+   <img alt="QDC principal" src="QDC principal.jpg"/>
+   <div class="hero-text">
+    Energia com sustentabilidade, profissionalismo, segurança e excelência!
+   </div>
+   <section class="section-title" id="quemsomos">
+    QUEM SOMOS
+   </section>
+   <section class="form-section" id="formulario" style="background-color: #fff; text-align: center; padding: 30px 20px;">
+    <p style="max-width: 900px; margin: 0 auto; font-size: 1.1em; line-height: 1.6;">
+     A
+     <strong>
+      Gênesis Elétrica
+     </strong>
+     atua com excelência e comprometimento no setor de instalações elétricas.
+      Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências e comércios.
+      Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
+     <br/>
+     <br/>
+     <em>
+      “Sua satisfação, nossa missão!”
+      <br/>
+      <br/>
+      ______________________________________________
+     </em>
+    </p>
+    <div id="formUrgencia" style="display:none; margin-top:20px; background:#f9f9f9; padding:20px; border-radius:8px;">
+     <input placeholder="Nome" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+     <br/>
+     <input placeholder="Telefone" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+     <br/>
+     <input placeholder="E-mail" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+     <br/>
+     <input placeholder="Tipo de serviço" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+     <br/>
+     <textarea placeholder="Observação relevante" style="width:100%; padding:8px;"></textarea>
+     <br/>
+    </div>
+    <script>
+     function abrirFormularioUrgencia() {
+    var form = document.getElementById("formUrgencia");
+    form.style.display = form.style.display === "none" ? "block" : "none";
   }
-</style>
-</head>
-<body>
-<header>
-  <img src="ÍCONE GENESIS ELETRICA.png" alt="Ícone Gênesis Elétrica"/>
-</header>
-<nav>
-  <a href="#">Home</a>
-  <a href="#servico">Serviços</a>
-  <a href="#quemsomos">Empresa</a>
-  <a href="#localizacao">Localização</a>
-  <a href="#blog">Blog</a>
-  <a href="#contato">Contato</a>
-</nav>
-<section class="hero">
-  <img src="QDC principal.jpg" alt="QDC principal"/>
-  <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
-</section>
-
-<section class="blog-section" id="blog">
-  <h2>Fique por dentro das últimas informações no Blog Gênesis Elétrica</h2>
-  <div class="blog-posts" id="blogPosts">Carregando posts...</div>
-</section>
-
-<footer id="contato">
-  <img src="LOGO GENESIS ELETRICA.jpg" alt="Logo pequena"/>
-  <p style="white-space: pre-line; text-align: center; font-size: 14px; margin: 10px auto; color: white;">
+    </script>
+   </section>
+  </section>
+  <section class="form-section" id="servico">
+   <p>
+    Qual serviço de eletricista está precisando?
+   </p>
+   <select id="tipoServico" onchange="preencherTipoServico(this.value)">
+    <option value="">
+     Selecione uma opção
+    </option>
+    <option value="Instalação ou restauração de quadros de distribuição">
+     Instalação ou restauração de quadros de distribuição
+    </option>
+    <option value="Instalação elétrica do zero">
+     Instalação elétrica do zero
+    </option>
+    <option value="Criação de projeto elétrico residencial e comercial">
+     Criação de projeto elétrico residencial e comercial
+    </option>
+    <option value="Sistema de aterramento">
+     Sistema de aterramento
+    </option>
+    <option value="Instalação de CVEs – carregadores veiculares elétricos">
+     Instalação de CVEs – carregadores veiculares elétricos
+    </option>
+    <option value="Padrão CEMIG">
+     Padrão CEMIG
+    </option>
+    <option value="Restauração elétrica">
+     Restauração elétrica
+    </option>
+    <option value="Reparação de pontos elétrico">
+     Reparação de pontos elétrico
+    </option>
+    <option value="Passagem de fiação">
+     Passagem de fiação
+    </option>
+    <option value="Troca de disjuntor, IDR, DPS">
+     Troca de disjuntor, IDR, DPS
+    </option>
+    <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">
+     Instalação e dimensionamento de disjuntor, IDR, DPS
+    </option>
+    <option value="Manutenção elétrica">
+     Manutenção elétrica
+    </option>
+    <option value="Instalação de tomada simples">
+     Instalação de tomada simples
+    </option>
+    <option value="Instalação de tomada dupla">
+     Instalação de tomada dupla
+    </option>
+    <option value="Instalação de interruptor simples">
+     Instalação de interruptor simples
+    </option>
+    <option value="Instalação de interruptor three way">
+     Instalação de interruptor three way
+    </option>
+    <option value="Instalação de interruptor four way">
+     Instalação de interruptor four way
+    </option>
+    <option value="Instalação de plafon soquete teto">
+     Instalação de plafon soquete teto
+    </option>
+    <option value="Instalação de plafon led teto ou parede">
+     Instalação de plafon led teto ou parede
+    </option>
+    <option value="Instalação de arandela">
+     Instalação de arandela
+    </option>
+    <option value="Iluminação para jardim">
+     Iluminação para jardim
+    </option>
+    <option value="Iluminação externa">
+     Iluminação externa
+    </option>
+    <option value="Instalação de sinaleiros para jardim ou piscina">
+     Instalação de sinaleiros para jardim ou piscina
+    </option>
+    <option value="Instalação de perfil de led">
+     Instalação de perfil de led
+    </option>
+    <option value="Instalação de spot">
+     Instalação de spot
+    </option>
+    <option value="Instalação de chuveiro">
+     Instalação de chuveiro
+    </option>
+    <option value="Instalação de ventilador de parede ou teto">
+     Instalação de ventilador de parede ou teto
+    </option>
+    <option value="Preparação e criação de circuito elétrico para ar condicionado">
+     Preparação e criação de circuito elétrico para ar condicionado
+    </option>
+    <option value="Outros">
+     Outros
+    </option>
+   </select>
+   <input id="suporte" placeholder="Ou digite aqui qual suporte precisa" type="text"/>
+   <button onclick="mostrarFormulario()" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;" type="button">
+    Enviar pedido
+   </button>
+   <div id="botaoUrgencia" style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: 10px; margin-top: 30px; margin-bottom: 20px; transform: translateX(-25px);">
+    <img alt="Serviço de urgência" src="alerta.jpg" style="width: 58.5px; height: auto; margin-right: 15px;"/>
+    <button onclick="abrirUrgencia()" style="background-color: red; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold;" type="button">
+     Serviço de urgência
+    </button>
+   </div>
+   <div id="formularioExtra" style="display:none; margin-top:20px;">
+    <input id="nome" placeholder="Seu nome" required="" type="text"/>
+    <br/>
+    <br/>
+    <input id="telefone" placeholder="Telefone" required="" type="text"/>
+    <br/>
+    <br/>
+    <input id="email" placeholder="E-mail" required="" type="email"/>
+    <br/>
+    <br/>
+    <input id="localizacaoUsuario" name="localizacaoUsuario" placeholder="Bairro / Cidade" required="" type="text"/>
+    <br/>
+    <br/>
+    <input id="tipoFinal" placeholder="Tipo de serviço" readonly="" type="text" value=""/>
+    <br/>
+    <br/>
+    <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height: 60px; width: 47%;"></textarea>
+    <br/>
+    <br/>
+    <button onclick="enviarWhatsAppFinal()" type="button">
+     Enviar via WhatsApp
+    </button>
+   </div>
+  </section>
+  <div class="services-grid">
+   <div class="service-box">
+    <img alt="Quadro de distribuição" src="QDC Site.jpg"/>
+    <h3>
+     Quadro de Distribuição
+    </h3>
+    <p>
+     Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.
+    </p>
+   </div>
+   <div class="service-box">
+    <img alt="Instalação elétrica do zero" src="cabos.jpg"/>
+    <h3>
+     Instalação Elétrica do Zero
+    </h3>
+    <p>
+     Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.
+    </p>
+   </div>
+   <div class="service-box">
+    <img alt="Projeto elétrico" src="projeto eletrico.jpg"/>
+    <h3>
+     Projeto Elétrico
+    </h3>
+    <p>
+     Desenvolvemos projetos personalizados para residências e comércios.
+    </p>
+   </div>
+   <div class="service-box">
+    <img alt="Aterramento" src="aterrammento.png"/>
+    <h3>
+     Sistema de Aterramento
+    </h3>
+    <p>
+     Instalação completa com haste, condutores e medições conforme NBR 5410.
+    </p>
+   </div>
+   <div class="service-box">
+    <img alt="Carregadores EV" src="CVE.jpg"/>
+    <h3>
+     Instalação de CVEs
+    </h3>
+    <p>
+     Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.
+    </p>
+   </div>
+  </div>
+  <section class="highlight-section" id="localizacao">
+   Eletricista em Contagem e região metropolitana - atendimento 24h - para serviços elétricos residenciais e comerciais.
+  </section>
+  <section class="blog-section" id="blog">
+   <h2 style="text-align:center; font-size:2em; color:#fff;">
+    Fique por dentro das últimas informações no Blog Gênesis Elétrica
+   </h2>
+   <div style="background:#fff; margin:20px auto; max-width:700px; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+    <h3 style="color:#bfa04d;">
+     Disjuntores: Fundamentos e Aplicações
+    </h3>
+    <p style="color:#333;">
+     Conheça os principais tipos de disjuntores, sua função na proteção de circuitos e as melhores práticas de dimensionamento, instalação e manutenção.
+    </p>
+    <a href="blog/disjuntor.html" style="background:#bfa04d; color:#000; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">
+     Saiba mais
+    </a>
+   </div>
+  </section>
+  <footer id="contato">
+   <img alt="Logo pequena" src="LOGO GENESIS ELETRICA.jpg" style="max-height: 90px;"/>
+   <p style="white-space: pre-line; text-align: center; font-size: 14px; margin: 10px auto; color: white;">
     Rua Rio Mantiqueira, 898, Novo Riacho
-    Contagem/MG, CEP: 32280-620
-  </p>
-  <p>
-    <a href="https://wa.me/5531975002129" target="_blank">WhatsApp</a> |
-    <a href="mailto:genesiseletricca@gmail.com">E-mail</a> |
-    <a href="https://www.instagram.com/genesis_eletrica" target="_blank">Instagram</a>
-  </p>
-  <p>© Gênesis Elétrica. Todos os direitos reservados.</p>
-</footer>
+Contagem/MG, CEP: 32280-620
+   </p>
+   <p>
+    <a href="https://wa.me/5531975002129" target="_blank">
+     WhatsApp
+    </a>
+    |
+    <a href="mailto:genesiseletricca@gmail.com">
+     E-mail
+    </a>
+    |
+    <a href="https://www.instagram.com/genesis_eletrica" target="_blank">
+     Instagram
+    </a>
+   </p>
+   <p>
+    © Gênesis Elétrica. Todos os direitos reservados.
+   </p>
+  </footer>
+  <script>
+   function enviarWhatsApp() {
+      const servico = document.getElementById('servico').value;
+      const descricao = document.getElementById('descricao').value;
+      const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
+      window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+    }
+  </script>
+  <script>
+   function mostrarFormulario() {
+  let servicoSelecionado = document.getElementById("tipoServico").value;
+  let servicoDigitado = document.getElementById("suporte").value;
+  let tipo = servicoSelecionado || servicoDigitado;
+  if (!tipo) {
+    alert("Por favor, selecione ou digite o serviço.");
+    return;
+  }
+  document.getElementById("formularioExtra").style.display = "block";
+  document.getElementById("tipoFinal").value = tipo;
+}
 
-<script>
-  fetch('blog/blog.json')
-    .then(response => response.json())
-    .then(posts => {
-      const container = document.getElementById('blogPosts');
-      container.innerHTML = '';
-      posts.forEach(post => {
-        const card = document.createElement('div');
-        card.className = 'blog-card';
-        card.innerHTML = `
-          <h3>${post.titulo}</h3>
-          <p>${post.resumo}</p>
-          <a href="${post.link}">Leia mais</a>
-        `;
-        container.appendChild(card);
-      });
-    })
-    .catch(error => {
-      document.getElementById('blogPosts').innerHTML = 'Erro ao carregar os posts.';
-      console.error('Erro ao carregar blog.json:', error);
-    });
-</script>
-</body>
+function enviarWhatsAppFinal() {
+  let nome = document.getElementById("nome").value;
+  let telefone = document.getElementById("telefone").value;
+  let email = document.getElementById("email").value;
+  let local = document.getElementById("localizacao").value;
+  let tipo = document.getElementById("tipoFinal").value;
+  let obs = document.getElementById("observacao").value;
+
+  let mensagem = `Olá! Gostaria de solicitar um serviço.%0A` +
+                 `Nome: ${nome}%0A` +
+                 `Telefone: ${telefone}%0A` +
+                 `E-mail: ${email}%0A` +
+                 `Localização: ${local}%0A` +
+                 `Serviço: ${tipo}%0A` +
+                 `Observação: ${obs}`;
+
+  window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+}
+  </script>
+  <script>
+  </script>
+  <script>
+   function abrirUrgencia() {
+  const form = document.getElementById("formularioExtra");
+  if (form) {
+    form.style.display = "block";
+    const tipoServico = document.getElementById("tipoFinal");
+    if (tipoServico) {
+      tipoServico.value = "";
+      tipoServico.placeholder = "Tipo de serviço";
+      tipoServico.focus();
+    }
+  }
+}
+  </script>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+  const telefoneInput = document.getElementById("telefone");
+  telefoneInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+
+    let formatado = "";
+    if (value.length > 0) formatado += "(" + value.substring(0, 2);
+    if (value.length >= 3) formatado += ") " + value.substring(2, 7);
+    if (value.length >= 8) formatado += "-" + value.substring(7, 11);
+    else if (value.length > 7) formatado += value.substring(7);
+
+    e.target.value = formatado;
+  });
+});
+  </script>
+ </body>
 </html>
