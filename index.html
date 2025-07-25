@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Gênesis Elétrica - Blog</title>
+  <title>Gênesis Elétrica</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -17,14 +17,27 @@
       padding: 20px;
       text-align: center;
     }
+    nav {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px;
     }
+    .section {
+      padding: 40px 20px;
+    }
     .blog-section {
       background-color: #f7f7f7;
-      padding: 40px 20px;
     }
     .blog-section h2 {
       text-align: center;
@@ -68,13 +81,37 @@
     <h1>Gênesis Elétrica</h1>
   </header>
 
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#formulario">Formulário</a>
+    <a href="#blog">Blog</a>
+  </nav>
+
   <main class="container">
-    <section class="blog-section" id="blog">
+
+    <section id="servicos" class="section">
+      <h2>Qual serviço de eletricista está precisando?</h2>
+      <p>Instalações, manutenção, quadros de distribuição, padrão Cemig e muito mais. Atendimento 24h em Contagem e região metropolitana.</p>
+    </section>
+
+    <section id="formulario" class="section">
+      <h2>Solicite um Orçamento</h2>
+      <form action="https://api.whatsapp.com/send" method="get" target="_blank">
+        <label for="nome">Nome:</label><br>
+        <input type="text" name="nome" required><br><br>
+        <label for="servico">Serviço desejado:</label><br>
+        <textarea name="servico" rows="4" required></textarea><br><br>
+        <button type="submit">Enviar Pedido</button>
+      </form>
+    </section>
+
+    <section id="blog" class="blog-section section">
       <h2>Fique por dentro das últimas informações no Blog Gênesis Elétrica</h2>
       <div id="posts-container">
         <!-- Os posts serão carregados aqui via JavaScript -->
       </div>
     </section>
+
   </main>
 
   <footer>
