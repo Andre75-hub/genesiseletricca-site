@@ -6,12 +6,16 @@
   <title>Gênesis Elétrica</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
     }
-    header, footer {
-      background-color: #222;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
       color: white;
       padding: 20px;
       text-align: center;
@@ -27,10 +31,10 @@
       text-decoration: none;
       font-weight: bold;
     }
-    .container {
+    main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 20px;
     }
     section {
       padding: 40px 0;
@@ -38,6 +42,18 @@
     h2 {
       color: #d35400;
       margin-bottom: 10px;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .contato-icons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -50,32 +66,32 @@
 
   <nav>
     <a href="#servicos">Serviços</a>
-    <a href="#formulario">Formulário</a>
+    <a href="#formulario">Orçamento</a>
     <a href="#contato">Contato</a>
   </nav>
 
-  <main class="container">
+  <main>
     <section id="servicos">
       <h2>Qual serviço de eletricista está precisando?</h2>
-      <p>Instalação de quadros, padrão Cemig, carregadores veiculares, iluminação técnica, aterramento, e muito mais.</p>
+      <p>Instalações de quadros, IDR, DPS, barramentos, aterramento, padrão Cemig, iluminação técnica, carregadores veiculares, projetos elétricos e mais. Atendimento em Contagem e região metropolitana 24h.</p>
     </section>
 
     <section id="formulario">
-      <h2>Solicite um Orçamento</h2>
+      <h2>Solicite seu orçamento</h2>
       <form action="https://api.whatsapp.com/send" method="get" target="_blank">
-        <label for="nome">Nome:</label><br>
+        <label>Nome:</label><br>
         <input type="text" name="nome" required><br><br>
-        <label for="servico">Serviço desejado:</label><br>
-        <textarea name="servico" rows="4" required></textarea><br><br>
+        <label>Descreva o serviço desejado:</label><br>
+        <textarea name="mensagem" rows="4" required></textarea><br><br>
         <button type="submit">Enviar Pedido</button>
       </form>
     </section>
 
     <section id="contato">
       <h2>Contato</h2>
-      <p>WhatsApp: (31) 97500-2129<br>
-      E-mail: genesiseletricca@gmail.com<br>
-      Instagram: @genesis_eletrica</p>
+      <p>WhatsApp: (31) 97500-2129</p>
+      <p>E-mail: genesiseletricca@gmail.com</p>
+      <p>Instagram: @genesis_eletrica</p>
     </section>
   </main>
 
