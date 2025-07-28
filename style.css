@@ -1,0 +1,201 @@
+/*
+ * Folha de estilo para o site Gênesis Elétrica.
+ * Define um layout simples com cores inspiradas na marca original
+ * (tons escuros e dourado), estiliza o formulário de solicitação e
+ * garante que os campos obrigatórios sejam sinalizados com um único
+ * asterisco vermelho através do seletor ::after. Mensagens de erro
+ * aparecem apenas quando necessário.
+ */
+
+/* Reset básico e tipografia */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Cabeçalho */
+.site-header {
+    background-color: #000; /* preto */
+    color: #f4c15d;         /* dourado claro */
+    text-align: center;
+    padding: 20px 0;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.tagline {
+    margin: 5px 0 15px;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.main-nav a {
+    margin: 0 10px;
+    color: #f4c15d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Seção hero */
+.hero-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fafafa;
+}
+
+.hero-section h2 {
+    margin-bottom: 10px;
+}
+
+.primary {
+    background-color: #b6943f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.primary:hover {
+    background-color: #997c35;
+}
+
+.urgent {
+    background-color: #d9534f; /* vermelho */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.urgent:hover {
+    background-color: #c9302c;
+}
+
+/* Seção de formulário */
+.form-section {
+    padding: 40px 20px;
+    background-color: #fff;
+}
+
+.service-selector {
+    margin-bottom: 20px;
+}
+
+.service-selector label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.service-selector select,
+.service-selector input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    margin-bottom: 20px;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+/* Asterisco vermelho apenas para campos obrigatórios */
+.form-group label.required::after {
+    content: " *";
+    color: #d9534f;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Estilo para campos inválidos */
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #d9534f;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 14px;
+}
+
+/* Botão flutuante para urgência */
+.floating-urgent {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.floating-urgent:hover {
+    background-color: #c9302c;
+}
+
+/* Rodapé */
+.site-footer {
+    background-color: #000;
+    color: #f4c15d;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.85rem;
+}

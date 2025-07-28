@@ -1,95 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gênesis Elétrica</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #000;
-      color: white;
-      padding: 40px;
-      text-align: center;
-    }
-    nav {
-      background-color: #bfa04d;
-      padding: 15px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 15px;
-    }
-    section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .botao-formulario {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #bfa04d;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-    .botao-formulario:hover {
-      background-color: #a78f3a;
-    }
-    footer {
-      background-color: #000;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gênesis Elétrica</title>
+    <!--
+      Página principal do site Gênesis Elétrica.
+      Este arquivo unifica as solicitações de serviço e urgência em um único
+      formulário reutilizável. A seção "Solicitar serviço" permite ao
+      visitante escolher um serviço ou digitar uma descrição; ao clicar em
+      "Enviar pedido" ou "Serviço de urgência" o mesmo formulário aparece
+      com as informações necessárias pré‑preenchidas. A validação dos
+      campos obrigatórios é feita via JavaScript e as mensagens de erro
+      aparecem somente nos campos que realmente precisam de atenção.
+    -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Gênesis Elétrica</h1>
-    <p>Energia com segurança, profissionalismo e excelência.</p>
-  </header>
+    <header class="site-header">
+        <h1>Gênesis Elétrica</h1>
+        <p class="tagline">Energia com segurança, profissionalismo e excelência.</p>
+        <nav class="main-nav">
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+            <a href="#formulario">Formulário</a>
+        </nav>
+    </header>
 
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#contato">Contato</a>
-    <a href="#formulario">Formulário</a>
-  </nav>
+    <main>
+        <!-- Seção de boas‑vindas e chamada para ação -->
+        <section id="hero" class="hero-section">
+            <h2>Bem-vindo ao nosso site!</h2>
+            <p>Solicite agora mesmo seu serviço elétrico com rapidez e confiança.</p>
+            <button id="btn-solicitar" class="primary" onclick="openForm('pedido')">
+                Solicitar Serviço
+            </button>
+        </section>
 
-  <section id="inicio">
-    <h2>Bem-vindo ao nosso site!</h2>
-    <p>Solicite agora mesmo seu serviço elétrico com rapidez e confiança.</p>
-    <a href="#formulario" class="botao-formulario">Solicitar Serviço</a>
-  </section>
+        <!-- Seção de seleção de serviço e formulário -->
+        <section id="formulario" class="form-section">
+            <h2>Qual serviço de eletricista está precisando?</h2>
+            <div class="service-selector">
+                <label for="tipoServico">Selecione uma opção:</label>
+                <select id="tipoServico" name="tipoServico">
+                    <option value="">-- Escolha um serviço --</option>
+                    <option value="Restauração elétrica">Restauração elétrica</option>
+                    <option value="Instalação de CVE">Instalação de CVE (Carregador de veículo elétrico)</option>
+                    <option value="Sistema de Aterramento">Sistema de aterramento</option>
+                    <option value="Outro">Outro (descreva abaixo)</option>
+                </select>
+                <input type="text" id="descricaoServico" name="descricaoServico"
+                    placeholder="Ou digite aqui qual suporte precisa">
+            </div>
 
-  <iframe id="formulario" src="formulario_atualizado.html" width="100%" height="1000" frameborder="0" style="border: none;"></iframe>
+            <div class="buttons">
+                <button onclick="openForm('pedido')" class="primary">Enviar pedido</button>
+                <button onclick="openForm('urgencia')" class="urgent">Serviço de urgência</button>
+            </div>
 
-  <footer>
-    © 2025 Gênesis Elétrica - Todos os direitos reservados
-  </footer>
+            <!-- Contêiner do formulário reutilizado para pedido e urgência -->
+            <div id="formContainer" class="form-container" style="display: none;">
+                <form id="serviceForm" novalidate>
+                    <h3 id="formTitle">Solicitar serviço</h3>
+                    <div class="form-group">
+                        <label for="nome" class="required">Seu nome</label>
+                        <input type="text" id="nome" name="nome" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone" class="required">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" required
+                               pattern="[0-9()\s+\-]{10,}">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E‑mail</label>
+                        <input type="email" id="email" name="email">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro" class="required">Bairro / Cidade</label>
+                        <input type="text" id="bairro" name="bairro" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo" class="required">Tipo de serviço</label>
+                        <input type="text" id="tipo" name="tipo" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="observacao">Observação relevante (opcional)</label>
+                        <textarea id="observacao" name="observacao"></textarea>
+                    </div>
+                    <button type="submit" class="primary">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-  <script>
-    function mascaraTelefone(campo) {
-      campo.value = campo.value
-        .replace(/\D/g, '')
-        .replace(/^(\d{2})(\d)/g, '($1) $2')
-        .replace(/(\d{5})(\d{4})$/, '$1-$2');
-    }
-  </script>
+    <!-- Botão flutuante de urgência -->
+    <button id="floatingUrgencia" class="floating-urgent" onclick="openForm('urgencia')">
+        Serviço de Urgência
+    </button>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Gênesis Elétrica – Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
