@@ -104,6 +104,120 @@
     input:invalid {
         border: 2px solid red;
     }
+
+    /* ===== Estilos adicionais para o formulário unificado ===== */
+    /* Essas classes são usadas pelo novo formulário de solicitação de serviço e
+       urgência. Os estilos são definidos aqui para não interferir na
+       estrutura existente do site. */
+    .service-selector {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+    }
+    .service-selector label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    .service-selector select,
+    .service-selector input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .primary {
+      background-color: #b6943f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+    .primary:hover {
+      background-color: #997c35;
+    }
+    .urgent {
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .urgent:hover {
+      background-color: #c9302c;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: none;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+    .form-group label.required::after {
+      content: " *";
+      color: #d9534f;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-group input.invalid,
+    .form-group textarea.invalid {
+      border-color: #d9534f;
+    }
+    .error-message {
+      color: #d9534f;
+      font-size: 0.8em;
+      margin-top: 4px;
+      min-height: 14px;
+    }
+    .floating-urgent {
+      position: fixed;
+      right: 20px;
+      bottom: 30px;
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      font-size: 0.9em;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 100;
+      display: none; /* oculto no index pois já existe botão na seção */
+    }
     </style>
 <meta content="Eletricista 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência." name="description"/>
 <meta content="eletricista Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial" name="keywords"/>
@@ -180,134 +294,82 @@
 </section>
 </section>
 <section class="form-section" id="servico">
-<p>
-    Qual serviço de eletricista está precisando?
-   </p>
-<select id="tipoServico" onchange="preencherTipoServico(this.value)">
-<option value="">
-     Selecione uma opção
-    </option>
-<option value="Instalação ou restauração de quadros de distribuição">
-     Instalação ou restauração de quadros de distribuição
-    </option>
-<option value="Instalação elétrica do zero">
-     Instalação elétrica do zero
-    </option>
-<option value="Criação de projeto elétrico residencial e comercial">
-     Criação de projeto elétrico residencial e comercial
-    </option>
-<option value="Sistema de aterramento">
-     Sistema de aterramento
-    </option>
-<option value="Instalação de CVEs – carregadores veiculares elétricos">
-     Instalação de CVEs – carregadores veiculares elétricos
-    </option>
-<option value="Padrão CEMIG">
-     Padrão CEMIG
-    </option>
-<option value="Restauração elétrica">
-     Restauração elétrica
-    </option>
-<option value="Reparação de pontos elétrico">
-     Reparação de pontos elétrico
-    </option>
-<option value="Passagem de fiação">
-     Passagem de fiação
-    </option>
-<option value="Troca de disjuntor, IDR, DPS">
-     Troca de disjuntor, IDR, DPS
-    </option>
-<option value="Instalação e dimensionamento de disjuntor, IDR, DPS">
-     Instalação e dimensionamento de disjuntor, IDR, DPS
-    </option>
-<option value="Manutenção elétrica">
-     Manutenção elétrica
-    </option>
-<option value="Instalação de tomada simples">
-     Instalação de tomada simples
-    </option>
-<option value="Instalação de tomada dupla">
-     Instalação de tomada dupla
-    </option>
-<option value="Instalação de interruptor simples">
-     Instalação de interruptor simples
-    </option>
-<option value="Instalação de interruptor three way">
-     Instalação de interruptor three way
-    </option>
-<option value="Instalação de interruptor four way">
-     Instalação de interruptor four way
-    </option>
-<option value="Instalação de plafon soquete teto">
-     Instalação de plafon soquete teto
-    </option>
-<option value="Instalação de plafon led teto ou parede">
-     Instalação de plafon led teto ou parede
-    </option>
-<option value="Instalação de arandela">
-     Instalação de arandela
-    </option>
-<option value="Iluminação para jardim">
-     Iluminação para jardim
-    </option>
-<option value="Iluminação externa">
-     Iluminação externa
-    </option>
-<option value="Instalação de sinaleiros para jardim ou piscina">
-     Instalação de sinaleiros para jardim ou piscina
-    </option>
-<option value="Instalação de perfil de led">
-     Instalação de perfil de led
-    </option>
-<option value="Instalação de spot">
-     Instalação de spot
-    </option>
-<option value="Instalação de chuveiro">
-     Instalação de chuveiro
-    </option>
-<option value="Instalação de ventilador de parede ou teto">
-     Instalação de ventilador de parede ou teto
-    </option>
-<option value="Preparação e criação de circuito elétrico para ar condicionado">
-     Preparação e criação de circuito elétrico para ar condicionado
-    </option>
-<option value="Outros">
-     Outros
-    </option>
-</select>
-<input id="suporte" placeholder="Ou digite aqui qual suporte precisa" type="text"/>
-<button onclick="mostrarFormulario()" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;" type="button">
-    Enviar pedido
-   </button>
-<div id="botaoUrgencia" style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: 10px; margin-top: 30px; margin-bottom: 20px; transform: translateX(-25px);">
-<img alt="Serviço de urgência" src="alerta.jpg" style="width: 58.5px; height: auto; margin-right: 15px;"/>
-<button onclick="abrirUrgencia()" style="background-color: red; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold;" type="button">
-     Serviço de urgência
-    </button>
-</div>
-<div id="formularioExtra" style="display:none; margin-top:20px;">
-<input id="nome" placeholder="Seu nome" required="" type="text"/>
-<br/>
-<br/>
-<input id="telefone" placeholder="Telefone" required="" type="text"/>
-<br/>
-<br/>
-<input id="email" placeholder="E-mail" required="" type="email"/>
-<br/>
-<br/>
-<input id="localizacaoUsuario" name="localizacaoUsuario" placeholder="Bairro / Cidade" required="" type="text"/>
-<br/>
-<br/>
-<input id="tipoFinal" placeholder="Tipo de serviço" readonly="" type="text" value=""/>
-<br/>
-<br/>
-<textarea id="observacao" placeholder="Observação relevante (opcional)" style="height: 60px; width: 47%;"></textarea>
-<br/>
-<br/>
-<button onclick="enviarWhatsAppFinal()" type="button">
-     Enviar via WhatsApp
-    </button>
-</div>
+  <p>Qual serviço de eletricista está precisando?</p>
+  <div class="service-selector">
+    <label for="tipoServicoNovo">Selecione uma opção:</label>
+    <select id="tipoServicoNovo" name="tipoServicoNovo">
+      <option value="">-- Escolha um serviço --</option>
+      <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
+      <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
+      <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
+      <option value="Sistema de aterramento">Sistema de aterramento</option>
+      <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
+      <option value="Padrão CEMIG">Padrão CEMIG</option>
+      <option value="Restauração elétrica">Restauração elétrica</option>
+      <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
+      <option value="Passagem de fiação">Passagem de fiação</option>
+      <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
+      <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
+      <option value="Manutenção elétrica">Manutenção elétrica</option>
+      <option value="Instalação de tomada simples">Instalação de tomada simples</option>
+      <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
+      <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
+      <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
+      <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
+      <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
+      <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
+      <option value="Instalação de arandela">Instalação de arandela</option>
+      <option value="Iluminação para jardim">Iluminação para jardim</option>
+      <option value="Iluminação externa">Iluminação externa</option>
+      <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
+      <option value="Instalação de perfil de led">Instalação de perfil de led</option>
+      <option value="Instalação de spot">Instalação de spot</option>
+      <option value="Instalação de chuveiro">Instalação de chuveiro</option>
+      <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
+      <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
+      <option value="Outros">Outros</option>
+    </select>
+    <input type="text" id="descricaoServicoNovo" name="descricaoServicoNovo" placeholder="Ou digite aqui qual suporte precisa" />
+  </div>
+  <div class="buttons">
+    <button onclick="openForm('pedido')" class="primary">Enviar pedido</button>
+    <button onclick="openForm('urgencia')" class="urgent">Serviço de urgência</button>
+  </div>
+  <div id="formContainerNovo" class="form-container">
+    <form id="serviceFormNovo" novalidate>
+      <h3 id="formTitleNovo">Solicitar serviço</h3>
+      <div class="form-group">
+        <label for="nomeNovo" class="required">Seu nome</label>
+        <input type="text" id="nomeNovo" name="nomeNovo" required />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="telefoneNovo" class="required">Telefone</label>
+        <input type="tel" id="telefoneNovo" name="telefoneNovo" required pattern="\(\d{2}\) \d{5}-\d{4}" />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="emailNovo">E-mail</label>
+        <input type="email" id="emailNovo" name="emailNovo" />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="bairroNovo" class="required">Bairro / Cidade</label>
+        <input type="text" id="bairroNovo" name="bairroNovo" required />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="tipoNovo" class="required">Tipo de serviço</label>
+        <input type="text" id="tipoNovo" name="tipoNovo" required />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="observacaoNovo">Observação relevante (opcional)</label>
+        <textarea id="observacaoNovo" name="observacaoNovo"></textarea>
+      </div>
+      <button type="submit" class="primary">Enviar</button>
+    </form>
+  </div>
 </section>
 <div class="services-grid">
 <div class="service-box">
@@ -398,6 +460,111 @@ Contagem/MG, CEP: 32280-620
     © Gênesis Elétrica. Todos os direitos reservados.
    </p>
 </footer>
+
+<!--
+  Script adicional para controlar o formulário unificado de serviços e urgência.
+  Esta lógica não altera as funções existentes do site; ela apenas opera
+  sobre os elementos inseridos na seção #servico. Também inclui uma
+  máscara de telefone no padrão brasileiro (XX) XXXXX-XXXX aplicada ao
+  campo de telefone do formulário novo e a outros campos de telefone
+  presentes na página.
+-->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Seleciona elementos do novo formulário
+    const formContainer = document.getElementById('formContainerNovo');
+    const serviceForm   = document.getElementById('serviceFormNovo');
+    const tipoField     = document.getElementById('tipoNovo');
+    const tipoServico   = document.getElementById('tipoServicoNovo');
+    const descricao     = document.getElementById('descricaoServicoNovo');
+    const formTitle     = document.getElementById('formTitleNovo');
+    const telefoneInput = document.getElementById('telefoneNovo');
+
+    // Função de máscara para telefone no padrão (XX) XXXXX-XXXX
+    function maskPhone(value) {
+      // Remove caracteres não numéricos
+      const digits = value.replace(/\D/g, '').substring(0, 11);
+      const part1 = digits.substring(0, 2);
+      const part2 = digits.substring(2, 7);
+      const part3 = digits.substring(7, 11);
+      let result = '';
+      if (part1) {
+        result += '(' + part1;
+        if (part2) {
+          result += ') ' + part2;
+          if (part3) {
+            result += '-' + part3;
+          }
+        }
+      }
+      return result;
+    }
+
+    // Aplica a máscara enquanto o usuário digita
+    telefoneInput.addEventListener('input', () => {
+      telefoneInput.value = maskPhone(telefoneInput.value);
+    });
+
+    // Aplica a máscara aos demais campos de telefone existentes na página
+    document.querySelectorAll('input[id^="telefone"]').forEach((input) => {
+      if (input !== telefoneInput) {
+        input.addEventListener('input', () => {
+          input.value = maskPhone(input.value);
+        });
+      }
+    });
+
+    function resetForm() {
+      serviceForm.reset();
+      serviceForm.querySelectorAll('.error-message').forEach((msg) => (msg.textContent = ''));
+      serviceForm.querySelectorAll('input, textarea').forEach((field) => field.classList.remove('invalid'));
+    }
+
+    // Define função global para abrir o formulário a partir dos botões
+    window.openForm = function(tipoSolicitacao) {
+      resetForm();
+      let valorTipo = '';
+      if (tipoSolicitacao === 'urgencia') {
+        valorTipo = 'Urgência';
+        formTitle.textContent = 'Solicitação de urgência';
+      } else {
+        formTitle.textContent = 'Solicitação de serviço';
+        valorTipo = tipoServico.value || descricao.value.trim();
+      }
+      tipoField.value = valorTipo;
+      formContainer.style.display = 'block';
+      formContainer.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // Validação do formulário novo
+    serviceForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      let valid = true;
+      serviceForm.querySelectorAll('[required]').forEach((field) => {
+        const msg = field.parentElement.querySelector('.error-message');
+        if (!field.value.trim()) {
+          msg.textContent = 'Campo de preenchimento obrigatório';
+          field.classList.add('invalid');
+          valid = false;
+        } else {
+          msg.textContent = '';
+          field.classList.remove('invalid');
+        }
+        // Validação de telefone com padrão
+        if (field === telefoneInput && field.value && !/^\(\d{2}\) \d{5}-\d{4}$/.test(field.value)) {
+          msg.textContent = 'Telefone inválido';
+          field.classList.add('invalid');
+          valid = false;
+        }
+      });
+      if (valid) {
+        alert('Dados enviados com sucesso!');
+        resetForm();
+        formContainer.style.display = 'none';
+      }
+    });
+  });
+</script>
 <script>
    function enviarWhatsApp() {
       const servico = document.getElementById('servico').value;
