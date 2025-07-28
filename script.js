@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se válido, envia (aqui exibimos alerta e fechamos o formulário)
         if (valid) {
             alert('Dados enviados com sucesso!');
+            git rm
             resetForm();
             formContainer.style.display = 'none';
         }
