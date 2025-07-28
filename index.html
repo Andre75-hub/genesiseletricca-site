@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gênesis Elétrica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gênesis Elétrica</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -61,7 +60,7 @@
 </head>
 <body>
   <header>
-    <h1>Gênesis Elétrica</h1>
+    <h1>Gênesis Elétrica</h1>
     <p>Energia com segurança, profissionalismo e excelência.</p>
   </header>
 
@@ -74,22 +73,19 @@
   <section id="inicio">
     <h2>Bem-vindo ao nosso site!</h2>
     <p>Solicite agora mesmo seu serviço elétrico com rapidez e confiança.</p>
+    <!-- botão que aponta para o formulário incorporado -->
     <a href="#formulario" class="botao-formulario">Solicitar Serviço</a>
   </section>
 
-  <iframe id="formulario" src="formulario_atualizado.html" width="100%" height="1000" frameborder="0" style="border: none;"></iframe>
+  <!--
+    O formulário é incorporado via iframe para manter a estrutura original do
+    site intacta. O arquivo `formulario_atualizado.html` contém o
+    formulário unificado e a lógica de validação melhorada.
+  -->
+  <iframe id="formulario" src="formulario_atualizado.html" width="100%" height="1200" frameborder="0" style="border: none;"></iframe>
 
   <footer>
-    © 2025 Gênesis Elétrica - Todos os direitos reservados
+    © 2025 Gênesis Elétrica - Todos os direitos reservados
   </footer>
-
-  <script>
-    function mascaraTelefone(campo) {
-      campo.value = campo.value
-        .replace(/\D/g, '')
-        .replace(/^(\d{2})(\d)/g, '($1) $2')
-        .replace(/(\d{5})(\d{4})$/, '$1-$2');
-    }
-  </script>
 </body>
 </html>

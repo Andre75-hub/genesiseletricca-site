@@ -1,143 +1,251 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulário Gênesis Elétrica</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulário de Serviço - Gênesis Elétrica</title>
+  <style>
+    /* Estilo básico para o formulário incorporado */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdfdfd;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .service-selector {
+      margin-bottom: 20px;
+    }
+    .service-selector label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    .service-selector select,
+    .service-selector input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      margin-bottom: 20px;
+    }
+    .primary {
+      background-color: #b6943f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .primary:hover {
+      background-color: #997c35;
+    }
+    .urgent {
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+    .urgent:hover {
+      background-color: #c9302c;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+    /* Adiciona um asterisco vermelho aos campos obrigatórios */
+    .form-group label.required::after {
+      content: " *";
+      color: #d9534f;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-group input.invalid,
+    .form-group textarea.invalid {
+      border-color: #d9534f;
+    }
+    .error-message {
+      color: #d9534f;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      min-height: 14px;
+    }
+    .floating-urgent {
+      position: fixed;
+      right: 20px;
+      bottom: 30px;
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      font-size: 0.9rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+    .floating-urgent:hover {
+      background-color: #c9302c;
+    }
+  </style>
 </head>
 <body>
-<section id="formulario-servico" style="padding: 40px 20px; max-width: 600px; margin: auto;">
-  <h2 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Qual serviço de eletricista está precisando?</h2>
+  <section class="form-section">
+    <h2>Qual serviço de eletricista está precisando?</h2>
+    <div class="service-selector">
+      <label for="tipoServico">Selecione uma opção:</label>
+      <select id="tipoServico" name="tipoServico">
+        <option value="">-- Escolha um serviço --</option>
+        <option value="Restauração elétrica">Restauração elétrica</option>
+        <option value="Instalação de CVE">Instalação de CVE (Carregador de veículo elétrico)</option>
+        <option value="Sistema de Aterramento">Sistema de Aterramento</option>
+        <option value="Outro">Outro (descreva abaixo)</option>
+      </select>
+      <input type="text" id="descricaoServico" name="descricaoServico"
+        placeholder="Ou digite aqui qual suporte precisa" />
+    </div>
+    <div class="buttons">
+      <button onclick="openForm('pedido')" class="primary">Enviar pedido</button>
+      <button onclick="openForm('urgencia')" class="urgent">Serviço de urgência</button>
+    </div>
+    <div id="formContainer" class="form-container" style="display: none;">
+      <form id="serviceForm" novalidate>
+        <h3 id="formTitle">Solicitar serviço</h3>
+        <div class="form-group">
+          <label for="nome" class="required">Seu nome</label>
+          <input type="text" id="nome" name="nome" required />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <label for="telefone" class="required">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" required pattern="[0-9()\s+\-]{10,}" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <label for="bairro" class="required">Bairro / Cidade</label>
+          <input type="text" id="bairro" name="bairro" required />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <label for="tipo" class="required">Tipo de serviço</label>
+          <input type="text" id="tipo" name="tipo" required />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <label for="observacao">Observação relevante (opcional)</label>
+          <textarea id="observacao" name="observacao"></textarea>
+        </div>
+        <button type="submit" class="primary">Enviar</button>
+      </form>
+    </div>
+  </section>
+  <button id="floatingUrgencia" class="floating-urgent" onclick="openForm('urgencia')">
+    Serviço de Urgência
+  </button>
 
-  <label for="tipo-servico-select">Selecione uma opção:</label>
-  <select id="tipo-servico-select" onchange="abrirFormularioPadrao()" style="width: 100%; padding: 10px; margin: 10px 0;">
-    <option value="">-- Escolha um serviço --</option>
-    <option value="instalacao">Instalação elétrica</option>
-    <option value="manutencao">Manutenção elétrica</option>
-    <option value="projeto">Projeto elétrico</option>
-    <option value="outro">Outro</option>
-  </select>
+  <script>
+    // Lógica de exibição e validação do formulário.
+    document.addEventListener('DOMContentLoaded', () => {
+      const formContainer = document.getElementById('formContainer');
+      const serviceForm = document.getElementById('serviceForm');
+      const tipoField = document.getElementById('tipo');
+      const tipoServico = document.getElementById('tipoServico');
+      const descricao = document.getElementById('descricaoServico');
+      const formTitle = document.getElementById('formTitle');
 
-  <form id="formulario-padrao" style="display: none; flex-direction: column; gap: 12px;">
-    <label for="nome">Seu nome<span style="color: red;">*</span></label>
-    <input type="text" id="nome" required>
-    <small class="erro" id="erro-nome"></small>
+      function resetForm() {
+        serviceForm.reset();
+        const msgs = serviceForm.querySelectorAll('.error-message');
+        msgs.forEach((m) => (m.textContent = ''));
+        const inputs = serviceForm.querySelectorAll('input, textarea');
+        inputs.forEach((f) => f.classList.remove('invalid'));
+      }
 
-    <label for="telefone">Telefone<span style="color: red;">*</span></label>
-    <input type="tel" id="telefone" placeholder="(31) 91234-5678" maxlength="15" oninput="mascaraTelefone(this)">
-    <small class="erro" id="erro-telefone"></small>
+      window.openForm = function (tipoSolicitacao) {
+        resetForm();
+        let valorTipo = '';
+        if (tipoSolicitacao === 'urgencia') {
+          valorTipo = 'Urgência';
+          formTitle.textContent = 'Solicitação de urgência';
+        } else {
+          formTitle.textContent = 'Solicitação de serviço';
+          valorTipo = tipoServico.value || descricao.value.trim();
+        }
+        tipoField.value = valorTipo;
+        formContainer.style.display = 'block';
+        formContainer.scrollIntoView({ behavior: 'smooth' });
+      };
 
-    <label for="bairro">Bairro / Município<span style="color: red;">*</span></label>
-    <input type="text" id="bairro" placeholder="Ex: Riacho / Contagem" required>
-    <small class="erro" id="erro-bairro"></small>
-
-    <label for="servico">Tipo de serviço</label>
-    <input type="text" id="servico" readonly>
-
-    <label for="observacao">Observação relevante</label>
-    <textarea id="observacao" rows="3"></textarea>
-
-    <button type="button" onclick="enviarFormularioPadrao()" style="padding: 10px; background-color: #bfa04d; border: none; color: white; font-weight: bold; cursor: pointer;">Enviar Pedido</button>
-  </form>
-</section>
-
-<div id="urgencia-btn" onclick="abrirFormularioUrgencia()">Serviço de Urgência</div>
-
-<div id="form-urgencia" style="display: none; position: fixed; bottom: 80px; right: 20px; background: #fff; border: 2px solid #bfa04d; border-radius: 10px; padding: 20px; max-width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 1000;">
-  <label for="urg-nome">Seu nome<span style="color: red;">*</span></label>
-  <input type="text" id="urg-nome">
-  <small class="erro" id="erro-urg-nome"></small>
-
-  <label for="urg-telefone">Telefone<span style="color: red;">*</span></label>
-  <input type="tel" id="urg-telefone" placeholder="(31) 91234-5678" maxlength="15" oninput="mascaraTelefone(this)">
-  <small class="erro" id="erro-urg-telefone"></small>
-
-  <label for="urg-bairro">Bairro / Município<span style="color: red;">*</span></label>
-  <input type="text" id="urg-bairro" placeholder="Ex: Riacho / Contagem">
-  <small class="erro" id="erro-urg-bairro"></small>
-
-  <label for="urg-servico">Tipo de serviço<span style="color: red;">*</span></label>
-  <input type="text" id="urg-servico" placeholder="Descreva o serviço">
-  <small class="erro" id="erro-urg-servico"></small>
-
-  <button onclick="enviarFormularioUrgencia()" style="margin-top: 10px; background-color: #bfa04d; color: white; padding: 10px; border: none; font-weight: bold; cursor: pointer; width: 100%;">Enviar Pedido</button>
-</div>
-
-<script>
-function mascaraTelefone(campo) {
-  campo.value = campo.value
-    .replace(/\D/g, '')
-    .replace(/^(\d{2})(\d)/g, '($1) $2')
-    .replace(/(\d{5})(\d{4})$/, '$1-$2');
-}
-
-function abrirFormularioPadrao() {
-  const tipo = document.getElementById('tipo-servico-select').value;
-  document.getElementById('formulario-padrao').style.display = tipo ? 'flex' : 'none';
-  if (tipo) {
-    document.getElementById('servico').value = document.getElementById('tipo-servico-select').options[document.getElementById('tipo-servico-select').selectedIndex].text;
-  }
-}
-
-function enviarFormularioPadrao() {
-  const nome = document.getElementById('nome');
-  const telefone = document.getElementById('telefone');
-  const bairro = document.getElementById('bairro');
-  const servico = document.getElementById('servico');
-  const observacao = document.getElementById('observacao');
-  let validado = true;
-  document.querySelectorAll('.erro').forEach(el => el.innerText = "");
-
-  if (!nome.value.trim()) {
-    document.getElementById('erro-nome').innerText = 'Campo de preenchimento obrigatório';
-    validado = false;
-  }
-  if (!telefone.value.match(/^\(\d{2}\) \d{5}-\d{4}$/)) {
-    document.getElementById('erro-telefone').innerText = 'Informe o telefone corretamente';
-    validado = false;
-  }
-  if (!bairro.value.includes('/')) {
-    document.getElementById('erro-bairro').innerText = 'Informe bairro e município separados por "/"';
-    validado = false;
-  }
-  if (!validado) return;
-  const msg = `Olá! Gostaria de solicitar um serviço.%0A%0ANome: ${nome.value}%0ATelefone: ${telefone.value}%0ABairro/Município: ${bairro.value}%0ATipo de serviço: ${servico.value}%0AObservação: ${observacao.value}`;
-  window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
-}
-
-function abrirFormularioUrgencia() {
-  const urgenciaForm = document.getElementById('form-urgencia');
-  urgenciaForm.style.display = urgenciaForm.style.display === 'none' ? 'block' : 'none';
-}
-
-function enviarFormularioUrgencia() {
-  const nome = document.getElementById('urg-nome');
-  const telefone = document.getElementById('urg-telefone');
-  const bairro = document.getElementById('urg-bairro');
-  const servico = document.getElementById('urg-servico');
-  let validado = true;
-  document.querySelectorAll('.erro').forEach(el => el.innerText = "");
-
-  if (!nome.value.trim()) {
-    document.getElementById('erro-urg-nome').innerText = 'Campo de preenchimento obrigatório';
-    validado = false;
-  }
-  if (!telefone.value.match(/^\(\d{2}\) \d{5}-\d{4}$/)) {
-    document.getElementById('erro-urg-telefone').innerText = 'Informe o telefone corretamente';
-    validado = false;
-  }
-  if (!bairro.value.includes('/')) {
-    document.getElementById('erro-urg-bairro').innerText = 'Informe bairro e município separados por "/"';
-    validado = false;
-  }
-  if (!servico.value.trim()) {
-    document.getElementById('erro-urg-servico').innerText = 'Campo de preenchimento obrigatório';
-    validado = false;
-  }
-  if (!validado) return;
-  const msg = `Olá! PRECISO DO SERVIÇO COM URGÊNCIA.%0A%0ANome: ${nome.value}%0ATelefone: ${telefone.value}%0ABairro/Município: ${bairro.value}%0ATipo de serviço: ${servico.value}`;
-  window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
-}
-</script>
+      serviceForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let valid = true;
+        serviceForm.querySelectorAll('[required]').forEach((field) => {
+          const msg = field.parentElement.querySelector('.error-message');
+          if (!field.value.trim()) {
+            msg.textContent = 'Campo de preenchimento obrigatório';
+            field.classList.add('invalid');
+            valid = false;
+            return;
+          } else {
+            msg.textContent = '';
+            field.classList.remove('invalid');
+          }
+          if (field.id === 'telefone' && !field.checkValidity()) {
+            msg.textContent = 'Telefone inválido';
+            field.classList.add('invalid');
+            valid = false;
+          }
+        });
+        if (valid) {
+          alert('Dados enviados com sucesso!');
+          resetForm();
+          formContainer.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
