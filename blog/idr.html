@@ -15,6 +15,18 @@
         footer { background-color: #000; color: #fff; padding: 20px; text-align: center; }
         footer img { max-height: 90px; }
         footer a { color: #fff; text-decoration: none; margin: 0 10px; }
+        /* Center the video and control its size. By default it uses half of the content width. */
+        video {
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            /* On small screens, make the video full width for better visibility */
+            video {
+                max-width: 100% !important;
+            }
+        }
         @media (max-width: 768px) {
             nav {
                 flex-wrap: nowrap;
@@ -29,16 +41,10 @@
 </head>
 <body>
     <header>
-        <img src="../LOGO GENESIS ELETRICA.jpg" alt="Logomarca Gênesis Elétrica"/>
+        <!-- Logo alterado para usar o ícone ICONE GE fornecido. -->
+        <img src="../ICONE GE.png" alt="Ícone Gênesis Elétrica"/>
     </header>
-    <nav>
-        <a href="../index.html">Home</a>
-        <a href="../index.html#formulario">Serviços</a>
-        <a href="../index.html#quemsomos">Empresa</a>
-        <a href="../index.html#localizacao">Localização</a>
-        <a href="../index.html#blog">Blog</a>
-        <a href="../index.html#contato">Contato</a>
-    </nav>
+    <!-- Nav removida conforme solicitado; esta página é focada apenas no artigo. -->
     <div class="content">
         <h1 style="text-align:center;">IDR</h1>
         <div style="text-align:center; margin:20px 0;">
@@ -156,7 +162,7 @@ entanto, em algumas situações específicas, como iluminação de
 piscina, jardim, áreas molhadas cuja a altura do piso ao ponto de
 iluminação seja inferior a 2 metros, o uso de IDR é obrigatório.</font></font></p>
         <div style="text-align:center; margin:20px 20px;">
-    <video controls style="max-width:100%; height:auto;">
+    <video controls style="max-width:50%; height:auto;">
         <source src="../GENESIS EFEITO 4.mp4" type="video/mp4">
         Seu navegador não suporta a tag de vídeo.
     </video>
@@ -191,8 +197,8 @@ com partes energizadas e a terra.</font></font></p>
 cumprimento dessas recomendações garante maior segurança para
 usuários e instalações, prevenindo acidentes elétricos e
 preservando o patrimônio.</font></font></p>
-        <p align="justify" style="line-height: 108%; margin-bottom: 0.11in"><font face="Arial, sans-serif"><font size="4" style="font-size: 14pt"><br/>
-</font></font><font face="Arial, sans-serif"><font size="4" style="font-size: 14pt"><b>Conclusão:</b></font></font></p>
+        <!-- Removido o cabeçalho "Conclusão" para manter o texto fiel ao documento original. -->
+        <p align="justify" style="line-height: 108%; margin-bottom: 0.11in"><font face="Arial, sans-serif"><font size="4" style="font-size: 14pt"><br/></font></font></p>
         <p align="justify" style="line-height: 108%; margin-bottom: 0.11in"><font face="Arial, sans-serif"><font size="4" style="font-size: 14pt">O
 IDR é um componente essencial em qualquer sistema elétrico seguro.
 Ele reduz significativamente o risco de choques elétricos e
