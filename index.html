@@ -104,121 +104,6 @@
     input:invalid {
         border: 2px solid red;
     }
-
-    /* Custom styles for the unified service form */
-    .service-selector {
-        margin-bottom: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .service-selector select,
-    .service-selector input {
-        padding: 10px;
-        width: 80%;
-        max-width: 400px;
-        margin-top: 10px;
-        font-size: 1em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    .buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 20px;
-    }
-    .buttons .primary,
-    .buttons .urgent {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 1em;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .primary {
-        background-color: #007bff !important;
-        color: #fff !important;
-    }
-    .urgent {
-        background-color: red !important;
-        color: #fff !important;
-    }
-    .form-container {
-        display: none;
-        background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 20px;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .form-container h3 {
-        margin-top: 0;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    .form-group {
-        margin-bottom: 15px;
-        text-align: left;
-        position: relative;
-    }
-    .form-group label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    /* red asterisk for required fields */
-    .form-group label.required::after {
-        content: " *";
-        color: red;
-    }
-    .error-message {
-        color: red;
-        font-size: 0.8em;
-        display: none;
-        margin-top: -5px;
-        margin-bottom: 5px;
-    }
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 8px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        font-size: 1em;
-    }
-    .form-group textarea {
-        height: 80px;
-        resize: vertical;
-    }
-    .form-container button.primary {
-        display: block;
-        width: 100%;
-        margin-top: 10px;
-    }
-    .floating-urgent {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: red;
-        color: #fff;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        display: flex;
-        align-items: center;
-        z-index: 1000;
-    }
-    .floating-urgent img {
-        margin-right: 8px;
-        height: 24px;
-    }
     </style>
 <meta content="Eletricista 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência." name="description"/>
 <meta content="eletricista Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial" name="keywords"/>
@@ -294,86 +179,7 @@
     </script>
 </section>
 </section>
-<!-- Início do novo formulário unificado -->
-<section class="form-section" id="servico-novo">
-  <p style="font-size: 2em; font-weight: bold;">Qual serviço de eletricista está precisando?</p>
-  <div class="service-selector">
-    <label for="tipoServicoNovo">Selecione uma opção:</label>
-    <select id="tipoServicoNovo" name="tipoServicoNovo">
-      <option value="">-- Escolha um serviço --</option>
-      <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
-      <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
-      <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
-      <option value="Sistema de aterramento">Sistema de aterramento</option>
-      <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
-      <option value="Padrão CEMIG">Padrão CEMIG</option>
-      <option value="Restauração elétrica">Restauração elétrica</option>
-      <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
-      <option value="Passagem de fiação">Passagem de fiação</option>
-      <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
-      <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
-      <option value="Manutenção elétrica">Manutenção elétrica</option>
-      <option value="Instalação de tomada simples">Instalação de tomada simples</option>
-      <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
-      <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
-      <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
-      <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
-      <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
-      <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
-      <option value="Instalação de arandela">Instalação de arandela</option>
-      <option value="Iluminação para jardim">Iluminação para jardim</option>
-      <option value="Iluminação externa">Iluminação externa</option>
-      <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
-      <option value="Instalação de perfil de led">Instalação de perfil de led</option>
-      <option value="Instalação de spot">Instalação de spot</option>
-      <option value="Instalação de chuveiro">Instalação de chuveiro</option>
-      <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
-      <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
-      <option value="Outros">Outros</option>
-    </select>
-    <input type="text" id="descricaoServicoNovo" name="descricaoServicoNovo" placeholder="Ou digite aqui qual suporte precisa" />
-  </div>
-  <div class="buttons">
-    <button onclick="openForm('pedido')" class="primary">Enviar pedido</button>
-    <button onclick="openForm('urgencia')" class="urgent">Serviço de urgência</button>
-  </div>
-  <div id="formContainerNovo" class="form-container">
-    <form id="serviceFormNovo" novalidate>
-      <h3 id="formTitleNovo">Solicitar serviço</h3>
-      <div class="form-group">
-        <label for="nomeNovo" class="required">Seu nome</label>
-        <span class="error-message"></span>
-        <input type="text" id="nomeNovo" name="nomeNovo" required />
-      </div>
-      <div class="form-group">
-        <label for="telefoneNovo" class="required">Telefone</label>
-        <span class="error-message"></span>
-        <input type="tel" id="telefoneNovo" name="telefoneNovo" required pattern="\(\d{2}\) \d{5}-\d{4}" />
-      </div>
-      <div class="form-group">
-        <label for="bairroNovo" class="required">Bairro / Município</label>
-        <span class="error-message"></span>
-        <input type="text" id="bairroNovo" name="bairroNovo" required />
-      </div>
-      <div class="form-group">
-        <label for="tipoNovo" class="required">Tipo de serviço</label>
-        <span class="error-message"></span>
-        <input type="text" id="tipoNovo" name="tipoNovo" required />
-      </div>
-      <div class="form-group">
-        <label for="observacaoNovo">Observação relevante (opcional)</label>
-        <textarea id="observacaoNovo" name="observacaoNovo"></textarea>
-      </div>
-      <button type="submit" class="primary">Enviar</button>
-    </form>
-  </div>
-</section>
-<!-- Botão flutuante com ícone de alerta -->
-<button id="floatingUrgenciaNovo" class="floating-urgent" style="display:flex; align-items:center;" onclick="openForm('urgencia')">
-  <img src="alerta.jpg" alt="Serviço de urgência" style="height:24px; margin-right:8px;" />
-  Serviço de urgência
-</button>
-<section class="form-section" id="servico" style="display:none;">
+<section class="form-section" id="servico">
 <p>
     Qual serviço de eletricista está precisando?
    </p>
@@ -557,16 +363,17 @@
 <h2 style="text-align:center; font-size:2em; color:#fff;">
     Fique por dentro das últimas informações no Blog Gênesis Elétrica
    </h2>
-<div style="background:#fff; margin:20px auto; max-width:700px; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
-<h3 style="color:#bfa04d;">
-     Disjuntores: Fundamentos e Aplicações
-    </h3>
-<p style="color:#333;">
-     Conheça os principais tipos de disjuntores, sua função na proteção de circuitos e as melhores práticas de dimensionamento, instalação e manutenção.
-    </p>
-<a href="blog/disjuntor.html" style="background:#bfa04d; color:#000; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">
-     Saiba mais
-    </a>
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;">
+  <div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); flex:1 1 300px; max-width:350px;">
+    <h3 style="color:#bfa04d;">Disjuntores: Fundamentos e Aplicações</h3>
+    <p style="color:#333;">Conheça os principais tipos de disjuntores, sua função na proteção de circuitos e as melhores práticas de dimensionamento, instalação e manutenção.</p>
+    <a href="blog/disjuntor.html" style="background:#bfa04d; color:#000; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Saiba mais</a>
+  </div>
+  <div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); flex:1 1 300px; max-width:350px;">
+    <h3 style="color:#bfa04d;">Interruptor Diferencial Residual (IDR)</h3>
+    <p style="color:#333;">Entenda o que é o IDR, como ele protege pessoas e instalações contra choques elétricos e em quais situações seu uso é obrigatório.</p>
+    <a href="blog/idr.html" style="background:#bfa04d; color:#000; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Saiba mais</a>
+  </div>
 </div>
 </section>
 <footer id="contato">
@@ -632,116 +439,7 @@ function enviarWhatsAppFinal() {
   window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
 }
   </script>
-<!-- Script para o novo formulário unificado -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  // Elementos do formulário unificado
-  const serviceSelect = document.getElementById("tipoServicoNovo");
-  const serviceInput = document.getElementById("descricaoServicoNovo");
-  const formContainer = document.getElementById("formContainerNovo");
-  const form = document.getElementById("serviceFormNovo");
-  const formTitle = document.getElementById("formTitleNovo");
-  const nomeInput = document.getElementById("nomeNovo");
-  const telefoneInputNovo = document.getElementById("telefoneNovo");
-  const bairroInput = document.getElementById("bairroNovo");
-  const tipoInput = document.getElementById("tipoNovo");
-  const observacaoInput = document.getElementById("observacaoNovo");
-  let currentMode = "pedido";
-
-  function maskTelefone(e) {
-    let value = e.target.value.replace(/\D/g, "");
-    if (value.length > 11) value = value.slice(0, 11);
-    let formatted = "";
-    if (value.length > 0) formatted += "(" + value.substring(0, 2);
-    if (value.length >= 3) formatted += ") " + value.substring(2, 7);
-    if (value.length >= 8) formatted += "-" + value.substring(7, 11);
-    e.target.value = formatted;
-  }
-  if (telefoneInputNovo) {
-    telefoneInputNovo.addEventListener("input", maskTelefone);
-  }
-
-  window.openForm = function (mode) {
-    currentMode = mode;
-    if (formContainer) {
-      formContainer.style.display = "block";
-    }
-    Array.from(form.querySelectorAll(".error-message")).forEach(function (span) {
-      span.style.display = "none";
-      span.textContent = "";
-    });
-    nomeInput.value = "";
-    telefoneInputNovo.value = "";
-    bairroInput.value = "";
-    observacaoInput.value = "";
-    if (mode === "pedido") {
-      formTitle.textContent = "Solicitar serviço";
-      tipoInput.readOnly = true;
-      const selectedService = serviceSelect ? serviceSelect.value : "";
-      const describedService = serviceInput ? serviceInput.value.trim() : "";
-      const typeValue = selectedService || describedService;
-      tipoInput.value = typeValue;
-    } else {
-      formTitle.textContent = "Serviço de urgência";
-      tipoInput.readOnly = false;
-      tipoInput.value = "";
-    }
-    formContainer.scrollIntoView({ behavior: "smooth" });
-  };
-
-  function showError(inputElement, message) {
-    const errorSpan = inputElement.parentElement.querySelector(".error-message");
-    if (errorSpan) {
-      errorSpan.textContent = message;
-      errorSpan.style.display = "block";
-    }
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let isValid = true;
-    Array.from(form.querySelectorAll(".error-message")).forEach(function (span) {
-      span.style.display = "none";
-      span.textContent = "";
-    });
-    if (nomeInput.value.trim() === "") {
-      showError(nomeInput, "Campo de preenchimento obrigatório");
-      isValid = false;
-    }
-    const telefonePattern = /^\(\d{2}\) \d{5}-\d{4}$/;
-    if (!telefonePattern.test(telefoneInputNovo.value.trim())) {
-      showError(telefoneInputNovo, "Telefone inválido. Formato: (XX) XXXXX-XXXX");
-      isValid = false;
-    }
-    const bairroValor = bairroInput.value.trim();
-    if (bairroValor === "" || !/\S+\s*\/\s*\S+/.test(bairroValor)) {
-      showError(bairroInput, "Informe bairro e município (Ex.: Riacho / Contagem)");
-      isValid = false;
-    }
-    if (tipoInput.value.trim() === "") {
-      showError(tipoInput, "Campo de preenchimento obrigatório");
-      isValid = false;
-    }
-    if (!isValid) {
-      return;
-    }
-    let mensagem = "";
-    if (currentMode === "urgencia") {
-      mensagem += "Olá! PRECISO DO SERVIÇO COM URGÊNCIA.%0A";
-    } else {
-      mensagem += "Olá! Gostaria de solicitar um serviço.%0A";
-    }
-    mensagem += "Nome: " + encodeURIComponent(nomeInput.value.trim()) + "%0A";
-    mensagem += "Telefone: " + encodeURIComponent(telefoneInputNovo.value.trim()) + "%0A";
-    mensagem += "Bairro / Município: " + encodeURIComponent(bairroInput.value.trim()) + "%0A";
-    mensagem += "Serviço: " + encodeURIComponent(tipoInput.value.trim()) + "%0A";
-    if (observacaoInput.value.trim() !== "") {
-      mensagem += "Observação: " + encodeURIComponent(observacaoInput.value.trim());
-    }
-    window.open("https://wa.me/5531975002129?text=" + mensagem, "_blank");
-    formContainer.style.display = "none";
-  });
-});
 </script>
 <script>
    function abrirUrgencia() {
