@@ -1,1 +1,136 @@
-/* CSS será inserido aqui */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+header img {
+    height: 60px;
+    margin-right: 15px;
+    opacity: 0.2;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #000;
+}
+
+/* Menu azul */
+nav {
+    background-color: #003366;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.main-content {
+    flex: 0 0 66%;
+    max-width: 66%;
+}
+
+.sidebar {
+    flex: 0 0 34%;
+    max-width: 34%;
+    padding-left: 20px;
+}
+
+/* Posts em grade dupla */
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.post-item {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    flex: 0 0 calc(50% - 10px);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.post-item:hover {
+    transform: scale(1.02);
+}
+
+.post-item img {
+    width: 100%;
+    display: block;
+}
+
+.post-item .meta {
+    font-size: 14px;
+    color: #666;
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.post-item h2 {
+    font-size: 20px;
+    margin: 10px;
+    color: #003366;
+}
+
+.post-item p {
+    margin: 10px;
+}
+
+/* Busca */
+.sidebar input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+}
+
+/* Rodapé */
+footer {
+    background: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+}
