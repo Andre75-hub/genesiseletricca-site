@@ -1,1 +1,1 @@
-console.log('Blog Gênesis Elétrica carregado');
+// JavaScript será inserido aqui
