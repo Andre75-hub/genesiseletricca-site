@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Página principal -->
+  <url>
+    <loc>https://genesiseletricca.com.br/</loc>
+    <lastmod>2025-08-02</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Página do blog -->
+  <url>
+    <loc>https://genesiseletricca.com.br/blog/</loc>
+    <lastmod>2025-08-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Post: IDR -->
+  <url>
+    <loc>https://genesiseletricca.com.br/blog/idr.html</loc>
+    <lastmod>2025-07-31</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Post: Disjuntor -->
+  <url>
+    <loc>https://genesiseletricca.com.br/blog/disjuntor.html</loc>
+    <lastmod>2025-07-31</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
