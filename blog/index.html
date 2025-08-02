@@ -1,74 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog Gênesis Elétrica</title>
-  <link rel="stylesheet" href="/style-blog.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Gênesis Elétrica</title>
+    <link rel="stylesheet" href="/style-blog.css" />
+    <script src="/script-blog.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="logo-cabecalho">
-      <img src="/blog/imagens/Logo Geométrico em Cobre.png" alt="Logo Gênesis Elétrica"/>
-      <h1>Gênesis Elétrica</h1>
-    </div>
-    <nav class="menu-superior">
-      <ul>
-        <li><a href="/">Site</a></li>
-        <li><a href="/index.html#quem-somos">Quem Somos</a></li>
-        <li><a href="/index.html#contato">Contato</a></li>
-        <li><a href="/index.html#redes-sociais">Siga-nos</a></li>
-      </ul>
+    <header>
+        <div class="logo-title">
+            <img src="/blog/imagens/logo-cobre.png" alt="Logotipo Gênesis Elétrica" class="logo-blog" />
+            <h1>Blog Gênesis Elétrica</h1>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Início</a></li><li><a href="#">Serviços</a></li><li><a href="#">Contato</a></li>
+        </ul>
     </nav>
-  </header>
+    <main class="post-listagem">
 
-  <main class="conteudo-principal">
-    <section class="quem-somos">
-      <img src="/blog/imagens/QDC principal.jpg" alt="QDC Principal"/>
-      <h2>QUEM SOMOS</h2>
-      <p>A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas...</p>
-    </section>
-
-    <aside class="barra-lateral">
-      <div class="campo-busca">
-        <input type="text" placeholder="Buscar..."/>
-      </div>
-      <h3>Últimos Posts</h3>
-      <ul class="ultimos-posts">
-        <li><a href="idr.html">Interruptor Diferencial Residual (IDR)</a></li>
-        <li><a href="disjuntor.html">Disjuntores: Fundamentos e Aplicações</a></li>
-      </ul>
-    </aside>
-
-    <section class="posts">
-      <article class="post-resumo">
-        <a href="idr.html">
-          <img src="/blog/imagens/idr.jpg" alt="Imagem IDR"/>
-          <h2>Interruptor Diferencial Residual (IDR)</h2>
-          <p>Saiba por que o IDR é essencial para segurança em instalações elétricas e como ele atua em fugas de corrente...</p>
-        </a>
-      </article>
-
-      <article class="post-resumo">
-        <a href="disjuntor.html">
-          <img src="/blog/imagens/disjuntor.jpg" alt="Imagem Disjuntor"/>
-          <h2>Disjuntores: Fundamentos e Aplicações</h2>
-          <p>Descubra os princípios, tipos e aplicações dos disjuntores, um dos pilares fundamentais da proteção elétrica...</p>
-        </a>
-      </article>
-    </section>
-  </main>
-
-  <footer class="rodape">
-    <p>
-      WhatsApp: (31) 97500-2129 |
-      E-mail: genesiseletricca@gmail.com |
-      Instagram: @genesis_eletrica
-    </p>
-    <p>© 2025 Gênesis Elétrica - Todos os direitos reservados.</p>
-  </footer>
-
-  <script src="/script-blog.js"></script>
+        <article class="post-card par">
+            <a href="/blog/disjuntor.html">
+                <img src="/blog/imagens/disjuntor.jpg" alt="Disjuntores: Fundamentos, Aplicações e Recomendações" class="thumb-post">
+                <h2>Disjuntores: Fundamentos, Aplicações e Recomendações</h2>
+            </a>
+            <p class="data-post">31 de Julho de 2025</p>
+            <p class="resumo">Descubra tudo sobre disjuntores: funcionamento, tipos, dimensionamento, manutenção e sua importância na proteção elétrica.</p>
+        </article>
+    
+        <article class="post-card impar">
+            <a href="/blog/idr.html">
+                <img src="/blog/imagens/idr.jpg" alt="IDR: Segurança Contra Choques Elétricos e Incêndios" class="thumb-post">
+                <h2>IDR: Segurança Contra Choques Elétricos e Incêndios</h2>
+            </a>
+            <p class="data-post">31 de Julho de 2025</p>
+            <p class="resumo">Entenda o papel do IDR na segurança elétrica, suas formas de aplicação, vantagens e os locais onde é obrigatório segundo a NBR 5410.</p>
+        </article>
+    
+    </main>
+    <footer class="rodape">
+        <p>WhatsApp: (31) 97500-2129</p>
+        <p>Email: genesiseletricca@gmail.com</p>
+        <p>Instagram: @genesis_eletrica</p>
+        <p>&copy; 2025 Gênesis Elétrica</p>
+    </footer>
 </body>
 </html>
