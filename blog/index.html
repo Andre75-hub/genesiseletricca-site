@@ -1,57 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GÊNESIS ELÉTRICA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog Gênesis Elétrica</title>
   <link rel="stylesheet" href="/style-blog.css" />
-  <link rel="icon" href="/blog/imagens/logo-cobre.png" type="image/png" />
-  <script src="/script-blog.js" defer></script>
 </head>
 <body>
   <header>
-    <div class="header-container">
-      <img src="/blog/imagens/logo-cobre.png" alt="Logo Gênesis Elétrica" class="logo" />
-      <h1 class="site-title">GÊNESIS ELÉTRICA</h1>
+    <div class="logo-cabecalho">
+      <img src="/blog/imagens/Logo Geométrico em Cobre.png" alt="Logo Gênesis Elétrica"/>
+      <h1>Gênesis Elétrica</h1>
     </div>
+    <nav class="menu-superior">
+      <ul>
+        <li><a href="/">Site</a></li>
+        <li><a href="/index.html#quem-somos">Quem Somos</a></li>
+        <li><a href="/index.html#contato">Contato</a></li>
+        <li><a href="/index.html#redes-sociais">Siga-nos</a></li>
+      </ul>
+    </nav>
   </header>
-  <nav class="navbar">
-    <ul>
-      <li><a href="https://genesiseletricca.com.br">Site</a></li>
-      <li><a href="#quem-somos">Quem Somos</a></li>
-      <li><a href="#contato">Contato</a></li>
-      <li><a href="#siga-nos">Siga-nos</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section id="quem-somos" class="quem-somos">
-      <div class="content-left">
-        <img src="/blog/imagens/qdc.jpg" alt="QDC Principal" />
-        <div class="tag-bar">QUEM SOMOS</div>
-        <h2>BLOG GÊNESIS ELÉTRICA</h2>
-        <p>
-          A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas...
-        </p>
+
+  <main class="conteudo-principal">
+    <section class="quem-somos">
+      <img src="/blog/imagens/QDC principal.jpg" alt="QDC Principal"/>
+      <h2>QUEM SOMOS</h2>
+      <p>A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas...</p>
+    </section>
+
+    <aside class="barra-lateral">
+      <div class="campo-busca">
+        <input type="text" placeholder="Buscar..."/>
       </div>
-      <aside class="sidebar">
-        <div class="search-bar">
-          <input type="text" placeholder="Buscar..." />
-          <span class="search-icon">🔍</span>
-        </div>
-        <h3>Últimos Posts</h3>
-        <ul>
-          <li><a href="idr.html">Interruptor Diferencial Residual (IDR)</a></li>
-          <li><a href="disjuntor.html">Disjuntores: Fundamentos e Aplicações</a></li>
-        </ul>
-      </aside>
+      <h3>Últimos Posts</h3>
+      <ul class="ultimos-posts">
+        <li><a href="idr.html">Interruptor Diferencial Residual (IDR)</a></li>
+        <li><a href="disjuntor.html">Disjuntores: Fundamentos e Aplicações</a></li>
+      </ul>
+    </aside>
+
+    <section class="posts">
+      <article class="post-resumo">
+        <a href="idr.html">
+          <img src="/blog/imagens/idr.jpg" alt="Imagem IDR"/>
+          <h2>Interruptor Diferencial Residual (IDR)</h2>
+          <p>Saiba por que o IDR é essencial para segurança em instalações elétricas e como ele atua em fugas de corrente...</p>
+        </a>
+      </article>
+
+      <article class="post-resumo">
+        <a href="disjuntor.html">
+          <img src="/blog/imagens/disjuntor.jpg" alt="Imagem Disjuntor"/>
+          <h2>Disjuntores: Fundamentos e Aplicações</h2>
+          <p>Descubra os princípios, tipos e aplicações dos disjuntores, um dos pilares fundamentais da proteção elétrica...</p>
+        </a>
+      </article>
     </section>
   </main>
-  <footer id="contato">
-    <div class="footer-content">
-      <img src="/blog/imagens/logo-cobre.png" alt="Logo Rodapé" class="footer-logo" />
-      <p>WhatsApp: (31) 97500-2129 | E-mail: genesiseletricca@gmail.com | Instagram: @genesis_eletrica</p>
-      <p id="siga-nos">&copy; 2025 Gênesis Elétrica - Todos os direitos reservados.</p>
-    </div>
+
+  <footer class="rodape">
+    <p>
+      WhatsApp: (31) 97500-2129 |
+      E-mail: genesiseletricca@gmail.com |
+      Instagram: @genesis_eletrica
+    </p>
+    <p>© 2025 Gênesis Elétrica - Todos os direitos reservados.</p>
   </footer>
+
+  <script src="/script-blog.js"></script>
 </body>
 </html>
