@@ -75,10 +75,10 @@
 
     <section class="comments">
       <h3>Deixe um comentário</h3>
-      <form>
-        <textarea placeholder="Deixe um comentário" required></textarea>
-        <input type="text" placeholder="Nome" required />
-        <input type="email" placeholder="E-mail" required />
+      <form id="comentario-form">
+        <textarea id="comentario" placeholder="Deixe um comentário" required></textarea>
+        <input type="text" id="nome" placeholder="Nome" required />
+        <input type="email" id="email" placeholder="E-mail" required />
         <button type="submit">Enviar Comentário</button>
       </form>
     </section>
@@ -89,38 +89,7 @@
     <p>WhatsApp: (31) 97500-2129 | E-mail: genesiseletricca@gmail.com | Instagram: @genesis_eletrica</p>
     <p>&copy; 2025 Gênesis Elétrica - Todos os direitos reservados.</p>
   </footer>
-  document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("comentario-form");
-
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const nome = document.getElementById("nome").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const comentario = document.getElementById("comentario").value.trim();
-
-      if (!nome || !email || !comentario) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
-        return;
-      }
-
-      if (!validateEmail(email)) {
-        alert("Por favor, insira um e-mail válido.");
-        return;
-      }
-
-      alert("Comentário enviado com sucesso!");
-      form.reset();
-    });
-  }
-
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }
-});
-
 </body>
 </html>
+
 
