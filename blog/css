@@ -1,0 +1,150 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+header img {
+  height: 60px;
+  margin-right: 20px;
+}
+
+header h1 {
+  font-size: 28px;
+  color: #333;
+}
+
+/* Menu */
+nav {
+  background-color: #0057b8;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 15px 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Seções */
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.content {
+  flex: 3;
+}
+
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.sidebar h3 {
+  font-size: 18px;
+  color: #0057b8;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Cartões de post */
+.card {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background: #fafafa;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card .tag-bar {
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin: 10px;
+  color: #0057b8;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 10px;
+}
+
+/* Rodapé */
+footer {
+  background-color: #0057b8;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+footer img {
+  height: 40px;
+  margin-bottom: 15px;
+}
