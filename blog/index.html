@@ -3,90 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Gênesis Elétrica</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="imagens/favicon.png" type="image/png" />
-  <script src="js/script.js" defer></script>
+  <title>GÊNESIS ELÉTRICA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo-cobre.png" type="image/png" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-  <!-- Cabeçalho -->
-  <header class="cabecalho-branco">
-    <div class="logo-titulo">
-      <img src="imagens/logo-cobre.png" alt="Logomarca Gênesis Elétrica" />
-      <h1>GÊNESIS ELÉTRICA</h1>
+  <header>
+    <div class="header-container">
+      <img src="logo-cobre.png" alt="Logo Gênesis Elétrica" class="logo" />
+      <h1 class="site-title">GÊNESIS ELÉTRICA</h1>
     </div>
   </header>
 
-  <!-- Menu -->
-  <nav class="menu-azul">
-    <a href="https://genesiseletricca.com.br">Site</a>
-    <a href="#quem-somos">Quem Somos</a>
-    <a href="#contato">Contato</a>
-    <a href="#siga-nos">Siga-nos</a>
+  <nav class="navbar">
+    <ul>
+      <li><a href="https://genesiseletricca.com.br">Site</a></li>
+      <li><a href="#quem-somos">Quem Somos</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="#siga-nos">Siga-nos</a></li>
+    </ul>
   </nav>
 
-  <!-- Corpo Principal -->
-  <main class="container">
-    <!-- Seção Quem Somos -->
+  <main>
     <section id="quem-somos" class="quem-somos">
-      <div class="conteudo">
-        <div class="texto">
-          <div class="titulo-barra">
-            <h2>QUEM SOMOS</h2>
-          </div>
-          <h3>BLOG GÊNESIS ELÉTRICA</h3>
-          <p>
-            A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas.
-            Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes
-            para residências e comércios. Atendemos priorizando a qualidade, agilidade, transparência e total
-            comprometimento com nossos clientes.
-          </p>
-          <p>
-            Pensando nisso criamos esse espaço exclusivo com conteúdos profissionais direcionado para o
-            aperfeiçoamento da sua carreira. Aqui você encontra dicas e soluções práticas para o dia a dia de
-            trabalho, agregando conhecimento para as últimas tendências do setor. E trazemos ainda curiosidades
-            que ampliam seu conhecimento e o ajudam a se destacar no mercado.
-          </p>
-          <p><strong>“Sua satisfação, nossa missão!”</strong></p>
-        </div>
-        <div class="imagem">
-          <img src="imagens/qdc-principal.jpg" alt="QDC Principal" />
-        </div>
+      <div class="content-left">
+        <img src="qdc.jpg" alt="QDC Principal" />
+        <div class="tag-bar">QUEM SOMOS</div>
+        <h2>BLOG GÊNESIS ELÉTRICA</h2>
+        <p>
+          A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas. Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências e comércios.
+          Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
+          Pensando nisso criamos esse espaço exclusivo com conteúdos profissionais direcionado para o aperfeiçoamento da sua carreira. Aqui você encontra dicas e soluções práticas para o dia a dia de trabalho, agregando conhecimento para as últimas tendências do setor.
+          E trazemos ainda curiosidades que ampliam seu conhecimento e o ajudam a se destacar no mercado.
+          “Sua satisfação, nossa missão!”
+        </p>
       </div>
-    </section>
-
-    <!-- Postagens -->
-    <section class="postagens">
-      <div class="grid-posts">
-        <div class="post">
-          <a href="idr.html">
-            <img src="imagens/idr.jpg" alt="IDR">
-            <div class="info-post">
-              <p>Por Gênesis Elétrica | <span>30 de julho de 2025</span></p>
-            </div>
-            <h3>Interruptor Diferencial Residual (IDR)</h3>
-            <p>Conheça o funcionamento, aplicações e importância do IDR em instalações elétricas...</p>
-            <span class="leia-mais">...Leia mais</span>
-          </a>
-        </div>
-
-        <div class="post">
-          <a href="disjuntor.html">
-            <img src="imagens/disjuntor.jpg" alt="Disjuntor">
-            <div class="info-post">
-              <p>Por Gênesis Elétrica | <span>31 de julho de 2025</span></p>
-            </div>
-            <h3>Disjuntores: Fundamentos e Aplicações</h3>
-            <p>Entenda os tipos de disjuntores, curvas de atuação e como dimensioná-los corretamente...</p>
-            <span class="leia-mais">...Leia mais</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Barra lateral -->
       <aside class="sidebar">
-        <input type="text" placeholder="Buscar..." />
+        <div class="search-bar">
+          <input type="text" placeholder="Buscar..." />
+          <span class="search-icon">🔍</span>
+        </div>
         <h3>Últimos Posts</h3>
         <ul>
           <li><a href="idr.html">Interruptor Diferencial Residual (IDR)</a></li>
@@ -94,16 +51,39 @@
         </ul>
       </aside>
     </section>
+
+    <section class="posts">
+      <article class="post-card">
+        <a href="idr.html">
+          <img src="idr.jpg" alt="IDR" />
+          <div class="tag-bar">Por Gênesis Elétrica | 📅 31 de julho de 2025</div>
+          <h2>Interruptor Diferencial Residual (IDR)</h2>
+          <p>O IDR é um dispositivo de proteção que monitora constantemente o fluxo de corrente elétrica em um circuito...</p>
+          <span class="leia-mais">...Leia mais</span>
+        </a>
+      </article>
+
+      <article class="post-card">
+        <a href="disjuntor.html">
+          <img src="disjuntor.jpg" alt="Disjuntor" />
+          <div class="tag-bar">Por Gênesis Elétrica | 📅 31 de julho de 2025</div>
+          <h2>Disjuntores: Fundamentos, Aplicações e Segurança</h2>
+          <p>Os disjuntores atuam como dispositivos de proteção em instalações elétricas...</p>
+          <span class="leia-mais">...Leia mais</span>
+        </a>
+      </article>
+    </section>
   </main>
 
-  <!-- Rodapé -->
   <footer id="contato">
-    <img src="imagens/logo-cobre.png" alt="Logo Rodapé" style="height: 40px;" /><br/><br/>
-    <p>WhatsApp: (31) 97500-2129 | E-mail: genesiseletricca@gmail.com | Instagram: @genesis_eletrica</p>
-    <p id="siga-nos">&copy; 2025 Gênesis Elétrica - Todos os direitos reservados.</p>
+    <div class="footer-content">
+      <img src="logo-cobre.png" alt="Logo Rodapé" class="footer-logo" />
+      <p>WhatsApp: (31) 97500-2129 | E-mail: genesiseletricca@gmail.com | Instagram: @genesis_eletrica</p>
+      <p id="siga-nos">&copy; 2025 Gênesis Elétrica - Todos os direitos reservados.</p>
+    </div>
   </footer>
-
 </body>
 </html>
+
 
 
