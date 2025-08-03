@@ -1,4 +1,1 @@
-// script-blog.js
-document.addEventListener("DOMContentLoaded", function() {
-  console.log("Script carregado com sucesso!");
-});
+// Script funcional será inserido em breve
