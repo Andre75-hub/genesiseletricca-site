@@ -73,6 +73,7 @@ body {
   line-height: 1.6;
 }
 .post-content p {
+  text-align: justify;
   margin-bottom: 15px;
 }
 .share-section {
