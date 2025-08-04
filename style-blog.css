@@ -77,15 +77,13 @@ body {
     flex: 1 1 30%;
 }
 
-/* Ajustes para a seção principal da imagem (HERO) - Nova Versão CORRIGIDA */
+/* Ajustes para a seção principal da imagem (HERO) - Nova Versão 2 */
 .post-hero {
-    /* Truque CSS para fazer o elemento ocupar 100% da largura da tela */
-    width: 100vw;
+    /* Esta nova técnica é mais poderosa para quebrar os containers */
     position: relative;
+    width: 100vw;
     left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    transform: translateX(-50%);
 
     height: 400px;
     background-size: cover;
@@ -105,7 +103,7 @@ body {
 /* Ajustes para o texto sobre a imagem */
 .post-meta {
     width: 100%;
-    padding: 0 40px; /* Padding ajustado para evitar que o texto seja cortado nas laterais */
+    padding: 0 40px;
     box-sizing: border-box;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
