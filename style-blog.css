@@ -115,21 +115,20 @@ body {
   color: #004080;
 }
 
-/* MODIFICAÇÃO CHAVE AQUI PARA A SEÇÃO "SOBRE" */
+/* Seção sobre */
 .about-section {
   padding: 20px;
   background-color: #f0f0f0;
-  display: flex; /* Mantém a seção como um flex container */
-  flex-direction: column; /* NOVO: Empilha os filhos verticalmente */
-  align-items: flex-start; /* Alinha os filhos à esquerda */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* A nova div que agrupa o logo e o título */
 .about-header {
-  display: flex; /* Faz com que o logo e o título fiquem lado a lado */
-  align-items: center; /* Alinha-os verticalmente */
-  gap: 10px; /* Adiciona espaçamento entre eles */
-  margin-bottom: 10px; /* Adiciona espaçamento entre o cabeçalho da seção e o texto */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .about-header img {
@@ -145,18 +144,16 @@ body {
     white-space: nowrap;
 }
 
-/* Garante que o texto dos parágrafos internos seja justificado */
 .about-section p {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   margin-top: 0;
-  margin-bottom: 10px; /* Espaçamento entre parágrafos */
+  margin-bottom: 10px;
 }
 
-/* Fim da modificação para a seção "Sobre" */
-
+/* Seção de comentários */
 .comment-section {
   padding: 20px;
 }
@@ -176,20 +173,38 @@ body {
   border: none;
   padding: 10px;
 }
+
+/* Seção de busca */
 .search-box {
   display: flex;
+  border: 1px solid #ccc;
   margin-bottom: 20px;
 }
+
 .search-box input {
   flex: 1;
   padding: 8px;
+  border: none;
+  outline: none;
 }
+
 .search-box button {
   background-color: #004080;
-  color: white;
   border: none;
   padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.search-box button img {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
+/* Posts recentes */
 .recent-posts h3 {
   margin-bottom: 10px;
 }
@@ -200,6 +215,8 @@ body {
 .recent-posts li {
   margin-bottom: 10px;
 }
+
+/* Rodapé */
 .footer-vertical {
   background-color: #004080;
   color: #fff;
