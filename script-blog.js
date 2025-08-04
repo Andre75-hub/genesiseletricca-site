@@ -1,6 +1,20 @@
 // script-blog.js
 document.addEventListener("DOMContentLoaded", function () {
-    // Código para rolagem suave (scroll)
+    // Banco de dados de posts para a busca
+    const posts = [
+        {
+            title: "Disjuntor: fundamentos e aplicações",
+            url: "disjuntor.html",
+            summary: "Conheça os fundamentos e aplicações do disjuntor, um dispositivo essencial para a segurança elétrica em sua casa ou empresa."
+        },
+        {
+            title: "IDR: o que é e para que serve o Interruptor Diferencial Residual",
+            url: "idr.html",
+            summary: "O Interruptor Diferencial Residual (IDR) é crucial para proteger pessoas e equipamentos contra choques e incêndios. Entenda sua importância e como funciona."
+        }
+    ];
+
+    // 1. Código para rolagem suave
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -11,12 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Código para envio do formulário sem recarregar a página
+    // 2. Código para envio do formulário sem recarregar a página
     const form = document.querySelector(".comment-section form");
     if (form) {
         form.addEventListener("submit", async function (e) {
-            e.preventDefault(); // Previne o envio padrão do formulário e o redirecionamento
-
+            e.preventDefault();
             const statusMessage = document.createElement('p');
             statusMessage.style.textAlign = 'center';
             statusMessage.style.marginTop = '10px';
@@ -39,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     statusMessage.textContent = 'Comentário enviado com sucesso! Agradecemos sua contribuição.';
                     statusMessage.style.color = 'green';
-                    form.reset(); // Limpa os campos do formulário
+                    form.reset();
                 } else {
                     const errorData = await response.json();
                     statusMessage.textContent = `Ocorreu um erro: ${errorData.errors ? errorData.errors.map(err => err.message).join(', ') : 'Tente novamente.'}`;
@@ -50,12 +63,64 @@ document.addEventListener("DOMContentLoaded", function () {
                 statusMessage.style.color = 'red';
             }
 
-            // Remove a mensagem de status após 5 segundos
             setTimeout(() => {
                 if(statusMessage.parentNode) {
                     statusMessage.parentNode.removeChild(statusMessage);
                 }
             }, 5000);
         });
+    }
+
+    // 3. CÓDIGO para a funcionalidade de busca do blog
+    const handleSearch = () => {
+        const searchInput = document.getElementById("search-input-sidebar");
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (searchTerm) {
+            // Caminho relativo corrigido
+            window.location.href = `search-results.html?query=${encodeURIComponent(searchTerm)}`;
+        }
+    };
+
+    const searchButton = document.getElementById("search-button-sidebar");
+    if (searchButton) {
+        searchButton.addEventListener("click", handleSearch);
+    }
+    
+    const searchInput = document.getElementById("search-input-sidebar");
+    if (searchInput) {
+        searchInput.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                handleSearch();
+            }
+        });
+    }
+
+    // Lógica para a página de resultados
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query');
+
+    if (window.location.pathname.includes('search-results.html') && query) {
+        const resultsContainer = document.getElementById('search-results-container');
+        const queryDisplay = document.getElementById('search-query-display');
+        queryDisplay.textContent = `Você buscou por: "${decodeURIComponent(query)}"`;
+        
+        const filteredPosts = posts.filter(post => 
+            post.title.toLowerCase().includes(query.toLowerCase()) || 
+            post.summary.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (filteredPosts.length > 0) {
+            filteredPosts.forEach(post => {
+                const resultDiv = document.createElement('div');
+                resultDiv.classList.add('search-result-item');
+                resultDiv.innerHTML = `
+                    <h3><a href="${post.url}">${post.title}</a></h3>
+                    <p>${post.summary}</p>
+                `;
+                resultsContainer.appendChild(resultDiv);
+            });
+        } else {
+            resultsContainer.innerHTML = `<p>Nenhum assunto encontrado para a busca por "${decodeURIComponent(query)}".</p>`;
+        }
     }
 });
