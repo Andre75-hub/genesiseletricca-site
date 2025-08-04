@@ -77,6 +77,8 @@ body {
 .post-content p {
   margin-bottom: 15px;
   text-align: justify; 
+  .entry-content p {
+  text-align: justify !important;
 }
 .share-section {
   padding: 20px;
