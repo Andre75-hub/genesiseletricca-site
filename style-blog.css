@@ -7,46 +7,48 @@ body {
 }
 
 /* ------------------------------------------------------------- */
-/* -- NOVA VERSÃO: AJUSTES FOCADOS NO CABEÇALHO PARA FORÇAR O ALINHAMENTO À ESQUERDA -- */
+/* -- NOVA VERSÃO: AJUSTES FOCADOS NO CABEÇALHO USANDO TABLE LAYOUT -- */
 /* ------------------------------------------------------------- */
-
-/* Contêiner principal do cabeçalho */
 .header-white {
   background-color: #fff;
   padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Alinha o conteúdo principal do cabeçalho à esquerda */
+  /* Utiliza display: table para criar um layout de tabela */
+  display: table; 
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Contêiner que envolve o logo e o título */
 .header-container {
-    display: flex; /* Garante que os itens internos fiquem lado a lado */
-    align-items: center; /* Alinha verticalmente no centro */
-    gap: 10px; /* Adiciona espaçamento entre o logo e o título */
-    /* Removido o !important para tentar uma abordagem mais limpa */
+    /* Utiliza display: table-row para criar uma linha na "tabela" */
+    display: table-row;
+}
+
+.logo-cobre, .brand-title {
+  /* Utiliza display: table-cell para que fiquem lado a lado */
+  display: table-cell;
+  vertical-align: middle; /* Alinhamento vertical no meio da célula */
+  padding: 0; /* Zera paddings */
+  margin: 0; /* Zera margens */
 }
 
 .logo-cobre {
   height: 50px;
-  margin: 0;
-  padding: 0;
-  /* Removido as regras !important para ver se algum conflito era gerado */
+  width: 50px; /* Define uma largura para a célula da imagem */
 }
 
 .brand-title {
   font-size: 24px;
   color: #bfa04d;
   font-weight: bold;
-  margin: 0;
-  padding: 0;
-  line-height: 1; /* Ajuda a eliminar espaçamento vertical extra */
-  /* Removido as regras !important para ver se algum conflito era gerado */
+  white-space: nowrap;
+  line-height: 1;
+  text-align: left; /* Garante que o texto seja alinhado à esquerda */
 }
 
 /* ------------------------------------------------------------- */
 /* -- FIM DOS AJUSTES NO CABEÇALHO -- */
 /* ------------------------------------------------------------- */
+
 
 .menu-bar {
   background-color: #004080;
