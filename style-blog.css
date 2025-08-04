@@ -6,25 +6,28 @@ body {
   color: #333;
 }
 
-/* Ajustes para o cabeçalho: logo e título Gênesis Elétrica lado a lado */
+/* Ajustes para o cabeçalho: logo e título Gênesis Elétrica lado a lado e alinhados à esquerda */
 .header-white {
   background-color: #fff;
   padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; /* Garante que o conteúdo do cabeçalho seja um flex container */
+  align-items: center; /* Alinha os itens verticalmente no centro */
+  justify-content: flex-start; /* Alinha os itens horizontalmente à esquerda */
 }
 
 .header-container {
-    display: flex; /* Garante que os itens fiquem lado a lado */
+    display: flex; /* Garante que os itens internos (logo e título) fiquem lado a lado */
     align-items: center; /* Alinha verticalmente no centro */
     gap: 10px; /* Adiciona um pequeno espaçamento entre o logo e o título */
+    /* Removendo justify-content para deixar a prioridade para o parent .header-white */
 }
 
 .logo-cobre {
   height: 50px; /* Mantém a altura do logo */
   margin: 0; /* Zera margens para evitar espaçamentos indesejados */
   padding: 0; /* Zera paddings para evitar espaçamentos indesejados */
+  /* display: inline-block; /* Opcional: Garante que se comporte bem em linha */ */
+  vertical-align: middle; /* Ajuda no alinhamento vertical com o texto */
 }
 
 .brand-title {
@@ -34,6 +37,8 @@ body {
   margin: 0; /* Zera margens para evitar espaçamentos indesejados */
   padding: 0; /* Zera paddings para evitar espaçamentos indesejados */
   white-space: nowrap; /* Impede que o texto quebre linha se não houver espaço suficiente */
+  vertical-align: middle; /* Ajuda no alinhamento vertical com a imagem */
+  line-height: 1; /* Garante que a altura da linha não crie espaçamento extra */
 }
 
 
