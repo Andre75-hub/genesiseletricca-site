@@ -77,35 +77,41 @@ body {
     flex: 1 1 30%;
 }
 
-/* Ajustes para a seção principal da imagem (HERO) - Nova Versão */
+/* Ajustes para a seção principal da imagem (HERO) - Nova Versão CORRIGIDA */
 .post-hero {
+    /* Truque CSS para fazer o elemento ocupar 100% da largura da tela */
+    width: 100vw;
     position: relative;
-    width: 100vw; /* Ocupa 100% da largura da tela */
-    margin-left: calc(50% - 50vw); /* Truque para centralizar e quebrar a barreira do container */
-    height: 400px; /* Altura fixa para um visual impactante */
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    height: 400px;
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: flex-end; /* Alinha o conteúdo na parte inferior */
-    justify-content: center; /* Centraliza horizontalmente */
+    flex-direction: column;
+    justify-content: flex-end;
     color: #fff;
     text-align: center;
-    padding-bottom: 20px; /* Espaço na parte inferior para o texto */
+    padding-bottom: 20px;
     box-sizing: border-box;
-    /* Adiciona um gradiente para o texto ficar mais legível */
+
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-    background-blend-mode: multiply; /* Mescla a imagem com o gradiente */
+    background-blend-mode: multiply;
 }
 
 /* Ajustes para o texto sobre a imagem */
 .post-meta {
     width: 100%;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Sombra mais forte para o texto */
-    padding: 0 20px;
+    padding: 0 40px; /* Padding ajustado para evitar que o texto seja cortado nas laterais */
+    box-sizing: border-box;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 .post-meta h1 {
     margin: 0 0 5px;
-    font-size: 2.5em; /* Tamanho do título maior */
+    font-size: 2.5em;
     line-height: 1.2;
 }
 .post-meta p {
