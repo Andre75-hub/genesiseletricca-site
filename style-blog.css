@@ -179,6 +179,7 @@ body {
   display: flex;
   border: 1px solid #ccc;
   margin-bottom: 20px;
+  height: 40px;
 }
 
 .search-box input {
@@ -191,16 +192,19 @@ body {
 .search-box button {
   background-color: #004080;
   border: none;
-  padding: 8px 12px;
+  padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 40px;
 }
 
 .search-box button img {
-  height: 20px;
-  width: auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   display: block;
 }
 
