@@ -226,12 +226,34 @@ body {
   color: #fff;
   text-align: center;
   padding: 20px;
+  display: flex;
+  flex-direction: column; /* Organiza os itens em coluna */
+  align-items: center; /* Centraliza os itens horizontalmente */
+  gap: 10px; /* Adiciona um pequeno espaçamento entre os itens */
 }
+
 .footer-vertical a {
   color: #fff;
   text-decoration: none;
 }
+
 .footer-vertical img.footer-logo {
   height: 60px;
   margin-bottom: 10px;
+}
+
+/* NOVO: Estilo para a seção de links sociais no rodapé */
+.footer-social-links {
+  display: flex; /* Faz os links ficarem lado a lado */
+  justify-content: center; /* Centraliza os links */
+  align-items: center;
+  gap: 20px; /* Espaço entre os links */
+}
+
+.footer-social-links p {
+  margin: 0; /* Remove a margem padrão dos parágrafos */
+}
+
+.footer-copy {
+  margin-top: 10px;
 }
