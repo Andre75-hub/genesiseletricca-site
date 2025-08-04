@@ -71,9 +71,13 @@ body {
 .post-content {
   padding: 20px;
   line-height: 1.6;
+  /* Você pode colocar text-align: justify aqui também,
+     mas em 'p' é mais específico para o texto do parágrafo */
 }
+
 .post-content p {
   margin-bottom: 15px;
+  text-align: justify; /* Adicione esta linha */
 }
 .share-section {
   padding: 20px;
