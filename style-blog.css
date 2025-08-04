@@ -1,4 +1,3 @@
-
 /* style-blog.css */
 body {
   margin: 0;
@@ -6,6 +5,32 @@ body {
   background-color: #fff;
   color: #333;
 }
+
+/* Reduzir espaçamento vertical entre logo e título */
+.header-container {
+    display: flex;
+    align-items: center;
+    /* Adiciona um pequeno espaçamento entre os itens se eles estiverem em linha */
+    /* Se eles estiverem em coluna, ajuste o margin-bottom da logo ou margin-top do título */
+}
+
+.logo-cobre {
+  height: 50px;
+  /* Garante que não haja margem inferior extra que empurre o título */
+  margin-bottom: 0;
+}
+
+.brand-title {
+  font-size: 24px;
+  color: #bfa04d;
+  font-weight: bold;
+  /* Reduz qualquer margem superior ou inferior padrão para aproximar da logo */
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px; /* Adiciona um pequeno espaço horizontal entre a logo e o título */
+}
+
+
 .header-white {
   background-color: #fff;
   padding: 10px 20px;
@@ -13,14 +38,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.logo-cobre {
-  height: 50px;
-}
-.brand-title {
-  font-size: 24px;
-  color: #bfa04d;
-  font-weight: bold;
-}
+
 .menu-bar {
   background-color: #004080;
   display: flex;
@@ -74,10 +92,10 @@ body {
 }
 .post-content p {
   margin-bottom: 15px;
-  text-align: justify; /* <<< LINHA ADICIONADA/MODIFICADA AQUI */
-  hyphens: auto;       /* <<< PROPRIEDADE OPCIONAL PARA MELHORAR A HifenIZAÇÃO */
-  -webkit-hyphens: auto; /* Para navegadores WebKit (Chrome, Safari) */
-  -moz-hyphens: auto;    /* Para navegadores Mozilla (Firefox) */
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
 }
 .share-section {
   padding: 20px;
@@ -86,14 +104,33 @@ body {
   margin-right: 10px;
   color: #004080;
 }
+
+/* Modificação para a seção "Sobre" */
 .about-section {
   padding: 20px;
   background-color: #f0f0f0;
-  text-align: center;
+  text-align: center; /* Mantém a centralização da imagem e do h2 */
 }
+
+/* Nova regra para justificar apenas os parágrafos dentro de about-section */
+.about-section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+}
+
 .about-section img {
   max-height: 80px;
+  margin-bottom: 10px; /* Adicionado para garantir um pequeno espaçamento da imagem para o h2 */
 }
+
+.about-section h2 {
+    margin-top: 10px; /* Adicionado para garantir um pequeno espaçamento do h2 para os parágrafos */
+    margin-bottom: 10px;
+}
+
+
 .comment-section {
   padding: 20px;
 }
