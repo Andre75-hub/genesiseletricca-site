@@ -6,47 +6,47 @@ body {
   color: #333;
 }
 
-/* Ajustes para o cabeçalho: logo e título Gênesis Elétrica lado a lado e alinhados à esquerda */
+/* ------------------------------------------------------------- */
+/* -- NOVA VERSÃO: AJUSTES FOCADOS NO CABEÇALHO PARA FORÇAR O ALINHAMENTO À ESQUERDA -- */
+/* ------------------------------------------------------------- */
+
+/* Contêiner principal do cabeçalho */
 .header-white {
   background-color: #fff;
   padding: 10px 20px;
-  display: flex; /* Garante que o conteúdo do cabeçalho seja um flex container */
-  align-items: center; /* Alinha os itens verticalmente no centro */
-  justify-content: flex-start; /* Alinha os itens horizontalmente à esquerda */
-  flex-wrap: nowrap; /* Impede que os itens do cabeçalho quebrem linha */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha o conteúdo principal do cabeçalho à esquerda */
 }
 
+/* Contêiner que envolve o logo e o título */
 .header-container {
-    display: flex !important; /* FORÇA display: flex */
-    flex-direction: row !important; /* FORÇA que os itens fiquem em linha */
-    align-items: center !important; /* FORÇA alinhamento vertical no centro */
-    gap: 10px !important; /* FORÇA espaçamento entre o logo e o título */
-    width: auto !important; /* Garante que o container não ocupe 100% da largura se não precisar */
-    min-width: 0 !important; /* Previne problemas de largura mínima */
+    display: flex; /* Garante que os itens internos fiquem lado a lado */
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 10px; /* Adiciona espaçamento entre o logo e o título */
+    /* Removido o !important para tentar uma abordagem mais limpa */
 }
 
 .logo-cobre {
-  height: 50px; /* Mantém a altura do logo */
-  margin: 0 !important; /* Zera margens com !important */
-  padding: 0 !important; /* Zera paddings com !important */
-  display: inline-block !important; /* Força comportamento em linha, mas como bloco para tamanho */
-  vertical-align: middle !important; /* Ajuda no alinhamento vertical com o texto */
-  float: none !important; /* Garante que não haja float interferindo */
-  clear: none !important; /* Garante que não haja clear interferindo */
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  /* Removido as regras !important para ver se algum conflito era gerado */
 }
 
 .brand-title {
   font-size: 24px;
   color: #bfa04d;
   font-weight: bold;
-  margin: 0 !important; /* Zera margens com !important */
-  padding: 0 !important; /* Zera paddings com !important */
-  white-space: nowrap !important; /* Impede que o texto quebre linha */
-  vertical-align: middle !important; /* Ajuda no alinhamento vertical com a imagem */
-  line-height: 1 !important; /* Garante que a altura da linha não crie espaçamento extra */
-  display: inline-block !important; /* Força comportamento em linha */
+  margin: 0;
+  padding: 0;
+  line-height: 1; /* Ajuda a eliminar espaçamento vertical extra */
+  /* Removido as regras !important para ver se algum conflito era gerado */
 }
 
+/* ------------------------------------------------------------- */
+/* -- FIM DOS AJUSTES NO CABEÇALHO -- */
+/* ------------------------------------------------------------- */
 
 .menu-bar {
   background-color: #004080;
@@ -114,14 +114,12 @@ body {
   color: #004080;
 }
 
-/* Modificação para a seção "Sobre" */
 .about-section {
   padding: 20px;
   background-color: #f0f0f0;
-  text-align: center; /* Mantém a centralização da imagem e do h2 */
+  text-align: center;
 }
 
-/* Nova regra para justificar apenas os parágrafos dentro de about-section */
 .about-section p {
   text-align: justify;
   hyphens: auto;
@@ -131,11 +129,11 @@ body {
 
 .about-section img {
   max-height: 80px;
-  margin-bottom: 10px; /* Adicionado para garantir um pequeno espaçamento da imagem para o h2 */
+  margin-bottom: 10px;
 }
 
 .about-section h2 {
-    margin-top: 10px; /* Adicionado para garantir um pequeno espaçamento do h2 para os parágrafos */
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
