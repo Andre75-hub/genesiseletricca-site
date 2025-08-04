@@ -70,11 +70,10 @@ body {
 .post-content {
   padding: 20px;
   line-height: 1.6;
+  text-align: justify;
 }
 .post-content p {
-  text-align: justify;
   margin-bottom: 15px;
-  text-align: justify;
 }
 .share-section {
   padding: 20px;
