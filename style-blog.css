@@ -6,31 +6,7 @@ body {
   color: #333;
 }
 
-/* Reduzir espaçamento vertical entre logo e título */
-.header-container {
-    display: flex;
-    align-items: center;
-    /* Adiciona um pequeno espaçamento entre os itens se eles estiverem em linha */
-    /* Se eles estiverem em coluna, ajuste o margin-bottom da logo ou margin-top do título */
-}
-
-.logo-cobre {
-  height: 50px;
-  /* Garante que não haja margem inferior extra que empurre o título */
-  margin-bottom: 0;
-}
-
-.brand-title {
-  font-size: 24px;
-  color: #bfa04d;
-  font-weight: bold;
-  /* Reduz qualquer margem superior ou inferior padrão para aproximar da logo */
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: 10px; /* Adiciona um pequeno espaço horizontal entre a logo e o título */
-}
-
-
+/* Ajustes para o cabeçalho: logo e título Gênesis Elétrica lado a lado */
 .header-white {
   background-color: #fff;
   padding: 10px 20px;
@@ -38,6 +14,28 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+.header-container {
+    display: flex; /* Garante que os itens fiquem lado a lado */
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 10px; /* Adiciona um pequeno espaçamento entre o logo e o título */
+}
+
+.logo-cobre {
+  height: 50px; /* Mantém a altura do logo */
+  margin: 0; /* Zera margens para evitar espaçamentos indesejados */
+  padding: 0; /* Zera paddings para evitar espaçamentos indesejados */
+}
+
+.brand-title {
+  font-size: 24px;
+  color: #bfa04d;
+  font-weight: bold;
+  margin: 0; /* Zera margens para evitar espaçamentos indesejados */
+  padding: 0; /* Zera paddings para evitar espaçamentos indesejados */
+  white-space: nowrap; /* Impede que o texto quebre linha se não houver espaço suficiente */
+}
+
 
 .menu-bar {
   background-color: #004080;
@@ -129,7 +127,6 @@ body {
     margin-top: 10px; /* Adicionado para garantir um pequeno espaçamento do h2 para os parágrafos */
     margin-bottom: 10px;
 }
-
 
 .comment-section {
   padding: 20px;
