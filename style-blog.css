@@ -119,10 +119,30 @@ body {
 .about-section {
   padding: 20px;
   background-color: #f0f0f0;
-  text-align: left; /* Alinha o texto à esquerda */
-  display: flex; /* Faz com que os filhos fiquem lado a lado */
-  align-items: center; /* Alinha os filhos verticalmente no centro */
-  gap: 10px; /* Adiciona espaçamento entre o logo e o título */
+  display: flex; /* Mantém a seção como um flex container */
+  flex-direction: column; /* NOVO: Empilha os filhos verticalmente */
+  align-items: flex-start; /* Alinha os filhos à esquerda */
+}
+
+/* A nova div que agrupa o logo e o título */
+.about-header {
+  display: flex; /* Faz com que o logo e o título fiquem lado a lado */
+  align-items: center; /* Alinha-os verticalmente */
+  gap: 10px; /* Adiciona espaçamento entre eles */
+  margin-bottom: 10px; /* Adiciona espaçamento entre o cabeçalho da seção e o texto */
+}
+
+.about-header img {
+  height: 50px;
+  margin: 0;
+}
+
+.about-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #bfa04d;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 /* Garante que o texto dos parágrafos internos seja justificado */
@@ -132,20 +152,7 @@ body {
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   margin-top: 0;
-  margin-bottom: 0;
-}
-
-.about-section img {
-  height: 50px; /* Define altura consistente com o cabeçalho */
-  margin: 0;
-}
-
-.about-section h2 {
-    margin: 0; /* Remove as margens do h2 */
-    font-size: 24px; /* Define um tamanho de fonte consistente */
-    color: #bfa04d;
-    font-weight: bold;
-    white-space: nowrap;
+  margin-bottom: 10px; /* Espaçamento entre parágrafos */
 }
 
 /* Fim da modificação para a seção "Sobre" */
