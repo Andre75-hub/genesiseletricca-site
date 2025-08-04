@@ -77,14 +77,9 @@ body {
     flex: 1 1 30%;
 }
 
-/* Ajustes para a seção principal da imagem (HERO) - Nova Versão 2 */
+/* Ajustes para a seção principal da imagem (HERO) */
 .post-hero {
-    /* Esta nova técnica é mais poderosa para quebrar os containers */
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-
+    width: 100%; /* Ocupa 100% da largura da tela */
     height: 400px;
     background-size: cover;
     background-position: center;
