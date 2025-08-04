@@ -74,6 +74,10 @@ body {
 }
 .post-content p {
   margin-bottom: 15px;
+  text-align: justify; /* <<< LINHA ADICIONADA/MODIFICADA AQUI */
+  hyphens: auto;       /* <<< PROPRIEDADE OPCIONAL PARA MELHORAR A HifenIZAÇÃO */
+  -webkit-hyphens: auto; /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-hyphens: auto;    /* Para navegadores Mozilla (Firefox) */
 }
 .share-section {
   padding: 20px;
