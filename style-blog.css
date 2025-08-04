@@ -7,42 +7,46 @@ body {
 }
 
 /* ------------------------------------------------------------- */
-/* -- NOVA VERSÃO: AJUSTES FOCADOS NO CABEÇALHO USANDO TABLE LAYOUT -- */
+/* -- VERSÃO FINAL: AJUSTES FOCADOS NO CABEÇALHO USANDO !important -- */
 /* ------------------------------------------------------------- */
 .header-white {
-  background-color: #fff;
-  padding: 10px 20px;
-  /* Utiliza display: table para criar um layout de tabela */
-  display: table; 
-  width: 100%;
-  box-sizing: border-box;
+  background-color: #fff !important;
+  padding: 10px 20px !important;
+  /* Utiliza display: flex para criar um layout de tabela */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .header-container {
-    /* Utiliza display: table-row para criar uma linha na "tabela" */
-    display: table-row;
-}
-
-.logo-cobre, .brand-title {
-  /* Utiliza display: table-cell para que fiquem lado a lado */
-  display: table-cell;
-  vertical-align: middle; /* Alinhamento vertical no meio da célula */
-  padding: 0; /* Zera paddings */
-  margin: 0; /* Zera margens */
+    /* Utiliza display: flex para que fiquem lado a lado */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important; /* Alinhamento vertical no meio da célula */
+    gap: 10px !important;
+    padding: 0 !important; /* Zera paddings */
+    margin: 0 !important; /* Zera margens */
 }
 
 .logo-cobre {
-  height: 50px;
-  width: 50px; /* Define uma largura para a célula da imagem */
+  height: 50px !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
 }
 
 .brand-title {
-  font-size: 24px;
-  color: #bfa04d;
-  font-weight: bold;
-  white-space: nowrap;
-  line-height: 1;
-  text-align: left; /* Garante que o texto seja alinhado à esquerda */
+  font-size: 24px !important;
+  color: #bfa04d !important;
+  font-weight: bold !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  text-align: left !important; /* Garante que o texto seja alinhado à esquerda */
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* ------------------------------------------------------------- */
