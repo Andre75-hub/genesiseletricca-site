@@ -1,5 +1,4 @@
 
-/* style-blog.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -75,6 +74,7 @@ body {
 .post-content p {
   text-align: justify;
   margin-bottom: 15px;
+  text-align: justify;
 }
 .share-section {
   padding: 20px;
