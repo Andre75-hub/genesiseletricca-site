@@ -48,9 +48,10 @@ nav a {
 }
 
 .post-body {
-    display: flex;
+    display: flex; /* <-- ESSA É A NOVA REGRA DE FLEXBOX! */
     flex-wrap: wrap;
     width: 100%;
+    gap: 20px; /* Adiciona espaçamento entre as colunas */
 }
 
 .post-content {
@@ -59,9 +60,11 @@ nav a {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     line-height: 1.6;
+    flex-basis: 70%; /* Ocupa 70% da largura em telas grandes */
+    min-width: 300px; /* Garante que não fique muito estreito */
 }
 
-/* ESTA É A NOVA REGRA PARA IMAGENS! */
+/* Regra para garantir que imagens dentro do conteúdo não transbordem */
 .post-content img {
     max-width: 100%;
     height: auto;
@@ -175,8 +178,9 @@ article h4 {
     flex: 1;
     background-color: #eee;
     padding: 20px;
-    margin-left: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-basis: 25%; /* Ocupa 25% da largura em telas grandes */
+    min-width: 250px;
 }
 
 .sidebar h3 {
@@ -240,7 +244,7 @@ footer {
 @media (max-width: 768px) {
     .post-content, .sidebar {
         flex: 100%;
-        margin-left: 0;
+        margin: 0;
         margin-top: 20px;
     }
 }
