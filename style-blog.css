@@ -2,17 +2,27 @@ body {
     font-family: sans-serif;
     margin: 0;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
-    background-color: #333;
+    background-color: #007bff; /* Cor azul do cabeçalho */
     color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    padding: 15px 20px;
+    text-align: left; /* Alinhamento à esquerda */
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 header img {
     height: 50px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1;
 }
 
 nav {
@@ -48,10 +58,10 @@ nav a {
 }
 
 .post-body {
-    display: flex; /* <-- ESSA É A NOVA REGRA DE FLEXBOX! */
+    display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 20px; /* Adiciona espaçamento entre as colunas */
+    gap: 20px;
 }
 
 .post-content {
@@ -60,14 +70,15 @@ nav a {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     line-height: 1.6;
-    flex-basis: 70%; /* Ocupa 70% da largura em telas grandes */
-    min-width: 300px; /* Garante que não fique muito estreito */
+    text-align: justify; /* Texto justificado */
+    flex-basis: 70%;
+    min-width: 300px;
 }
 
-/* Regra para garantir que imagens dentro do conteúdo não transbordem */
 .post-content img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 .post-image {
@@ -107,7 +118,7 @@ nav a {
 }
 
 h4 {
-    color: #333;
+    color: #007bff; /* Cor azul do subtítulo */
     border-bottom: 2px solid #ffcc00;
     padding-bottom: 5px;
 }
@@ -166,7 +177,7 @@ article h4 {
 }
 
 .comments button {
-    background-color: #333;
+    background-color: #007bff; /* Cor azul do botão */
     color: #fff;
     padding: 10px;
     border: none;
@@ -176,15 +187,15 @@ article h4 {
 
 .sidebar {
     flex: 1;
-    background-color: #eee;
+    background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex-basis: 25%; /* Ocupa 25% da largura em telas grandes */
+    flex-basis: 25%;
     min-width: 250px;
 }
 
 .sidebar h3 {
-    color: #333;
+    color: #007bff; /* Cor azul do subtítulo */
     border-bottom: 2px solid #ffcc00;
     padding-bottom: 5px;
 }
@@ -216,7 +227,7 @@ article h4 {
 }
 
 .search-box button {
-    background-color: #333;
+    background-color: #007bff; /* Cor azul do botão */
     border: none;
     padding: 8px 12px;
     border-radius: 0 5px 5px 0;
@@ -229,11 +240,25 @@ article h4 {
 }
 
 footer {
-    background-color: #333;
+    background-color: #007bff; /* Cor azul do rodapé */
     color: #fff;
     text-align: center;
     padding: 20px;
     margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+.footer-contacts {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-contacts span {
+  display: none; /* Esconde o separador para telas grandes */
 }
 
 .footer-logo {
@@ -246,5 +271,9 @@ footer {
         flex: 100%;
         margin: 0;
         margin-top: 20px;
+    }
+
+    .footer-contacts {
+      flex-direction: column; /* Organiza em coluna para telas pequenas */
     }
 }
