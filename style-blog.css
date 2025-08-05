@@ -61,6 +61,12 @@ nav a {
     line-height: 1.6;
 }
 
+/* ESTA É A NOVA REGRA PARA IMAGENS! */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+}
+
 .post-image {
     position: relative;
     width: 100%;
