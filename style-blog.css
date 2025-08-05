@@ -87,7 +87,7 @@ body {
     text-align: center;
     padding-bottom: 20px;
     box-sizing: border-box;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%), url('../imagens/idr.jpg');
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%), url('imagens/idr.jpg');
     background-blend-mode: multiply;
 }
 
