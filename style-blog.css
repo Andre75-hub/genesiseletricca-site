@@ -87,7 +87,7 @@ body {
     text-align: center;
     padding-bottom: 20px;
     box-sizing: border-box;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%), url('../imagens/idr.jpg');
     background-blend-mode: multiply;
 }
 
@@ -110,7 +110,7 @@ body {
 .post-content {
     padding: 20px;
     line-height: 1.6;
-    text-align: justify; /* Adicionado para justificar o texto */
+    text-align: justify;
 }
 .post-content p {
     margin-bottom: 15px;
