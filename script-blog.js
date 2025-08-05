@@ -75,15 +75,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const handleSearch = () => {
         const searchInput = document.getElementById("search-input-sidebar");
         const searchTerm = searchInput.value.toLowerCase().trim();
+        console.log("Termo de busca:", searchTerm);
         if (searchTerm) {
-            // Caminho relativo corrigido
-            window.location.href = `search-results.html?query=${encodeURIComponent(searchTerm)}`;
+            // Caminho corrigido para o arquivo de resultados na pasta "blog"
+            window.location.href = `blog/search-results.html?query=${encodeURIComponent(searchTerm)}`;
         }
     };
 
     const searchButton = document.getElementById("search-button-sidebar");
     if (searchButton) {
+        console.log("Botão de busca encontrado.");
         searchButton.addEventListener("click", handleSearch);
+    } else {
+        console.error("Erro: Botão de busca não encontrado no HTML.");
     }
     
     const searchInput = document.getElementById("search-input-sidebar");
