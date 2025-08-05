@@ -1,271 +1,153 @@
+
 /* style-blog.css */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
 }
-
-/* Ajustes para o cabeçalho */
 .header-white {
-    background-color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+  background-color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
-.header-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: auto;
-    min-width: 0;
-}
-
 .logo-cobre {
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-    clear: none;
+  height: 50px;
 }
-
 .brand-title {
-    font-size: 24px;
-    color: #bfa04d;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-    vertical-align: middle;
-    line-height: 1;
-    display: inline-block;
+  font-size: 24px;
+  color: #bfa04d;
+  font-weight: bold;
 }
-
-/* Ajustes para o menu */
 .menu-bar {
-    background-color: #004080;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 12px 0;
+  background-color: #004080;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 12px 0;
 }
 .menu-bar a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
 .menu-bar a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-
-/* Layout principal */
 .content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 30px;
 }
 .main-posts {
-    flex: 1 1 65%;
+  flex: 1 1 65%;
 }
 .sidebar {
-    flex: 1 1 30%;
+  flex: 1 1 30%;
 }
-
-/* Ajustes para a seção principal da imagem (HERO) */
 .post-hero {
-    width: 100%; /* Ocupa 100% da largura da tela */
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: #fff;
-    text-align: center;
-    padding-bottom: 20px;
-    box-sizing: border-box;
-
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-    background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+  text-align: center;
 }
-
-/* Ajustes para o texto sobre a imagem */
 .post-meta {
-    width: 100%;
-    padding: 0 40px;
-    box-sizing: border-box;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  width: 100%;
 }
 .post-meta h1 {
-    margin: 0 0 5px;
-    font-size: 2.5em;
-    line-height: 1.2;
+  margin: 0;
+  font-size: 24px;
 }
-.post-meta p {
-    margin: 0;
-    font-size: 1.1em;
-}
-
 .post-content {
-    padding: 20px;
-    line-height: 1.6;
+  padding: 20px;
+  line-height: 1.6;
 }
 .post-content p {
-    margin-bottom: 15px;
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
+  margin-bottom: 15px;
+  text-align: justify; /* <<< LINHA ADICIONADA/MODIFICADA AQUI */
+  hyphens: auto;       /* <<< PROPRIEDADE OPCIONAL PARA MELHORAR A HifenIZAÇÃO */
+  -webkit-hyphens: auto; /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-hyphens: auto;    /* Para navegadores Mozilla (Firefox) */
 }
 .share-section {
-    padding: 20px;
+  padding: 20px;
 }
 .share-section a {
-    margin-right: 10px;
-    color: #004080;
+  margin-right: 10px;
+  color: #004080;
 }
-
-/* Seção sobre */
 .about-section {
-    padding: 20px;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  padding: 20px;
+  background-color: #f0f0f0;
+  text-align: center;
 }
-
-.about-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+.about-section img {
+  max-height: 80px;
 }
-
-.about-header img {
-    height: 50px;
-    margin: 0;
-}
-
-.about-header h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #bfa04d;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.about-section p {
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-/* Seção de comentários */
 .comment-section {
-    padding: 20px;
+  padding: 20px;
 }
 .comment-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .comment-section textarea,
 .comment-section input {
-    width: 100%;
-    padding: 8px;
+  width: 100%;
+  padding: 8px;
 }
 .comment-section button {
-    background-color: #004080;
-    color: white;
-    border: none;
-    padding: 10px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 10px;
 }
-
-/* Seção de busca */
 .search-box {
-    display: flex;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    height: 40px;
+  display: flex;
+  margin-bottom: 20px;
 }
-
 .search-box input {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    outline: none;
+  flex: 1;
+  padding: 8px;
 }
-
 .search-box button {
-    background-color: #004080;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 40px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 8px 12px;
 }
-
-.search-box button img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Posts recentes */
 .recent-posts h3 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .recent-posts ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 .recent-posts li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
-/* Rodapé */
 .footer-vertical {
-    background-color: #004080;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  background-color: #004080;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
 }
-
 .footer-vertical a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
-
 .footer-vertical img.footer-logo {
-    height: 100px;
-    margin-bottom: 10px;
-}
-
-.footer-vertical p {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-copy {
-    margin-top: 10px;
+  height: 60px;
+  margin-bottom: 10px;
 }
