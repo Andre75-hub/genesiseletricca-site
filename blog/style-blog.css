@@ -115,10 +115,10 @@ body {
 /* Main Blog Hero (Index)  */
 /* ======================== */
 .main-hero {
-    height: 300px; /* Aumentei a altura para ficar igual aos posts */
+    height: 300px;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Alinhei o conteúdo na parte inferior */
+    align-items: flex-end;
     text-align: center;
     background-image: url('imagens/blog-instalacoes-eletrica.jpeg');
     background-size: cover;
@@ -134,32 +134,32 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Escureci a máscara */
+    background: rgba(0, 0, 0, 0.5);
 }
 
-.hero-title-container {
-    position: relative;
-    z-index: 1;
-    padding: 15px 30px;
-    width: 90%; /* Aumentei a largura */
-    background: rgba(0, 0, 0, 0.5); /* Mudei para uma máscara mais escura */
+/* Removi a classe `.hero-title-container` e usei a mesma `.post-meta`
+para manter a consistência visual */
+.main-hero .post-meta {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px; /* Adicionei margem inferior */
+    width: 90%;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.hero-title-container h1 {
-    font-size: 2.5rem;
+.main-hero .post-meta h1 {
+    font-size: 2.2rem;
     margin-bottom: 5px;
-    color: #fff; /* Cor do título branca */
+    line-height: 1.2;
+    color: #fff;
 }
 
-.hero-title-container p {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: #fff; /* Cor do subtítulo branca */
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+.main-hero .post-meta p {
+    font-size: 1rem;
+    margin-bottom: 0;
+    color: #fff;
 }
 
 /* ======================== */
@@ -291,7 +291,7 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    height: 100%; /* Garante que os cards tenham a mesma altura */
+    height: 100%;
 }
 
 .post-card:hover {
@@ -329,7 +329,7 @@ body {
     font-size: 0.9rem;
     color: #555;
     margin-bottom: 0;
-    text-align: justify; /* Justificado */
+    text-align: justify;
 }
 
 .post-card-content p span {
@@ -617,7 +617,7 @@ body {
     }
 
     .main-hero {
-        height: 250px; /* Ajustei a altura para dispositivos móveis */
+        height: 250px;
     }
 
     .post-hero.search-hero {
