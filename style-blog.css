@@ -19,17 +19,17 @@ body {
 /* ======================== */
 .header-white {
     background-color: #ffffff;
-    color: #333;
     padding: 1rem 0;
     border-bottom: 2px solid #ddd;
-    text-align: center;
 }
 
 .header-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
     align-items: center;
     gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
@@ -69,7 +69,7 @@ body {
 /* Post Hero e Meta        */
 /* ======================== */
 .post-hero {
-    background: url('caminho-para-sua-imagem-hero.jpg') no-repeat center center/cover; /* Substitua o caminho da imagem */
+    background: url('imagens/idr-painel-eletrico.jpg') no-repeat center center/cover; /* Caminho da imagem de fundo */
     height: 300px;
     display: flex;
     justify-content: center;
@@ -123,6 +123,10 @@ body {
 /* ======================== */
 /* Conteúdo do Post        */
 /* ======================== */
+.post-content h2, .post-content h3, .post-content p {
+    text-align: justify; /* Justifica o texto */
+}
+
 .post {
     margin-bottom: 20px;
 }
@@ -381,7 +385,7 @@ body {
 /* Rodapé                  */
 /* ======================== */
 .footer-vertical {
-    background-color: #333;
+    background-color: #007BFF; /* Corrigido para azul */
     color: #fff;
     text-align: center;
     padding: 2rem 1rem;
@@ -398,7 +402,7 @@ body {
 }
 
 .footer-vertical a {
-    color: #007BFF;
+    color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
