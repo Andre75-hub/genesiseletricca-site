@@ -107,7 +107,7 @@ body {
 }
 
 /* Regra específica para o hero da página principal */
-.post-hero.main-hero-bg {
+.post-hero.main-page-hero {
     background-image: url('imagens/blog-instalacoes-eletrica.jpeg');
 }
 
@@ -586,14 +586,6 @@ body {
     .post-hero {
         height: 250px;
         padding: 15px;
-    }
-
-    .post-hero.search-hero {
-        height: 120px;
-    }
-
-    .post-hero.search-hero .post-meta h1 {
-        font-size: 1.5rem;
     }
 
     .post-meta h1 {
