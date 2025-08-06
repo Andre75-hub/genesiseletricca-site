@@ -5,7 +5,6 @@ body {
     color: #333;
 }
 
-/* Ajustes para o cabeçalho */
 .header-white {
     background-color: #fff;
     padding: 10px 20px;
@@ -45,7 +44,6 @@ body {
     display: inline-block;
 }
 
-/* Ajustes para o menu */
 .menu-bar {
     background-color: #004080;
     display: flex;
@@ -62,12 +60,13 @@ body {
     text-decoration: underline;
 }
 
-/* Layout principal */
 .content-wrapper {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
     gap: 30px;
+    max-width: 1200px;
+    margin: auto;
 }
 .main-posts {
     flex: 1 1 65%;
@@ -76,7 +75,6 @@ body {
     flex: 1 1 30%;
 }
 
-/* Ajustes para a seção principal da imagem (HERO) */
 .post-hero {
     width: 100%;
     height: 400px;
@@ -93,7 +91,6 @@ body {
     background-blend-mode: multiply;
 }
 
-/* Ajustes para o texto sobre a imagem */
 .post-meta {
     width: 100%;
     padding: 0 40px;
@@ -122,21 +119,24 @@ body {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
 }
+
 .post-content img {
     max-width: 100%;
     height: auto;
 }
+
 .post-content ul {
   padding-left: 20px;
 }
+
 .post-content li {
   margin-bottom: 5px;
 }
+
 .post-content h4 {
     margin-top: 30px;
 }
 
-/* Seção de compartilhamento com Emojis */
 .share-section {
     padding: 20px;
     border-top: 1px solid #ccc;
@@ -152,21 +152,15 @@ body {
     gap: 15px;
     margin-top: 10px;
 }
-.share-section .share-link {
-    font-size: 30px; /* Tamanho do emoji */
-    text-decoration: none;
+.share-section .share-icons img {
+    height: 30px;
+    width: 30px;
     transition: transform 0.3s ease-in-out;
-    display: inline-block;
 }
-.share-section .share-link:hover {
-    transform: scale(1.2); /* Efeito hover */
-}
-.share-section .share-link span {
-    display: block; /* Para garantir que o hover funcione no emoji */
+.share-section .share-icons a:hover img {
+    transform: scale(1.1);
 }
 
-
-/* Seção sobre */
 .about-section {
     padding: 20px;
     background-color: #f0f0f0;
@@ -174,16 +168,19 @@ body {
     flex-direction: column;
     align-items: flex-start;
 }
+
 .about-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
 }
+
 .about-header img {
     height: 50px;
     margin: 0;
 }
+
 .about-header h2 {
     margin: 0;
     font-size: 24px;
@@ -191,6 +188,7 @@ body {
     font-weight: bold;
     white-space: nowrap;
 }
+
 .about-section p {
     text-align: justify;
     hyphens: auto;
@@ -200,7 +198,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Seção de comentários */
 .comment-section {
     padding: 20px;
 }
@@ -231,19 +228,20 @@ body {
     text-align: center;
 }
 
-/* Seção de busca */
 .search-box {
     display: flex;
     border: 1px solid #ccc;
     margin-bottom: 20px;
     height: 40px;
 }
+
 .search-box input {
     flex: 1;
     padding: 8px;
     border: none;
     outline: none;
 }
+
 .search-box button {
     background-color: #004080;
     border: none;
@@ -255,6 +253,7 @@ body {
     height: 100%;
     width: 40px;
 }
+
 .search-box button img {
     height: 24px !important;
     width: 24px !important;
@@ -263,7 +262,6 @@ body {
     margin: auto !important;
 }
 
-/* Posts recentes */
 .recent-posts h3 {
     margin-bottom: 10px;
 }
@@ -275,7 +273,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Rodapé */
 .footer-vertical {
     background-color: #004080;
     color: #fff;
@@ -286,14 +283,17 @@ body {
     align-items: center;
     gap: 10px;
 }
+
 .footer-vertical a {
     color: #fff;
     text-decoration: none;
 }
+
 .footer-vertical img.footer-logo {
     height: 100px;
     margin-bottom: 10px;
 }
+
 .footer-vertical p {
     margin: 0;
     display: flex;
@@ -301,6 +301,7 @@ body {
     align-items: center;
     gap: 10px;
 }
+
 .footer-copy {
     margin-top: 10px;
 }
