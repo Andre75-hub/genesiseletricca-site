@@ -24,7 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     successMessage.remove();
                 }, 5000);
             } else {
-                alert('Ocorreu um erro ao enviar o comentário. Tente novamente.');
+                alert('Erro ao enviar comentário.');
+            }
+        });
+    }
+
+    // Log de busca simulada
+    const searchInput = document.querySelector('.search-box input[type="text"]');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                console.log('Buscando por:', this.value);
+                alert('Busca simulada: ' + this.value);
             }
         });
     }
