@@ -242,10 +242,11 @@ body {
 }
 
 .search-box button img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    display: block;
+    height: 24px !important;
+    width: 24px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: auto !important;
 }
 
 .recent-posts h3 {
