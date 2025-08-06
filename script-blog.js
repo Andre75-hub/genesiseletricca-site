@@ -1,21 +1,31 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('comment-form');
+    if (form) {
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-  const form = document.querySelector(".comment-section form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Comentário enviado com sucesso!");
-      form.reset();
-    });
-  }
+            if (response.ok) {
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.textContent = 'Comentário enviado com sucesso!';
+                form.insertAdjacentElement('afterend', successMessage);
+
+                form.reset();
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 5000);
+            } else {
+                alert('Ocorreu um erro ao enviar o comentário. Tente novamente.');
+            }
+        });
+    }
 });
