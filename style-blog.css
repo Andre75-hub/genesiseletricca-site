@@ -137,12 +137,15 @@ body {
     margin-top: 30px;
 }
 
-/* Estilos da nova seção de compartilhamento - REVISADOS */
+/* Estilos da nova seção de compartilhamento - REVISADOS E FORTALECIDOS */
 .share-section {
     padding: 20px;
     border-top: 1px solid #ccc;
     padding-top: 20px;
-    margin-bottom: 20px; /* Adicionado para garantir espaço inferior */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 80px; /* Adicionado para garantir espaço mínimo */
+    box-sizing: border-box;
 }
 .share-title {
     text-align: center;
@@ -156,7 +159,7 @@ body {
 }
 .social-buttons {
     display: flex;
-    flex-wrap: wrap; /* Adicionado para garantir quebra de linha em telas pequenas */
+    flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
     margin-top: 10px;
@@ -172,6 +175,8 @@ body {
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    width: auto; /* Garante que o botão tenha o tamanho do conteúdo */
+    min-width: 120px; /* Adicionado para garantir um tamanho mínimo */
 }
 .social-btn.facebook {
     background-color: #3b5998;
@@ -186,9 +191,10 @@ body {
     opacity: 0.9;
 }
 .social-icon {
-    width: 20px; /* Definido tamanho explícito */
-    height: 20px; /* Definido tamanho explícito */
+    width: 20px;
+    height: 20px;
     fill: currentColor;
+    display: inline-block; /* Garante que o SVG seja renderizado corretamente */
 }
 
 
