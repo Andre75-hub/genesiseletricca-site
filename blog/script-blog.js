@@ -1,79 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // === Lógica para a Busca na Barra Lateral (Filtragem em Tempo Real) ===
-    const searchInput = document.getElementById('search-input-sidebar');
-    const searchableContent = document.querySelector('.searchable-content');
+    // Lista de posts para a busca
+    const posts = [
+        {
+            title: "Disjuntor: Fundamentos e aplicações",
+            summary: "A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas. Este artigo apresenta uma análise técnica abrangente sobre disjuntores, explorando seus princípios de funcionamento, classificações e melhores práticas...",
+            url: "disjuntor.html",
+            keywords: ["disjuntor", "proteção", "elétrica", "curto-circuito", "sobrecarga", "NBR 5410", "segurança", "disjuntores", "circuito"]
+        },
+        {
+            title: "IDR: O que é e para que serve o Interruptor Diferencial Residual",
+            summary: "A Gênesis Elétrica, empresa especializada em instalações elétricas de baixa tensão, aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual, popularmente conhecido como IDR. Este equipamento, muitas vezes subestimado, desempenha um papel vital na proteção de pessoas contra choques elétricos e na prevenção de incêndios causados por fugas de corrente...",
+            url: "idr.html",
+            keywords: ["idr", "interruptor", "diferencial", "residual", "fuga de corrente", "choque elétrico", "segurança", "eletricidade"]
+        }
+    ];
 
-    if (searchInput && searchableContent) {
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const elementsToSearch = searchableContent.querySelectorAll('h1, h2, h3, h4, h5, h6, p, ul, li');
+    // Lógica para o formulário de busca
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (event) => {
+            // A submissão do formulário já fará a redireção para search-results.html com a query
+        });
+    }
 
-            elementsToSearch.forEach(element => {
-                const text = element.textContent.toLowerCase();
-                // Mostra ou esconde o elemento com base no termo de busca
-                if (text.includes(query) || query === '') {
-                    element.style.display = ''; // Mostra o elemento
-                } else {
-                    element.style.display = 'none'; // Esconde o elemento
-                }
+    // Lógica para a página de resultados da busca
+    const searchResultsContainer = document.getElementById('search-results-container');
+    const searchResultsTitle = document.getElementById('search-results-title');
+
+    if (searchResultsContainer && searchResultsTitle) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('query');
+
+        if (query) {
+            searchResultsTitle.innerHTML = `Resultados da busca por: <span>${query}</span>`;
+            const normalizedQuery = query.toLowerCase().trim();
+            const results = posts.filter(post => {
+                const titleMatch = post.title.toLowerCase().includes(normalizedQuery);
+                const summaryMatch = post.summary.toLowerCase().includes(normalizedQuery);
+                const keywordMatch = post.keywords.some(keyword => keyword.toLowerCase().includes(normalizedQuery));
+                return titleMatch || summaryMatch || keywordMatch;
             });
-        });
-    }
 
-    // Ação do botão de busca (mantida para compatibilidade, mas a busca já ocorre ao digitar)
-    const searchButton = document.getElementById('search-button-sidebar');
-    if (searchButton) {
-        searchButton.addEventListener('click', () => {
-            const query = searchInput.value;
-            if (query) {
-                // Se a busca for concluída, você pode adicionar uma ação aqui, como rolar a página
-                console.log(`Busca realizada por: ${query}`);
+            if (results.length > 0) {
+                results.forEach(post => {
+                    const postCard = document.createElement('a');
+                    postCard.href = post.url;
+                    postCard.classList.add('post-card-link');
+                    postCard.innerHTML = `
+                        <article class="post-card">
+                            <div class="post-card-image ${post.url.replace('.html', '-card')}"></div>
+                            <div class="post-card-content">
+                                <h3>${post.title}</h3>
+                                <p>${post.summary} <span>Leia mais</span></p>
+                            </div>
+                        </article>
+                    `;
+                    searchResultsContainer.appendChild(postCard);
+                });
+            } else {
+                const noResultsMessage = document.createElement('p');
+                noResultsMessage.textContent = "Nenhum assunto encontrado.";
+                noResultsMessage.classList.add('no-results-message');
+                searchResultsContainer.appendChild(noResultsMessage);
             }
-        });
-    }
-
-    // === Lógica para o Formulário de Comentários ===
-    const commentForm = document.querySelector('.comment-section form');
-    if (commentForm) {
-        commentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', form.action);
-            xhr.setRequestHeader('Accept', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState !== XMLHttpRequest.DONE) return;
-                if (xhr.status === 200) {
-                    form.reset();
-                    // Cria uma mensagem de sucesso
-                    const successMessage = document.createElement('p');
-                    successMessage.className = 'success-message';
-                    successMessage.textContent = 'Comentário enviado com sucesso! Agradecemos sua contribuição.';
-                    form.parentNode.insertBefore(successMessage, form.nextSibling);
-
-                    // Remove a mensagem de sucesso após alguns segundos
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 5000);
-                } else {
-                    alert('Houve um erro ao enviar seu comentário. Por favor, tente novamente.');
-                }
-            };
-            xhr.send(formData);
-        });
+        }
     }
 });
 
-// === Funções de Compartilhamento Social e Copiar Link (Globais) ===
-// Compartilhar post em diferentes plataformas
+// Outras funções do blog, como o compartilhamento, podem ser adicionadas aqui
+// Exemplo:
 function sharePost(platform) {
     const postUrl = window.location.href;
     const postTitle = document.title;
     
     let shareUrl = '';
-
-    switch (platform) {
+    switch(platform) {
         case 'facebook':
             shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
             break;
@@ -81,34 +82,28 @@ function sharePost(platform) {
             shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postTitle)}&url=${encodeURIComponent(postUrl)}`;
             break;
         case 'whatsapp':
-            shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(postTitle + ' - ' + postUrl)}`;
+            shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(postTitle + ' ' + postUrl)}`;
             break;
-        default:
-            return;
     }
 
-    window.open(shareUrl, '_blank', 'width=600,height=400');
+    if (shareUrl) {
+        window.open(shareUrl, '_blank');
+    }
 }
 
-// Copiar o URL do post para a área de transferência
 function copyLink() {
-    const postUrl = window.location.href;
-    navigator.clipboard.writeText(postUrl).then(() => {
-        // Encontra o botão de copiar e exibe a mensagem de feedback
-        const copyButton = document.querySelector('.social-btn.copy');
-        const originalText = copyButton.querySelector('span').textContent;
-        const feedbackText = 'Link Copiado!';
-        
-        copyButton.querySelector('span').textContent = feedbackText;
-        copyButton.classList.add('copied');
+    const el = document.createElement('textarea');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
 
-        // Volta ao texto original após 2 segundos
+    const copyBtn = document.querySelector('.social-btn.copy');
+    if (copyBtn) {
+        copyBtn.classList.add('copied');
         setTimeout(() => {
-            copyButton.querySelector('span').textContent = originalText;
-            copyButton.classList.remove('copied');
+            copyBtn.classList.remove('copied');
         }, 2000);
-    }).catch(err => {
-        console.error('Erro ao copiar o link: ', err);
-        alert('Houve um erro ao copiar o link. Por favor, tente manualmente.');
-    });
+    }
 }
