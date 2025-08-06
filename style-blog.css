@@ -142,10 +142,23 @@ body {
     border-top: 1px solid #ccc;
     padding-top: 20px;
 }
-
-.share-section a {
-    margin-right: 10px;
-    color: #004080;
+.share-section .share-title {
+    text-align: center;
+    font-weight: bold;
+}
+.share-section .share-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.share-section .share-icons img {
+    height: 30px;
+    width: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+.share-section .share-icons a:hover img {
+    transform: scale(1.1);
 }
 
 .about-section {
