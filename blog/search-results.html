@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Resultados da Busca | Gênesis Elétrica</title>
-    <link href="../style-blog.css" rel="stylesheet"/>
-    <script defer="" src="../script-blog.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gênesis Elétrica | Resultados da Busca</title>
+    <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
+    
+    <link rel="stylesheet" href="style-blog.css">
+    <script src="script-blog.js" defer></script>
 </head>
 <body>
-    <header class="header-white" style="display: flex; align-items: center; justify-content: flex-start;">
-        <div class="header-container" style="display: flex; align-items: center; gap: 10px;">
-            <img alt="Logo Gênesis Elétrica" class="logo-cobre" src="imagens/logo-cobre.png" style="height: 50px; margin: 0; padding: 0;">
-            <span class="brand-title" style="margin: 0; padding: 0; line-height: 1;">Gênesis Elétrica</span>
+    <header class="header-white">
+        <div class="header-container">
+            <img class="logo-cobre" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis Elétrica">
+            <span class="brand-title">Gênesis Elétrica</span>
         </div>
     </header>
 
@@ -19,28 +21,30 @@
         <a href="https://genesiseletricca.com.br">Site</a>
         <a href="#sobre">Quem Somos</a>
         <a href="#contato">Contato</a>
-        <a href="#siga">Siga-nos</a>
+        <a href="#contato">Siga-nos</a>
     </nav>
     
-    <div class="post-hero" style="background-color: #004080; height: 150px;">
+    <div class="post-hero search-hero">
         <div class="post-meta">
-            <h1>Resultados da Busca</h1>
-            <p id="search-query-display"></p>
+            <h1 id="search-results-title">Resultados da busca por: <span></span></h1>
         </div>
     </div>
 
     <section class="content-wrapper">
         <main class="main-posts">
-            <div id="search-results-container">
+            <div id="search-results-container" class="post-previews">
                 </div>
         </main>
+        
         <aside class="sidebar">
-            <div class="search-box">
-                <input placeholder="Buscar no blog..." type="text" id="search-input-sidebar" />
-                <button id="search-button-sidebar">
-                    <img src="imagens/lupa.jpg" alt="Ícone de Lupa para Busca"/>
+            <form id="search-form" class="search-box" action="search-results.html" method="GET">
+                <input type="text" id="search-input-sidebar" name="query" placeholder="Buscar no blog..." required>
+                <button id="search-button-sidebar" type="submit" aria-label="Botão de busca">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
                 </button>
-            </div>
+            </form>
             <div class="recent-posts">
                 <h3>Últimos Posts</h3>
                 <ul>
@@ -52,7 +56,7 @@
     </section>
 
     <footer class="footer-vertical" id="contato">
-        <img alt="Logo Gênesis Elétrica" class="footer-logo" src="imagens/logo-genesis.png"/>
+        <img class="footer-logo" src="imagens/logo-genesis-eletricista.png" alt="Logo Gênesis Elétrica">
         <p>
             <a href="https://wa.me/5531975002129" target="_blank">WhatsApp</a> |
             <a href="mailto:genesiseletricca@gmail.com">E-mail</a> |
