@@ -161,6 +161,43 @@ body {
 }
 
 /* ======================== */
+/* Search Results Page Hero */
+/* ======================== */
+.post-hero.search-hero {
+    background-image: url('imagens/blog-banner.jpg'); /* Mantém o mesmo banner */
+    height: 150px;
+    align-items: center;
+}
+
+.post-hero.search-hero .post-meta {
+    background: rgba(255, 255, 255, 0.75);
+    width: 90%;
+    color: #333;
+    text-shadow: none;
+    margin-bottom: 0;
+    padding: 15px 20px;
+}
+
+.post-hero.search-hero .post-meta h1 {
+    font-size: 1.8rem;
+    color: #007BFF;
+}
+
+.post-hero.search-hero .post-meta h1 span {
+    color: #333;
+}
+
+.no-results-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 40px 0;
+    width: 100%;
+}
+
+
+/* ======================== */
 /* Estrutura Principal     */
 /* ======================== */
 .content-wrapper {
@@ -579,6 +616,14 @@ body {
 
     .main-hero {
         height: 200px;
+    }
+
+    .post-hero.search-hero {
+        height: 120px;
+    }
+
+    .post-hero.search-hero .post-meta h1 {
+        font-size: 1.5rem;
     }
 
     .hero-title-container {
