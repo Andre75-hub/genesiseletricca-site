@@ -198,7 +198,6 @@ body {
     vertical-align: middle;
 }
 
-
 .about-section {
     padding: 20px;
     background-color: #f0f0f0;
@@ -281,14 +280,11 @@ body {
     justify-content: center;
     height: 100%;
     width: 40px;
+    font-size: 1.5em; /* Aumenta o tamanho do emoji */
 }
 
 .search-box button img {
-    height: 24px;
-    width: 24px;
-    object-fit: contain;
-    display: block;
-    margin: auto;
+    display: none; /* Oculta a imagem da lupa, se houver */
 }
 
 .recent-posts h3 {
