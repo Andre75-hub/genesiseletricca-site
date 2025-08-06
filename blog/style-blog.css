@@ -69,6 +69,7 @@ body {
 /* Post Hero e Meta        */
 /* ======================== */
 .post-hero {
+    /* CORREÇÃO DO CAMINHO DA IMAGEM: A imagem está dentro da subpasta 'imagens' */
     background: url('imagens/idr-painel-eletrico.jpg') no-repeat center center/cover;
     height: 300px;
     display: flex;
@@ -80,14 +81,22 @@ body {
     padding: 20px;
 }
 
+.post-meta {
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 90%;
+    margin-bottom: 10px; /* Adiciona uma pequena margem para separar do final do container */
+}
+
 .post-meta h1 {
-    font-size: 2.2rem; /* Reduz o tamanho da fonte para se encaixar melhor */
-    margin-bottom: 5px; /* Reduz o espaçamento inferior */
+    font-size: 2.2rem;
+    margin-bottom: 5px;
     line-height: 1.2;
 }
 
 .post-meta p {
-    font-size: 1rem; /* Reduz o tamanho da fonte */
+    font-size: 1rem;
     margin-bottom: 0;
 }
 
