@@ -80,6 +80,20 @@ body {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Aplica a máscara escura sobre o background do hero */
+.post-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
 /* Regra específica para o post sobre IDR */
@@ -87,9 +101,14 @@ body {
     background-image: url('imagens/idr-painel-eletrico.jpg');
 }
 
-/* Regra específica para o novo post sobre Disjuntor */
+/* Regra específica para o post sobre Disjuntor */
 .post-hero.disjuntor-hero {
     background-image: url('imagens/disjuntor-quadro-distribuicao.jpg');
+}
+
+/* Regra específica para o hero da página principal */
+.post-hero.main-hero-bg {
+    background-image: url('imagens/blog-instalacoes-eletrica.jpeg');
 }
 
 .post-meta {
@@ -98,65 +117,18 @@ body {
     border-radius: 8px;
     width: 90%;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1; /* Garante que o post-meta fique acima da máscara escura */
 }
 
 .post-meta h1 {
     font-size: 2.2rem;
     margin-bottom: 5px;
     line-height: 1.2;
+    color: #fff;
 }
 
 .post-meta p {
-    font-size: 1rem;
-    margin-bottom: 0;
-}
-
-/* ======================== */
-/* Main Blog Hero (Index)  */
-/* ======================== */
-.main-hero {
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    text-align: center;
-    background-image: url('imagens/blog-instalacoes-eletrica.jpeg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.main-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-/* Removi a classe `.hero-title-container` e usei a mesma `.post-meta`
-para manter a consistência visual */
-.main-hero .post-meta {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: 90%;
-    margin-bottom: 10px;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.main-hero .post-meta h1 {
-    font-size: 2.2rem;
-    margin-bottom: 5px;
-    line-height: 1.2;
-    color: #fff;
-}
-
-.main-hero .post-meta p {
     font-size: 1rem;
     margin-bottom: 0;
     color: #fff;
@@ -616,29 +588,12 @@ para manter a consistência visual */
         padding: 15px;
     }
 
-    .main-hero {
-        height: 250px;
-    }
-
     .post-hero.search-hero {
         height: 120px;
     }
 
     .post-hero.search-hero .post-meta h1 {
         font-size: 1.5rem;
-    }
-
-    .hero-title-container {
-        padding: 10px 20px;
-        width: 90%;
-    }
-
-    .hero-title-container h1 {
-        font-size: 2rem;
-    }
-
-    .hero-title-container p {
-        font-size: 1rem;
     }
 
     .post-meta h1 {
