@@ -137,46 +137,48 @@ body {
     margin-top: 30px;
 }
 
-/* Estilos da nova seção de compartilhamento - REVISADOS E FORTALECIDOS */
+/* Estilos da nova seção de compartilhamento - REVISADOS E COM ALTURA AUMENTADA */
 .share-section {
-    padding: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    min-height: 80px; /* Adicionado para garantir espaço mínimo */
+    padding: 30px; /* Aumento do padding para criar mais espaço interno */
+    border-top: 2px solid #ccc; /* Aumento da espessura da borda para melhor visualização */
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    min-height: 150px; /* Aumento significativo da altura mínima */
     box-sizing: border-box;
+    overflow: visible !important; /* Garante que o conteúdo não seja cortado */
 }
 .share-title {
     text-align: center;
     font-weight: bold;
     font-size: 1.2em;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Aumento da margem inferior */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 .social-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 20px; /* Aumento do espaçamento entre os botões */
+    margin-top: 15px;
 }
 .social-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 10px 15px;
-    border-radius: 5px;
+    gap: 10px;
+    padding: 12px 20px; /* Aumento do padding dos botões */
+    border-radius: 8px;
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    width: auto; /* Garante que o botão tenha o tamanho do conteúdo */
-    min-width: 120px; /* Adicionado para garantir um tamanho mínimo */
+    width: auto;
+    min-width: 140px; /* Aumento da largura mínima dos botões */
+    font-size: 1em; /* Garante que o texto não seja muito pequeno */
 }
 .social-btn.facebook {
     background-color: #3b5998;
@@ -191,10 +193,11 @@ body {
     opacity: 0.9;
 }
 .social-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px; /* Aumento do tamanho dos ícones */
+    height: 24px;
     fill: currentColor;
-    display: inline-block; /* Garante que o SVG seja renderizado corretamente */
+    display: inline-block;
+    vertical-align: middle; /* Alinha verticalmente o ícone com o texto */
 }
 
 
