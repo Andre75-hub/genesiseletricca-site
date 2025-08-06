@@ -68,13 +68,13 @@ body {
 /* ======================== */
 /* Post Hero e Meta        */
 /* ======================== */
+/* CORREÇÃO: O caminho da imagem foi corrigido para a nova estrutura de pastas */
 .post-hero {
-    /* CORREÇÃO DO CAMINHO DA IMAGEM: A imagem está dentro da subpasta 'imagens' */
     background: url('imagens/idr-painel-eletrico.jpg') no-repeat center center/cover;
     height: 300px;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Alinha o conteúdo na parte inferior */
+    align-items: flex-end;
     text-align: center;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -82,11 +82,11 @@ body {
 }
 
 .post-meta {
-    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+    background: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     border-radius: 8px;
     width: 90%;
-    margin-bottom: 10px; /* Adiciona uma pequena margem para separar do final do container */
+    margin-bottom: 10px;
 }
 
 .post-meta h1 {
