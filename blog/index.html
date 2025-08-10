@@ -15,44 +15,52 @@
 
   <style>
     /* Estilos para elementos interativos na sidebar */
-    .sidebar-interactive{background:#fff;border-radius:8px;padding:20px;margin-bottom:20px;box-shadow:0 2px 5px rgba(0,0,0,.1)}
-    .sidebar-calculator{background:linear-gradient(135deg,#007BFF 0%,#0056b3 100%);color:#fff;border-radius:10px;padding:15px;margin:15px 0}
-    .sidebar-quiz{background:#e9ecef;color:#333;border-radius:10px;padding:15px;margin:15px 0;border:1px solid #dee2e6}
+    .sidebar-interactive{background:#fff;border-radius:8px;padding:20px;margin-bottom:20px;box-shadow:0 2px 5px rgba(0,0,0,.06)}
+    .sidebar-calculator{background:linear-gradient(135deg,#0a66c2 0%,#084d91 100%);color:#fff;border-radius:10px;padding:15px;margin:15px 0}
+    .sidebar-quiz{background:#f6f8fa;color:#0f172a;border-radius:10px;padding:15px;margin:15px 0;border:1px solid #e5e7eb}
     .sidebar-calc-row{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px}
-    .sidebar-calc-input,.sidebar-calc-select{padding:8px 10px;border:none;border-radius:5px;font-size:.9em;width:100%;background:#fff}
-    .sidebar-calc-button{background:#6c757d;color:#fff;border:none;padding:8px 15px;border-radius:15px;cursor:pointer;font-weight:bold;font-size:.9em;transition:all .3s ease;margin:5px 2px;width:100%}
-    .sidebar-calc-button:hover{transform:translateY(-1px);background:#5a6268}
-    .sidebar-calc-button.pdf{background:#dc3545}
-    .sidebar-calc-button.pdf:hover{background:#c82333}
-    .sidebar-calc-result{background:rgba(255,255,255,.15);border-radius:8px;padding:15px;margin-top:15px;border-left:3px solid #ffd700;font-size:.9em}
-    .sidebar-result-highlight{font-size:1.1em;font-weight:bold;color:#ffd700;margin-bottom:8px}
-    .sidebar-quiz-question{font-size:1em;margin-bottom:15px;font-weight:600;background:rgba(0,123,255,.1);padding:10px;border-radius:8px;color:#333}
-    .sidebar-quiz-options{display:grid;gap:8px;margin-bottom:15px}
-    .sidebar-quiz-option{background:#f8f9fa;border:2px solid #dee2e6;padding:8px 12px;border-radius:6px;cursor:pointer;transition:all .3s ease;color:#333;font-weight:500;text-align:left;display:flex;justify-content:space-between;align-items:center;font-size:.85em}
-    .sidebar-quiz-option:hover:not(.answered){background:#e9ecef;transform:translateX(3px)}
-    .sidebar-quiz-option.correct{border:2px dashed #28a745;background:rgba(40,167,69,.1)}
-    .sidebar-quiz-option.incorrect{border:2px dashed #dc3545;background:rgba(220,53,69,.1)}
-    .sidebar-quiz-option.show-correct{border:2px dashed #28a745;background:rgba(40,167,69,.1)}
-    .sidebar-quiz-option .status-icon{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:11px}
-    .sidebar-quiz-option .status-icon.correct{background:#28a745;color:#fff}
-    .sidebar-quiz-option .status-icon.incorrect{background:#dc3545;color:#fff}
-    .sidebar-next-button{background:#28a745;color:#fff;border:none;padding:8px 15px;border-radius:15px;cursor:pointer;font-weight:bold;font-size:.9em;display:none;width:100%;margin-top:10px}
-    .sidebar-next-button:hover{background:#218838}
-    .sidebar-quiz-progress{background:rgba(0,123,255,.1);border-radius:8px;padding:8px;margin-bottom:15px;text-align:center;color:#333;font-size:.9em}
-    .sidebar-quiz-score{background:rgba(0,123,255,.1);border-radius:8px;padding:15px;text-align:center;margin-top:15px;color:#333}
-    .sidebar-score-details{font-size:1em;margin:10px 0}
-    .sidebar-score-bar{background:rgba(0,123,255,.2);border-radius:8px;height:15px;margin:10px 0;overflow:hidden}
-    .sidebar-score-fill{height:100%;transition:width 1s ease;border-radius:8px}
-    .sidebar-alert{padding:10px;border-radius:6px;margin:10px 0;font-weight:bold;font-size:.85em}
-    .sidebar-alert.warning{background:#fff3cd;color:#856404;border:1px solid #ffeaa7}
-    .interactive-title{color:#007BFF;font-size:1.1em;font-weight:bold;margin-bottom:15px;text-align:center}
-    .calculator-tabs{display:flex;margin-bottom:15px}
-    .tab-button{flex:1;padding:8px 5px;background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;font-size:.8em;font-weight:bold}
-    .tab-button.active{background:rgba(255,255,255,.3)}
-    .tab-button:first-child{border-radius:8px 0 0 8px}
-    .tab-button:last-child{border-radius:0 8px 8px 0}
+    .sidebar-calc-input,.sidebar-calc-select{padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:.92em;width:100%;background:#fff}
+    .sidebar-calc-button{background:#334155;color:#fff;border:none;padding:9px 14px;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em;transition:.2s; margin:0}
+    .sidebar-calc-button:hover{transform:translateY(-1px);background:#1f2937}
+    .sidebar-calc-button.pdf{background:#b91c1c}
+    .sidebar-calc-button.pdf:hover{background:#991b1b}
+    .sidebar-calc-actions{display:flex;gap:8px;align-items:center;margin:8px 0 0}
+    .sidebar-calc-result{background:#fff;border:1px dashed #e5e7eb;border-radius:10px;padding:14px;margin-top:12px}
+    .sidebar-result-highlight{font-size:1.05em;font-weight:700;color:#0ea5e9;margin-bottom:6px}
+    .sidebar-quiz-question{font-size:1em;margin-bottom:12px;font-weight:600;background:#eef6ff;padding:10px;border-radius:8px;color:#0f172a}
+    .sidebar-quiz-options{display:grid;gap:8px;margin-bottom:12px}
+    .sidebar-quiz-option{background:#fff;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;cursor:pointer;transition:.2s;color:#0f172a;font-weight:500;display:flex;justify-content:space-between;align-items:center;font-size:.9em}
+    .sidebar-quiz-option:hover:not(.answered){background:#f8fafc;transform:translateX(2px)}
+    .sidebar-quiz-option.correct{border:1px solid #16a34a;background:#f0fdf4}
+    .sidebar-quiz-option.incorrect{border:1px solid #dc2626;background:#fef2f2}
+    .sidebar-quiz-option.show-correct{border:1px solid #16a34a;background:#f0fdf4}
+    .status-icon{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10px}
+    .status-icon.correct{background:#16a34a;color:#fff}
+    .status-icon.incorrect{background:#dc2626;color:#fff}
+    .sidebar-next-button{background:#0ea5e9;color:#fff;border:none;padding:9px 14px;border-radius:12px;cursor:pointer;font-weight:700;font-size:.9em;display:none;margin-top:6px}
+    .sidebar-next-button:hover{background:#0284c7}
+    .sidebar-quiz-progress{background:#eef6ff;border-radius:8px;padding:8px;margin-bottom:12px;text-align:center;color:#0f172a;font-size:.9em}
+    .sidebar-quiz-score{background:#eef6ff;border-radius:10px;padding:14px;text-align:center;margin-top:12px;color:#0f172a;border:1px solid #dde9fb}
+    .sidebar-score-details{font-size:.95em;margin:8px 0}
+    .sidebar-score-bar{background:#dbeafe;border-radius:8px;height:12px;margin:8px 0;overflow:hidden}
+    .sidebar-score-fill{height:100%;transition:width .8s ease;border-radius:8px;background:#0ea5e9}
+    .sidebar-alert{padding:10px;border-radius:8px;margin:10px 0;font-weight:600;font-size:.85em}
+    .sidebar-alert.warning{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
+    .interactive-title{color:#0a66c2;font-size:1.05em;font-weight:800;margin-bottom:12px;text-align:center}
+
+    .calculator-tabs{display:flex;margin-bottom:12px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.25)}
+    .tab-button{flex:1;padding:10px 6px;background:rgba(255,255,255,.12);border:none;color:#fff;cursor:pointer;font-size:.8em;font-weight:800;letter-spacing:.4px}
+    .tab-button.active{background:rgba(255,255,255,.22)}
     .calc-content{display:none}
     .calc-content.active{display:block}
+
+    /* Botões icônicos minimalistas */
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid #e5e7eb;background:#fff;cursor:pointer;transition:.2s}
+    .icon-btn:hover{background:#f8fafc;transform:translateY(-1px)}
+    .icon-btn svg{width:18px;height:18px;stroke:#0f172a}
+    .reaction-wrap{display:flex;gap:8px;align-items:center}
+    .reaction-count{font-size:.9em;color:#475569;min-width:14px;text-align:center}
+
     @media (max-width:768px){.sidebar-interactive{margin-bottom:15px}}
   </style>
 </head>
@@ -106,7 +114,7 @@
           <img class="logo-genesis" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis"/>
           <h2>Gênesis Elétrica</h2>
         </div>
-        <p>Bem-vindo(a) ao Blog Gênesis Elétrica! Com uma trajetória ascendente no mercado, a Gênesis Elétrica entende a importância do conhecimento compartilhado. Nosso compromisso é oferecer conteúdo confiável e de alta qualidade para garantir mais segurança, conforto e uma relação mais positiva entre a eletricidade e você, cliente. Explore nosso blog, inspire-se com nossas dicas e sinta-se à vontade para compartilhar suas ideias e experiências. Juntos, vamos construir um ambiente de aprendizagem e evolução constante!</p>
+        <p>Bem-vindo(a) ao Blog Gênesis Elétrica! Com uma trajetória ascendente no mercado, a Gênesis Elétrica entende a importância do conhecimento compartilhado. Nosso compromisso é oferecer conteúdo confiável de alta qualidade para garantir mais segurança e conforto.</p>
         <p>Equipe, Gênesis Elétrica!</p>
       </section>
     </main>
@@ -147,10 +155,15 @@
               <input type="number" id="horas" class="sidebar-calc-input" placeholder="Horas/dia"/>
               <input type="number" id="tarifa" class="sidebar-calc-input" placeholder="R$/kWh" value="0.75"/>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div class="sidebar-calc-actions">
               <button class="sidebar-calc-button" id="btn-calc-consumo">Calcular</button>
               <button class="sidebar-calc-button pdf" id="btn-pdf-consumo">PDF</button>
-              <button class="sidebar-calc-button" id="btn-reset-consumo" title="Limpar">↺ Limpar</button>
+              <!-- botão ícone limpar -->
+              <button class="icon-btn" id="btn-reset-consumo" title="Limpar">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
+                </svg>
+              </button>
             </div>
             <div id="consumo-result" class="sidebar-calc-result" style="display:none;"></div>
           </div>
@@ -173,10 +186,14 @@
                 <option value="C">C - Enterrado</option>
               </select>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div class="sidebar-calc-actions">
               <button class="sidebar-calc-button" id="btn-calc-cabo">Calcular</button>
               <button class="sidebar-calc-button pdf" id="btn-pdf-cabo">PDF</button>
-              <button class="sidebar-calc-button" id="btn-reset-cabo" title="Limpar">↺ Limpar</button>
+              <button class="icon-btn" id="btn-reset-cabo" title="Limpar">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
+                </svg>
+              </button>
             </div>
             <div id="cabo-result" class="sidebar-calc-result" style="display:none;"></div>
           </div>
@@ -203,15 +220,25 @@
 
           <button id="next-question" class="sidebar-next-button">Próxima →</button>
 
-          <!-- Likes/Dislikes e Participantes -->
-          <div id="quiz-reactions" style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:10px;">
-            <div style="display:flex;gap:8px;">
-              <button id="quiz-like" class="sidebar-calc-button" style="padding:6px 10px;width:auto;">👍 Curtir</button>
-              <span id="like-count" style="align-self:center;font-size:.9em;">0</span>
-              <button id="quiz-dislike" class="sidebar-calc-button" style="padding:6px 10px;width:auto;">👎 Não curti</button>
-              <span id="dislike-count" style="align-self:center;font-size:.9em;">0</span>
+          <!-- Likes/Dislikes e Participantes (estilo YouTube minimal) -->
+          <div id="quiz-reactions" style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:10px;">
+            <div class="reaction-wrap">
+              <button class="icon-btn" id="quiz-like" aria-label="Curtir">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-1 7H5a2 2 0 0 0-2 2l1 9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-7a2 2 0 0 0-2-2h-1z"/>
+                </svg>
+              </button>
+              <span class="reaction-count" id="like-count">0</span>
+
+              <button class="icon-btn" id="quiz-dislike" aria-label="Não curti">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="transform:rotate(180deg)">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-1 7H5a2 2 0 0 0-2 2l1 9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-7a2 2 0 0 0-2-2h-1z"/>
+                </svg>
+              </button>
+              <span class="reaction-count" id="dislike-count">0</span>
             </div>
-            <div style="font-size:.85em;color:#555;">
+
+            <div style="font-size:.85em;color:#475569;">
               Participantes: <strong id="participants-count">0</strong>
             </div>
           </div>
@@ -222,7 +249,7 @@
             <div class="sidebar-score-bar">
               <div class="sidebar-score-fill" id="score-fill"></div>
             </div>
-            <div id="performance-message" style="margin-top:10px;font-size:.9em;"></div>
+            <div id="performance-message" style="margin-top:8px;font-size:.9em;"></div>
             <button class="sidebar-calc-button" id="btn-refazer" style="margin-top:10px;">Refazer</button>
           </div>
         </div>
@@ -231,7 +258,7 @@
   </section>
 
   <footer class="footer-vertical" id="contato">
-    <img class="footer-logo" src="imagens/logo-genesis-eletricista.png" alt="Logo Gênesis Elétrica"/>
+    <img class="footer-logo" src="imagens/genesis-eletrica.jpg" alt="Gênesis Elétrica" />
     <p>
       <a href="https://wa.me/5531975002129" target="_blank">WhatsApp</a> |
       <a href="mailto:genesiseletricca@gmail.com">E-mail</a> |
@@ -241,6 +268,6 @@
   </footer>
 
   <!-- JS dos interativos (calculadoras + quiz) -->
-  <script src="interativos.js?v=2" defer></script>
+  <script src="interativos.js?v=3" defer></script>
 </body>
 </html>
