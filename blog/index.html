@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gênesis Elétrica | Clube do Eletricista</title>
+    <title>Gênesis Elétrica | Comunidade do Eletricista</title>
     <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
@@ -307,7 +307,7 @@
     
     <div class="post-hero main-page-hero">
         <div class="post-meta">
-            <h1>Clube do eletricista</h1>
+            <h1>Comunidade do eletricista</h1>
             <p>Tudo sobre elétrica, inovações e dicas de instalação</p>
         </div>
     </div>
@@ -481,8 +481,12 @@
             // Mostrar calculadora selecionada
             document.getElementById('calc-' + tipo).classList.add('active');
             
-            // Marcar botão como ativo
-            event.target.classList.add('active');
+            // Marcar botão como ativo - precisa encontrar o botão clicado
+            document.querySelectorAll('.tab-button').forEach(button => {
+                if (button.textContent.toLowerCase().includes(tipo === 'consumo' ? 'consumo' : 'cabos')) {
+                    button.classList.add('active');
+                }
+            });
         }
 
         // =====================================
@@ -683,9 +687,4 @@
             },
             {
                 pergunta: "Pontos TUG obrigatórios numa sala de 20m²:",
-                alternativas: ["3 pontos", "4 pontos", "5 pontos", "6 pontos"],
-                correta: 1,
-                explicacao: "Sala 20m²: mínimo 4 pontos TUG."
-            },
-            {
-                pergunta
+                alternativas: ["3 pontos", "4 pontos", "5 pontos
