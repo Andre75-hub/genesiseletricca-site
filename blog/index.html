@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gênesis Elétrica | Comunidade do Eletricista</title>
+  <title>Gênesis Elétrica | Clube do Eletricista</title>
   <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
 
   <!-- jsPDF para gerar PDFs -->
@@ -73,7 +73,7 @@
 
   <div class="post-hero main-page-hero">
     <div class="post-meta">
-      <h1>Comunidade do eletricista</h1>
+      <h1>Clube do eletricista</h1>
       <p>Tudo sobre elétrica, inovações e dicas de instalação</p>
     </div>
   </div>
@@ -147,8 +147,11 @@
               <input type="number" id="horas" class="sidebar-calc-input" placeholder="Horas/dia"/>
               <input type="number" id="tarifa" class="sidebar-calc-input" placeholder="R$/kWh" value="0.75"/>
             </div>
-            <button class="sidebar-calc-button" id="btn-calc-consumo">Calcular</button>
-            <button class="sidebar-calc-button pdf" id="btn-pdf-consumo">PDF</button>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <button class="sidebar-calc-button" id="btn-calc-consumo">Calcular</button>
+              <button class="sidebar-calc-button pdf" id="btn-pdf-consumo">PDF</button>
+              <button class="sidebar-calc-button" id="btn-reset-consumo" title="Limpar">↺ Limpar</button>
+            </div>
             <div id="consumo-result" class="sidebar-calc-result" style="display:none;"></div>
           </div>
 
@@ -170,8 +173,11 @@
                 <option value="C">C - Enterrado</option>
               </select>
             </div>
-            <button class="sidebar-calc-button" id="btn-calc-cabo">Calcular</button>
-            <button class="sidebar-calc-button pdf" id="btn-pdf-cabo">PDF</button>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <button class="sidebar-calc-button" id="btn-calc-cabo">Calcular</button>
+              <button class="sidebar-calc-button pdf" id="btn-pdf-cabo">PDF</button>
+              <button class="sidebar-calc-button" id="btn-reset-cabo" title="Limpar">↺ Limpar</button>
+            </div>
             <div id="cabo-result" class="sidebar-calc-result" style="display:none;"></div>
           </div>
         </div>
@@ -197,6 +203,19 @@
 
           <button id="next-question" class="sidebar-next-button">Próxima →</button>
 
+          <!-- Likes/Dislikes e Participantes -->
+          <div id="quiz-reactions" style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:10px;">
+            <div style="display:flex;gap:8px;">
+              <button id="quiz-like" class="sidebar-calc-button" style="padding:6px 10px;width:auto;">👍 Curtir</button>
+              <span id="like-count" style="align-self:center;font-size:.9em;">0</span>
+              <button id="quiz-dislike" class="sidebar-calc-button" style="padding:6px 10px;width:auto;">👎 Não curti</button>
+              <span id="dislike-count" style="align-self:center;font-size:.9em;">0</span>
+            </div>
+            <div style="font-size:.85em;color:#555;">
+              Participantes: <strong id="participants-count">0</strong>
+            </div>
+          </div>
+
           <div class="sidebar-quiz-score" id="quiz-score" style="display:none;">
             <h4>Resultado</h4>
             <div class="sidebar-score-details" id="score-details"></div>
@@ -218,10 +237,10 @@
       <a href="mailto:genesiseletricca@gmail.com">E-mail</a> |
       <a href="https://instagram.com/genesis_eletrica" target="_blank">Instagram</a>
     </p>
-    <p class="footer-copy">© 2025 Gênesis Elétrica</p>
+    <p class="footer-copy">© 2025 Gênesis Elétrica - Todos os direitos reservados</p>
   </footer>
 
   <!-- JS dos interativos (calculadoras + quiz) -->
-  <script src="interativos.js?v=1" defer></script>
+  <script src="interativos.js?v=2" defer></script>
 </body>
 </html>
