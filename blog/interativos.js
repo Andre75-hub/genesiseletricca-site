@@ -1,4 +1,4 @@
-// interativos.js  (Clube da Elétrica)
+// interativos.js — Clube da Elétrica
 
 // Utils
 const $ = (s, r = document) => r.querySelector(s);
@@ -23,8 +23,8 @@ function loadAsDataURL(url) {
 }
 
 async function withLogos() {
-  // Ajuste os caminhos se necessário
-  const topo = await loadAsDataURL("imagens/logo-genesis-eletricista.png");
+  // TOP: genesis-eletrica.jpg | Marca d’água: logo-cobre-eletrica.png
+  const topo = await loadAsDataURL("imagens/genesis-eletrica.jpg");
   const marca = await loadAsDataURL("imagens/logo-cobre-eletrica.png");
   return { topo, marca };
 }
@@ -54,9 +54,9 @@ function calcularConsumo() {
   const custoMensal = consumoKwh * tarifa;
 
   let categoria = '', cor = '';
-  if (consumoKwh < 30) { categoria = 'Baixo'; cor = '#28a745'; }
-  else if (consumoKwh < 100) { categoria = 'Moderado'; cor = '#ffc107'; }
-  else { categoria = 'Alto'; cor = '#dc3545'; }
+  if (consumoKwh < 30) { categoria = 'Baixo'; cor = '#16a34a'; }
+  else if (consumoKwh < 100) { categoria = 'Moderado'; cor = '#f59e0b'; }
+  else { categoria = 'Alto'; cor = '#dc2626'; }
 
   window.dadosConsumo = { potencia, horas, tarifa, consumoKwh, custoMensal, categoria };
 
@@ -88,7 +88,7 @@ async function gerarPDFConsumo() {
   const d = window.dadosConsumo;
   const doc = new jsPDF('p', 'mm', 'a4');
 
-  // Marca d'água central (com opacidade quando suportado)
+  // Marca d'água central
   const centerX = 105, centerY = 148;
   try {
     if (doc.setGState) {
@@ -97,7 +97,6 @@ async function gerarPDFConsumo() {
     }
     doc.addImage(marca, 'PNG', centerX - 50, centerY - 50, 100, 100, undefined, 'FAST');
   } catch (_) {
-    // fallback sem opacidade
     doc.addImage(marca, 'PNG', centerX - 50, centerY - 50, 100, 100, undefined, 'FAST');
   }
 
@@ -107,7 +106,7 @@ async function gerarPDFConsumo() {
   doc.setFontSize(16);
   doc.text('Gênesis Elétrica - Consumo de energia', 48, 26);
 
-  // Tabela simples
+  // Tabela
   doc.setFontSize(12);
   const startX = 20, startY = 50, rowH = 10, colW1 = 70, colW2 = 90;
   const rows = [
@@ -119,17 +118,12 @@ async function gerarPDFConsumo() {
     ['Categoria', d.categoria]
   ];
 
-  // Moldura
   doc.setDrawColor(180);
   doc.rect(startX, startY, colW1 + colW2, rowH * rows.length);
-
   rows.forEach((r, i) => {
     const y = startY + i * rowH;
-    // linhas
     doc.line(startX, y, startX + colW1 + colW2, y);
-    // coluna separadora
     doc.line(startX + colW1, startY, startX + colW1, startY + rowH * rows.length);
-    // textos
     doc.text(r[0], startX + 4, y + 7);
     doc.text(r[1], startX + colW1 + 4, y + 7);
   });
@@ -156,7 +150,7 @@ function calcularCabo() {
   const resistencia = (0.0175 * distancia) / secaoEscolhida; // Ω aprox (cobre)
   const quedaTensao = (corrente * resistencia * 2);          // ida/volta
   const quedaPercentual = (quedaTensao / tensao) * 100;
-  const cor = quedaPercentual <= 4 ? '#28a745' : '#dc3545';
+  const cor = quedaPercentual <= 4 ? '#16a34a' : '#dc2626';
 
   const disjuntores = [10,16,20,25,32,40,50,63];
   const disjuntor = disjuntores.find(d => d >= corrente) || 63;
@@ -224,7 +218,6 @@ async function gerarPDFCabo() {
 
   doc.setDrawColor(180);
   doc.rect(startX, startY, colW1 + colW2, rowH * rows.length);
-
   rows.forEach((r, i) => {
     const y = startY + i * rowH;
     doc.line(startX, y, startX + colW1 + colW2, y);
@@ -258,7 +251,7 @@ function getCounter(key, def = 0) { return parseInt(localStorage.getItem(key) ||
 function setCounter(key, val) { localStorage.setItem(key, String(val)); }
 
 function initReactions() {
-  // Participantes: conta 1x por navegador (primeira visita)
+  // Participantes: conta 1x por navegador na primeira visita
   if (!localStorage.getItem('quizVisited')) {
     localStorage.setItem('quizVisited', '1');
     setCounter('quizParticipants', getCounter('quizParticipants') + 1);
@@ -269,7 +262,7 @@ function initReactions() {
   $('#dislike-count').textContent = getCounter('quizDislikes');
   $('#participants-count').textContent = getCounter('quizParticipants');
 
-  // Botões like/dislike (1 voto por navegador)
+  // Botões like/dislike — 1 voto por navegador
   $('#quiz-like').addEventListener('click', () => {
     if (localStorage.getItem('quizVoted')) return alert('Você já votou. Obrigado!');
     setCounter('quizLikes', getCounter('quizLikes') + 1);
