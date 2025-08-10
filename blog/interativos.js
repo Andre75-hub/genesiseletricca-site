@@ -1,10 +1,36 @@
-// interativos.js
+// interativos.js  (Clube da Elétrica)
 
 // Utils
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-// Tabs
+// ————————————————————————————————————————
+// Helpers de imagem (logo em PDF)
+function loadAsDataURL(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      const c = document.createElement("canvas");
+      c.width = img.width; c.height = img.height;
+      const ctx = c.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      try { resolve(c.toDataURL("image/png")); } catch (e) { reject(e); }
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+async function withLogos() {
+  // Ajuste os caminhos se necessário
+  const topo = await loadAsDataURL("imagens/logo-genesis-eletricista.png");
+  const marca = await loadAsDataURL("imagens/logo-cobre-eletrica.png");
+  return { topo, marca };
+}
+
+// ————————————————————————————————————————
+// Tabs Calculadoras
 function switchTab(tipo) {
   $$('.calc-content').forEach(el => el.classList.remove('active'));
   const target = $('#calc-' + tipo);
@@ -12,12 +38,12 @@ function switchTab(tipo) {
 
   $$('.tab-button').forEach(btn => btn.classList.remove('active'));
   $$('.tab-button').forEach(btn => {
-    const t = btn.dataset.tab;
-    if (t === tipo) btn.classList.add('active');
+    if (btn.dataset.tab === tipo) btn.classList.add('active');
   });
 }
 
-// Consumo
+// ————————————————————————————————————————
+// Calculadora de Consumo
 function calcularConsumo() {
   const potencia = parseFloat($('#potencia')?.value);
   const horas = parseFloat($('#horas')?.value);
@@ -44,23 +70,75 @@ function calcularConsumo() {
   }
 }
 
-function gerarPDFConsumo() {
+function resetConsumo() {
+  $('#potencia').value = '';
+  $('#horas').value = '';
+  $('#tarifa').value = '0.75';
+  const res = $('#consumo-result');
+  if (res) { res.style.display = 'none'; res.innerHTML = ''; }
+}
+
+// PDF Consumo
+async function gerarPDFConsumo() {
   if (!window.dadosConsumo) { alert('Execute o cálculo primeiro!'); return; }
   const { jsPDF } = window.jspdf || {};
   if (!jsPDF) { alert('jsPDF não carregou.'); return; }
+
+  const { topo, marca } = await withLogos();
   const d = window.dadosConsumo;
-  const doc = new jsPDF();
-  doc.setFontSize(16); doc.text('Gênesis Elétrica - Consumo', 20, 20);
+  const doc = new jsPDF('p', 'mm', 'a4');
+
+  // Marca d'água central (com opacidade quando suportado)
+  const centerX = 105, centerY = 148;
+  try {
+    if (doc.setGState) {
+      const gs = doc.GState({ opacity: 0.08 });
+      doc.setGState(gs);
+    }
+    doc.addImage(marca, 'PNG', centerX - 50, centerY - 50, 100, 100, undefined, 'FAST');
+  } catch (_) {
+    // fallback sem opacidade
+    doc.addImage(marca, 'PNG', centerX - 50, centerY - 50, 100, 100, undefined, 'FAST');
+  }
+
+  // Cabeçalho com logo e título
+  if (doc.setGState) doc.setGState(new doc.GState({ opacity: 1 }));
+  doc.addImage(topo, 'PNG', 15, 10, 28, 28);
+  doc.setFontSize(16);
+  doc.text('Gênesis Elétrica - Consumo de energia', 48, 26);
+
+  // Tabela simples
   doc.setFontSize(12);
-  doc.text(`Potência: ${d.potencia} W`, 20, 40);
-  doc.text(`Horas/dia: ${d.horas} h`, 20, 50);
-  doc.text(`Consumo: ${d.consumoKwh.toFixed(2)} kWh/mês`, 20, 60);
-  doc.text(`Custo: R$ ${d.custoMensal.toFixed(2)}/mês`, 20, 70);
-  doc.text(`Categoria: ${d.categoria}`, 20, 80);
+  const startX = 20, startY = 50, rowH = 10, colW1 = 70, colW2 = 90;
+  const rows = [
+    ['Potência (W)', `${d.potencia}`],
+    ['Horas por dia', `${d.horas}`],
+    ['Tarifa (R$/kWh)', `R$ ${d.tarifa.toFixed(2)}`],
+    ['Consumo mensal (kWh)', `${d.consumoKwh.toFixed(2)}`],
+    ['Custo mensal (R$)', `R$ ${d.custoMensal.toFixed(2)}`],
+    ['Categoria', d.categoria]
+  ];
+
+  // Moldura
+  doc.setDrawColor(180);
+  doc.rect(startX, startY, colW1 + colW2, rowH * rows.length);
+
+  rows.forEach((r, i) => {
+    const y = startY + i * rowH;
+    // linhas
+    doc.line(startX, y, startX + colW1 + colW2, y);
+    // coluna separadora
+    doc.line(startX + colW1, startY, startX + colW1, startY + rowH * rows.length);
+    // textos
+    doc.text(r[0], startX + 4, y + 7);
+    doc.text(r[1], startX + colW1 + 4, y + 7);
+  });
+
   doc.save('consumo-genesis.pdf');
 }
 
-// Cabos (simplificado)
+// ————————————————————————————————————————
+// Calculadora de Cabos (simplificada)
 function calcularCabo() {
   const corrente = parseFloat($('#corrente')?.value);
   const distancia = parseFloat($('#distancia')?.value);
@@ -95,23 +173,70 @@ function calcularCabo() {
   }
 }
 
-function gerarPDFCabo() {
+function resetCabo() {
+  $('#corrente').value = '';
+  $('#distancia').value = '';
+  $('#tensao').value = '127';
+  $('#instalacao').value = '';
+  const res = $('#cabo-result');
+  if (res) { res.style.display = 'none'; res.innerHTML = ''; }
+}
+
+// PDF Cabos
+async function gerarPDFCabo() {
   if (!window.dadosCabo) { alert('Execute o cálculo primeiro!'); return; }
   const { jsPDF } = window.jspdf || {};
   if (!jsPDF) { alert('jsPDF não carregou.'); return; }
+
+  const { topo, marca } = await withLogos();
   const d = window.dadosCabo;
-  const doc = new jsPDF();
-  doc.setFontSize(16); doc.text('Gênesis Elétrica - Dimensionamento', 20, 20);
+  const doc = new jsPDF('p', 'mm', 'a4');
+
+  // Marca d'água
+  const centerX = 105, centerY = 148;
+  try {
+    if (doc.setGState) {
+      const gs = doc.GState({ opacity: 0.08 });
+      doc.setGState(gs);
+    }
+    doc.addImage(marca, 'PNG', centerX - 50, centerY - 50, 100, 100, undefined, 'FAST');
+  } catch (_) {
+    doc.addImage(marca, 'PNG', centerX - 50, centerY - 50, 100, 100, undefined, 'FAST');
+  }
+
+  // Cabeçalho
+  if (doc.setGState) doc.setGState(new doc.GState({ opacity: 1 }));
+  doc.addImage(topo, 'PNG', 15, 10, 28, 28);
+  doc.setFontSize(16);
+  doc.text('Gênesis Elétrica - Dimensionamento de cabos', 48, 26);
+
+  // Tabela
   doc.setFontSize(12);
-  doc.text(`Corrente: ${d.corrente} A`, 20, 40);
-  doc.text(`Distância: ${d.distancia} m`, 20, 50);
-  doc.text(`Tensão: ${d.tensao} V`, 20, 60);
-  doc.text(`Seção: ${d.secaoEscolhida} mm²`, 20, 70);
-  doc.text(`Queda: ${d.quedaPercentual.toFixed(2)} %`, 20, 80);
-  doc.text(`Disjuntor: ${d.disjuntor} A`, 20, 90);
+  const startX = 20, startY = 50, rowH = 10, colW1 = 70, colW2 = 90;
+  const rows = [
+    ['Corrente (A)', `${d.corrente}`],
+    ['Distância (m)', `${d.distancia}`],
+    ['Tensão (V)', `${d.tensao}`],
+    ['Seção recomendada (mm²)', `${d.secaoEscolhida}`],
+    ['Queda de tensão (%)', `${d.quedaPercentual.toFixed(2)} %`],
+    ['Disjuntor (A)', `${d.disjuntor}`],
+  ];
+
+  doc.setDrawColor(180);
+  doc.rect(startX, startY, colW1 + colW2, rowH * rows.length);
+
+  rows.forEach((r, i) => {
+    const y = startY + i * rowH;
+    doc.line(startX, y, startX + colW1 + colW2, y);
+    doc.line(startX + colW1, startY, startX + colW1, startY + rowH * rows.length);
+    doc.text(r[0], startX + 4, y + 7);
+    doc.text(r[1], startX + colW1 + 4, y + 7);
+  });
+
   doc.save('cabo-genesis.pdf');
 }
 
+// ————————————————————————————————————————
 // Quiz
 const perguntasQuiz = [
   { pergunta: "Seção mínima de condutor para circuito de iluminação (NBR 5410)?", alternativas: ["1,0 mm²","1,5 mm²","2,5 mm²","4,0 mm²"], correta: 1, explicacao: "Iluminação: mínimo 1,5 mm²." },
@@ -127,6 +252,38 @@ const perguntasQuiz = [
 ];
 
 let idx = 0, acertos = 0, respondida = false;
+
+// Likes / Dislikes / Participantes (LocalStorage)
+function getCounter(key, def = 0) { return parseInt(localStorage.getItem(key) || def, 10); }
+function setCounter(key, val) { localStorage.setItem(key, String(val)); }
+
+function initReactions() {
+  // Participantes: conta 1x por navegador (primeira visita)
+  if (!localStorage.getItem('quizVisited')) {
+    localStorage.setItem('quizVisited', '1');
+    setCounter('quizParticipants', getCounter('quizParticipants') + 1);
+  }
+
+  // Render contadores
+  $('#like-count').textContent = getCounter('quizLikes');
+  $('#dislike-count').textContent = getCounter('quizDislikes');
+  $('#participants-count').textContent = getCounter('quizParticipants');
+
+  // Botões like/dislike (1 voto por navegador)
+  $('#quiz-like').addEventListener('click', () => {
+    if (localStorage.getItem('quizVoted')) return alert('Você já votou. Obrigado!');
+    setCounter('quizLikes', getCounter('quizLikes') + 1);
+    localStorage.setItem('quizVoted', '1');
+    $('#like-count').textContent = getCounter('quizLikes');
+  });
+
+  $('#quiz-dislike').addEventListener('click', () => {
+    if (localStorage.getItem('quizVoted')) return alert('Você já votou. Obrigado!');
+    setCounter('quizDislikes', getCounter('quizDislikes') + 1);
+    localStorage.setItem('quizVoted', '1');
+    $('#dislike-count').textContent = getCounter('quizDislikes');
+  });
+}
 
 function renderPergunta() {
   const qEl = $('#question'), oEl = $('#options'), counter = $('#quiz-counter');
@@ -168,7 +325,7 @@ function renderPergunta() {
         btn.classList.add('incorrect');
         btn.querySelector('.status-icon').classList.add('incorrect');
         btn.querySelector('.status-icon').textContent = '×';
-        const corret = $('#options').children[item.correta];
+        const corret = oEl.children[item.correta];
         if (corret) {
           corret.classList.add('show-correct');
           corret.querySelector('.status-icon').classList.add('correct');
@@ -194,24 +351,29 @@ function reiniciarQuiz() {
   renderPergunta();
 }
 
+// ————————————————————————————————————————
 // Bind inicial
 document.addEventListener('DOMContentLoaded', () => {
   // Tabs
-  $$('.tab-button').forEach(btn => {
-    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-  });
+  $$('.tab-button').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
 
-  // Botões das calculadoras
+  // Calculadoras – ações
   $('#btn-calc-consumo')?.addEventListener('click', calcularConsumo);
   $('#btn-pdf-consumo')?.addEventListener('click', gerarPDFConsumo);
+  $('#btn-reset-consumo')?.addEventListener('click', resetConsumo);
+
   $('#btn-calc-cabo')?.addEventListener('click', calcularCabo);
   $('#btn-pdf-cabo')?.addEventListener('click', gerarPDFCabo);
+  $('#btn-reset-cabo')?.addEventListener('click', resetCabo);
 
   // Quiz
   $('#next-question')?.addEventListener('click', proximaPergunta);
   $('#btn-refazer')?.addEventListener('click', reiniciarQuiz);
 
-  // Primeira pergunta + tab padrão
+  // Reações + Participantes
+  initReactions();
+
+  // Estado inicial
   switchTab('consumo');
   renderPergunta();
 });
