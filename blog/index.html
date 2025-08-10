@@ -5,9 +5,290 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gênesis Elétrica | Clube do Eletricista</title>
     <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <link rel="stylesheet" href="style-blog.css">
     <script src="script-blog.js" defer></script>
+    
+    <style>
+        /* Estilos para elementos interativos na sidebar */
+        .sidebar-interactive {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-calculator {
+            background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .sidebar-quiz {
+            background: #e9ecef;
+            color: #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .sidebar-calc-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-calc-input, .sidebar-calc-select {
+            padding: 8px 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            width: 100%;
+            background: white;
+        }
+
+        .sidebar-calc-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            margin: 5px 2px;
+            width: 100%;
+        }
+
+        .sidebar-calc-button:hover {
+            transform: translateY(-1px);
+            background: #5a6268;
+        }
+
+        .sidebar-calc-button.pdf {
+            background: #dc3545;
+        }
+
+        .sidebar-calc-button.pdf:hover {
+            background: #c82333;
+        }
+
+        .sidebar-calc-result {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 3px solid #ffd700;
+            font-size: 0.9em;
+        }
+
+        .sidebar-result-highlight {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-quiz-question {
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            background: rgba(0, 123, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .sidebar-quiz-options {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-quiz-option {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+            font-weight: 500;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+        }
+
+        .sidebar-quiz-option:hover:not(.answered) {
+            background: #e9ecef;
+            transform: translateX(3px);
+        }
+
+        .sidebar-quiz-option.correct {
+            border: 2px dashed #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .sidebar-quiz-option.incorrect {
+            border: 2px dashed #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .sidebar-quiz-option.show-correct {
+            border: 2px dashed #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .sidebar-quiz-option .status-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .sidebar-quiz-option .status-icon.correct {
+            background: #28a745;
+            color: white;
+        }
+
+        .sidebar-quiz-option .status-icon.incorrect {
+            background: #dc3545;
+            color: white;
+        }
+
+        .sidebar-next-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .sidebar-next-button:hover {
+            background: #218838;
+        }
+
+        .sidebar-quiz-progress {
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .sidebar-quiz-score {
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .sidebar-score-details {
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        .sidebar-score-bar {
+            background: rgba(0, 123, 255, 0.2);
+            border-radius: 8px;
+            height: 15px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .sidebar-score-fill {
+            height: 100%;
+            transition: width 1s ease;
+            border-radius: 8px;
+        }
+
+        .sidebar-alert {
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .sidebar-alert.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .interactive-title {
+            color: #007BFF;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 8px 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .tab-button.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .tab-button:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .tab-button:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        .calc-content {
+            display: none;
+        }
+
+        .calc-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-interactive {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header-white">
@@ -73,12 +354,101 @@
                     </svg>
                 </button>
             </form>
+            
             <div class="recent-posts">
                 <h3>Últimos Posts</h3>
                 <ul>
                     <li><a href="disjuntor.html">Disjuntor: fundamentos e aplicações</a></li>
                     <li><a href="idr.html">IDR: o que é e para que serve</a></li>
                 </ul>
+            </div>
+
+            <!-- CALCULADORAS INTERATIVAS -->
+            <div class="sidebar-interactive">
+                <h3 class="interactive-title">Calculadoras Elétricas</h3>
+                
+                <div class="sidebar-calculator">
+                    <div class="calculator-tabs">
+                        <button class="tab-button active" onclick="mostrarCalculadora('consumo')">Consumo</button>
+                        <button class="tab-button" onclick="mostrarCalculadora('cabo')">Cabos</button>
+                    </div>
+                    
+                    <!-- Calculadora de Consumo -->
+                    <div id="calc-consumo" class="calc-content active">
+                        <h4 style="margin-bottom: 10px; font-size: 1em;">Consumo de Energia</h4>
+                        
+                        <div class="sidebar-calc-row">
+                            <input type="number" id="potencia" class="sidebar-calc-input" placeholder="Potência (W)">
+                            <input type="number" id="horas" class="sidebar-calc-input" placeholder="Horas/dia">
+                            <input type="number" id="tarifa" class="sidebar-calc-input" placeholder="R$/kWh" value="0.75">
+                        </div>
+                        
+                        <button class="sidebar-calc-button" onclick="calcularConsumo()">Calcular</button>
+                        <button class="sidebar-calc-button pdf" onclick="gerarPDFConsumo()">PDF</button>
+                        
+                        <div id="consumo-result" class="sidebar-calc-result" style="display: none;"></div>
+                    </div>
+                    
+                    <!-- Calculadora de Cabos -->
+                    <div id="calc-cabo" class="calc-content">
+                        <h4 style="margin-bottom: 10px; font-size: 1em;">Dimensionamento</h4>
+                        
+                        <div class="sidebar-calc-row">
+                            <input type="number" id="corrente" class="sidebar-calc-input" placeholder="Corrente (A)">
+                            <input type="number" id="distancia" class="sidebar-calc-input" placeholder="Distância (m)">
+                            <select id="tensao" class="sidebar-calc-select">
+                                <option value="127">127V</option>
+                                <option value="220">220V</option>
+                                <option value="380">380V</option>
+                            </select>
+                            <select id="instalacao" class="sidebar-calc-select">
+                                <option value="">Método</option>
+                                <option value="A1">A1 - Eletroduto</option>
+                                <option value="B1">B1 - Multipolar</option>
+                                <option value="C">C - Enterrado</option>
+                            </select>
+                        </div>
+                        
+                        <button class="sidebar-calc-button" onclick="calcularCabo()">Calcular</button>
+                        <button class="sidebar-calc-button pdf" onclick="gerarPDFCabo()">PDF</button>
+                        
+                        <div id="cabo-result" class="sidebar-calc-result" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUIZ INTERATIVO -->
+            <div class="sidebar-interactive">
+                <h3 class="interactive-title">Quiz NBR 5410</h3>
+                
+                <div class="sidebar-alert warning">
+                    ⚠️ <strong>IMPORTANTE:</strong> Este quiz é educativo. Para trabalhos elétricos, sempre contrate profissionais qualificados!
+                </div>
+
+                <div class="sidebar-quiz">
+                    <div class="sidebar-quiz-progress">
+                        <span id="quiz-counter">Pergunta 1 de 10</span>
+                    </div>
+                    
+                    <div id="quiz-container">
+                        <div class="sidebar-quiz-question" id="question"></div>
+                        <div class="sidebar-quiz-options" id="options"></div>
+                    </div>
+                    
+                    <button id="next-question" class="sidebar-next-button" onclick="proximaPergunta()">
+                        Próxima →
+                    </button>
+                    
+                    <div class="sidebar-quiz-score" id="quiz-score" style="display: none;">
+                        <h4>Resultado</h4>
+                        <div class="sidebar-score-details" id="score-details"></div>
+                        <div class="sidebar-score-bar">
+                            <div class="sidebar-score-fill" id="score-fill"></div>
+                        </div>
+                        <div id="performance-message" style="margin-top: 10px; font-size: 0.9em;"></div>
+                        <button class="sidebar-calc-button" onclick="reiniciarQuiz()" style="margin-top: 10px;">Refazer</button>
+                    </div>
+                </div>
             </div>
         </aside>
     </section>
@@ -92,5 +462,230 @@
         </p>
         <p class="footer-copy">© 2025 Gênesis Elétrica</p>
     </footer>
-</body>
-</html>
+
+    <script>
+        // =====================================
+        // CONTROLE DE ABAS DAS CALCULADORAS
+        // =====================================
+        function mostrarCalculadora(tipo) {
+            // Ocultar todas as calculadoras
+            document.querySelectorAll('.calc-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Mostrar calculadora selecionada
+            document.getElementById('calc-' + tipo).classList.add('active');
+            
+            // Marcar botão como ativo
+            event.target.classList.add('active');
+        }
+
+        // =====================================
+        // CALCULADORA DE CONSUMO
+        // =====================================
+        function calcularConsumo() {
+            const potencia = parseFloat(document.getElementById('potencia').value);
+            const horas = parseFloat(document.getElementById('horas').value);
+            const tarifa = parseFloat(document.getElementById('tarifa').value) || 0.75;
+            const dias = 30;
+            
+            if (!potencia || !horas) {
+                alert('Preencha potência e horas de uso!');
+                return;
+            }
+            
+            const consumoKwh = (potencia * horas * dias) / 1000;
+            const custoMensal = consumoKwh * tarifa;
+            
+            let categoria = '';
+            let cor = '';
+            if (consumoKwh < 30) {
+                categoria = 'Baixo';
+                cor = '#28a745';
+            } else if (consumoKwh < 100) {
+                categoria = 'Moderado'; 
+                cor = '#ffc107';
+            } else {
+                categoria = 'Alto';
+                cor = '#dc3545';
+            }
+            
+            window.dadosConsumo = {
+                potencia, horas, tarifa, consumoKwh, custoMensal, categoria
+            };
+            
+            const result = document.getElementById('consumo-result');
+            result.innerHTML = `
+                <div class="sidebar-result-highlight">${consumoKwh.toFixed(1)} kWh/mês</div>
+                <p><strong>Custo:</strong> R$ ${custoMensal.toFixed(2)}</p>
+                <p><strong>Nível:</strong> <span style="color: ${cor};">${categoria}</span></p>
+            `;
+            result.style.display = 'block';
+        }
+
+        // =====================================
+        // CALCULADORA DE CABOS
+        // =====================================
+        function calcularCabo() {
+            const corrente = parseFloat(document.getElementById('corrente').value);
+            const distancia = parseFloat(document.getElementById('distancia').value);
+            const tensao = parseFloat(document.getElementById('tensao').value);
+            const instalacao = document.getElementById('instalacao').value;
+            
+            if (!corrente || !distancia || !instalacao) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+            
+            // Capacidades simplificadas por método
+            const capacidades = {
+                'A1': [15, 21, 28, 36, 48, 68],
+                'B1': [11, 15, 19, 26, 34, 46],
+                'C': [15, 20, 27, 36, 49, 67]
+            };
+            
+            const secoes = [1.5, 2.5, 4, 6, 10, 16];
+            const caps = capacidades[instalacao] || capacidades['B1'];
+            
+            let secaoEscolhida = secoes[secoes.length - 1];
+            for (let i = 0; i < caps.length; i++) {
+                if (caps[i] >= corrente) {
+                    secaoEscolhida = secoes[i];
+                    break;
+                }
+            }
+            
+            // Verificar queda de tensão (simplificado)
+            const resistencia = (0.017 * distancia) / secaoEscolhida;
+            const quedaTensao = (corrente * resistencia * 2);
+            const quedaPercentual = (quedaTensao / tensao) * 100;
+            
+            let status = quedaPercentual <= 4 ? 'OK' : 'Alto';
+            let cor = quedaPercentual <= 4 ? '#28a745' : '#dc3545';
+            
+            const disjuntores = [10, 16, 20, 25, 32, 40];
+            let disjuntor = disjuntores.find(d => d >= corrente) || 40;
+            
+            window.dadosCabo = {
+                corrente, distancia, tensao, instalacao, 
+                secaoEscolhida, quedaPercentual, disjuntor
+            };
+            
+            const result = document.getElementById('cabo-result');
+            result.innerHTML = `
+                <div class="sidebar-result-highlight">${secaoEscolhida}mm²</div>
+                <p><strong>Queda:</strong> <span style="color: ${cor};">${quedaPercentual.toFixed(1)}%</span></p>
+                <p><strong>Disjuntor:</strong> ${disjuntor}A</p>
+            `;
+            result.style.display = 'block';
+        }
+
+        // =====================================
+        // GERAÇÃO DE PDFs
+        // =====================================
+        function gerarPDFConsumo() {
+            if (!window.dadosConsumo) {
+                alert('Execute o cálculo primeiro!');
+                return;
+            }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(16);
+            doc.text('Genesis Eletrica - Consumo', 20, 20);
+            
+            doc.setFontSize(12);
+            const dados = window.dadosConsumo;
+            doc.text(`Potencia: ${dados.potencia}W`, 20, 40);
+            doc.text(`Horas/dia: ${dados.horas}h`, 20, 50);
+            doc.text(`Consumo: ${dados.consumoKwh.toFixed(2)} kWh/mes`, 20, 60);
+            doc.text(`Custo: R$ ${dados.custoMensal.toFixed(2)}/mes`, 20, 70);
+            doc.text(`Categoria: ${dados.categoria}`, 20, 80);
+            
+            doc.save('consumo-genesis.pdf');
+        }
+        
+        function gerarPDFCabo() {
+            if (!window.dadosCabo) {
+                alert('Execute o cálculo primeiro!');
+                return;
+            }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(16);
+            doc.text('Genesis Eletrica - Dimensionamento', 20, 20);
+            
+            doc.setFontSize(12);
+            const dados = window.dadosCabo;
+            doc.text(`Corrente: ${dados.corrente}A`, 20, 40);
+            doc.text(`Distancia: ${dados.distancia}m`, 20, 50);
+            doc.text(`Tensao: ${dados.tensao}V`, 20, 60);
+            doc.text(`Secao: ${dados.secaoEscolhida}mm²`, 20, 70);
+            doc.text(`Queda: ${dados.quedaPercentual.toFixed(2)}%`, 20, 80);
+            doc.text(`Disjuntor: ${dados.disjuntor}A`, 20, 90);
+            
+            doc.save('cabo-genesis.pdf');
+        }
+
+        // =====================================
+        // QUIZ NBR 5410
+        // =====================================
+        const perguntasQuiz = [
+            {
+                pergunta: "Qual a seção mínima para circuito de iluminação conforme NBR 5410?",
+                alternativas: ["1,0 mm²", "1,5 mm²", "2,5 mm²", "4,0 mm²"],
+                correta: 1,
+                explicacao: "Seção mínima para iluminação é 1,5 mm²."
+            },
+            {
+                pergunta: "Para instalações residenciais, qual o fator de demanda para o primeiro kVA?",
+                alternativas: ["0,8", "0,86", "1,0", "0,75"],
+                correta: 2,
+                explicacao: "Fator de demanda do primeiro kVA é 1,0 (100%)."
+            },
+            {
+                pergunta: "Corrente máxima de um condutor 2,5mm² pelo método B1:",
+                alternativas: ["15A", "19A", "21A", "24A"],
+                correta: 1,
+                explicacao: "Método B1: cabo 2,5mm² suporta até 19A."
+            },
+            {
+                pergunta: "Altura mínima de interruptores em banheiros:",
+                alternativas: ["1,30m", "1,50m", "1,60m", "0,60m"],
+                correta: 2,
+                explicacao: "Em banheiros: interruptores a 1,60m mínimo."
+            },
+            {
+                pergunta: "Resistência de aterramento máxima residencial:",
+                alternativas: ["15Ω", "20Ω", "25Ω", "10Ω"],
+                correta: 2,
+                explicacao: "Resistência máxima: 25Ω para residencial."
+            },
+            {
+                pergunta: "Potência mínima por ponto TUG:",
+                alternativas: ["100VA", "150VA", "200VA", "300VA"],
+                correta: 0,
+                explicacao: "TUG: mínimo 100VA por ponto."
+            },
+            {
+                pergunta: "DR residencial deve atuar com:",
+                alternativas: ["10mA", "30mA", "100mA", "300mA"],
+                correta: 1,
+                explicacao: "DR residencial: 30mA de sensibilidade."
+            },
+            {
+                pergunta: "Pontos TUG obrigatórios numa sala de 20m²:",
+                alternativas: ["3 pontos", "4 pontos", "5 pontos", "6 pontos"],
+                correta: 1,
+                explicacao: "Sala 20m²: mínimo 4 pontos TUG."
+            },
+            {
+                pergunta
