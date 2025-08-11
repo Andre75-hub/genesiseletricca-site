@@ -199,3 +199,14 @@ html, body {
     padding: 10px 0;
     font-size: 0.85rem;
 }
+
+/* --- Hover improvements (cirúrgico, sem quebrar layout) --- */
+a.btn:hover, .btn:hover,
+button:hover, .urgent:hover,
+.main-nav a:hover, footer a:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.service-box { transition: transform .2s ease, box-shadow .2s ease; }
+.service-box:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
