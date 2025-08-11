@@ -9,25 +9,12 @@
   </title>
    
  <!-- Google tag (gtag.js) -->
-<!-- Google Analytics (GA4) — carrega somente no domínio de produção -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7CGNS9C1H"></script>
 <script>
-  (function () {
-    var GA_ID = 'G-X7CGNS9C1H';
-    var PROD = location.hostname === 'genesiseletricca.com.br';
-    if (!PROD) {
-      window['ga-disable-' + GA_ID] = true;
-      return;
-    }
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', GA_ID, { cookie_domain: 'auto' });
-  })();
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X7CGNS9C1H');
 </script>
    
 <style>
@@ -137,7 +124,9 @@
 <img alt="Ícone Gênesis Elétrica" src="ÍCONE GENESIS ELETRICA.png"/>
 </header>
 <nav>
-<a href="https://genesiseletricca.com.br/blog/" target="_blank" rel="noopener">Blog</a>
+<a href="#">
+    Blog
+   </a>
 <a href="#formulario">
     Serviços
    </a>
