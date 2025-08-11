@@ -199,12 +199,12 @@ nav a:hover{
   background: rgba(0,0,0,.08);
 }
 
-/* Desktop: logo à esquerda; menu com mais respiro */
+/* Desktop: logo à esquerda; menu CENTRALIZADO com mais respiro */
 @media (min-width: 769px){
   header{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start; /* logo à esquerda */
     text-align: left;
     padding: 45px 5%;
   }
@@ -213,8 +213,8 @@ nav a:hover{
     max-height: 150px;
   }
   nav{
-    justify-content: flex-start;
-    gap: 60px;            /* ~50% a mais que 40px */
+    justify-content: center;  /* <<< voltou a ficar CENTRALIZADO */
+    gap: 60px;                 /* mantém ~50% a mais de espaço */
     padding: 12px 5%;
   }
 }
