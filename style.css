@@ -1,212 +1,141 @@
-/*
- * Folha de estilo para o site Gênesis Elétrica.
- * Define um layout simples com cores inspiradas na marca original
- * (tons escuros e dourado), estiliza o formulário de solicitação e
- * garante que os campos obrigatórios sejam sinalizados com um único
- * asterisco vermelho através do seletor ::after. Mensagens de erro
- * aparecem apenas quando necessário.
- */
-
-/* Reset básico e tipografia */
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
-    color: #333;
-}
-
 /* Cabeçalho */
 .site-header {
-    background-color: #000; /* preto */
-    color: #f4c15d;         /* dourado claro */
-    text-align: center;
-    padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  background: #fff;
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .site-header h1 {
-    margin: 0;
-    font-size: 2rem;
+  font-size: 20px;
+  margin: 0;
 }
 
-.tagline {
-    margin: 5px 0 15px;
-    font-style: italic;
-    font-size: 0.95rem;
+.main-nav {
+  display: flex;
+  gap: 30px; /* largura aumentada */
 }
 
 .main-nav a {
-    margin: 0 10px;
-    color: #f4c15d;
-    text-decoration: none;
-    font-weight: bold;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+  padding: 8px 12px;
+  transition: background 0.3s, color 0.3s;
 }
 
 .main-nav a:hover {
-    text-decoration: underline;
+  background: #bfa04d;
+  color: #fff;
+  border-radius: 5px;
 }
 
-/* Seção hero */
-.hero-section {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #fafafa;
+/* Hero */
+.hero {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
 }
 
-.hero-section h2 {
-    margin-bottom: 10px;
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.primary {
-    background-color: #b6943f;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
+/* Fique por dentro */
+#blog-preview {
+  padding: 40px 5%;
 }
 
-.primary:hover {
-    background-color: #997c35;
+#blog-preview h2 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.urgent {
-    background-color: #d9534f; /* vermelho */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-left: 10px;
+.blog-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
-.urgent:hover {
-    background-color: #c9302c;
+.blog-cards .card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Seção de formulário */
-.form-section {
-    padding: 40px 20px;
-    background-color: #fff;
+.blog-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.service-selector {
-    margin-bottom: 20px;
+.blog-cards img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
-.service-selector label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
+.blog-cards h3 {
+  font-size: 18px;
+  margin: 15px;
 }
 
-.service-selector select,
-.service-selector input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.blog-cards p {
+  font-size: 14px;
+  margin: 0 15px 15px;
 }
 
-.buttons {
-    margin-bottom: 20px;
+.blog-cards a {
+  display: block;
+  text-align: center;
+  background: #bfa04d;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    background-color: #fdfdfd;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+.blog-cards a:hover {
+  background: #a88c42;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    position: relative;
+/* Botão flutuante */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #bfa04d;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+  z-index: 999;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: bold;
+.floating-btn:hover {
+  background: #a88c42;
 }
 
-/* Asterisco vermelho apenas para campos obrigatórios */
-.form-group label.required::after {
-    content: " *";
-    color: #d9534f;
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero {
+    height: 220px;
+  }
+  .main-nav {
+    gap: 15px;
+  }
 }
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-/* Estilo para campos inválidos */
-.form-group input.invalid,
-.form-group textarea.invalid {
-    border-color: #d9534f;
-}
-
-.error-message {
-    color: #d9534f;
-    font-size: 0.8rem;
-    margin-top: 4px;
-    min-height: 14px;
-}
-
-/* Botão flutuante para urgência */
-.floating-urgent {
-    position: fixed;
-    right: 20px;
-    bottom: 30px;
-    background-color: #d9534f;
-    color: #fff;
-    border: none;
-    padding: 12px 18px;
-    font-size: 0.9rem;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-}
-
-.floating-urgent:hover {
-    background-color: #c9302c;
-}
-
-/* Rodapé */
-.site-footer {
-    background-color: #000;
-    color: #f4c15d;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 0.85rem;
-}
-
-/* --- Hover improvements (cirúrgico, sem quebrar layout) --- */
-a.btn:hover, .btn:hover,
-button:hover, .urgent:hover,
-.main-nav a:hover, footer a:hover {
-  filter: brightness(0.95);
-  transform: translateY(-1px);
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-}
-.service-box { transition: transform .2s ease, box-shadow .2s ease; }
-.service-box:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
