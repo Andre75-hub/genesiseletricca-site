@@ -501,7 +501,7 @@ function enviarWhatsAppFinal() {
 </html>
 
 
-<!-- Correção cirúrgica v2: máscara, validações atualizadas e botão flutuante -->
+<!-- Correção cirúrgica v3: inclui rolagem suave até a seção do formulário -->
 <script>
 (function(){
   // ===== Utils =====
@@ -516,7 +516,7 @@ function enviarWhatsAppFinal() {
       e.target.value = r;
     });
   }
-  // Bairro + Município (sem exigir "/"): exige pelo menos 2 palavras úteis
+  // Bairro + Município (sem "/"): pelo menos duas palavras
   function validaLocal(txt){
     const t = (txt || '').replace('/', ' ').trim();
     const parts = t.split(/\s+/).filter(Boolean);
@@ -549,6 +549,28 @@ function enviarWhatsAppFinal() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim());
   }
 
+  // ===== Localizar seção alvo e rolar até lá =====
+  function findFormSection(){
+    // tenta por IDs mais comuns
+    var el = document.getElementById('formulario') ||
+             document.getElementById('formulario-servico') ||
+             document.querySelector('section[id*="form"]') ||
+             document.querySelector('[data-section="formulario"]');
+    if(!el){
+      // se nada, usa o próprio contêiner do formulário de urgência
+      el = document.getElementById('formUrgencia') || document.body;
+    }
+    return el;
+  }
+  function scrollToFormSection(){
+    var target = findFormSection();
+    if(target && target.scrollIntoView){
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   // ===== Form padrão =====
   window.mostrarFormulario = function(){
     const select = document.getElementById('tipoServico');
@@ -559,6 +581,7 @@ function enviarWhatsAppFinal() {
     if(bloco) bloco.style.display = 'block';
     const tipoFinal = document.getElementById('tipoFinal');
     if(tipoFinal) tipoFinal.value = tipo;
+    scrollToFormSection();
   };
 
   window.enviarWhatsAppFinal = function(){
@@ -593,7 +616,9 @@ function enviarWhatsAppFinal() {
   window.abrirUrgencia = function(){
     const form = document.getElementById('formUrgencia');
     if(!form) return;
-    form.style.display = (form.style.display==='none' || !form.style.display) ? 'block' : 'none';
+    const willOpen = (form.style.display==='none' || !form.style.display);
+    form.style.display = willOpen ? 'block' : 'none';
+    if(willOpen){ scrollToFormSection(); }
   };
 
   function ensureUrgenciaCampos(){
@@ -615,7 +640,7 @@ function enviarWhatsAppFinal() {
     if(!email){
       email = document.createElement('input');
       email.type = 'email'; email.placeholder = 'E-mail'; email.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
-      form.insertBefore(email, nome.nextSibling.nextSibling); // após nome
+      form.insertBefore(email, nome.nextSibling.nextSibling);
     }
     ensureErrAbove(email);
 
@@ -687,7 +712,7 @@ function enviarWhatsAppFinal() {
   }
   window.enviarUrgencia = enviarUrgencia;
 
-  // ===== Floating button (create if missing) =====
+  // ===== Floating button (create if missing) + scroll =====
   function ensureFloatingButton(){
     var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
     if(!btn){
@@ -698,7 +723,11 @@ function enviarWhatsAppFinal() {
       btn.style.cssText = 'position:fixed; right:20px; bottom:24px; z-index:1000; background:#d9534f; color:#fff; border:none; padding:12px 18px; border-radius:50px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.2)';
       document.body.appendChild(btn);
     }
-    btn.addEventListener('click', function(e){ e.preventDefault(); window.abrirUrgencia(); });
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      window.abrirUrgencia();
+      scrollToFormSection();
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function(){
