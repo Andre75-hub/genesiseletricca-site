@@ -118,6 +118,26 @@
 <meta content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência." name="description"/>
 <meta content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial" name="keywords"/>
 <meta content="Gênesis Elétrica" name="author"/>
+<style>
+
+/* --- HOVER UNIVERSAL (sem alterar layout) --- */
+a, button, .btn, .urgent, .main-nav a, footer a {
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+/* Cards de serviços (cobre vários seletores comuns) */
+.service-box, .services-grid > div, .services-grid .service, .card, .grade-servicos .item {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.service-box:hover, .services-grid > div:hover, .services-grid .service:hover, .card:hover, .grade-servicos .item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+</style>
 </head>
 <body>
 <header>
@@ -385,17 +405,17 @@
    Serviços elétricos em Contagem e região metropolitana - atendimento 24h - elétrica residencial, comercial e industrial.
   </section>
 
-<section id="blog" class="blog-section" style="background:#4a5c6a; color:#fff; padding:30px 16px;">
+<section id="blog" class="blog-section" style="background:#4a5c6a; color:#fff; padding:24px 12px;">
   <h2 style="text-align:center; margin:0 0 12px;">Fique por dentro - Blog Gênesis Elétrica</h2>
-  <div class="blog-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; max-width:1100px; margin:0 auto;">
-    <article class="blog-card" style="background:#fff; color:#333; border-radius:8px; padding:16px; box-shadow:0 2px 10px rgba(0,0,0,.15);">
-      <h3 style="margin-top:0;"><a href="https://genesiseletricca.com.br/blog/disjuntor.html" target="_blank" rel="noopener" style="color:#bfa04d; text-decoration:none;">Disjuntor: Fundamentos e aplicações</a></h3>
-      <p>A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas.</p>
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+    <article class="blog-card" style="background:#fff; color:#333; border-radius:10px; padding:16px; box-shadow:0 2px 10px rgba(0,0,0,.15);">
+      <h3 style="margin-top:0;"><a href="https://genesiseletricca.com.br/blog/disjuntor.html" target="_blank" rel="noopener" style="color:#bfa04d; text-decoration:none;">Disjuntor: fundamentos e aplicações</a></h3>
+      <p style="margin:8px 0 12px;">Conheça os principais tipos de disjuntores e as boas práticas de dimensionamento, instalação e manutenção para proteger pessoas e instalações.</p>
       <a class="btn" href="https://genesiseletricca.com.br/blog/disjuntor.html" target="_blank" rel="noopener" style="display:inline-block; background:#bfa04d; color:#000; padding:8px 12px; border-radius:6px; font-weight:bold; text-decoration:none;">Ler artigo</a>
     </article>
-    <article class="blog-card" style="background:#fff; color:#333; border-radius:8px; padding:16px; box-shadow:0 2px 10px rgba(0,0,0,.15);">
+    <article class="blog-card" style="background:#fff; color:#333; border-radius:10px; padding:16px; box-shadow:0 2px 10px rgba(0,0,0,.15);">
       <h3 style="margin-top:0;"><a href="https://genesiseletricca.com.br/blog/idr.html" target="_blank" rel="noopener" style="color:#bfa04d; text-decoration:none;">IDR: o que é e para que serve</a></h3>
-      <p>A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual (IDR). Este equipamento protege pessoas contra choques elétricos e ajuda a prevenir incêndios causados por fugas de corrente.</p>
+      <p style="margin:8px 0 12px;">Entenda o papel do Interruptor Diferencial Residual (IDR) na proteção contra choques elétricos e na prevenção de incêndios por fuga de corrente.</p>
       <a class="btn" href="https://genesiseletricca.com.br/blog/idr.html" target="_blank" rel="noopener" style="display:inline-block; background:#bfa04d; color:#000; padding:8px 12px; border-radius:6px; font-weight:bold; text-decoration:none;">Ler artigo</a>
     </article>
   </div>
@@ -499,3 +519,37 @@ function enviarWhatsAppFinal() {
   </script>
 </body>
 </html>
+
+<script>
+// === Hardening & Hover helpers ===
+(function(){
+  function safeSel(q){ return Array.prototype.slice.call(document.querySelectorAll(q)); }
+
+  // Aplica classe 'service-box' aos cards de serviços mais comuns
+  var guesses = ['.services-grid > div', '.services-grid .card', '.servicos .card', '.grade-servicos .item'];
+  guesses.forEach(function(sel){
+    safeSel(sel).forEach(function(el){ if(!el.classList.contains('service-box')) el.classList.add('service-box'); });
+  });
+
+  // Evita erros se elementos não existirem
+  try {
+    // Máscara se inputs existirem
+    if (typeof phoneMask === 'function') {
+      var t1 = document.getElementById('telPadrao') || document.querySelector('#formularioExtra input[type="tel"], #formularioExtra input[placeholder*="Telefone" i]');
+      var t2 = document.getElementById('urg-telefone') || document.querySelector('#formUrgencia input[type="tel"], #formUrgencia input[placeholder*="Telefone" i]');
+      if (t1) phoneMask(t1);
+      if (t2) phoneMask(t2);
+    }
+  } catch(e){ /* noop */ }
+
+  // Previne erros de addEventListener se botões não existirem
+  function bind(id, fn){ var b = document.getElementById(id); if(b && typeof fn==='function') b.addEventListener('click', fn); }
+  if (typeof mostrarFormulario === 'function') bind('btnMostrarFormulario', mostrarFormulario);
+  if (typeof enviarWhatsAppFinal === 'function') bind('btnEnviarPadrao', enviarWhatsAppFinal);
+  if (typeof abrirUrgencia === 'function'){
+    bind('btnAbrirUrgencia', abrirUrgencia);
+    bind('floatingUrgent', function(e){ e.preventDefault(); abrirUrgencia(); if (window.scrollToFormSection) scrollToFormSection(); });
+  }
+  if (typeof enviarUrgencia === 'function') bind('btnEnviarUrgencia', enviarUrgencia);
+})();
+</script>
