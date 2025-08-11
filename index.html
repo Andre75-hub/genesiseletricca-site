@@ -501,9 +501,10 @@ function enviarWhatsAppFinal() {
 </html>
 
 
-<!-- Correção cirúrgica: máscaras e validações -->
+<!-- Correção cirúrgica v2: máscara, validações atualizadas e botão flutuante -->
 <script>
 (function(){
+  // ===== Utils =====
   function phoneMask(el){
     if(!el) return;
     el.addEventListener('input', function(e){
@@ -515,8 +516,11 @@ function enviarWhatsAppFinal() {
       e.target.value = r;
     });
   }
-  function validaBairroMunicipio(txt){
-    return /^\s*[^\/]+\s*\/\s*[^\/]+\s*$/.test((txt||'').trim());
+  // Bairro + Município (sem exigir "/"): exige pelo menos 2 palavras úteis
+  function validaLocal(txt){
+    const t = (txt || '').replace('/', ' ').trim();
+    const parts = t.split(/\s+/).filter(Boolean);
+    return parts.length >= 2;
   }
   function ensureErrAbove(input){
     if(!input) return null;
@@ -541,7 +545,11 @@ function enviarWhatsAppFinal() {
     if(!container) return;
     container.querySelectorAll('.err').forEach(e => e.textContent = '');
   }
+  function isEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim());
+  }
 
+  // ===== Form padrão =====
   window.mostrarFormulario = function(){
     const select = document.getElementById('tipoServico');
     const suporte = (document.getElementById('suporte')||{value:''}).value.trim();
@@ -567,20 +575,21 @@ function enviarWhatsAppFinal() {
     let ok = true;
     if(!nome || !nome.value.trim()){ setError(nome||tel, 'Campo de preenchimento obrigatório'); ok=false; }
     if(!tel || !/^\(\d{2}\) \d{5}-\d{4}$/.test(tel.value.trim())){ setError(tel, 'Informe o telefone no formato (XX) XXXXX-XXXX'); ok=false; }
-    if(!loc || !validaBairroMunicipio(loc.value)){ setError(loc, 'Informe Bairro / Município (ex.: Riacho / Contagem)'); ok=false; }
+    if(!loc || !validaLocal(loc.value)){ setError(loc, 'Informe Bairro e Município (ex.: Riacho Contagem)'); ok=false; }
     if(!ok) return;
 
     const msg = encodeURIComponent(
       'Olá! Gostaria de solicitar um serviço.'+
-      '\n\nNome: ' + (nome?nome.value:'')+
-      '\nTelefone: ' + (tel?tel.value:'')+
-      '\nBairro/Município: ' + (loc?loc.value:'')+
-      '\nServiço: ' + (tipo?tipo.value:'')+
-      '\nObservação: ' + (obs&&obs.value ? obs.value : '')
+      '\\n\\nNome: ' + (nome?nome.value:'')+
+      '\\nTelefone: ' + (tel?tel.value:'')+
+      '\\nBairro/Município: ' + (loc?loc.value:'')+
+      '\\nServiço: ' + (tipo?tipo.value:'')+
+      '\\nObservação: ' + (obs&&obs.value ? obs.value : '')
     );
     window.open('https://wa.me/5531975002129?text='+msg, '_blank');
   };
 
+  // ===== Urgência =====
   window.abrirUrgencia = function(){
     const form = document.getElementById('formUrgencia');
     if(!form) return;
@@ -591,6 +600,7 @@ function enviarWhatsAppFinal() {
     const form = document.getElementById('formUrgencia');
     if(!form) return;
 
+    // Nome (obrigatório)
     let nome = form.querySelector('input[placeholder^="Nome"]') || form.querySelector('input[placeholder*="Nome" i]');
     if(!nome){
       nome = document.createElement('input');
@@ -600,6 +610,16 @@ function enviarWhatsAppFinal() {
     }
     ensureErrAbove(nome);
 
+    // E-mail (obrigatório)
+    let email = form.querySelector('input[type="email"]') || form.querySelector('input[placeholder*="mail" i]');
+    if(!email){
+      email = document.createElement('input');
+      email.type = 'email'; email.placeholder = 'E-mail'; email.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
+      form.insertBefore(email, nome.nextSibling.nextSibling); // após nome
+    }
+    ensureErrAbove(email);
+
+    // Telefone (obrigatório com máscara)
     let tel = form.querySelector('input#telefone') || form.querySelector('input[placeholder*="Telefone" i]');
     if(!tel){
       tel = document.createElement('input');
@@ -609,16 +629,18 @@ function enviarWhatsAppFinal() {
     ensureErrAbove(tel);
     phoneMask(tel);
 
+    // Bairro / Município (obrigatório, sem "/")
     let loc = form.querySelector('input[placeholder*="Bairro" i]');
     if(!loc){
       loc = document.createElement('input');
-      loc.type = 'text'; loc.placeholder = 'Bairro / Município'; loc.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
+      loc.type = 'text'; loc.placeholder = 'Bairro Município'; loc.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
       const tipoServ = form.querySelector('#tipo-servico') || form.querySelector('input[placeholder*="servi" i]') || form.querySelector('textarea, input:last-child');
       form.insertBefore(loc, tipoServ || form.lastChild);
       form.insertBefore(document.createElement('br'), loc.nextSibling);
     }
     ensureErrAbove(loc);
 
+    // Tipo de serviço (manual/livre, obrigatório)
     let serv = form.querySelector('#tipo-servico') || form.querySelector('input[placeholder*="servi" i]');
     if(!serv){
       serv = document.createElement('input');
@@ -627,6 +649,7 @@ function enviarWhatsAppFinal() {
     }
     ensureErrAbove(serv);
 
+    // Botão enviar (se não existir)
     let btn = Array.from(form.querySelectorAll('button')).find(b => /enviar/i.test(b.textContent));
     if(!btn){
       btn = document.createElement('button');
@@ -635,7 +658,7 @@ function enviarWhatsAppFinal() {
       form.appendChild(btn);
       btn.addEventListener('click', enviarUrgencia);
     }
-    return {nome, tel, loc, serv};
+    return {nome, email, tel, loc, serv};
   }
 
   function enviarUrgencia(){
@@ -646,23 +669,40 @@ function enviarWhatsAppFinal() {
 
     let ok = true;
     if(!c.nome.value.trim()){ setError(c.nome, 'Campo de preenchimento obrigatório'); ok=false; }
+    if(!isEmail(c.email.value)){ setError(c.email, 'Informe um e-mail válido'); ok=false; }
     if(!/^\(\d{2}\) \d{5}-\d{4}$/.test(c.tel.value.trim())){ setError(c.tel, 'Informe o telefone no formato (XX) XXXXX-XXXX'); ok=false; }
-    if(!validaBairroMunicipio(c.loc.value)){ setError(c.loc, 'Informe Bairro / Município (ex.: Riacho / Contagem)'); ok=false; }
+    if(!validaLocal(c.loc.value)){ setError(c.loc, 'Informe Bairro e Município (ex.: Riacho Contagem)'); ok=false; }
     if(!c.serv.value.trim()){ setError(c.serv, 'Campo de preenchimento obrigatório'); ok=false; }
     if(!ok) return;
 
     const msg = encodeURIComponent(
       'Olá! PRECISO DO SERVIÇO COM URGÊNCIA.'+
-      '\n\nNome: ' + c.nome.value +
-      '\nTelefone: ' + c.tel.value +
-      '\nBairro/Município: ' + c.loc.value +
-      '\nTipo de serviço: ' + c.serv.value
+      '\\n\\nNome: ' + c.nome.value +
+      '\\nE-mail: ' + c.email.value +
+      '\\nTelefone: ' + c.tel.value +
+      '\\nBairro/Município: ' + c.loc.value +
+      '\\nTipo de serviço: ' + c.serv.value
     );
     window.open('https://wa.me/5531975002129?text='+msg, '_blank');
   }
   window.enviarUrgencia = enviarUrgencia;
 
+  // ===== Floating button (create if missing) =====
+  function ensureFloatingButton(){
+    var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
+    if(!btn){
+      btn = document.createElement('button');
+      btn.id = 'floatingUrgent';
+      btn.type = 'button';
+      btn.textContent = 'Serviço de urgência';
+      btn.style.cssText = 'position:fixed; right:20px; bottom:24px; z-index:1000; background:#d9534f; color:#fff; border:none; padding:12px 18px; border-radius:50px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.2)';
+      document.body.appendChild(btn);
+    }
+    btn.addEventListener('click', function(e){ e.preventDefault(); window.abrirUrgencia(); });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
+    // Máscaras
     const bloco = document.getElementById('formularioExtra');
     if(bloco){
       const telPadrao = bloco.querySelector('#telefone') || bloco.querySelector('input[placeholder*="Telefone" i]');
@@ -674,6 +714,9 @@ function enviarWhatsAppFinal() {
       if(telUrg){ phoneMask(telUrg); }
       ensureUrgenciaCampos();
     }
+
+    // Botão flutuante
+    ensureFloatingButton();
   });
 })();
 </script>
