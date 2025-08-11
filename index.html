@@ -1,128 +1,679 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gênesis Elétrica | Serviços elétricos</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Gênesis Elétrica | Serviços elétricos em Contagem e Região Metropolitana
+  </title>
+   
+ <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7CGNS9C1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X7CGNS9C1H');
+</script>
+   
+<style>
+   body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
+    header {
+      background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%);
+      padding: 45px 0;
+      text-align: center;
+    }
+    header img {
+      max-height: 150px;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    }
+    nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
+    nav a { color: #000; text-decoration: none; font-weight: bold; }
+    .hero { position: relative; text-align: center; }
+    .hero img { width: 100%; height: auto; }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.6); color: #fff; padding: 30px; font-size: 2.25em; }
+    .section-title { background-color: #222; color: #fff; text-align: center; padding: 15px; font-size: 1.3em; }
+    .service-search { text-align: center; padding: 20px; background-color: #f4f4f4; }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .service-box { width: 250px; background: #fff; border: 1px solid #ccc; border-radius: 8px; text-align: center; padding: 15px; }
+    .service-box img { width: 100%; height: 160px; object-fit: cover; border-radius: 5px; }
+    .service-box h3 { margin: 10px 0; color: #bfa04d; }
+    .highlight-section { background-color: #ffe58a; padding: 30px; text-align: center; font-size: 1.8em; font-weight: bold; }
+    .blog-section {
+      background-color: #4a5c6a;
+      padding: 60px 20px;
+      text-align: center;
+      font-size: 2.4em;
+      font-weight: bold;
+    }
+    .blog-section a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer { background-color: #000; color: #fff; padding: 20px; text-align: center; }
+    footer img { max-height: 40px; }
+    footer a { color: #fff; text-decoration: none; margin: 0 10px; }
+    .form-section { text-align: center; padding: 20px; }
+    .form-section select, .form-section input[type=text], .form-section button {
+      margin-top: 10px; padding: 10px; width: 80%; max-width: 400px; font-size: 1em;
+    }
+    .form-section button { background-color: #bfa04d; border: none; cursor: pointer; color: #000; font-weight: bold; }
+  
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        gap: 10px;
+        padding: 8px;
+        overflow-x: auto;
+      }
+
+      nav a {
+        font-size: 0.85em;
+        white-space: nowrap;
+        padding: 4px 8px;
+      }
+      .hero-text {
+        font-size: 1em;
+        padding: 10px;
+        top: 40%;
+        transform: translate(-50%, -40%);
+      }
+
+      .highlight-section {
+        font-size: 1.1em;
+        padding: 20px;
+      }
+
+      .blog-section {
+        font-size: 1.3em;
+        padding: 30px 15px;
+      }
+      .services-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .service-box {
+        width: 90%;
+      }
+      .form-section input[type="text"],
+      .form-section select,
+      .form-section button {
+        width: 95%;
+      }
+      .section-title {
+        font-size: 1.1em;
+        padding: 10px;
+      }
+      footer img {
+        max-height: 70px !important;
+      }
+    }
+  
+    input:invalid {
+        border: 2px solid red;
+    }
+    </style>
+<meta content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência." name="description"/>
+<meta content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial" name="keywords"/>
+<meta content="Gênesis Elétrica" name="author"/>
 </head>
 <body>
-  <header class="site-header">
-    <h1>Gênesis Elétrica</h1>
-    <p class="tagline">Energia com segurança, profissionalismo e excelência.</p>
-    <nav class="main-nav">
-      <a href="#formulario">Serviços</a>
-      <a href="#blog">Blog</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
-
-  <section class="hero-section">
-    <h2>Serviços elétricos em Contagem e região metropolitana</h2>
-    <p>Instalação, manutenção, padrões Cemig e projetos elétricos.</p>
+<header>
+<img alt="Ícone Gênesis Elétrica" src="ÍCONE GENESIS ELETRICA.png"/>
+</header>
+<nav>
+<a href="#">
+    Blog
+   </a>
+<a href="#formulario">
+    Serviços
+   </a>
+<a href="#quemsomos">
+    Empresa
+   </a>
+<a href="#localizacao">
+    Localização
+   </a>
+<a href="#blog">
+    Postagem
+   </a>
+<a href="#contato">
+    Contato
+   </a>
+</nav>
+<section class="hero">
+<img alt="QDC principal" src="QDC principal.jpg"/>
+<div class="hero-text">
+    Energia com sustentabilidade, profissionalismo, segurança e excelência!
+   </div>
+<section class="section-title" id="quemsomos">
+    QUEM SOMOS
+   </section>
+<section class="form-section" id="formulario" style="background-color: #fff; text-align: center; padding: 30px 20px;">
+<p style="max-width: 900px; margin: 0 auto; font-size: 1.1em; line-height: 1.6;">
+     A
+     <strong>
+      Gênesis Elétrica
+     </strong>
+     atua com excelência e comprometimento no setor de instalações elétricas.
+      Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências, comércios e indústrias.
+      Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
+     <br/>
+<br/>
+<em>
+      “Sua satisfação, nossa missão!”
+      <br/>
+<br/>
+      ______________________________________________
+     </em>
+</p>
+<div id="formUrgencia" style="display:none; margin-top:20px; background:#f9f9f9; padding:20px; border-radius:8px;">
+<input placeholder="Nome" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+<br/>
+<input id="telefone" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Campo de preenchimento obrigatório')" placeholder="Telefone" required="true" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+<br/>
+<input placeholder="E-mail" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+<br/>
+<input id="tipo-servico" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Campo de preenchimento obrigatório')" placeholder="Tipo de serviço" required="true" style="width:100%; margin-bottom:10px; padding:8px;" type="text"/>
+<br/>
+<textarea placeholder="Observação relevante" style="width:100%; padding:8px;"></textarea>
+<br/>
+</div>
+<script>
+     function abrirFormularioUrgencia() {
+    var form = document.getElementById("formUrgencia");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+  }
+    </script>
+</section>
+</section>
+<section class="form-section" id="servico">
+<p>
+    Qual serviço de elétrico está precisando?
+   </p>
+<select id="tipoServico" onchange="preencherTipoServico(this.value)">
+<option value="">
+     Selecione uma opção
+    </option>
+   <option value="CLPs / IHMs / SCADA">
+     CLPs / IHMs / SCADA
+    </option>
+   <option value="Painéis de comando">
+     Painéis de comando
+    </option>
+   <option value="Inversores de frequência">
+     Inversores de frequência
+    </option>
+   <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">
+     Instalação e manutenção em contator, relé térmico, temporizador e falta de fase
+    </option>
+<option value="Elétrica industrial (Outros)">
+     Elétrica industrial (Outros)
+    </option>
+<option value="Instalação ou restauração de quadros de distribuição">
+     Instalação ou restauração de quadros de distribuição
+    </option>
+<option value="Instalação elétrica do zero">
+     Instalação elétrica do zero
+    </option>
+<option value="Criação de projeto elétrico residencial e comercial">
+     Criação de projeto elétrico residencial e comercial
+    </option>
+<option value="Sistema de aterramento">
+     Sistema de aterramento
+    </option>
+<option value="Instalação de CVEs – carregadores veiculares elétricos">
+     Instalação de CVEs – carregadores veiculares elétricos
+    </option>
+<option value="Padrão CEMIG">
+     Padrão CEMIG
+    </option>
+<option value="Restauração elétrica">
+     Restauração elétrica
+    </option>
+<option value="Reparação de pontos elétrico">
+     Reparação de pontos elétrico
+    </option>
+<option value="Passagem de fiação">
+     Passagem de fiação
+    </option>
+<option value="Troca de disjuntor, IDR, DPS">
+     Troca de disjuntor, IDR, DPS
+    </option>
+<option value="Instalação e dimensionamento de disjuntor, IDR, DPS">
+     Instalação e dimensionamento de disjuntor, IDR, DPS
+    </option>
+<option value="Manutenção elétrica">
+     Manutenção elétrica
+    </option>
+<option value="Instalação de tomada simples">
+     Instalação de tomada simples
+    </option>
+<option value="Instalação de tomada dupla">
+     Instalação de tomada dupla
+    </option>
+<option value="Instalação de interruptor simples">
+     Instalação de interruptor simples
+    </option>
+<option value="Instalação de interruptor three way">
+     Instalação de interruptor three way
+    </option>
+<option value="Instalação de interruptor four way">
+     Instalação de interruptor four way
+    </option>
+<option value="Instalação de plafon soquete teto">
+     Instalação de plafon soquete teto
+    </option>
+<option value="Instalação de plafon led teto ou parede">
+     Instalação de plafon led teto ou parede
+    </option>
+<option value="Instalação de arandela">
+     Instalação de arandela
+    </option>
+<option value="Iluminação para jardim">
+     Iluminação para jardim
+    </option>
+<option value="Iluminação externa">
+     Iluminação externa
+    </option>
+<option value="Instalação de sinaleiros para jardim ou piscina">
+     Instalação de sinaleiros para jardim ou piscina
+    </option>
+<option value="Instalação de perfil de led">
+     Instalação de perfil de led
+    </option>
+<option value="Instalação de spot">
+     Instalação de spot
+    </option>
+<option value="Instalação de chuveiro">
+     Instalação de chuveiro
+    </option>
+<option value="Instalação de ventilador de parede ou teto">
+     Instalação de ventilador de parede ou teto
+    </option>
+<option value="Preparação e criação de circuito elétrico para ar condicionado">
+     Preparação e criação de circuito elétrico para ar condicionado
+    </option>
+<option value="Outros">
+     Outros
+    </option>
+</select>
+<input id="suporte" placeholder="Ou digite aqui qual suporte precisa" type="text"/>
+<button onclick="mostrarFormulario()" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;" type="button">
+    Enviar pedido
+   </button>
+<div id="botaoUrgencia" style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: 10px; margin-top: 30px; margin-bottom: 20px; transform: translateX(-25px);">
+<img alt="Serviço de urgência" src="alerta.jpg" style="width: 58.5px; height: auto; margin-right: 15px;"/>
+<button onclick="abrirUrgencia()" style="background-color: red; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold;" type="button">
+     Serviço de urgência
+    </button>
+</div>
+<div id="formularioExtra" style="display:none; margin-top:20px;">
+<input id="nome" placeholder="Seu nome" required="" type="text"/>
+<br/>
+<br/>
+<input id="telefone" placeholder="Telefone" required="" type="text"/>
+<br/>
+<br/>
+<input id="email" placeholder="E-mail" required="" type="email"/>
+<br/>
+<br/>
+<input id="localizacaoUsuario" name="localizacaoUsuario" placeholder="Bairro / Cidade" required="" type="text"/>
+<br/>
+<br/>
+<input id="tipoFinal" placeholder="Tipo de serviço" readonly="" type="text" value=""/>
+<br/>
+<br/>
+<textarea id="observacao" placeholder="Observação relevante (opcional)" style="height: 60px; width: 47%;"></textarea>
+<br/>
+<br/>
+<button onclick="enviarWhatsAppFinal()" type="button">
+     Enviar via WhatsApp
+    </button>
+</div>
+</section>
+<div class="services-grid">
+<div class="service-box">
+<img alt="Quadro de distribuição" src="QDC Site.jpg"/>
+<h3>
+     Quadro de Distribuição
+    </h3>
+<p>
+     Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.
+    </p>
+</div>
+<div class="service-box">
+<img alt="Instalação elétrica do zero" src="cabos.jpg"/>
+<h3>
+     Instalação Elétrica do Zero
+    </h3>
+<p>
+     Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.
+    </p>
+</div>
+<div class="service-box">
+<img alt="Projeto elétrico" src="projeto eletrico.jpg"/>
+<h3>
+     Projeto Elétrico
+    </h3>
+<p>
+     Desenvolvemos projetos personalizados para residências e comércios.
+    </p>
+</div>
+<div class="service-box">
+<img alt="Aterramento" src="aterrammento.png"/>
+<h3>
+     Sistema de Aterramento
+    </h3>
+<p>
+     Instalação completa com haste, condutores e medições conforme NBR 5410.
+    </p>
+</div>
+<div class="service-box">
+<img alt="Carregadores EV" src="CVE.jpg"/>
+<h3>
+     Instalação de CVEs
+    </h3>
+<p>
+     Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.
+    </p>
+</div>
+</div>
+<section class="highlight-section" id="localizacao">
+   Serviços elétricos em Contagem e região metropolitana - atendimento 24h - elétrica residencial, comercial e industrial.
   </section>
-
-  <!-- FORMULÁRIO PADRÃO -->
-  <section id="formulario" class="form-section">
-    <div class="form-container">
-      <div class="service-selector">
-        <label for="tipoServico">Qual serviço de elétrico está precisando?</label>
-        <select id="tipoServico" onchange="preencherTipoServico(this.value)">
-          <option value="">-- escolha --</option>
-          <option>Instalação ou restauração de quadros de distribuição</option>
-          <option>Instalação elétrica do zero</option>
-          <option>Criação de projeto elétrico residencial e comercial</option>
-          <option>Sistema de aterramento</option>
-          <option>Instalação de CVEs – carregadores veiculares elétricos</option>
-          <option>Padrão CEMIG</option>
-          <option>Restauração elétrica</option>
-          <option>Manutenção elétrica</option>
-          <option>Troca de disjuntor, IDR, DPS</option>
-          <option>Instalação e dimensionamento de disjuntor, IDR, DPS</option>
-          <option>Instalação de tomada</option>
-          <option>Iluminação interna/externa</option>
-          <option>Preparação de circuito para ar condicionado</option>
-          <option>Outros</option>
-        </select>
-        <input type="text" id="suporte" placeholder="Ou digite aqui qual suporte precisa"/>
-      </div>
-
-      <div class="buttons">
-        <button class="primary" type="button" id="btnMostrarFormulario">Enviar pedido</button>
-        <button class="urgent" type="button" id="btnAbrirUrgencia">Serviço de urgência</button>
-      </div>
-
-      <div id="formularioExtra" class="hidden">
-        <div class="form-group">
-          <label for="nome" class="required">Seu nome</label>
-          <input type="text" id="nome" autocomplete="name"/>
-          <div id="err-nome" class="error-message"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="telPadrao" class="required">Telefone</label>
-          <input type="text" id="telPadrao" inputmode="numeric" maxlength="15" placeholder="(31) 91234-5678"/>
-          <div id="err-tel" class="error-message"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="localizacaoUsuario" class="required">Bairro / Município</label>
-          <input type="text" id="localizacaoUsuario" placeholder="Ex.: Riacho / Contagem"/>
-          <div id="err-local" class="error-message"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="tipoFinal">Tipo de serviço</label>
-          <input type="text" id="tipoFinal" readonly/>
-        </div>
-
-        <div class="form-group">
-          <label for="observacao">Observação relevante</label>
-          <textarea id="observacao" placeholder="(opcional)"></textarea>
-        </div>
-
-        <button class="primary" type="button" id="btnEnviarPadrao">Enviar via WhatsApp</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FORMULÁRIO DE URGÊNCIA (POPUP) -->
-  <button class="floating-urgent" id="floatingUrgent">Serviço de urgência</button>
-  <div id="formUrgencia" class="form-container hidden" style="position:fixed; right:20px; bottom:90px; width:320px; max-width:92vw; z-index:100;">
-    <div class="form-group">
-      <label for="urg-nome" class="required">Seu nome</label>
-      <input type="text" id="urg-nome" autocomplete="name"/>
-      <div id="err-urg-nome" class="error-message"></div>
-    </div>
-    <div class="form-group">
-      <label for="urg-telefone" class="required">Telefone</label>
-      <input type="text" id="urg-telefone" inputmode="numeric" maxlength="15" placeholder="(31) 91234-5678"/>
-      <div id="err-urg-tel" class="error-message"></div>
-    </div>
-    <div class="form-group">
-      <label for="urg-local" class="required">Bairro / Município</label>
-      <input type="text" id="urg-local" placeholder="Ex.: Riacho / Contagem"/>
-      <div id="err-urg-local" class="error-message"></div>
-    </div>
-    <div class="form-group">
-      <label for="urg-servico" class="required">Tipo de serviço</label>
-      <input type="text" id="urg-servico" placeholder="Descreva o serviço"/>
-      <div id="err-urg-serv" class="error-message"></div>
-    </div>
-    <button class="primary" type="button" id="btnEnviarUrgencia">Enviar via WhatsApp (URGÊNCIA)</button>
+<section class="blog-section" id="blog" style="padding: 20px 10px; font-size: 1.2em;">
+<h2 style="text-align:center; font-size:2em; color:#fff;">
+    Fique por dentro - Blog Gênesis Elétrica
+   </h2>
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;">
+  <div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); flex:1 1 300px; max-width:350px;">
+    <h3 style="color:#bfa04d;">Disjuntores: Fundamentos e Aplicações</h3>
+    <p style="color:#333;">Conheça os principais tipos de disjuntores, sua função na proteção de circuitos e as melhores práticas de dimensionamento, instalação e manutenção.</p>
+    <a href="blog/disjuntor.html" style="background:#bfa04d; color:#000; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Saiba mais</a>
   </div>
+  <div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); flex:1 1 300px; max-width:350px;">
+    <h3 style="color:#bfa04d;">Interruptor Diferencial Residual (IDR)</h3>
+    <p style="color:#333;">Entenda o que é o IDR, como ele protege pessoas e instalações contra choques elétricos e em quais situações seu uso é obrigatório.</p>
+    <a href="blog/idr.html" style="background:#bfa04d; color:#000; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Saiba mais</a>
+  </div>
+</div>
+</section>
+<footer id="contato">
+<img alt="Logo pequena" src="LOGO GENESIS ELETRICA.jpg" style="max-height: 90px;"/>
+<p style="white-space: pre-line; text-align: center; font-size: 14px; margin: 10px auto; color: white;">
+    Rua Rio Mantiqueira, 898, Novo Riacho
+Contagem/MG, CEP: 32280-620
+   </p>
+<p>
+<a href="https://wa.me/5531975002129" target="_blank">
+     WhatsApp
+    </a>
+    |
+    <a href="mailto:genesiseletricca@gmail.com">
+     E-mail
+    </a>
+    |
+    <a href="https://www.instagram.com/genesis_eletrica" target="_blank">
+     Instagram
+    </a>
+</p>
+<p>
+    © Gênesis Elétrica. Todos os direitos reservados.
+   </p>
+</footer>
+<script>
+   function enviarWhatsApp() {
+      const servico = document.getElementById('servico').value;
+      const descricao = document.getElementById('descricao').value;
+      const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
+      window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+    }
+  </script>
+<script>
+   function mostrarFormulario() {
+  let servicoSelecionado = document.getElementById("tipoServico").value;
+  let servicoDigitado = document.getElementById("suporte").value;
+  let tipo = servicoSelecionado || servicoDigitado;
+  if (!tipo) {
+    alert("Por favor, selecione ou digite o serviço.");
+    return;
+  }
+  document.getElementById("formularioExtra").style.display = "block";
+  document.getElementById("tipoFinal").value = tipo;
+}
 
-  <section id="blog" class="form-section">
-    <h2>Fique por dentro - Blog Gênesis Elétrica</h2>
-    <p>Confira nossos últimos conteúdos no blog.</p>
-  </section>
+function enviarWhatsAppFinal() {
+  let nome = document.getElementById("nome").value;
+  let telefone = document.getElementById("telefone").value;
+  let email = document.getElementById("email").value;
+  let local = document.getElementById("localizacao").value;
+  let tipo = document.getElementById("tipoFinal").value;
+  let obs = document.getElementById("observacao").value;
 
-  <footer id="contato" class="site-footer">
-    © 2025 Gênesis Elétrica — 
-    <a href="https://wa.me/5531975002129" target="_blank">WhatsApp</a> · 
-    <a href="mailto:genesiseletricca@gmail.com">E-mail</a>
-  </footer>
+  let mensagem = `Olá! Gostaria de solicitar um serviço.%0A` +
+                 `Nome: ${nome}%0A` +
+                 `Telefone: ${telefone}%0A` +
+                 `E-mail: ${email}%0A` +
+                 `Localização: ${local}%0A` +
+                 `Serviço: ${tipo}%0A` +
+                 `Observação: ${obs}`;
 
-  <script src="script.js"></script>
+  window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+}
+  </script>
+<script>
+</script>
+<script>
+   function abrirUrgencia() {
+  const form = document.getElementById("formularioExtra");
+  if (form) {
+    form.style.display = "block";
+    const tipoServico = document.getElementById("tipoFinal");
+    if (tipoServico) {
+      tipoServico.value = "";
+      tipoServico.placeholder = "Tipo de serviço";
+      tipoServico.focus();
+    }
+  }
+}
+  </script>
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+  const telefoneInput = document.getElementById("telefone");
+  telefoneInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+
+    let formatado = "";
+    if (value.length > 0) formatado += "(" + value.substring(0, 2);
+    if (value.length >= 3) formatado += ") " + value.substring(2, 7);
+    if (value.length >= 8) formatado += "-" + value.substring(7, 11);
+    else if (value.length > 7) formatado += value.substring(7);
+
+    e.target.value = formatado;
+  });
+});
+  </script>
 </body>
 </html>
+
+
+<!-- Correção cirúrgica: máscaras e validações -->
+<script>
+(function(){
+  function phoneMask(el){
+    if(!el) return;
+    el.addEventListener('input', function(e){
+      let v = e.target.value.replace(/\D/g,'').slice(0,11);
+      let r = '';
+      if(v.length>0) r += '('+v.slice(0,2);
+      if(v.length>=3) r += ') '+v.slice(2,7);
+      if(v.length>=8) r += '-'+v.slice(7,11);
+      e.target.value = r;
+    });
+  }
+  function validaBairroMunicipio(txt){
+    return /^\s*[^\/]+\s*\/\s*[^\/]+\s*$/.test((txt||'').trim());
+  }
+  function ensureErrAbove(input){
+    if(!input) return null;
+    let prev = input.previousElementSibling;
+    if(!(prev && prev.classList && prev.classList.contains('err'))){
+      const err = document.createElement('small');
+      err.className = 'err';
+      err.style.color = '#d9534f';
+      err.style.display = 'block';
+      err.style.fontSize = '12px';
+      err.style.margin = '6px 0';
+      input.parentNode.insertBefore(err, input);
+      return err;
+    }
+    return prev;
+  }
+  function setError(input, msg){
+    const holder = ensureErrAbove(input);
+    if(holder) holder.textContent = msg || '';
+  }
+  function clearErrors(container){
+    if(!container) return;
+    container.querySelectorAll('.err').forEach(e => e.textContent = '');
+  }
+
+  window.mostrarFormulario = function(){
+    const select = document.getElementById('tipoServico');
+    const suporte = (document.getElementById('suporte')||{value:''}).value.trim();
+    const tipo = (select && select.value) || suporte;
+    if(!tipo){ alert('Por favor, selecione ou digite o serviço.'); return; }
+    const bloco = document.getElementById('formularioExtra');
+    if(bloco) bloco.style.display = 'block';
+    const tipoFinal = document.getElementById('tipoFinal');
+    if(tipoFinal) tipoFinal.value = tipo;
+  };
+
+  window.enviarWhatsAppFinal = function(){
+    const bloco = document.getElementById('formularioExtra');
+    if(!bloco) return;
+    clearErrors(bloco);
+
+    const nome = bloco.querySelector('#nome') || bloco.querySelector('input[placeholder*="nome" i]');
+    const tel  = bloco.querySelector('#telefone') || bloco.querySelector('input[placeholder*="telefone" i]');
+    const loc  = bloco.querySelector('#localizacaoUsuario') || bloco.querySelector('input[placeholder*="Bairro" i]');
+    const tipo = bloco.querySelector('#tipoFinal') || bloco.querySelector('input[placeholder*="Tipo de serviço" i]');
+    const obs  = bloco.querySelector('#observacao') || bloco.querySelector('textarea');
+
+    let ok = true;
+    if(!nome || !nome.value.trim()){ setError(nome||tel, 'Campo de preenchimento obrigatório'); ok=false; }
+    if(!tel || !/^\(\d{2}\) \d{5}-\d{4}$/.test(tel.value.trim())){ setError(tel, 'Informe o telefone no formato (XX) XXXXX-XXXX'); ok=false; }
+    if(!loc || !validaBairroMunicipio(loc.value)){ setError(loc, 'Informe Bairro / Município (ex.: Riacho / Contagem)'); ok=false; }
+    if(!ok) return;
+
+    const msg = encodeURIComponent(
+      'Olá! Gostaria de solicitar um serviço.'+
+      '\n\nNome: ' + (nome?nome.value:'')+
+      '\nTelefone: ' + (tel?tel.value:'')+
+      '\nBairro/Município: ' + (loc?loc.value:'')+
+      '\nServiço: ' + (tipo?tipo.value:'')+
+      '\nObservação: ' + (obs&&obs.value ? obs.value : '')
+    );
+    window.open('https://wa.me/5531975002129?text='+msg, '_blank');
+  };
+
+  window.abrirUrgencia = function(){
+    const form = document.getElementById('formUrgencia');
+    if(!form) return;
+    form.style.display = (form.style.display==='none' || !form.style.display) ? 'block' : 'none';
+  };
+
+  function ensureUrgenciaCampos(){
+    const form = document.getElementById('formUrgencia');
+    if(!form) return;
+
+    let nome = form.querySelector('input[placeholder^="Nome"]') || form.querySelector('input[placeholder*="Nome" i]');
+    if(!nome){
+      nome = document.createElement('input');
+      nome.type = 'text'; nome.placeholder = 'Nome'; nome.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
+      form.insertBefore(nome, form.firstChild);
+      form.insertBefore(document.createElement('br'), form.firstChild.nextSibling);
+    }
+    ensureErrAbove(nome);
+
+    let tel = form.querySelector('input#telefone') || form.querySelector('input[placeholder*="Telefone" i]');
+    if(!tel){
+      tel = document.createElement('input');
+      tel.type = 'text'; tel.placeholder = 'Telefone (XX) XXXXX-XXXX'; tel.maxLength = 15; tel.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
+      form.appendChild(tel); form.appendChild(document.createElement('br'));
+    }
+    ensureErrAbove(tel);
+    phoneMask(tel);
+
+    let loc = form.querySelector('input[placeholder*="Bairro" i]');
+    if(!loc){
+      loc = document.createElement('input');
+      loc.type = 'text'; loc.placeholder = 'Bairro / Município'; loc.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
+      const tipoServ = form.querySelector('#tipo-servico') || form.querySelector('input[placeholder*="servi" i]') || form.querySelector('textarea, input:last-child');
+      form.insertBefore(loc, tipoServ || form.lastChild);
+      form.insertBefore(document.createElement('br'), loc.nextSibling);
+    }
+    ensureErrAbove(loc);
+
+    let serv = form.querySelector('#tipo-servico') || form.querySelector('input[placeholder*="servi" i]');
+    if(!serv){
+      serv = document.createElement('input');
+      serv.type = 'text'; serv.placeholder = 'Tipo de serviço'; serv.style.cssText = 'width:100%; margin-bottom:10px; padding:8px;';
+      form.appendChild(serv); form.appendChild(document.createElement('br'));
+    }
+    ensureErrAbove(serv);
+
+    let btn = Array.from(form.querySelectorAll('button')).find(b => /enviar/i.test(b.textContent));
+    if(!btn){
+      btn = document.createElement('button');
+      btn.type = 'button'; btn.textContent = 'Enviar via WhatsApp (URGÊNCIA)';
+      btn.style.cssText = 'background-color:#bfa04d; color:#000; padding:10px 20px; border:none; border-radius:5px; font-weight:bold; width:100%;';
+      form.appendChild(btn);
+      btn.addEventListener('click', enviarUrgencia);
+    }
+    return {nome, tel, loc, serv};
+  }
+
+  function enviarUrgencia(){
+    const form = document.getElementById('formUrgencia');
+    if(!form) return;
+    clearErrors(form);
+    const c = ensureUrgenciaCampos(); if(!c) return;
+
+    let ok = true;
+    if(!c.nome.value.trim()){ setError(c.nome, 'Campo de preenchimento obrigatório'); ok=false; }
+    if(!/^\(\d{2}\) \d{5}-\d{4}$/.test(c.tel.value.trim())){ setError(c.tel, 'Informe o telefone no formato (XX) XXXXX-XXXX'); ok=false; }
+    if(!validaBairroMunicipio(c.loc.value)){ setError(c.loc, 'Informe Bairro / Município (ex.: Riacho / Contagem)'); ok=false; }
+    if(!c.serv.value.trim()){ setError(c.serv, 'Campo de preenchimento obrigatório'); ok=false; }
+    if(!ok) return;
+
+    const msg = encodeURIComponent(
+      'Olá! PRECISO DO SERVIÇO COM URGÊNCIA.'+
+      '\n\nNome: ' + c.nome.value +
+      '\nTelefone: ' + c.tel.value +
+      '\nBairro/Município: ' + c.loc.value +
+      '\nTipo de serviço: ' + c.serv.value
+    );
+    window.open('https://wa.me/5531975002129?text='+msg, '_blank');
+  }
+  window.enviarUrgencia = enviarUrgencia;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    const bloco = document.getElementById('formularioExtra');
+    if(bloco){
+      const telPadrao = bloco.querySelector('#telefone') || bloco.querySelector('input[placeholder*="Telefone" i]');
+      phoneMask(telPadrao);
+    }
+    const urgForm = document.getElementById('formUrgencia');
+    if(urgForm){
+      const telUrg = urgForm.querySelector('#telefone') || urgForm.querySelector('input[placeholder*="Telefone" i]');
+      if(telUrg){ phoneMask(telUrg); }
+      ensureUrgenciaCampos();
+    }
+  });
+})();
+</script>
