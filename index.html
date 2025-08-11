@@ -187,6 +187,27 @@ a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:ho
 }
 
 </style>
+<style>
+/* Ajuste de altura imagem principal QDC */
+.hero img[src*="QDC-principal.jpg"] {
+    height: 70vh !important; /* valor ajustado */
+    object-fit: cover;
+}
+</style>
+<style>
+/* Tarjeta pequena de alerta acima do campo */
+.erro-mini{
+  position: relative;
+  display: block;
+  margin: -4px 0 6px 0;
+  color: #fff;
+  background: #d9534f;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  width: max-content;
+}
+</style>
 </head>
 <body>
 <header>
@@ -627,6 +648,97 @@ document.addEventListener('DOMContentLoaded', function(){
       try { if(typeof abrirUrgencia==='function'){ abrirUrgencia(); } } catch(e){}
       scrollToFormSection();
     });
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  function clearErrors(formRoot){
+    formRoot.querySelectorAll('.erro-mini').forEach(function(e){ e.remove(); });
+  }
+  function showError(inputEl, msg){
+    var badge = document.createElement('div');
+    badge.className = 'erro-mini';
+    badge.textContent = msg || 'Campo de preenchimento obrigatório';
+    inputEl.parentNode.insertBefore(badge, inputEl);
+  }
+  function hasTwoWords(text){
+    if(!text) return false;
+    var parts = text.trim().split(/\s+/).filter(Boolean);
+    return parts.length >= 2;
+  }
+  window.enviarWhatsAppFinal = function(){
+    var formRoot = document.getElementById('formularioExtra') || document;
+    clearErrors(formRoot);
+
+    var nome = document.getElementById('nome');
+    var telefone = document.getElementById('telefone');
+    var email = document.getElementById('email');
+    var local = document.getElementById('localizacaoUsuario');
+    var tipo = document.getElementById('tipoFinal');
+    var obs  = document.getElementById('observacao');
+
+    var ok = true;
+
+    if(!nome || !nome.value.trim()){
+      showError(nome, 'Campo de preenchimento obrigatório');
+      ok = false;
+    }
+    var telVal = (telefone && telefone.value || '').trim();
+    var telOk = /^\(\d{2}\) \d{5}-\d{4}$/.test(telVal);
+    if(!telOk){
+      showError(telefone, 'Informe o telefone no formato (XX) XXXXX-XXXX');
+      ok = false;
+    }
+    var emailVal = (email && email.value || '').trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+    if(!emailOk){
+      showError(email, 'Informe um e-mail válido');
+      ok = false;
+    }
+    var locVal = (local && local.value || '').trim();
+    if(!hasTwoWords(locVal)){
+      showError(local, 'Informe bairro e cidade (ex.: Riacho Contagem)');
+      ok = false;
+    }
+    var urgAberto = document.getElementById('formUrgencia') && document.getElementById('formUrgencia').style.display === 'block';
+    if(urgAberto && (!tipo || !tipo.value.trim())){
+      showError(tipo, 'Campo de preenchimento obrigatório');
+      ok = false;
+    }
+
+    if(!ok){
+      var first = formRoot.querySelector('.erro-mini');
+      if(first && first.scrollIntoView){ first.scrollIntoView({behavior:'smooth', block:'center'}); }
+      return;
+    }
+
+    var msg = 'Olá! Gostaria de solicitar um serviço.%0A' +
+              'Nome: ' + (nome.value||'') + '%0A' +
+              'Telefone: ' + telVal + '%0A' +
+              'E-mail: ' + emailVal + '%0A' +
+              'Localização: ' + locVal + '%0A' +
+              'Serviço: ' + (tipo && tipo.value ? tipo.value : '') + '%0A' +
+              'Observação: ' + (obs && obs.value ? obs.value : '');
+    window.open('https://wa.me/5531975002129?text=' + msg, '_blank');
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var telefoneInput = document.getElementById('telefone');
+    if(telefoneInput){
+      telefoneInput.addEventListener('input', function (e) {
+        var value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        var out = '';
+        if (value.length > 0) out += '(' + value.substring(0, 2);
+        if (value.length >= 3) out += ') ' + value.substring(2, 7);
+        if (value.length >= 8) out += '-' + value.substring(7, 11);
+        else if (value.length > 7) out += value.substring(7);
+        e.target.value = out;
+      });
+    }
   });
 })();
 </script>
