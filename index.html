@@ -120,7 +120,19 @@
 <meta content="Gênesis Elétrica" name="author"/>
 <style>
 
-/* ===== BLOG CARDS (layout semelhante ao blog) ===== */
+/* HERO responsive fix */
+.hero img, .hero-image, img[alt*="QDC"] {
+  width: 100%;
+  height: clamp(260px, 42vw, 520px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+</style>
+<style>
+
+/* BLOG CARDS + HOVER */
 .blog-cards-wrap { background:#eef3f7; }
 .blog-cards {
   max-width: 1100px;
@@ -153,14 +165,11 @@
 .post-excerpt { color: #333; margin: 0 0 8px; line-height: 1.5; }
 .post-readmore { color: #1a66d0; text-decoration: none; font-weight: 600; }
 .post-readmore:hover { text-decoration: underline; }
-
-/* Responsivo */
 @media (max-width: 768px){
   .blog-cards { grid-template-columns: 1fr; }
   .post-media img { height: 180px; }
 }
-
-/* ===== HOVER universal (botões/links/cards) ===== */
+/* Hover universal */
 a, button, .btn, .urgent, .main-nav a, footer a {
   transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
@@ -168,7 +177,7 @@ a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:ho
   filter: brightness(0.97);
   transform: translateY(-1px);
 }
-/* Cards de serviços */
+/* Service cards hover (covers common selectors) */
 .services-grid > *, .service-box, .services-grid .service, .card, .grade-servicos .item {
   transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -204,7 +213,7 @@ a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:ho
    </a>
 </nav>
 <section class="hero">
-<img alt="QDC principal" src="QDC principal.jpg"/>
+<img alt="QDC principal" src="QDC-principal.jpg"/>
 <div class="hero-text">
     Energia com sustentabilidade, profissionalismo, segurança e excelência!
    </div>
@@ -446,10 +455,11 @@ a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:ho
   </section>
 
 <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
+  <h2 style="text-align:center; margin:0 0 16px;">Fique por dentro - Blog Gênesis Elétrica</h2>
   <div class="blog-cards">
     <article class="post-card">
       <a class="post-media" href="/blog/disjuntor.html" target="_blank" rel="noopener">
-        <img loading="lazy" src="/blog/imagens/disjuntor-quadro-distribuição.jpg" alt="Disjuntor: Fundamentos e aplicações" onerror="this.style.display='none'"/>
+        <img loading="lazy" src="/blog/imagens/disjuntor-quadro-distribuicao.jpg" alt="Disjuntor: Fundamentos e aplicações" onerror="this.style.display='none'"/>
       </a>
       <div class="post-body">
         <h3 class="post-title">
@@ -575,5 +585,51 @@ function enviarWhatsAppFinal() {
   });
 });
   </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var links = document.querySelectorAll('a');
+  links.forEach(function(a){
+    if(a.textContent && a.textContent.trim().toLowerCase() === 'blog'){
+      a.href = 'https://genesiseletricca.com.br/blog/';
+      a.target = '_blank';
+      a.rel = 'noopener';
+    }
+  });
+});
+</script>
+
+
+<script>
+(function(){
+  function findFormSection(){
+    return document.getElementById('formulario') ||
+           document.getElementById('formulario-servico') ||
+           document.querySelector('section[id*="form"]') ||
+           document.getElementById('formUrgencia') || document.body;
+  }
+  function scrollToFormSection(){
+    var t = findFormSection();
+    if(t && t.scrollIntoView){ t.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
+    if(!btn){
+      btn = document.createElement('button');
+      btn.id = 'floatingUrgent';
+      btn.type = 'button';
+      btn.textContent = 'Serviço de urgência';
+      btn.style.cssText = 'position:fixed;right:20px;bottom:24px;z-index:2000;background:#d9534f;color:#fff;border:none;padding:12px 18px;border-radius:50px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)';
+      document.body.appendChild(btn);
+    }
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      try { if(typeof abrirUrgencia==='function'){ abrirUrgencia(); } } catch(e){}
+      scrollToFormSection();
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
