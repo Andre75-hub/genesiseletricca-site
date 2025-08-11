@@ -199,3 +199,8 @@ html, body {
     padding: 10px 0;
     font-size: 0.85rem;
 }
+
+/* Auxiliares */
+.hidden { display: none !important; }
+
+/* Popup de urgência se beneficiará do estilo base .form-container já existente */
