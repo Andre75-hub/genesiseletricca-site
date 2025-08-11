@@ -9,19 +9,6 @@
   </title>
    
  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7CGNS9C1H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  /* patched by Aurora: GA4 conditional */
-if (location.hostname === 'genesiseletricca.com.br') {
-  gtag('config', 'G-X7CGNS9C1H', { cookie_domain: 'auto' });
-} else {
-  gtag('config', 'G-X7CGNS9C1H', { storage: 'none' });
-}
-
-</script>
    
 <style>
    body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
@@ -124,6 +111,30 @@ if (location.hostname === 'genesiseletricca.com.br') {
 <meta content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência." name="description"/>
 <meta content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial" name="keywords"/>
 <meta content="Gênesis Elétrica" name="author"/>
+
+<!-- Google Analytics (GA4) — carrega somente em produção -->
+<script>
+  (function () {
+    var PROD = location.hostname === 'genesiseletricca.com.br';
+    if (!PROD) {
+      // fora de produção: não carrega GA e desabilita qualquer instância residual
+      window['ga-disable-G-XXXXXXXXXX'] = true;
+      return;
+    }
+    // produção: carrega gtag normalmente
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { cookie_domain: 'auto' });
+  })();
+</script>
+
 </head>
 <body>
 <header>
@@ -504,48 +515,16 @@ function enviarWhatsAppFinal() {
 });
   </script>
 
-<!-- minimal functional fixes (non-visual) -->
 <script>
-// 1) Force "Blog" link to open the official blog in a new tab
-document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('a').forEach(function(a){
-    if (a.textContent && a.textContent.trim().toLowerCase() === 'blog') {
-      a.href = 'https://genesiseletricca.com.br/blog/';
-      a.target = '_blank';
-      a.rel = 'noopener';
-    }
-  });
-});
-
-// 2) Floating urgent button: create if missing and scroll to the form section
-(function(){
-  function findFormSection(){
-    return document.getElementById('formulario') ||
-           document.getElementById('formulario-servico') ||
-           document.querySelector('section[id*="form"]') ||
-           document.getElementById('formUrgencia') || document.body;
-  }
-  function scrollToFormSection(){
-    var t = findFormSection();
-    if (t && t.scrollIntoView) t.scrollIntoView({behavior:'smooth', block:'start'});
-  }
   document.addEventListener('DOMContentLoaded', function(){
-    var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
-    if (!btn) {
-      btn = document.createElement('button');
-      btn.id = 'floatingUrgent';
-      btn.type = 'button';
-      btn.textContent = 'Serviço de urgência';
-      btn.style.cssText = 'position:fixed;right:20px;bottom:24px;z-index:2000;background:#d9534f;color:#fff;border:none;padding:12px 18px;border-radius:50px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)';
-      document.body.appendChild(btn);
-    }
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      try { if (typeof abrirUrgencia==='function') abrirUrgencia(); } catch(e){}
-      scrollToFormSection();
+    document.querySelectorAll('a').forEach(function(a){
+      if(a.textContent && a.textContent.trim().toLowerCase() === 'blog'){
+        a.href = 'https://genesiseletricca.com.br/blog/';
+        a.target = '_blank';
+        a.rel = 'noopener';
+      }
     });
   });
-})();
 </script>
 
 </body>

@@ -199,16 +199,3 @@ html, body {
     padding: 10px 0;
     font-size: 0.85rem;
 }
-
-/* Minimal hero image fix: controls only the top photo height without touching layout */
-.hero img,
-.hero-image,
-img[src*="QDC-principal"],
-img[alt*="QDC"] {
-  width: 100%;
-  height: clamp(220px, 42vw, 520px);
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
