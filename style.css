@@ -1,59 +1,45 @@
-/* ===== Base/Overflow ===== */
+/* ===== Base / Overflow ===== */
 html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff; }
 
-body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
-
-/* ===== Header / Nav ===== */
-header {
-  background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%);
-  padding: 45px 0;
-  text-align: center;
+/* ===== Cabeçalho (azul do blog) ===== */
+.site-header { background:#0a2e6e; color:#fff; }
+.header-inner {
+  max-width:1100px; margin:0 auto; padding:14px 16px;
+  display:flex; align-items:center; gap:18px;
 }
-header img { max-height: 150px; filter: drop-shadow(0 0 10px rgba(255,255,255,.1)); }
+.header-logo { height:48px; width:auto; display:block; }
+.main-nav { display:flex; gap:18px; margin-left:auto; }
+.main-nav a { color:#fff; text-decoration:none; font-weight:600; padding:8px 10px; border-radius:6px; }
+.main-nav a:hover { background: rgba(255,255,255,.12); }
 
-nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
-nav a { color: #000; text-decoration: none; font-weight: bold; }
-nav a{ padding:10px 18px; border-radius:6px; transition: background .2s ease, color .2s ease; }
-nav a:hover{ background: rgba(0,0,0,.08); }
-
-/* Desktop: logo à esquerda; menu centralizado */
-@media (min-width: 769px){
-  header{ display:flex; align-items:center; justify-content:flex-start; text-align:left; padding:45px 5%; }
-  header img{ margin:0; max-height:150px; }
-  nav{ justify-content:center; gap:60px; padding:12px 5%; }
-}
-
-/* ===== Hero ===== */
+/* ===== HERO ===== */
 .hero { position: relative; text-align: center; }
-.hero img, .hero-image, img[alt*="QDC"] {
+.hero img {
   width: 100%;
   height: clamp(260px, 42vw, 520px);
   object-fit: cover; object-position: center; display: block;
 }
 .hero-text {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  background-color: rgba(0,0,0,.6); color:#fff; padding: 30px; font-size: 2.25em;
+  position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+  background:rgba(0,0,0,.6); color:#fff; padding:30px; font-size:2.25em;
 }
 
 /* ===== Seções ===== */
 .section-title { background:#222; color:#fff; text-align:center; padding:15px; font-size:1.3em; }
-.service-search { text-align:center; padding:20px; background:#f4f4f4; }
-
-/* ===== Formulário Seleção ===== */
 .form-section { text-align:center; padding:20px; }
 .form-section select, .form-section input[type=text], .form-section button {
   margin-top:10px; padding:10px; width:80%; max-width:400px; font-size:1em;
 }
-.form-section button { background-color:#bfa04d; border:none; cursor:pointer; color:#000; font-weight:bold; }
 
-/* Botões principais */
-.btn-enviar { background:#bfa04d; color:#000; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; }
+/* ===== Botões ===== */
+.btn-enviar { background:#bfa04d; color:#000; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer; }
 #botaoUrgencia { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:30px; margin-bottom:20px; }
 #botaoUrgencia img { width:58.5px; height:auto; margin-right:15px; }
-.btn-urgencia { background:red; color:#fff; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; }
+.btn-urgencia { background:#d32f2f; color:#fff; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer; }
 
-/* Campos + mensagens de erro */
+/* ===== Campos e mensagens (sem tarjeta) ===== */
 .field { margin:10px auto; max-width:600px; text-align:left; }
 .field input, .field textarea { width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; }
 .field small.input-error { display:block; color:#cc0000; font-size:.9rem; margin-top:4px; }
@@ -81,37 +67,36 @@ nav a:hover{ background: rgba(0,0,0,.08); }
 .post-readmore { color:#1a66d0; text-decoration:none; font-weight:600; }
 .post-readmore:hover { text-decoration:underline; }
 
-/* ===== Rodapé centralizado ===== */
+/* ===== Rodapé (azul do blog) ===== */
 .site-footer { background:#0a2e6e; color:#fff; margin-top:48px; }
 .site-footer .section-inner { max-width:1100px; margin:0 auto; padding:24px 16px; }
-.footer-top { display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; }
-.footer-logo { height:48px; width:auto; }
-.footer-contacts { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.footer-top {
+  display:grid; grid-template-columns:auto 1fr; align-items:center; gap:20px;
+}
+.footer-logo { height:48px; width:auto; justify-self:start; }
+.footer-contacts {
+  list-style:none; padding:0; margin:0;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:20px;
+}
 .footer-contacts a { color:#fff; text-decoration:none; }
 .footer-contacts a:hover { text-decoration:underline; }
 .footer-bottom { text-align:center; margin-top:10px; opacity:.9; }
 
 /* ===== Ajustes mobile ===== */
 @media (max-width: 768px){
-  nav { flex-wrap:nowrap; justify-content:space-around; gap:10px; padding:8px; overflow-x:auto; }
-  nav a { font-size:.85em; white-space:nowrap; padding:4px 8px; }
+  .main-nav { flex-wrap:wrap; justify-content:flex-end; }
   .hero-text { font-size:1em; padding:10px; top:40%; transform:translate(-50%, -40%); }
-  .highlight-section { font-size:1.1em; padding:20px; }
-  .blog-section { font-size:1.3em; padding:30px 15px; }
   .services-grid { flex-direction:column; align-items:center; }
   .service-box { width:90%; }
-  .form-section input[type="text"],
-  .form-section select,
-  .form-section button { width:95%; }
+  .form-section select, .form-section input[type=text], .form-section button { width:95%; }
   .section-title { font-size:1.1em; padding:10px; }
-  footer img { max-height:70px !important; }
   .field.two-cols { grid-template-columns:1fr; }
 }
 
 /* ===== Sem “tarjeta vermelha” ===== */
 input:invalid { border:1px solid #ccc; }
 
-/* ===== Botão flutuante (restaurado) ===== */
+/* ===== Botão flutuante (canto direito inferior) ===== */
 #floatingUrgent {
   position:fixed; right:20px; bottom:24px; z-index:2000;
   background:#d9534f; color:#fff; border:none; padding:12px 18px;
