@@ -1,4 +1,4 @@
-/* ===== Base / Overflow ===== */
+/* ===== Base ===== */
 html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
 body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff; font-weight:400; }
@@ -34,7 +34,7 @@ body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff;
 .field small.input-error { display:block; color:#cc0000; font-size:.9rem; margin-top:4px; font-weight:400; }
 .field.two-cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
-/* ===== Cards / Blog / Rodapé ===== */
+/* ===== Cards / Blog ===== */
 .services-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:20px; }
 .service-box { width:250px; background:#fff; border:1px solid #ccc; border-radius:8px; text-align:center; padding:15px; transition:transform .2s, box-shadow .2s; }
 .service-box img { width:100%; height:160px; object-fit:cover; border-radius:5px; }
@@ -54,10 +54,12 @@ body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff;
 .post-title a:hover { text-decoration:underline; }
 .post-excerpt, .post-readmore { font-weight:400; }
 
+/* ===== Rodapé (azul) ===== */
 .site-footer { background:#0a2e6e; color:#fff; margin-top:48px; }
 .site-footer .section-inner { max-width:1100px; margin:0 auto; padding:24px 16px; }
 .footer-top { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:20px; }
 .footer-logo { height:58px; width:auto; justify-self:start; }
+.footer-address { margin: 4px 0 8px; text-align:center; }
 .footer-contacts { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; font-weight:400; }
 .footer-contacts a { color:#fff; text-decoration:none; font-weight:400; }
 .footer-contacts a:hover { text-decoration:underline; }
@@ -75,8 +77,8 @@ body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff;
   .field.two-cols { grid-template-columns:1fr; }
 }
 
-/* ===== Sem “tarjeta vermelha” ===== */
+/* Evita “tarjeta vermelha” do HTML5 */
 input:invalid { border:1px solid #ccc; }
 
-/* ===== Botão flutuante ===== */
+/* Botão flutuante de urgência (opcional, reaproveita JS) */
 #floatingUrgent { position:fixed; right:20px; bottom:24px; z-index:2000; background:#d9534f; color:#fff; border:none; padding:12px 18px; border-radius:50px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.2); }
