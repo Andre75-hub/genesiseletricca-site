@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
+// ===== Preenche o campo digitável quando usuário escolhe no select =====
+function preencherTipoServico(valor){
+  var tf = document.getElementById('tipoFinal');
+  if(tf){ tf.value = valor || ''; }
+}
+
 // ===== Mostrar formulário final com o tipo selecionado/digitado =====
 function mostrarFormulario() {
   var servicoSelecionado = document.getElementById("tipoServico").value;
@@ -21,7 +27,7 @@ function mostrarFormulario() {
   }
   document.getElementById("formularioExtra").style.display = "block";
   var tipoFinal = document.getElementById("tipoFinal");
-  if (tipoFinal) tipoFinal.value = tipo;
+  if (tipoFinal) tipoFinal.value = tipo; // preenchido mas EDITÁVEL (sem readonly)
 }
 
 // ===== Abrir urgência =====
@@ -145,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function(){
     window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
   };
 
-  // Após a primeira tentativa, atualiza mensagens conforme o usuário corrige
+  // Após a primeira tentativa, mensagens reagem enquanto o usuário corrige
   required.forEach(function(f){
     var inp = document.getElementById(f.id);
     if(!inp) return;
