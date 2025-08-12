@@ -1,7 +1,6 @@
-// ===== Link "Blog" do topo aponta para o blog =====
+// ===== Corrige link "Blog" do topo =====
 document.addEventListener('DOMContentLoaded', function(){
-  var links = document.querySelectorAll('a');
-  links.forEach(function(a){
+  document.querySelectorAll('a').forEach(function(a){
     if(a.textContent && a.textContent.trim().toLowerCase() === 'blog'){
       a.href = 'https://genesiseletricca.com.br/blog/';
       a.target = '_blank';
@@ -9,68 +8,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
-
-// ===== Preenche o campo digitável quando usuário escolhe no select =====
-function preencherTipoServico(valor){
-  var tf = document.getElementById('tipoFinal');
-  if(tf){ tf.value = valor || ''; }
-}
-
-// ===== Mostrar formulário final com o tipo selecionado/digitado =====
-function mostrarFormulario() {
-  var servicoSelecionado = document.getElementById("tipoServico").value;
-  var servicoDigitado = document.getElementById("suporte").value;
-  var tipo = servicoSelecionado || servicoDigitado;
-  if (!tipo) {
-    alert("Por favor, selecione ou digite o serviço.");
-    return;
-  }
-  document.getElementById("formularioExtra").style.display = "block";
-  var tipoFinal = document.getElementById("tipoFinal");
-  if (tipoFinal) tipoFinal.value = tipo; // preenchido mas EDITÁVEL
-}
-
-// ===== Abrir urgência: mostra o mesmo formulário final (com validação JS) =====
-function abrirUrgencia() {
-  var form = document.getElementById("formularioExtra");
-  if (form) {
-    form.style.display = "block";
-    var tipoServico = document.getElementById("tipoFinal");
-    if (tipoServico) {
-      if (!tipoServico.value) tipoServico.placeholder = "Tipo de serviço";
-      tipoServico.focus();
-    }
-  }
-}
-
-// ===== Botão flutuante "Serviço de urgência" =====
-(function(){
-  function findFormSection(){
-    return document.getElementById('formulario') ||
-           document.getElementById('formulario-servico') ||
-           document.querySelector('section[id*="form"]') ||
-           document.getElementById('formUrgencia') || document.body;
-  }
-  function scrollToFormSection(){
-    var t = findFormSection();
-    if(t && t.scrollIntoView){ t.scrollIntoView({behavior:'smooth', block:'start'}); }
-  }
-  document.addEventListener('DOMContentLoaded', function(){
-    var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
-    if(!btn){
-      btn = document.createElement('button');
-      btn.id = 'floatingUrgent';
-      btn.type = 'button';
-      btn.textContent = 'Serviço de urgência';
-      document.body.appendChild(btn);
-    }
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      try { if(typeof abrirUrgencia==='function'){ abrirUrgencia(); } } catch(_) {}
-      scrollToFormSection();
-    });
-  });
-})();
 
 // ===== Máscara BR para todos os campos "Telefone" =====
 document.addEventListener("DOMContentLoaded", function () {
@@ -89,47 +26,78 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ===== Validação: mensagens só após tentativa de envio =====
-(function(){
-  var triedSubmit = false;
+// ===== PEDIDO: preencher tipo digitável quando escolhe no select =====
+function preencherTipoServico(valor){
+  var tf = document.getElementById('tipoFinal');
+  if(tf){ tf.value = valor || ''; }
+}
 
-  var required = [
-    { id: 'nome',        msg: 'Informe seu nome.' },
-    { id: 'telefone',    msg: 'Informe um telefone válido.', custom: 'tel' },
-    { id: 'bairro',      msg: 'Informe o bairro.' },
-    { id: 'municipio',   msg: 'Informe o município.' },
-    { id: 'tipoFinal',   msg: 'Selecione ou digite o serviço.' }
+// ===== Abrir formulários =====
+function mostrarFormularioPedido() {
+  var servicoSelecionado = document.getElementById("tipoServico").value;
+  var servicoDigitado = document.getElementById("suporte").value;
+  var tipo = servicoSelecionado || servicoDigitado;
+  if (!tipo) {
+    alert("Por favor, selecione ou digite o serviço.");
+    return;
+  }
+  var box = document.getElementById("formularioPedido");
+  if (box) {
+    box.style.display = "block";
+    var tipoFinal = document.getElementById("tipoFinal");
+    if (tipoFinal) tipoFinal.value = tipo;
+    box.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function abrirUrgencia() {
+  var box = document.getElementById("formUrgencia");
+  if (box) {
+    box.style.display = "block";
+    var tipo = document.getElementById("u-tipo");
+    if (tipo && !tipo.value) tipo.placeholder = "Tipo de serviço (urgência)";
+    box.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+// ===== Validação utilitária =====
+function isTelValid(v){
+  var digits = (v || '').replace(/\D/g, '');
+  return /^\d{10,11}$/.test(digits);
+}
+function setErr(idSuffix, show, text){
+  var el = document.getElementById(idSuffix);
+  if(!el) return;
+  if(show){ el.hidden = false; if(text) el.textContent = text; }
+  else { el.hidden = true; }
+}
+
+// ===== PEDIDO: valida e envia =====
+(function(){
+  var triedPedido = false;
+  var req = [
+    { id: 'nome',      err: 'err-nome',      msg: 'Informe seu nome.' },
+    { id: 'telefone',  err: 'err-telefone',  msg: 'Informe um telefone válido.', custom:'tel' },
+    { id: 'bairro',    err: 'err-bairro',    msg: 'Informe o bairro.' },
+    { id: 'municipio', err: 'err-municipio', msg: 'Informe o município.' },
+    { id: 'tipoFinal', err: 'err-tipo',      msg: 'Selecione ou digite o serviço.' }
   ];
 
-  function isTelValid(v){
-    var digits = (v || '').replace(/\D/g, '');
-    return /^\d{10,11}$/.test(digits);
-  }
-
-  function setErr(id, show, text){
-    var el = document.getElementById('err-' + id);
-    if(!el) return;
-    if(show){ el.hidden = false; if(text) el.textContent = text; }
-    else { el.hidden = true; }
-  }
-
-  function validate(showMessages){
+  function validatePedido(show){
     var ok = true;
-    required.forEach(function(f){
-      var inp = document.getElementById(f.id);
-      if(!inp) return;
-      var val = (inp.value || '').trim();
+    req.forEach(function(f){
+      var el = document.getElementById(f.id);
+      var val = (el && el.value || '').trim();
       var bad = f.custom === 'tel' ? !isTelValid(val) : !val;
-      if(bad){ ok = false; if(showMessages) setErr(f.id, true, f.msg); }
-      else { if(showMessages) setErr(f.id, false); }
+      if(bad){ ok = false; if(show) setErr(f.err, true, f.msg); }
+      else   { if(show) setErr(f.err, false); }
     });
     return ok;
   }
 
-  // Torna global e chamado pelo botão "Enviar via WhatsApp"
-  window.enviarWhatsAppFinal = function (){
-    triedSubmit = true;
-    if(!validate(true)) return;
+  window.enviarWhatsAppPedido = function (){
+    triedPedido = true;
+    if(!validatePedido(true)) return;
 
     var nome = document.getElementById("nome").value.trim();
     var telefone = document.getElementById("telefone").value.trim();
@@ -139,23 +107,96 @@ document.addEventListener("DOMContentLoaded", function () {
     var tipo = document.getElementById("tipoFinal").value.trim();
     var obs = (document.getElementById("observacao")?.value || "").trim();
 
-    var mensagem = `Olá! Gostaria de solicitar um serviço.%0A` +
-                   `Nome: ${nome}%0A` +
-                   `Telefone: ${telefone}%0A` +
-                   `Bairro: ${bairro}%0A` +
-                   `Município: ${municipio}%0A` +
-                   (email ? `E-mail: ${email}%0A` : '') +
-                   `Serviço: ${tipo}%0A` +
-                   (obs ? `Observação: ${obs}` : '');
+    var msg = `Olá! Gostaria de solicitar um serviço.%0A` +
+              `Nome: ${nome}%0A` +
+              `Telefone: ${telefone}%0A` +
+              `Bairro: ${bairro}%0A` +
+              `Município: ${municipio}%0A` +
+              (email ? `E-mail: ${email}%0A` : '') +
+              `Serviço: ${tipo}%0A` +
+              (obs ? `Observação: ${obs}` : '');
 
-    window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
+    window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
   };
 
-  // Após a primeira tentativa, mensagens reagem enquanto o usuário corrige
+  // Após a 1ª tentativa, revalida enquanto corrige
+  document.addEventListener('input', function(){
+    if(!triedPedido) return;
+    validatePedido(true);
+  });
+})();
+
+// ===== URGÊNCIA: valida e envia (form separado) =====
+(function(){
+  var triedUrg = false;
+  var reqU = [
+    { id: 'u-nome',      err: 'u-err-nome',      msg: 'Informe seu nome.' },
+    { id: 'u-telefone',  err: 'u-err-telefone',  msg: 'Informe um telefone válido.', custom:'tel' },
+    { id: 'u-bairro',    err: 'u-err-bairro',    msg: 'Informe o bairro.' },
+    { id: 'u-municipio', err: 'u-err-municipio', msg: 'Informe o município.' },
+    { id: 'u-tipo',      err: 'u-err-tipo',      msg: 'Informe o tipo de serviço.' }
+  ];
+
+  function validateUrg(show){
+    var ok = true;
+    reqU.forEach(function(f){
+      var el = document.getElementById(f.id);
+      var val = (el && el.value || '').trim();
+      var bad = f.custom === 'tel' ? !isTelValid(val) : !val;
+      if(bad){ ok = false; if(show) setErr(f.err, true, f.msg); }
+      else   { if(show) setErr(f.err, false); }
+    });
+    return ok;
+  }
+
+  window.enviarWhatsAppUrgencia = function (){
+    triedUrg = true;
+    if(!validateUrg(true)) return;
+
+    var nome = document.getElementById("u-nome").value.trim();
+    var telefone = document.getElementById("u-telefone").value.trim();
+    var bairro = document.getElementById("u-bairro").value.trim();
+    var municipio = document.getElementById("u-municipio").value.trim();
+    var tipo = document.getElementById("u-tipo").value.trim();
+    var obs = (document.getElementById("u-observacao")?.value || "").trim();
+
+    var msg = `URGÊNCIA - Atendimento imediato%0A` +
+              `Nome: ${nome}%0A` +
+              `Telefone: ${telefone}%0A` +
+              `Bairro: ${bairro}%0A` +
+              `Município: ${municipio}%0A` +
+              `Tipo de serviço: ${tipo}%0A` +
+              (obs ? `Observação: ${obs}` : '');
+
+    window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
+  };
+
+  // Após a 1ª tentativa, revalida enquanto corrige
   document.addEventListener('input', function(e){
-    if(!triedSubmit) return;
-    var id = e.target && e.target.id;
-    if(!id) return;
-    validate(true);
+    if(!triedUrg) return;
+    // revalida só se o usuário estiver mexendo no bloco de urgência
+    var id = e.target && e.target.id || '';
+    if(id.startsWith('u-')) validateUrg(true);
+  });
+})();
+
+// ===== Botão flutuante "Serviço de urgência" (opcional) =====
+(function(){
+  function scrollToEl(el){ if(el && el.scrollIntoView) el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
+    if(!btn){
+      btn = document.createElement('button');
+      btn.id = 'floatingUrgent';
+      btn.type = 'button';
+      btn.textContent = 'Serviço de urgência';
+      btn.style.cssText = 'position:fixed;right:20px;bottom:24px;z-index:2000;background:#d9534f;color:#fff;border:none;padding:12px 18px;border-radius:50px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)';
+      document.body.appendChild(btn);
+    }
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      abrirUrgencia();
+      scrollToEl(document.getElementById('formUrgencia'));
+    });
   });
 })();
