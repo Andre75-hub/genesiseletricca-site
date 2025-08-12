@@ -27,10 +27,10 @@ function mostrarFormulario() {
   }
   document.getElementById("formularioExtra").style.display = "block";
   var tipoFinal = document.getElementById("tipoFinal");
-  if (tipoFinal) tipoFinal.value = tipo; // preenchido mas EDITÁVEL (sem readonly)
+  if (tipoFinal) tipoFinal.value = tipo; // preenchido mas EDITÁVEL
 }
 
-// ===== Abrir urgência =====
+// ===== Abrir urgência: mostra o mesmo formulário final (com validação JS) =====
 function abrirUrgencia() {
   var form = document.getElementById("formularioExtra");
   if (form) {
@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ===== Validação: mensagens só após tentativa de envio; texto sem negrito =====
-document.addEventListener('DOMContentLoaded', function(){
+// ===== Validação: mensagens só após tentativa de envio =====
+(function(){
   var triedSubmit = false;
 
   var required = [
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function(){
     return ok;
   }
 
-  // Enviar via WhatsApp com validação (único ponto que exibe os avisos)
+  // Torna global e chamado pelo botão "Enviar via WhatsApp"
   window.enviarWhatsAppFinal = function (){
     triedSubmit = true;
     if(!validate(true)) return;
@@ -152,14 +152,10 @@ document.addEventListener('DOMContentLoaded', function(){
   };
 
   // Após a primeira tentativa, mensagens reagem enquanto o usuário corrige
-  required.forEach(function(f){
-    var inp = document.getElementById(f.id);
-    if(!inp) return;
-    var handler = function(){
-      if(!triedSubmit) return;
-      validate(true);
-    };
-    inp.addEventListener('input', handler);
-    inp.addEventListener('change', handler);
+  document.addEventListener('input', function(e){
+    if(!triedSubmit) return;
+    var id = e.target && e.target.id;
+    if(!id) return;
+    validate(true);
   });
-});
+})();
