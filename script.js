@@ -1,4 +1,4 @@
-// ===== Corrige link "Blog" do topo =====
+// Link "Blog" do topo vai para o blog
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('a').forEach(function(a){
     if(a.textContent && a.textContent.trim().toLowerCase() === 'blog'){
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-// ===== Máscara BR para todos os campos "Telefone" =====
+// Máscara BR para todos os campos "Telefone"
 document.addEventListener("DOMContentLoaded", function () {
   var inputsTel = Array.from(document.querySelectorAll('input[placeholder*="Telefone" i]'));
   inputsTel.forEach(function(telefoneInput){
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ===== PEDIDO: preencher tipo digitável quando escolhe no select =====
+// Preenche o campo digitável quando escolhe no select (form pedido)
 function preencherTipoServico(valor){
   var tf = document.getElementById('tipoFinal');
   if(tf){ tf.value = valor || ''; }
 }
 
-// ===== Abrir formulários =====
+// Abrir formulários
 function mostrarFormularioPedido() {
   var servicoSelecionado = document.getElementById("tipoServico").value;
   var servicoDigitado = document.getElementById("suporte").value;
@@ -60,21 +60,21 @@ function abrirUrgencia() {
   }
 }
 
-// ===== Validação utilitária =====
+// ===== Utilitários de validação =====
 function isTelValid(v){
   var digits = (v || '').replace(/\D/g, '');
   return /^\d{10,11}$/.test(digits);
 }
-function setErr(idSuffix, show, text){
-  var el = document.getElementById(idSuffix);
+function setErr(id, show, text){
+  var el = document.getElementById(id);
   if(!el) return;
   if(show){ el.hidden = false; if(text) el.textContent = text; }
   else { el.hidden = true; }
 }
 
-// ===== PEDIDO: valida e envia =====
+// ===== PEDIDO =====
 (function(){
-  var triedPedido = false;
+  var tried = false;
   var req = [
     { id: 'nome',      err: 'err-nome',      msg: 'Informe seu nome.' },
     { id: 'telefone',  err: 'err-telefone',  msg: 'Informe um telefone válido.', custom:'tel' },
@@ -83,7 +83,7 @@ function setErr(idSuffix, show, text){
     { id: 'tipoFinal', err: 'err-tipo',      msg: 'Selecione ou digite o serviço.' }
   ];
 
-  function validatePedido(show){
+  function validate(show){
     var ok = true;
     req.forEach(function(f){
       var el = document.getElementById(f.id);
@@ -96,8 +96,8 @@ function setErr(idSuffix, show, text){
   }
 
   window.enviarWhatsAppPedido = function (){
-    triedPedido = true;
-    if(!validatePedido(true)) return;
+    tried = true;
+    if(!validate(true)) return;
 
     var nome = document.getElementById("nome").value.trim();
     var telefone = document.getElementById("telefone").value.trim();
@@ -119,17 +119,16 @@ function setErr(idSuffix, show, text){
     window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
   };
 
-  // Após a 1ª tentativa, revalida enquanto corrige
   document.addEventListener('input', function(){
-    if(!triedPedido) return;
-    validatePedido(true);
+    if(!tried) return;
+    validate(true);
   });
 })();
 
-// ===== URGÊNCIA: valida e envia (form separado) =====
+// ===== URGÊNCIA (form separado) =====
 (function(){
-  var triedUrg = false;
-  var reqU = [
+  var tried = false;
+  var req = [
     { id: 'u-nome',      err: 'u-err-nome',      msg: 'Informe seu nome.' },
     { id: 'u-telefone',  err: 'u-err-telefone',  msg: 'Informe um telefone válido.', custom:'tel' },
     { id: 'u-bairro',    err: 'u-err-bairro',    msg: 'Informe o bairro.' },
@@ -137,9 +136,9 @@ function setErr(idSuffix, show, text){
     { id: 'u-tipo',      err: 'u-err-tipo',      msg: 'Informe o tipo de serviço.' }
   ];
 
-  function validateUrg(show){
+  function validate(show){
     var ok = true;
-    reqU.forEach(function(f){
+    req.forEach(function(f){
       var el = document.getElementById(f.id);
       var val = (el && el.value || '').trim();
       var bad = f.custom === 'tel' ? !isTelValid(val) : !val;
@@ -150,8 +149,8 @@ function setErr(idSuffix, show, text){
   }
 
   window.enviarWhatsAppUrgencia = function (){
-    triedUrg = true;
-    if(!validateUrg(true)) return;
+    tried = true;
+    if(!validate(true)) return;
 
     var nome = document.getElementById("u-nome").value.trim();
     var telefone = document.getElementById("u-telefone").value.trim();
@@ -171,32 +170,9 @@ function setErr(idSuffix, show, text){
     window.open(`https://wa.me/5531975002129?text=${msg}`, '_blank');
   };
 
-  // Após a 1ª tentativa, revalida enquanto corrige
   document.addEventListener('input', function(e){
-    if(!triedUrg) return;
-    // revalida só se o usuário estiver mexendo no bloco de urgência
+    if(!tried) return;
     var id = e.target && e.target.id || '';
-    if(id.startsWith('u-')) validateUrg(true);
-  });
-})();
-
-// ===== Botão flutuante "Serviço de urgência" (opcional) =====
-(function(){
-  function scrollToEl(el){ if(el && el.scrollIntoView) el.scrollIntoView({behavior:'smooth', block:'start'}); }
-  document.addEventListener('DOMContentLoaded', function(){
-    var btn = document.getElementById('floatingUrgent') || document.querySelector('.floating-urgent');
-    if(!btn){
-      btn = document.createElement('button');
-      btn.id = 'floatingUrgent';
-      btn.type = 'button';
-      btn.textContent = 'Serviço de urgência';
-      btn.style.cssText = 'position:fixed;right:20px;bottom:24px;z-index:2000;background:#d9534f;color:#fff;border:none;padding:12px 18px;border-radius:50px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)';
-      document.body.appendChild(btn);
-    }
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      abrirUrgencia();
-      scrollToEl(document.getElementById('formUrgencia'));
-    });
+    if(id.startsWith('u-')) validate(true);
   });
 })();
