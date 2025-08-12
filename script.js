@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function(){
     return ok;
   }
 
-  // Enviar via WhatsApp com validação
+  // Enviar via WhatsApp com validação (único ponto que exibe os avisos)
   window.enviarWhatsAppFinal = function (){
     triedSubmit = true;
     if(!validate(true)) return;
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function(){
     window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
   };
 
-  // Após a primeira tentativa, mensagens reagem enquanto o usuário corrige
+  // Após a primeira tentativa, atualiza mensagens conforme o usuário corrige
   required.forEach(function(f){
     var inp = document.getElementById(f.id);
     if(!inp) return;
