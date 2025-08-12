@@ -28,20 +28,20 @@
 </head>
 <body>
 
-  <!-- Cabeçalho -->
-  <header>
-    <img src="/icone-ge.png" alt="Ícone Gênesis Elétrica"/>
+  <!-- Cabeçalho (azul, logo à esquerda) -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="/icone-ge.png" alt="Ícone Gênesis Elétrica" class="header-logo"/>
+      <nav class="main-nav" aria-label="Menu principal">
+        <a href="#">Blog</a>
+        <a href="#formulario">Serviços</a>
+        <a href="#quemsomos">Empresa</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#blog">Postagem</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
   </header>
-
-  <!-- Navegação -->
-  <nav>
-    <a href="#">Blog</a>
-    <a href="#formulario">Serviços</a>
-    <a href="#quemsomos">Empresa</a>
-    <a href="#localizacao">Localização</a>
-    <a href="#blog">Postagem</a>
-    <a href="#contato">Contato</a>
-  </nav>
 
   <!-- HERO (fechada antes do Quem Somos) -->
   <section class="hero">
@@ -52,7 +52,7 @@
   <!-- QUEM SOMOS -->
   <section class="section-title" id="quemsomos">QUEM SOMOS</section>
 
-  <!-- Texto + formulário curto (já existente) -->
+  <!-- Texto + formulário curto (mantido) -->
   <section class="form-section" id="formulario" style="background-color:#fff; text-align:center; padding:30px 20px;">
     <p style="max-width:900px; margin:0 auto; font-size:1.1em; line-height:1.6;">
       A <strong>Gênesis Elétrica</strong> atua com excelência e comprometimento no setor de instalações elétricas.
@@ -74,7 +74,7 @@
 
   <!-- Seleção de serviço -->
   <section class="form-section" id="servico">
-    <p>Qual serviço de elétrico está precisando?</p>
+    <p><strong>QUAL SERVIÇO ELÉTRICO ESTA PRECISANDO?<strong></p>
     <select id="tipoServico" onchange="preencherTipoServico(this.value)">
       <option value="">Selecione uma opção</option>
       <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
@@ -82,6 +82,7 @@
       <option value="Inversores de frequência">Inversores de frequência</option>
       <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">Instalação e manutenção em contator, relé térmico, temporizador e falta de fase</option>
       <option value="Elétrica industrial (Outros)">Elétrica industrial (Outros)</option>
+      <option value="Painéis de comando">Painel solar</option>
       <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
       <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
       <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
@@ -117,13 +118,13 @@
 
     <button class="btn-enviar" type="button" onclick="mostrarFormulario()">Enviar pedido</button>
 
-    <!-- Destaque e clicável em vermelho -->
+    <!-- Urgência: vermelho e clicável -->
     <div id="botaoUrgencia">
       <img src="alerta.jpg" alt="Serviço de urgência"/>
       <button class="btn-urgencia" type="button" onclick="abrirUrgencia()">Serviço de urgência</button>
     </div>
 
-    <!-- Formulário final (AGORA com Bairro e Município separados + mensagens abaixo) -->
+    <!-- Formulário final -->
     <div id="formularioExtra" style="display:none; margin-top:20px;">
       <div class="field">
         <input id="nome" type="text" placeholder="Seu nome" required>
@@ -194,12 +195,12 @@
 
   <!-- Localização -->
   <section class="highlight-section" id="localizacao">
-    Serviços elétricos em Contagem e região metropolitana - atendimento 24h - elétrica residencial, comercial e industrial.
+    Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
   </section>
 
   <!-- Blog (mantido) -->
   <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
-    <h2 style="text-align:center; margin:0 0 16px;">Fique por dentro - Blog Gênesis Elétrica</h2>
+    <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Blog Gênesis Elétrica</h2>
     <div class="blog-cards">
       <article class="post-card">
         <a class="post-media" href="/blog/disjuntor.html" target="_blank" rel="noopener">
@@ -233,7 +234,7 @@
     </div>
   </section>
 
-  <!-- Rodapé (centralizado) -->
+  <!-- Rodapé (AZUL do blog) | logo à esquerda, contatos centralizados -->
   <footer id="contato" class="site-footer">
     <div class="section-inner">
       <div class="footer-top">
