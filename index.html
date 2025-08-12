@@ -118,6 +118,7 @@
 <meta content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial" name="keywords"/>
 <meta content="Gênesis Elétrica" name="author"/>
 <style>
+
 /* HERO responsive fix */
 .hero img, .hero-image, img[alt*="QDC"] {
   width: 100%;
@@ -126,8 +127,10 @@
   object-position: center;
   display: block;
 }
+
 </style>
 <style>
+
 /* BLOG CARDS + HOVER */
 .blog-cards-wrap { background:#eef3f7; }
 .blog-cards {
@@ -181,6 +184,7 @@ a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:ho
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0,0,0,.12);
 }
+
 </style>
 
 <!-- === PATCH SEGURO: Cabeçalho e Menu (somente CSS; não altera o HTML) === -->
@@ -209,8 +213,8 @@ nav a:hover{
     max-height: 150px;
   }
   nav{
-    justify-content: center;  /* CENTRALIZADO */
-    gap: 60px;                 /* ~50% a mais de espaço */
+    justify-content: center;  /* <<< voltou a ficar CENTRALIZADO */
+    gap: 60px;                 /* mantém ~50% a mais de espaço */
     padding: 12px 5%;
   }
 }
@@ -230,22 +234,6 @@ nav a:hover{
 }
 </style>
 <!-- === FIM PATCH === -->
-
-<!-- CSS das mensagens de erro do formulário -->
-<style>
-/* Tarjetinha pequena de alerta acima do campo */
-.erro-mini{
-  position: relative;
-  display: block;
-  margin: -4px 0 6px 0;
-  color: #fff;
-  background: #d9534f;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  width: max-content;
-}
-</style>
 
 </head>
 <body>
@@ -572,8 +560,6 @@ Contagem/MG, CEP: 32280-620
     © Gênesis Elétrica. Todos os direitos reservados.
    </p>
 </footer>
-
-<!-- scripts existentes do site (mantidos) -->
 <script>
    function enviarWhatsApp() {
       const servico = document.getElementById('servico').value;
@@ -581,7 +567,7 @@ Contagem/MG, CEP: 32280-620
       const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
       window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
     }
-</script>
+  </script>
 <script>
    function mostrarFormulario() {
   let servicoSelecionado = document.getElementById("tipoServico").value;
@@ -613,6 +599,8 @@ function enviarWhatsAppFinal() {
 
   window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
 }
+  </script>
+<script>
 </script>
 <script>
    function abrirUrgencia() {
@@ -627,7 +615,7 @@ function enviarWhatsAppFinal() {
     }
   }
 }
-</script>
+  </script>
 <script>
    document.addEventListener("DOMContentLoaded", function () {
   const telefoneInput = document.getElementById("telefone");
@@ -644,7 +632,8 @@ function enviarWhatsAppFinal() {
     e.target.value = formatado;
   });
 });
-</script>
+  </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var links = document.querySelectorAll('a');
@@ -657,6 +646,8 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
+
+
 <script>
 (function(){
   function findFormSection(){
@@ -687,108 +678,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 })();
 </script>
-
-<!-- === BLOCO NOVO: máscara BR + validação dos obrigatórios + envio corrigido === -->
-<script>
-(function(){
-  // remove mensagens de erro anteriores
-  function clearErrors(root){
-    (root || document).querySelectorAll('.erro-mini').forEach(function(el){ el.remove(); });
-  }
-  // mostra tarjetinha acima do input
-  function showError(inputEl, msg){
-    if(!inputEl) return;
-    var badge = document.createElement('div');
-    badge.className = 'erro-mini';
-    badge.textContent = msg || 'Campo de preenchimento obrigatório';
-    inputEl.parentNode.insertBefore(badge, inputEl);
-  }
-  // bairro + município: pelo menos 2 palavras
-  function hasTwoWords(text){
-    if(!text) return false;
-    var parts = text.trim().split(/\s+/).filter(Boolean);
-    return parts.length >= 2;
-  }
-
-  // MÁSCARA de telefone (aplica em TODOS os elementos com id="telefone")
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('#telefone').forEach(function(tel){
-      tel.addEventListener('input', function(e){
-        var v = e.target.value.replace(/\D/g,'');
-        if(v.length > 11) v = v.slice(0,11);
-        var out = '';
-        if(v.length>0) out += '(' + v.substring(0,2);
-        if(v.length>=3) out += ') ' + v.substring(2,7);
-        if(v.length>=8) out += '-' + v.substring(7,11);
-        else if(v.length>7) out += v.substring(7);
-        e.target.value = out;
-      });
-    });
-  });
-
-  // Sobrescreve a função de envio com validação completa
-  window.enviarWhatsAppFinal = function(){
-    var formRoot = document.getElementById('formularioExtra') || document;
-    clearErrors(formRoot);
-
-    var nome  = document.getElementById('nome');
-    var tels  = document.querySelectorAll('#telefone'); // pode existir mais de um no DOM
-    var tel   = tels.length ? (Array.from(tels).find(function(el){ return el.closest('#formularioExtra'); }) || tels[0]) : null;
-    var email = document.getElementById('email');
-    var local = document.getElementById('localizacaoUsuario'); // id correto
-    var tipo  = document.getElementById('tipoFinal');
-    var obs   = document.getElementById('observacao');
-
-    var ok = true;
-
-    if(!nome || !nome.value.trim()){
-      showError(nome, 'Campo de preenchimento obrigatório');
-      ok = false;
-    }
-
-    var telVal = (tel && tel.value || '').trim();
-    if(!/^\(\d{2}\) \d{5}-\d{4}$/.test(telVal)){
-      showError(tel || (tels[0] || null), 'Informe o telefone no formato (XX) XXXXX-XXXX');
-      ok = false;
-    }
-
-    var emailVal = (email && email.value || '').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){
-      showError(email, 'Informe um e-mail válido');
-      ok = false;
-    }
-
-    var locVal = (local && local.value || '').trim();
-    if(!hasTwoWords(locVal)){
-      showError(local, 'Informe bairro e cidade (ex.: Riacho Contagem)');
-      ok = false;
-    }
-
-    if(!tipo || !tipo.value.trim()){
-      showError(tipo, 'Campo de preenchimento obrigatório');
-      ok = false;
-    }
-
-    if(!ok){
-      var first = formRoot.querySelector('.erro-mini');
-      if(first && first.scrollIntoView){ first.scrollIntoView({behavior:'smooth', block:'center'}); }
-      return; // bloqueia envio
-    }
-
-    var msg =
-      'Olá! Gostaria de solicitar um serviço.%0A' +
-      'Nome: ' + (nome.value||'') + '%0A' +
-      'Telefone: ' + telVal + '%0A' +
-      'E-mail: ' + emailVal + '%0A' +
-      'Localização: ' + locVal + '%0A' +
-      'Serviço: ' + (tipo.value||'') + '%0A' +
-      'Observação: ' + ((obs && obs.value) ? obs.value : '');
-
-    window.open('https://wa.me/5531975002129?text=' + msg, '_blank');
-  };
-})();
-</script>
-<!-- === FIM BLOCO NOVO === -->
 
 </body>
 </html>
