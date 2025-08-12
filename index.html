@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Gênesis Elétrica | Serviços elétricos em Contagem e Região Metropolitana</title>
 
 <!-- Google tag (gtag.js) -->
@@ -16,10 +16,7 @@
 
 <style>
   body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
-  header {
-    background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%);
-    padding: 45px 0; text-align: center;
-  }
+  header { background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%); padding: 45px 0; text-align: center; }
   header img { max-height: 150px; filter: drop-shadow(0 0 10px rgba(255,255,255,.1)); }
   nav { background:#bfa04d; display:flex; justify-content:center; padding:10px 0; gap:40px; }
   nav a { color:#000; text-decoration:none; font-weight:bold; }
@@ -58,9 +55,9 @@
   input:invalid { border:2px solid red; }
 </style>
 
-<meta name="description" content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência."/>
-<meta name="keywords" content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial"/>
-<meta name="author" content="Gênesis Elétrica"/>
+<meta name="description" content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência.">
+<meta name="keywords" content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial">
+<meta name="author" content="Gênesis Elétrica">
 
 <style>
 /* HERO responsive fix */
@@ -74,15 +71,8 @@
 <style>
 /* BLOG CARDS + HOVER */
 .blog-cards-wrap { background:#eef3f7; }
-.blog-cards {
-  max-width:1100px; margin:0 auto;
-  display:grid; grid-template-columns:repeat(2, minmax(260px,1fr)); gap:18px;
-}
-.post-card {
-  background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.1);
-  overflow:hidden; display:flex; flex-direction:column;
-  transition:transform .2s ease, box-shadow .2s ease;
-}
+.blog-cards { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(2, minmax(260px,1fr)); gap:18px; }
+.post-card { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.1); overflow:hidden; display:flex; flex-direction:column; transition:transform .2s ease, box-shadow .2s ease; }
 .post-card:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.15); }
 .post-media { display:block; }
 .post-media img { width:100%; height:190px; object-fit:cover; display:block; }
@@ -98,12 +88,8 @@
 a, button, .btn, .urgent, .main-nav a, footer a { transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
 a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:hover { filter:brightness(0.97); transform:translateY(-1px); }
 /* Service cards hover */
-.services-grid > *, .service-box, .services-grid .service, .card, .grade-servicos .item {
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.services-grid > *:hover, .service-box:hover, .services-grid .service:hover, .card:hover, .grade-servicos .item:hover {
-  transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,.12);
-}
+.services-grid > *, .service-box, .services-grid .service, .card, .grade-servicos .item { transition:transform .2s ease, box-shadow .2s ease; }
+.services-grid > *:hover, .service-box:hover, .services-grid .service:hover, .card:hover, .grade-servicos .item:hover { transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,.12); }
 </style>
 
 <!-- PATCH SEGURO: Cabeçalho e Menu (somente CSS) -->
@@ -122,21 +108,26 @@ nav a:hover{ background:rgba(0,0,0,.08); }
 </style>
 <!-- FIM PATCH -->
 
-<!-- *** NOVO: mensagens de erro discretas (abaixo do campo) *** -->
+<!-- *** ERROS DISCRETOS (texto abaixo do campo) *** -->
 <style>
-/* Esconde qualquer estilo antigo de tarjetinha */
+/* Desliga qualquer “tarjetinha” antiga */
 .erro-mini{ display:none !important; }
-/* Mensagem pequena em vermelho logo abaixo do campo */
+/* Mensagem simples, SEM fundo, e centralizada com mesma largura dos inputs */
 .erro{
-  color: #d00;
-  font-size: 12px;
-  margin-top: 4px;
-  margin-bottom: 6px;
-  display: block;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #d00 !important;
+  font-size: 12px !important;
+  display: block !important;
+  margin: 4px auto 6px !important;
+  width: 80% !important;          /* igual aos inputs do formulário */
+  max-width: 400px !important;     /* igual ao limite dos inputs */
+  text-align: left !important;     /* texto alinhado ao início do campo */
 }
 </style>
-
 </head>
+
 <body>
 <header>
   <img src="ÍCONE GENESIS ELETRICA.png" alt="Ícone Gênesis Elétrica"/>
@@ -291,17 +282,17 @@ nav a:hover{ background:rgba(0,0,0,.08); }
       </a>
       <div class="post-body">
         <h3 class="post-title"><a href="/blog/disjuntor.html" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a></h3>
-        <p class="post-excerpt">A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas.</p>
+        <p class="post-excerpt">A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna...</p>
         <a class="post-readmore" href="/blog/disjuntor.html" target="_blank" rel="noopener">Leia mais</a>
       </div>
     </article>
     <article class="post-card">
       <a class="post-media" href="/blog/idr.html" target="_blank" rel="noopener">
-        <img loading="lazy" src="/blog/imagens/idr-painel-eletrico.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual" onerror="this.style.display='none'"/>
+        <img loading="lazy" src="/blog/imagens/idr-painel-eletrico.jpg" alt="IDR..." onerror="this.style.display='none'"/>
       </a>
       <div class="post-body">
-        <h3 class="post-title"><a href="/blog/idr.html" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a></h3>
-        <p class="post-excerpt">A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual (IDR). Este equipamento protege pessoas contra choques elétricos e ajuda a prevenir incêndios causados por fugas de corrente.</p>
+        <h3 class="post-title"><a href="/blog/idr.html" target="_blank" rel="noopener">IDR: o que é e para que serve...</a></h3>
+        <p class="post-excerpt">A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança em instalações elétricas...</p>
         <a class="post-readmore" href="/blog/idr.html" target="_blank" rel="noopener">Leia mais</a>
       </div>
     </article>
@@ -322,11 +313,11 @@ Contagem/MG, CEP: 32280-620
   <p>© Gênesis Elétrica. Todos os direitos reservados.</p>
 </footer>
 
-<!-- scripts já existentes -->
+<!-- scripts existentes -->
 <script>
 function enviarWhatsApp(){
-  const servico = document.getElementById('servico').value;
-  const descricao = document.getElementById('descricao').value;
+  const servico = document.getElementById('servico')?.value || '';
+  const descricao = document.getElementById('descricao')?.value || '';
   const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
   window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
 }
@@ -348,12 +339,8 @@ function enviarWhatsAppFinal(){
   let tipo = document.getElementById("tipoFinal").value;
   let obs = document.getElementById("observacao").value;
   let mensagem = `Olá! Gostaria de solicitar um serviço.%0A`+
-                 `Nome: ${nome}%0A`+
-                 `Telefone: ${telefone}%0A`+
-                 `E-mail: ${email}%0A`+
-                 `Localização: ${local}%0A`+
-                 `Serviço: ${tipo}%0A`+
-                 `Observação: ${obs}`;
+                 `Nome: ${nome}%0A`+`Telefone: ${telefone}%0A`+`E-mail: ${email}%0A`+
+                 `Localização: ${local}%0A`+`Serviço: ${tipo}%0A`+`Observação: ${obs}`;
   window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
 }
 </script>
@@ -371,28 +358,29 @@ function abrirUrgencia(){
   }
 }
 </script>
+
+<!-- MÁSCARA DE TELEFONE (todos ids #telefone) -->
 <script>
-// máscara do telefone (todos IDs "telefone")
 document.addEventListener("DOMContentLoaded", function(){
   document.querySelectorAll('#telefone').forEach(function(telefoneInput){
     telefoneInput.addEventListener("input", function(e){
-      let value = e.target.value.replace(/\D/g, "");
-      if(value.length > 11) value = value.slice(0, 11);
-      let formatado = "";
-      if(value.length > 0) formatado += "(" + value.substring(0, 2);
-      if(value.length >= 3) formatado += ") " + value.substring(2, 7);
-      if(value.length >= 8) formatado += "-" + value.substring(7, 11);
-      else if(value.length > 7) formatado += value.substring(7);
-      e.target.value = formatado;
+      let v = e.target.value.replace(/\D/g,'');
+      if(v.length > 11) v = v.slice(0,11);
+      let out = '';
+      if(v.length>0) out += '(' + v.substring(0,2);
+      if(v.length>=3) out += ') ' + v.substring(2,7);
+      if(v.length>=8) out += '-' + v.substring(7,11);
+      else if(v.length>7) out += v.substring(7);
+      e.target.value = out;
     });
   });
 });
 </script>
+
+<!-- BLOG link -->
 <script>
-// link do Blog
 document.addEventListener('DOMContentLoaded', function(){
-  var links = document.querySelectorAll('a');
-  links.forEach(function(a){
+  document.querySelectorAll('a').forEach(function(a){
     if(a.textContent && a.textContent.trim().toLowerCase() === 'blog'){
       a.href = 'https://genesiseletricca.com.br/blog/';
       a.target = '_blank';
@@ -401,8 +389,9 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
+
+<!-- Botão flutuante + scroll até o formulário -->
 <script>
-// botão flutuante urgência + scroll até o formulário
 (function(){
   function findFormSection(){
     return document.getElementById('formulario') ||
@@ -433,23 +422,28 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
-<!-- *** NOVO: Validação com mensagens discretas abaixo do campo *** -->
+<!-- VALIDAÇÃO COM MENSAGENS POSICIONADAS LOGO ABAIXO DO CAMPO -->
 <script>
 (function(){
-  // remove mensagens antigas (.erro e .erro-mini)
+  // limpa mensagens antigas
   function clearErrors(root){
     (root || document).querySelectorAll('.erro, .erro-mini').forEach(function(el){ el.remove(); });
   }
-  // cria <small class="erro"> depois do input/textarea
-  function showError(inputEl, msg){
+  // insere <small class="erro"> imediatamente ANTES do <br> seguinte (se houver)
+  function showErrorBelow(inputEl, msg){
     if(!inputEl) return;
     var small = document.createElement('small');
     small.className = 'erro';
     small.textContent = msg || 'Campo de preenchimento obrigatório';
-    if(inputEl.nextSibling){
-      inputEl.parentNode.insertBefore(small, inputEl.nextSibling);
+
+    var parent = inputEl.parentNode;
+    var ref = inputEl.nextSibling;
+    // pula nós de texto e procura o primeiro <br> após o input
+    while(ref && ref.nodeType === 3){ ref = ref.nextSibling; }
+    if(ref && ref.tagName === 'BR'){
+      parent.insertBefore(small, ref); // fica imediatamente abaixo do campo, antes do <br>
     }else{
-      inputEl.parentNode.appendChild(small);
+      parent.insertBefore(small, inputEl.nextSibling);
     }
   }
   function hasTwoWords(text){
@@ -473,28 +467,28 @@ document.addEventListener('DOMContentLoaded', function(){
 
     var ok = true;
 
-    if(!nome || !nome.value.trim()){ showError(nome, 'Campo de preenchimento obrigatório'); ok = false; }
+    if(!nome || !nome.value.trim()){ showErrorBelow(nome, 'Campo de preenchimento obrigatório'); ok = false; }
 
     var telVal = (tel && tel.value || '').trim();
     if(!/^\(\d{2}\) \d{5}-\d{4}$/.test(telVal)){
-      showError(tel || (tels[0] || null), 'Informe o telefone no formato (XX) XXXXX-XXXX');
+      showErrorBelow(tel || (tels[0] || null), 'Informe o telefone no formato (XX) XXXXX-XXXX');
       ok = false;
     }
 
     var emailVal = (email && email.value || '').trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){
-      showError(email, 'Informe um e-mail válido');
+      showErrorBelow(email, 'Informe um e-mail válido');
       ok = false;
     }
 
     var locVal = (local && local.value || '').trim();
     if(!hasTwoWords(locVal)){
-      showError(local, 'Informe bairro e cidade (ex.: Riacho Contagem)');
+      showErrorBelow(local, 'Informe bairro e cidade (ex.: Riacho Contagem)');
       ok = false;
     }
 
     if(!tipo || !tipo.value.trim()){
-      showError(tipo, 'Campo de preenchimento obrigatório');
+      showErrorBelow(tipo, 'Campo de preenchimento obrigatório');
       ok = false;
     }
 
@@ -516,7 +510,6 @@ document.addEventListener('DOMContentLoaded', function(){
   };
 })();
 </script>
-<!-- FIM NOVO -->
 
 </body>
 </html>
