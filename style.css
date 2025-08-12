@@ -1,98 +1,140 @@
-/* ===================== */
-/*  Reset e base         */
-/* ===================== */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
+/* ===== Base e correções de deslocamento ===== */
+html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
 
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #222; background: #fff; }
-img, svg, video { max-width: 100%; height: auto; display: block; }
-
-.section { padding: 48px 0; }
-.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
-
-/* Evita que grids/rows criem scroll lateral */
-[class*="row"], [class*="grid"], [class*="section"] { overflow-x: clip; }
-
-/* ===================== */
-/*  Header e navegação   */
-/* ===================== */
-.site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: #fff; border-bottom: 1px solid #eee;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; padding: 10px 16px;
-}
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo img { height: 40px; width: auto; }
-.site-name { font-weight: 700; font-size: 1rem; white-space: nowrap; }
-
-.main-nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-.main-nav a { text-decoration: none; color: #0a2e6e; font-weight: 600; }
-.main-nav a:hover { text-decoration: underline; }
-
-/* ===================== */
-/*  Hero                 */
-/* ===================== */
-.hero-title {
-  position: relative; /* garante que não está absoluto */
-  margin: 16px 0 24px;
-  line-height: 1.25;
+body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; color: #333; }
+header {
+  background: linear-gradient(to right, #000 0%, #1a1a1a 50%, #000 100%);
+  padding: 45px 0;
   text-align: center;
-  font-size: 1.75rem;
 }
+header img {
+  max-height: 150px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+nav { background-color: #bfa04d; display: flex; justify-content: center; padding: 10px 0; gap: 40px; }
+nav a { color: #000; text-decoration: none; font-weight: bold; }
 
-/* ===================== */
-/*  Serviços / Lista     */
-/* ===================== */
-.lista-servicos { padding-left: 18px; }
-.lista-servicos li { margin: 6px 0; }
+.hero { position: relative; text-align: center; }
+.hero img { width: 100%; height: auto; }
+.hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.6); color: #fff; padding: 30px; font-size: 2.25em; }
 
-/* ===================== */
-/*  Formulários          */
-/* ===================== */
-form { max-width: 720px; margin: 24px auto 0; }
-.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-label { font-weight: 600; }
-input, select, textarea {
+.section-title { background-color: #222; color: #fff; text-align: center; padding: 15px; font-size: 1.3em; }
+.service-search { text-align: center; padding: 20px; background-color: #f4f4f4; }
+
+.services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+.service-box { width: 250px; background: #fff; border: 1px solid #ccc; border-radius: 8px; text-align: center; padding: 15px; }
+.service-box img { width: 100%; height: 160px; object-fit: cover; border-radius: 5px; }
+.service-box h3 { margin: 10px 0; color: #bfa04d; }
+
+.highlight-section { background-color: #ffe58a; padding: 30px; text-align: center; font-size: 1.8em; font-weight: bold; }
+
+.blog-section { background-color: #4a5c6a; padding: 60px 20px; text-align: center; font-size: 2.4em; font-weight: bold; }
+.blog-section a { color: #fff; text-decoration: none; }
+
+footer { background-color: #000; color: #fff; padding: 20px; text-align: center; }
+footer img { max-height: 40px; }
+footer a { color: #fff; text-decoration: none; margin: 0 10px; }
+
+.form-section { text-align: center; padding: 20px; }
+.form-section select, .form-section input[type=text], .form-section button {
+  margin-top: 10px; padding: 10px; width: 80%; max-width: 400px; font-size: 1em;
+}
+.form-section button { background-color: #bfa04d; border: none; cursor: pointer; color: #000; font-weight: bold; }
+
+/* ===== HERO responsive fix ===== */
+.hero img, .hero-image, img[alt*="QDC"] {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc; border-radius: 6px;
-  font-size: 1rem;
+  height: clamp(260px, 42vw, 520px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
-.input-error { font-size: 0.875rem; color: #cc0000; margin-top: 2px; }
 
-.form-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
-.btn { display: inline-block; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; text-decoration: none; text-align: center; }
-.btn.primario { background: #0a2e6e; color: #fff; }
-.btn.primario:hover { filter: brightness(1.05); }
-.btn.secundario { background: #eee; color: #111; }
-
-/* ===================== */
-/*  Rodapé               */
-/* ===================== */
-.site-footer { background: #0a2e6e; color: #fff; margin-top: 48px; }
-.site-footer .section-inner { padding-top: 24px; padding-bottom: 24px; }
-.footer-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.footer-logo { height: 48px; width: auto; }
-.footer-contacts { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-contacts a { color: #fff; text-decoration: none; }
-.footer-contacts a:hover { text-decoration: underline; }
-.footer-bottom { margin-top: 12px; text-align: center; opacity: .9; }
-
-/* ===================== */
-/*  Acessibilidade       */
-/* ===================== */
-#quem-somos { scroll-margin-top: 90px; }
-
-/* ===================== */
-/*  Responsivo           */
-/* ===================== */
-@media (max-width: 768px) {
-  .hero-title { font-size: 1.25rem; margin-top: 8px; }
-  .section { padding: 32px 0; }
-  .main-nav ul { gap: 12px; flex-wrap: wrap; }
+/* ===== BLOG CARDS + HOVER ===== */
+.blog-cards-wrap { background:#eef3f7; }
+.blog-cards {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 18px;
 }
+.post-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+.post-media { display:block; }
+.post-media img { width: 100%; height: 190px; object-fit: cover; display:block; }
+.post-body { padding: 16px; }
+.post-title { margin: 0 0 8px; font-size: 1.05rem; line-height: 1.3; }
+.post-title a { color: #1a66d0; text-decoration: none; }
+.post-title a:hover { text-decoration: underline; }
+.post-excerpt { color: #333; margin: 0 0 8px; line-height: 1.5; }
+.post-readmore { color: #1a66d0; text-decoration: none; font-weight: 600; }
+.post-readmore:hover { text-decoration: underline; }
+
+/* Hover universal */
+a, button, .btn, .urgent, .main-nav a, footer a {
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+a:hover, button:hover, .btn:hover, .urgent:hover, .main-nav a:hover, footer a:hover {
+  filter: brightness(0.97);
+  transform: translateY(-1px);
+}
+/* Service cards hover */
+.services-grid > *, .service-box, .services-grid .service, .card, .grade-servicos .item {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.services-grid > *:hover, .service-box:hover, .services-grid .service:hover, .card:hover, .grade-servicos .item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+/* Cabeçalho/Menu (somente CSS; não altera HTML) */
+nav a { padding: 10px 18px; border-radius: 6px; transition: background .2s ease, color .2s ease; }
+nav a:hover { background: rgba(0,0,0,.08); }
+
+@media (min-width: 769px){
+  header{
+    display: flex; align-items: center; justify-content: flex-start;
+    text-align: left; padding: 45px 5%;
+  }
+  header img{ margin: 0; max-height: 150px; }
+  nav{ justify-content: center; gap: 60px; padding: 12px 5%; }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  nav {
+    flex-wrap: nowrap; justify-content: space-around; gap: 10px; padding: 8px; overflow-x: auto;
+  }
+  nav a { font-size: 0.85em; white-space: nowrap; padding: 4px 8px; }
+  .hero-text { font-size: 1em; padding: 10px; top: 40%; transform: translate(-50%, -40%); }
+  .highlight-section { font-size: 1.1em; padding: 20px; }
+  .blog-section { font-size: 1.3em; padding: 30px 15px; }
+  .services-grid { flex-direction: column; align-items: center; }
+  .service-box { width: 90%; }
+  .form-section input[type="text"], .form-section select, .form-section button { width: 95%; }
+  .section-title { font-size: 1.1em; padding: 10px; }
+  footer img { max-height: 70px !important; }
+}
+
+/* ===== Remoção da “grade vermelha” agressiva ===== */
+input:invalid { border: 1px solid #ccc; }
+
+/* ===== Botão de urgência centralizado (sem translateX) ===== */
+#botaoUrgencia {
+  display: flex; align-items: center; justify-content: center; flex-direction: row;
+  gap: 10px; margin-top: 30px; margin-bottom: 20px;
+}
+#botaoUrgencia img { width: 58.5px; height: auto; margin-right: 15px; }
+
+/* ===== Rodapé: contatos centralizados (mantendo visual) ===== */
+.footer-contatos { text-align: center; }
