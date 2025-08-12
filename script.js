@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ===== Validação com mensagens abaixo (apenas após tentativa de envio) =====
+// ===== Validação: mensagens só após tentativa de envio; texto sem negrito =====
 document.addEventListener('DOMContentLoaded', function(){
   var triedSubmit = false;
 
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function(){
     return ok;
   }
 
-  // Mostrar mensagens somente após tentativa de envio
+  // Enviar via WhatsApp com validação
   window.enviarWhatsAppFinal = function (){
     triedSubmit = true;
     if(!validate(true)) return;
@@ -145,12 +145,12 @@ document.addEventListener('DOMContentLoaded', function(){
     window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
   };
 
-  // Após a primeira tentativa, atualiza mensagens conforme o usuário corrige
+  // Após a primeira tentativa, mensagens reagem enquanto o usuário corrige
   required.forEach(function(f){
     var inp = document.getElementById(f.id);
     if(!inp) return;
     var handler = function(){
-      if(!triedSubmit) return; // não exibe antes da tentativa
+      if(!triedSubmit) return;
       validate(true);
     };
     inp.addEventListener('input', handler);
