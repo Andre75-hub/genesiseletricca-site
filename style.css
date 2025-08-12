@@ -1,212 +1,98 @@
-/*
- * Folha de estilo para o site Gênesis Elétrica.
- * Define um layout simples com cores inspiradas na marca original
- * (tons escuros e dourado), estiliza o formulário de solicitação e
- * garante que os campos obrigatórios sejam sinalizados com um único
- * asterisco vermelho através do seletor ::after. Mensagens de erro
- * aparecem apenas quando necessário.
- */
-
-/* Reset básico e tipografia */
+/* ===================== */
+/*  Reset e base         */
+/* ===================== */
 html, body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
-    color: #333;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
+*, *::before, *::after { box-sizing: inherit; }
 
-/* Cabeçalho */
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #222; background: #fff; }
+img, svg, video { max-width: 100%; height: auto; display: block; }
+
+.section { padding: 48px 0; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+/* Evita que grids/rows criem scroll lateral */
+[class*="row"], [class*="grid"], [class*="section"] { overflow-x: clip; }
+
+/* ===================== */
+/*  Header e navegação   */
+/* ===================== */
 .site-header {
-    background-color: #000; /* preto */
-    color: #f4c15d;         /* dourado claro */
-    text-align: center;
-    padding: 20px 0;
+  position: sticky; top: 0; z-index: 100;
+  background: #fff; border-bottom: 1px solid #eee;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 10px 16px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 40px; width: auto; }
+.site-name { font-weight: 700; font-size: 1rem; white-space: nowrap; }
+
+.main-nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+.main-nav a { text-decoration: none; color: #0a2e6e; font-weight: 600; }
+.main-nav a:hover { text-decoration: underline; }
+
+/* ===================== */
+/*  Hero                 */
+/* ===================== */
+.hero-title {
+  position: relative; /* garante que não está absoluto */
+  margin: 16px 0 24px;
+  line-height: 1.25;
+  text-align: center;
+  font-size: 1.75rem;
 }
 
-.site-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
+/* ===================== */
+/*  Serviços / Lista     */
+/* ===================== */
+.lista-servicos { padding-left: 18px; }
+.lista-servicos li { margin: 6px 0; }
 
-.tagline {
-    margin: 5px 0 15px;
-    font-style: italic;
-    font-size: 0.95rem;
+/* ===================== */
+/*  Formulários          */
+/* ===================== */
+form { max-width: 720px; margin: 24px auto 0; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+label { font-weight: 600; }
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc; border-radius: 6px;
+  font-size: 1rem;
 }
+.input-error { font-size: 0.875rem; color: #cc0000; margin-top: 2px; }
 
-.main-nav a {
-    margin: 0 10px;
-    color: #f4c15d;
-    text-decoration: none;
-    font-weight: bold;
-}
+.form-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.btn { display: inline-block; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; text-decoration: none; text-align: center; }
+.btn.primario { background: #0a2e6e; color: #fff; }
+.btn.primario:hover { filter: brightness(1.05); }
+.btn.secundario { background: #eee; color: #111; }
 
-.main-nav a:hover {
-    text-decoration: underline;
-}
+/* ===================== */
+/*  Rodapé               */
+/* ===================== */
+.site-footer { background: #0a2e6e; color: #fff; margin-top: 48px; }
+.site-footer .section-inner { padding-top: 24px; padding-bottom: 24px; }
+.footer-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-logo { height: 48px; width: auto; }
+.footer-contacts { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-contacts a { color: #fff; text-decoration: none; }
+.footer-contacts a:hover { text-decoration: underline; }
+.footer-bottom { margin-top: 12px; text-align: center; opacity: .9; }
 
-/* Seção hero */
-.hero-section {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #fafafa;
-}
+/* ===================== */
+/*  Acessibilidade       */
+/* ===================== */
+#quem-somos { scroll-margin-top: 90px; }
 
-.hero-section h2 {
-    margin-bottom: 10px;
+/* ===================== */
+/*  Responsivo           */
+/* ===================== */
+@media (max-width: 768px) {
+  .hero-title { font-size: 1.25rem; margin-top: 8px; }
+  .section { padding: 32px 0; }
+  .main-nav ul { gap: 12px; flex-wrap: wrap; }
 }
-
-.primary {
-    background-color: #b6943f;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.primary:hover {
-    background-color: #997c35;
-}
-
-.urgent {
-    background-color: #d9534f; /* vermelho */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-left: 10px;
-}
-
-.urgent:hover {
-    background-color: #c9302c;
-}
-
-/* Seção de formulário */
-.form-section {
-    padding: 40px 20px;
-    background-color: #fff;
-}
-
-.service-selector {
-    margin-bottom: 20px;
-}
-
-.service-selector label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-.service-selector select,
-.service-selector input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.buttons {
-    margin-bottom: 20px;
-}
-
-.form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    background-color: #fdfdfd;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.form-group {
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: bold;
-}
-
-/* Asterisco vermelho apenas para campos obrigatórios */
-.form-group label.required::after {
-    content: " *";
-    color: #d9534f;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-/* Estilo para campos inválidos */
-.form-group input.invalid,
-.form-group textarea.invalid {
-    border-color: #d9534f;
-}
-
-.error-message {
-    color: #d9534f;
-    font-size: 0.8rem;
-    margin-top: 4px;
-    min-height: 14px;
-}
-
-/* Botão flutuante para urgência */
-.floating-urgent {
-    position: fixed;
-    right: 20px;
-    bottom: 30px;
-    background-color: #d9534f;
-    color: #fff;
-    border: none;
-    padding: 12px 18px;
-    font-size: 0.9rem;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-}
-
-.floating-urgent:hover {
-    background-color: #c9302c;
-}
-
-/* Rodapé */
-.site-footer {
-    background-color: #000;
-    color: #f4c15d;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 0.85rem;
-}
-
-/* --- Hover improvements (cirúrgico, sem quebrar layout) --- */
-a.btn:hover, .btn:hover,
-button:hover, .urgent:hover,
-.main-nav a:hover, footer a:hover {
-  filter: brightness(0.95);
-  transform: translateY(-1px);
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-}
-.service-box { transition: transform .2s ease, box-shadow .2s ease; }
-.service-box:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
