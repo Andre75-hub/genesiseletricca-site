@@ -1,4 +1,4 @@
-// ===== BLOG link do topo abre o blog correto =====
+// ===== Link "Blog" do topo aponta para o blog =====
 document.addEventListener('DOMContentLoaded', function(){
   var links = document.querySelectorAll('a');
   links.forEach(function(a){
@@ -37,7 +37,7 @@ function abrirUrgencia() {
   }
 }
 
-// ===== Botão flutuante "Serviço de urgência" (restaurado) =====
+// ===== Botão flutuante "Serviço de urgência" =====
 (function(){
   function findFormSection(){
     return document.getElementById('formulario') ||
@@ -83,8 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ===== Validação com mensagens abaixo (sem borda vermelha) =====
+// ===== Validação com mensagens abaixo (apenas após tentativa de envio) =====
 document.addEventListener('DOMContentLoaded', function(){
+  var triedSubmit = false;
+
   var required = [
     { id: 'nome',        msg: 'Informe seu nome.' },
     { id: 'telefone',    msg: 'Informe um telefone válido.', custom: 'tel' },
@@ -105,29 +107,23 @@ document.addEventListener('DOMContentLoaded', function(){
     else { el.hidden = true; }
   }
 
-  required.forEach(function(f){
-    var inp = document.getElementById(f.id);
-    if(!inp) return;
-    var handler = function(){
-      var val = (inp.value || '').trim();
-      if(f.custom === 'tel'){ setErr(f.id, !isTelValid(val), f.msg); }
-      else { setErr(f.id, !val, f.msg); }
-    };
-    inp.addEventListener('input', handler);
-    inp.addEventListener('change', handler);
-  });
-
-  // Envio via WhatsApp com validação dos campos
-  window.enviarWhatsAppFinal = function (){
+  function validate(showMessages){
     var ok = true;
     required.forEach(function(f){
       var inp = document.getElementById(f.id);
       if(!inp) return;
       var val = (inp.value || '').trim();
-      if(f.custom === 'tel'){ if(!isTelValid(val)) ok = false, setErr(f.id, true, f.msg); else setErr(f.id, false); }
-      else { if(!val) ok = false, setErr(f.id, true, f.msg); else setErr(f.id, false); }
+      var bad = f.custom === 'tel' ? !isTelValid(val) : !val;
+      if(bad){ ok = false; if(showMessages) setErr(f.id, true, f.msg); }
+      else { if(showMessages) setErr(f.id, false); }
     });
-    if(!ok) return;
+    return ok;
+  }
+
+  // Mostrar mensagens somente após tentativa de envio
+  window.enviarWhatsAppFinal = function (){
+    triedSubmit = true;
+    if(!validate(true)) return;
 
     var nome = document.getElementById("nome").value.trim();
     var telefone = document.getElementById("telefone").value.trim();
@@ -148,12 +144,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
     window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
   };
-});
 
-// ===== (Opcional) Enviar orçamento simples (mantido) =====
-function enviarWhatsApp() {
-  var servico = document.getElementById('servico')?.value || '';
-  var descricao = document.getElementById('descricao')?.value || '';
-  var mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${servico}. ${descricao}`);
-  window.open(`https://wa.me/5531975002129?text=${mensagem}`, '_blank');
-}
+  // Após a primeira tentativa, atualiza mensagens conforme o usuário corrige
+  required.forEach(function(f){
+    var inp = document.getElementById(f.id);
+    if(!inp) return;
+    var handler = function(){
+      if(!triedSubmit) return; // não exibe antes da tentativa
+      validate(true);
+    };
+    inp.addEventListener('input', handler);
+    inp.addEventListener('change', handler);
+  });
+});
