@@ -12,9 +12,7 @@ body{font-family:Arial, sans-serif;line-height:1.6;background-color:#f4f4f4;colo
 .menu-bar a:hover{opacity:.9}
 
 /* Barra autor/data */
-.meta-bar{background:#f7f7f7;border-bottom:1px solid #e5e5e5}
-.meta-bar{max-width:100%;padding:8px 0}
-.meta-bar{font-size:.95rem;color:#555;text-align:center}
+.meta-bar{background:#f7f7f7;border-bottom:1px solid #e5e5e5;max-width:100%;padding:8px 0;font-size:.95rem;color:#555;text-align:center}
 
 /* Post Hero / Meta */
 .post-hero{height:300px;display:flex;justify-content:center;align-items:flex-end;text-align:center;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,.7);padding:20px;background-size:cover;background-position:center;background-repeat:no-repeat;position:relative;box-shadow:0 4px 8px rgba(0,0,0,.2)}
