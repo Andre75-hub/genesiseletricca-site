@@ -12,7 +12,7 @@ const POSTS = [
     slug: "disjuntor.html",
     title: "Disjuntores: Fundamentos e Aplicações",
     excerpt:
-      "O disjuntor é peça-chave na proteção contra curtos e sobrecargas. Veja princípios de funcionamento, curvas B/C/D, capacidade de interrupção e critérios de dimensionamento...",
+      "O disjuntor é peça-chave na proteção contra curtos e sobrecargas. Veja princípios, curvas B/C/D e critérios de dimensionamento...",
     heroClass: "disjuntor-card",
     keywords: ["disjuntor","fundamentos","proteção","quadro","instalação"],
   },
@@ -20,7 +20,7 @@ const POSTS = [
     slug: "idr.html",
     title: "IDR: o que é e para que serve o Interruptor Diferencial Residual",
     excerpt:
-      "Proteção de pessoas e prevenção de incêndios: como o IDR detecta fuga de corrente, onde é obrigatório pela NBR 5410 e boas práticas de instalação...",
+      "Proteção de pessoas e prevenção de incêndios: como o IDR detecta fuga de corrente e onde é obrigatório pela NBR 5410...",
     heroClass: "idr-card",
     keywords: ["idr","diferencial","residual","choque","proteção"],
   },
