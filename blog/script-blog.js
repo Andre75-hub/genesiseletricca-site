@@ -1,4 +1,4 @@
-/* script-blog.js — Home + Busca (sem referência a 'quedaenergia') */
+/* script-blog.js — Home + Busca */
 
 /* Utils */
 function getQueryParam(name){
@@ -104,11 +104,20 @@ function initSidebarSearch(){
   });
 }
 
+/* >>> AJUSTE: limpar o campo de busca ao voltar para a home <<< */
+function resetSearchOnHome(){
+  const isHome = !!document.querySelector('.post-hero.main-page-hero');
+  if(!isHome) return;
+  const input = document.getElementById('search-input-sidebar');
+  if(input){ input.value = ''; }
+}
+
 /* Init */
 document.addEventListener("DOMContentLoaded", function(){
   try{
     initSidebarSearch();
     initSearchResultsPage();
+    resetSearchOnHome(); // <— mantém a home com o campo limpo/atualizado
   }catch(err){
     console.error("script-blog.js error:", err);
   }
