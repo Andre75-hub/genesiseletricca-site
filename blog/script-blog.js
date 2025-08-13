@@ -1,115 +1,125 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Lista de posts para a busca
-    const posts = [
-        {
-            title: "Disjuntor: Fundamentos e aplicações",
-            summary: "A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas. Este artigo apresenta uma análise técnica abrangente sobre disjuntores, explorando seus princípios de funcionamento, classificações e melhores práticas...",
-            url: "disjuntor.html",
-            keywords: ["disjuntor", "proteção", "elétrica", "curto-circuito", "sobrecarga", "NBR 5410", "segurança", "disjuntores", "circuito"]
-        },
-        {
-            title: "IDR: O que é e para que serve o Interruptor Diferencial Residual",
-            summary: "A Gênesis Elétrica, empresa especializada em instalações elétricas de baixa tensão, aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual, popularmente conhecido como IDR. Este equipamento, muitas vezes subestimado, desempenha um papel vital na proteção de pessoas contra choques elétricos e na prevenção de incêndios causados por fugas de corrente...",
-            url: "idr.html",
-            keywords: ["idr", "interruptor", "diferencial", "residual", "fuga de corrente", "choque elétrico", "segurança", "eletricidade"]
-        },
-        {
-            title: "Compreendendo as interrupções no fornecimento de energia durante períodos chuvosos:",
-            summary: "A interrupção do fornecimento de energia elétrica durante períodos chuvosos é um desafio constante que afeta a vida urbana e rural, impactando diretamente residências, comércios e o complexo entramado industrial. Embora a queda de energia seja uma experiência comum, os mecanismos subjacentes a essas falhas são de uma complexidade notável,englobando desde fenômenos naturais...",
-            url: "idr.html",
-            keywords: ["idr", "interruptor", "diferencial", "residual", "fuga de corrente", "choque elétrico", "segurança", "eletricidade"]
-        }
-    ];
+/* script-blog.js
+   - Mantém a busca funcionando (home → search-results)
+   - Renderiza cards na página de resultados
+   - Não depende de elementos que não existam (checagens seguras)
+   - Nenhuma referência a 'quedaenergia'
+*/
 
-    // Lógica para o formulário de busca
-    const searchForm = document.getElementById('search-form');
-    if (searchForm) {
-        searchForm.addEventListener('submit', (event) => {
-            // A submissão do formulário já fará a redireção para search-results.html com a query
-        });
+// Util: obter parâmetro de consulta
+function getQueryParam(name) {
+  if (typeof window === "undefined") return "";
+  const params = new URLSearchParams(window.location.search);
+  return (params.get(name) || "").trim();
+}
+
+// Dados dos posts (somente os dois existentes)
+const POSTS = [
+  {
+    slug: "disjuntor.html",
+    title: "Disjuntor: Fundamentos e aplicações",
+    excerpt:
+      "A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores...",
+    heroClass: "disjuntor-card",
+    keywords: ["disjuntor", "fundamentos", "proteção", "quadro", "instalação"],
+  },
+  {
+    slug: "idr.html",
+    title: "IDR: O que é e para que serve o Interruptor Diferencial Residual",
+    excerpt:
+      "A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança: o IDR. Proteção de pessoas e prevenção de incêndios causados por fugas de corrente...",
+    heroClass: "idr-card",
+    keywords: ["idr", "diferencial", "residual", "choque", "proteção"],
+  },
+];
+
+// Filtra posts por termo
+function filterPosts(query) {
+  if (!query) return POSTS;
+  const q = query.toLowerCase();
+  return POSTS.filter(
+    (p) =>
+      p.title.toLowerCase().includes(q) ||
+      p.excerpt.toLowerCase().includes(q) ||
+      p.keywords.some((k) => k.toLowerCase().includes(q))
+  );
+}
+
+// Renderiza cards no container informado
+function renderCards(container, posts) {
+  if (!container) return;
+  container.innerHTML = "";
+  posts.forEach((p) => {
+    const a = document.createElement("a");
+    a.className = "post-card-link";
+    a.href = p.slug;
+
+    const article = document.createElement("article");
+    article.className = "post-card";
+
+    const imgDiv = document.createElement("div");
+    imgDiv.className = `post-card-image ${p.heroClass}`;
+
+    const content = document.createElement("div");
+    content.className = "post-card-content";
+
+    const h3 = document.createElement("h3");
+    h3.textContent = p.title;
+
+    const pEl = document.createElement("p");
+    pEl.innerHTML = `${p.excerpt} <span>Leia mais</span>`;
+
+    content.appendChild(h3);
+    content.appendChild(pEl);
+    article.appendChild(imgDiv);
+    article.appendChild(content);
+    a.appendChild(article);
+    container.appendChild(a);
+  });
+}
+
+// Inicialização da página de resultados
+function initSearchResultsPage() {
+  const titleSpan = document.querySelector("#search-results-title span");
+  const container = document.getElementById("search-results-container");
+  if (!titleSpan || !container) return; // não é a página de resultados
+
+  const q = getQueryParam("query");
+  titleSpan.textContent = q || "—";
+
+  const posts = filterPosts(q);
+  renderCards(container, posts);
+
+  if (!posts.length) {
+    const msg = document.createElement("div");
+    msg.className = "no-results-message";
+    msg.textContent = "Nenhum resultado encontrado.";
+    container.parentElement.insertBefore(msg, container);
+  }
+}
+
+// Inicializa a busca da sidebar (home e resultados)
+function initSidebarSearch() {
+  const form = document.getElementById("search-form");
+  const input = document.getElementById("search-input-sidebar");
+  if (!form || !input) return;
+
+  form.addEventListener("submit", function (e) {
+    // comporta-se como submit normal (action já aponta para search-results.html)
+    // mas garantimos que o valor não vem em branco por algum autocomplete esquisito
+    if (!input.value.trim()) {
+      e.preventDefault();
+      input.focus();
     }
+  });
+}
 
-    // Lógica para a página de resultados da busca
-    const searchResultsContainer = document.getElementById('search-results-container');
-    const searchResultsTitle = document.getElementById('search-results-title');
-
-    if (searchResultsContainer && searchResultsTitle) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const query = urlParams.get('query');
-
-        if (query) {
-            searchResultsTitle.innerHTML = `Resultados da busca por: <span>${query}</span>`;
-            const normalizedQuery = query.toLowerCase().trim();
-            const results = posts.filter(post => {
-                const titleMatch = post.title.toLowerCase().includes(normalizedQuery);
-                const summaryMatch = post.summary.toLowerCase().includes(normalizedQuery);
-                const keywordMatch = post.keywords.some(keyword => keyword.toLowerCase().includes(normalizedQuery));
-                return titleMatch || summaryMatch || keywordMatch;
-            });
-
-            if (results.length > 0) {
-                results.forEach(post => {
-                    const postCard = document.createElement('a');
-                    postCard.href = post.url;
-                    postCard.classList.add('post-card-link');
-                    postCard.innerHTML = `
-                        <article class="post-card">
-                            <div class="post-card-image ${post.url.replace('.html', '-card')}"></div>
-                            <div class="post-card-content">
-                                <h3>${post.title}</h3>
-                                <p>${post.summary} <span>Leia mais</span></p>
-                            </div>
-                        </article>
-                    `;
-                    searchResultsContainer.appendChild(postCard);
-                });
-            } else {
-                const noResultsMessage = document.createElement('p');
-                noResultsMessage.textContent = "Nenhum assunto encontrado.";
-                noResultsMessage.classList.add('no-results-message');
-                searchResultsContainer.appendChild(noResultsMessage);
-            }
-        }
-    }
+// DOM ready
+document.addEventListener("DOMContentLoaded", function () {
+  try {
+    initSidebarSearch();
+    initSearchResultsPage();
+  } catch (err) {
+    // evita quebrar a página se algo inesperado ocorrer
+    console.error("script-blog.js error:", err);
+  }
 });
-
-// Outras funções do blog, como o compartilhamento, podem ser adicionadas aqui
-// Exemplo:
-function sharePost(platform) {
-    const postUrl = window.location.href;
-    const postTitle = document.title;
-    
-    let shareUrl = '';
-    switch(platform) {
-        case 'facebook':
-            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
-            break;
-        case 'twitter':
-            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postTitle)}&url=${encodeURIComponent(postUrl)}`;
-            break;
-        case 'whatsapp':
-            shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(postTitle + ' ' + postUrl)}`;
-            break;
-    }
-
-    if (shareUrl) {
-        window.open(shareUrl, '_blank');
-    }
-}
-
-function copyLink() {
-    const el = document.createElement('textarea');
-    el.value = window.location.href;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-
-    const copyBtn = document.querySelector('.social-btn.copy'); 
-    if (copyBtn) {
-        copyBtn.classList.add('copied');
-        setTimeout(() => {
-            copyBtn.classList.remove('copied');
-        }, 2000);
-    }
-}
