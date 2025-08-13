@@ -78,6 +78,12 @@ body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff;
 .footer-contacts a:hover { text-decoration:underline; }
 .footer-bottom { text-align:center; margin-top:12px; opacity:.9; }
 .footer-bottom small { font-weight:400; }
+.footer-address {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 0 0 16px 0;
+  font-weight: 400;
+}
 
 /* ===== Mobile ===== */
 @media (max-width: 768px){
