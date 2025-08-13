@@ -2,22 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <!-- Base fixa para resolver corretamente todos os caminhos relativos -->
-  <base href="/blog/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gênesis Elétrica | Resultados da Busca</title>
-
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
-  <link rel="apple-touch-icon" href="imagens/logo-cobre-eletrica.png">
 
-  <!-- CSS/JS do blog -->
   <link rel="stylesheet" href="style-blog.css">
   <script src="script-blog.js" defer></script>
 </head>
 <body>
-  <!-- Cabeçalho -->
   <header class="header-white">
     <div class="header-container">
       <img class="logo-cobre" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis Elétrica">
@@ -25,29 +17,25 @@
     </div>
   </header>
 
-  <!-- Menu -->
   <nav class="menu-bar">
     <a href="https://genesiseletricca.com.br" target="_blank" rel="noopener">Site</a>
-    <a href="/blog/index.html#sobre">Quem Somos</a>
+    <a href="index.html#sobre">Quem Somos</a>
     <a href="#contato">Contato</a>
     <a href="#contato">Siga-nos</a>
   </nav>
 
-  <!-- Hero da busca -->
   <div class="post-hero search-hero">
     <div class="post-meta">
       <h1 id="search-results-title">Resultados da busca por: <span></span></h1>
     </div>
   </div>
 
-  <!-- Resultados + Sidebar -->
   <section class="content-wrapper">
     <main class="main-posts">
       <div id="search-results-container" class="post-previews"></div>
     </main>
 
     <aside class="sidebar">
-      <!-- Busca lateral -->
       <form id="search-form" class="search-box" action="search-results.html" method="GET">
         <input type="text" id="search-input-sidebar" name="query" placeholder="Buscar no blog..." required>
         <button id="search-button-sidebar" type="submit" aria-label="Botão de busca">
@@ -55,7 +43,6 @@
         </button>
       </form>
 
-      <!-- Últimos Posts (apenas os dois existentes) -->
       <div class="recent-posts">
         <h3>Últimos Posts</h3>
         <ul>
@@ -66,7 +53,6 @@
     </aside>
   </section>
 
-  <!-- Rodapé -->
   <footer class="footer-vertical" id="contato">
     <img class="footer-logo" src="imagens/logo-genesis-eletricista.png" alt="Logo Gênesis Elétrica">
     <p>
