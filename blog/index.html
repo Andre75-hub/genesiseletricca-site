@@ -11,7 +11,7 @@
   <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
   <link rel="apple-touch-icon" href="imagens/logo-cobre-eletrica.png">
 
-  <!-- jsPDF para gerar PDFs -->
+  <!-- jsPDF (mantido para PDF das calculadoras) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <!-- CSS e JS do blog -->
@@ -43,6 +43,7 @@
   <section class="content-wrapper">
     <main class="main-posts">
       <div class="post-previews">
+        <!-- Card: Disjuntor -->
         <a href="disjuntor.html" class="post-card-link">
           <article class="post-card">
             <div class="post-card-image disjuntor-card"></div>
@@ -53,6 +54,7 @@
           </article>
         </a>
 
+        <!-- Card: IDR -->
         <a href="idr.html" class="post-card-link">
           <article class="post-card">
             <div class="post-card-image idr-card"></div>
@@ -62,18 +64,9 @@
             </div>
           </article>
         </a>
-
-        <a href="quedaenergia.html" class="post-card-link">
-          <article class="post-card">
-            <div class="post-card-image quedaenergia-card"></div>
-            <div class="post-card-content">
-              <h3>Compreendendo as interrupções no fornecimento de energia durante períodos chuvosos</h3>
-              <p>Por que a energia costuma cair quando chove? Entenda causas, proteção da instalação e dos equipamentos... <span>Leia mais</span></p>
-            </div>
-          </article>
-        </a>
       </div>
 
+      <!-- Quem Somos -->
       <section class="about-section" id="sobre">
         <div class="about-header">
           <img class="logo-genesis" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis"/>
@@ -85,6 +78,7 @@
     </main>
 
     <aside class="sidebar">
+      <!-- Busca -->
       <form id="search-form" class="search-box" action="search-results.html" method="GET">
         <input type="text" id="search-input-sidebar" name="query" placeholder="Buscar no blog..." required/>
         <button id="search-button-sidebar" type="submit" aria-label="Botão de busca">
@@ -92,16 +86,16 @@
         </button>
       </form>
 
+      <!-- Últimos Posts -->
       <div class="recent-posts">
         <h3>Últimos Posts</h3>
         <ul>
           <li><a href="disjuntor.html">Disjuntor: fundamentos e aplicações</a></li>
           <li><a href="idr.html">IDR: o que é e para que serve</a></li>
-          <li><a href="quedaenergia.html">Interrupções em períodos chuvosos</a></li>
         </ul>
       </div>
 
-      <!-- Calculadoras e Quiz (seus interativos) -->
+      <!-- INTERATIVOS (calculadoras + quiz) -->
       <div class="sidebar-interactive">
         <h3 class="interactive-title">Calculadoras Elétricas</h3>
 
@@ -111,6 +105,7 @@
             <button class="tab-button" data-tab="cabo">Cabos</button>
           </div>
 
+          <!-- Consumo -->
           <div id="calc-consumo" class="calc-content active">
             <h4 style="margin-bottom:10px;font-size:1em;">Consumo de Energia</h4>
             <div class="sidebar-calc-row">
@@ -128,6 +123,7 @@
             <div id="consumo-result" class="sidebar-calc-result" style="display:none;"></div>
           </div>
 
+          <!-- Cabos -->
           <div id="calc-cabo" class="calc-content">
             <h4 style="margin-bottom:10px;font-size:1em;">Dimensionamento</h4>
             <div class="sidebar-calc-row">
@@ -157,6 +153,7 @@
         </div>
       </div>
 
+      <!-- Quiz -->
       <div class="sidebar-interactive">
         <h3 class="interactive-title">Quiz NBR 5410</h3>
         <div class="sidebar-alert warning">⚠️ <strong>IMPORTANTE:</strong> Este quiz é educativo. Para trabalhos elétricos, sempre contrate profissionais qualificados!</div>
@@ -198,7 +195,7 @@
     <p class="footer-copy">© 2025 Gênesis Elétrica - Todos os direitos reservados</p>
   </footer>
 
-  <!-- JS dos interativos -->
+  <!-- Interativos -->
   <script src="interativos.js?v=3" defer></script>
 </body>
 </html>
