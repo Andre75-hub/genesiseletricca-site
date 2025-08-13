@@ -3,70 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gênesis Elétrica | Blog</title>
-
-  <!-- Favicon (na subpasta imagens) -->
+  <title>Gênesis Elétrica | Clube do Eletricista</title>
   <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
 
-  <!-- CSS e JS (mesmo diretório /blog) -->
-  <link rel="stylesheet" href="style-blog.css?v=2025-08-12"/>
+  <!-- jsPDF para gerar PDFs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- CSS e JS existentes -->
+  <link rel="stylesheet" href="style-blog.css"/>
   <script src="script-blog.js" defer></script>
 
   <style>
-    /* pequenos ajustes para o herói da home e cards em 2 colunas */
-    .header-white{background:#fff;border-bottom:1px solid #ddd}
-    .header-container{display:flex;align-items:center;gap:14px;padding:14px 20px}
-    .logo-cobre{height:60px}
-    .brand-title{font-size:22px;font-weight:800;color:#333;letter-spacing:.2px}
+    /* Estilos para elementos interativos na sidebar */
+    .sidebar-interactive{background:#fff;border-radius:8px;padding:20px;margin-bottom:20px;box-shadow:0 2px 5px rgba(0,0,0,.06)}
+    .sidebar-calculator{background:linear-gradient(135deg,#0a66c2 0%,#084d91 100%);color:#fff;border-radius:10px;padding:15px;margin:15px 0}
+    .sidebar-quiz{background:#f6f8fa;color:#0f172a;border-radius:10px;padding:15px;margin:15px 0;border:1px solid #e5e7eb}
+    .sidebar-calc-row{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+    .sidebar-calc-input,.sidebar-calc-select{padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:.92em;width:100%;background:#fff}
+    .sidebar-calc-button{background:#334155;color:#fff;border:none;padding:9px 14px;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em;transition:.2s; margin:0}
+    .sidebar-calc-button:hover{transform:translateY(-1px);background:#1f2937}
+    .sidebar-calc-button.pdf{background:#b91c1c}
+    .sidebar-calc-button.pdf:hover{background:#991b1b}
+    .sidebar-calc-actions{display:flex;gap:8px;align-items:center;margin:8px 0 0}
+    .sidebar-calc-result{background:#fff;border:1px dashed #e5e7eb;border-radius:10px;padding:14px;margin-top:12px}
+    .sidebar-result-highlight{font-size:1.05em;font-weight:700;color:#0ea5e9;margin-bottom:6px}
+    .sidebar-quiz-question{font-size:1em;margin-bottom:12px;font-weight:600;background:#eef6ff;padding:10px;border-radius:8px;color:#0f172a}
+    .sidebar-quiz-options{display:grid;gap:8px;margin-bottom:12px}
+    .sidebar-quiz-option{background:#fff;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;cursor:pointer;transition:.2s;color:#0f172a;font-weight:500;display:flex;justify-content:space-between;align-items:center;font-size:.9em}
+    .sidebar-quiz-option:hover:not(.answered){background:#f8fafc;transform:translateX(2px)}
+    .sidebar-quiz-option.correct{border:1px solid #16a34a;background:#f0fdf4}
+    .sidebar-quiz-option.incorrect{border:1px solid #dc2626;background:#fef2f2}
+    .sidebar-quiz-option.show-correct{border:1px solid #16a34a;background:#f0fdf4}
+    .status-icon{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10px}
+    .status-icon.correct{background:#16a34a;color:#fff}
+    .status-icon.incorrect{background:#dc2626;color:#fff}
+    .sidebar-next-button{background:#0ea5e9;color:#fff;border:none;padding:9px 14px;border-radius:12px;cursor:pointer;font-weight:700;font-size:.9em;display:none;margin-top:6px}
+    .sidebar-next-button:hover{background:#0284c7}
+    .sidebar-quiz-progress{background:#eef6ff;border-radius:8px;padding:8px;margin-bottom:12px;text-align:center;color:#0f172a;font-size:.9em}
+    .sidebar-quiz-score{background:#eef6ff;border-radius:10px;padding:14px;text-align:center;margin-top:12px;color:#0f172a;border:1px solid #dde9fb}
+    .sidebar-score-details{font-size:.95em;margin:8px 0}
+    .sidebar-score-bar{background:#dbeafe;border-radius:8px;height:12px;margin:8px 0;overflow:hidden}
+    .sidebar-score-fill{height:100%;transition:width .8s ease;border-radius:8px;background:#0ea5e9}
+    .sidebar-alert{padding:10px;border-radius:8px;margin:10px 0;font-weight:600;font-size:.85em}
+    .sidebar-alert.warning{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
+    .interactive-title{color:#0a66c2;font-size:1.05em;font-weight:800;margin-bottom:12px;text-align:center}
 
-    .menu-bar{background:#004AAD;display:flex;gap:32px;justify-content:center;padding:12px}
-    .menu-bar a{color:#fff;font-weight:700}
-    .menu-bar a:hover{opacity:.85}
+    .calculator-tabs{display:flex;margin-bottom:12px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.25)}
+    .tab-button{flex:1;padding:10px 6px;background:rgba(255,255,255,.12);border:none;color:#fff;cursor:pointer;font-size:.8em;font-weight:800;letter-spacing:.4px}
+    .tab-button.active{background:rgba(255,255,255,.22)}
+    .calc-content{display:none}
+    .calc-content.active{display:block}
 
-    .post-hero.main-page-hero{
-      background:#eef4ff url('imagens/QDC%20principal.jpg') center/cover no-repeat;
-      min-height:180px;display:flex;align-items:flex-end;justify-content:center;
-      padding:28px 16px;border-bottom:1px solid #e5e7eb
-    }
-    .post-hero .post-meta{
-      background:rgba(0,0,0,.55);color:#fff;padding:12px 18px;border-radius:6px;text-align:center
-    }
-    .post-hero h1{font-size:22px;margin-bottom:6px}
-    .post-hero p{font-size:14px}
+    /* Botões icônicos minimalistas */
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid #e5e7eb;background:#fff;cursor:pointer;transition:.2s}
+    .icon-btn:hover{background:#f8fafc;transform:translateY(-1px)}
+    .icon-btn svg{width:18px;height:18px;stroke:#0f172a}
+    .reaction-wrap{display:flex;gap:8px;align-items:center}
+    .reaction-count{font-size:.9em;color:#475569;min-width:14px;text-align:center}
 
-    .content-wrapper{max-width:1200px;margin:28px auto;display:flex;gap:28px;padding:0 16px}
-    .main-posts{flex:1 1 70%}
-    .sidebar{flex:1 1 30%}
-
-    /* grid 2 colunas p/ cards */
-    .post-previews{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:20px;
-    }
-    @media(max-width:840px){
-      .content-wrapper{flex-direction:column}
-      .post-previews{grid-template-columns:1fr}
-    }
-
-    .post-card-link{display:block}
-    .post-card{background:#f4f4f4;border-radius:6px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.1);transition:transform .3s ease}
-    .post-card:hover{transform:translateY(-4px)}
-    .post-card img{display:block;width:100%;height:auto}
-    .post-card .tag-bar{background:#004AAD;color:#fff;font-size:12px;padding:6px 10px;text-align:center}
-    .post-card h3{font-size:18px;margin:12px 12px 6px;color:#004AAD;transition:opacity .2s}
-    .post-card:hover h3{opacity:.9}
-    .post-card p{font-size:14px;margin:0 12px 12px;color:#333}
-    .post-card p span{color:#004AAD;font-weight:700}
-
-    /* “Quem somos” lado a lado com a sidebar, como solicitado */
-    .about-section{margin-top:28px;background:#f9f9f9;border-radius:6px;padding:16px}
-    .about-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-    .logo-genesis{height:48px}
+    @media (max-width:768px){.sidebar-interactive{margin-bottom:15px}}
   </style>
 </head>
 <body>
-  <!-- Cabeçalho branco -->
   <header class="header-white">
     <div class="header-container">
       <img class="logo-cobre" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis Elétrica"/>
@@ -74,116 +72,200 @@
     </div>
   </header>
 
-  <!-- Menu azul -->
   <nav class="menu-bar">
-    <a href="https://genesiseletricca.com.br" target="_blank" rel="noopener">Site</a>
+    <a href="https://genesiseletricca.com.br">Site</a>
     <a href="#sobre">Quem Somos</a>
     <a href="#contato">Contato</a>
     <a href="#contato">Siga-nos</a>
   </nav>
 
-  <!-- Hero da home -->
   <div class="post-hero main-page-hero">
     <div class="post-meta">
-      <h1>Clube do Eletricista</h1>
+      <h1>Clube do eletricista</h1>
       <p>Tudo sobre elétrica, inovações e dicas de instalação</p>
     </div>
   </div>
 
   <section class="content-wrapper">
-    <!-- Coluna principal (70%) -->
     <main class="main-posts">
-      <!-- Cards em 2 colunas -->
       <div class="post-previews">
-
-        <!-- Post: Quedas de energia (novo) -->
-        <a href="quedaenergia.html" class="post-card-link">
-          <article class="post-card">
-            <img src="imagens/chuva-sem-energia.jpg" alt="Interrupções de energia em períodos chuvosos">
-            <div class="tag-bar">Por Gênesis Elétrica • 16/05/2025 • Categoria: Distribuição</div>
-            <h3>Compreendendo as interrupções no fornecimento de energia durante períodos chuvosos</h3>
-            <p>Por que a energia costuma cair quando chove? Entenda os mecanismos físicos, falhas mais comuns em redes aéreas e como a manutenção e a poda preventiva reduzem ocorrências… <span>Leia mais</span></p>
-          </article>
-        </a>
-
-        <!-- Post: Disjuntor -->
         <a href="disjuntor.html" class="post-card-link">
           <article class="post-card">
-            <img src="imagens/disjuntor.jpg" alt="Disjuntores: fundamentos e aplicações">
-            <div class="tag-bar">Por Gênesis Elétrica • 31/07/2025 • Categoria: Proteção</div>
-            <h3>Disjuntores: Fundamentos e Aplicações</h3>
-            <p>O disjuntor é peça-chave na proteção contra curtos e sobrecargas. Veja princípios de funcionamento, curvas B/C/D, capacidade de interrupção e critérios de dimensionamento… <span>Leia mais</span></p>
+            <div class="post-card-image disjuntor-card"></div>
+            <div class="post-card-content">
+              <h3>Disjuntor: Fundamentos e aplicações</h3>
+              <p>A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas. Este artigo apresenta uma análise técnica abrangente sobre disjuntores, explorando seus princípios de funcionamento, classificações e melhores práticas... <span>Leia mais</span></p>
+            </div>
           </article>
         </a>
-
-        <!-- Post: IDR -->
         <a href="idr.html" class="post-card-link">
           <article class="post-card">
-            <img src="imagens/idr.jpg" alt="IDR: Interruptor Diferencial Residual">
-            <div class="tag-bar">Por Gênesis Elétrica • 31/07/2025 • Categoria: Segurança</div>
-            <h3>IDR: O que é e para que serve o Interruptor Diferencial Residual</h3>
-            <p>Proteção de pessoas e prevenção de incêndios: como o IDR detecta fuga de corrente, onde é obrigatório pela NBR 5410 e boas práticas de instalação… <span>Leia mais</span></p>
+            <div class="post-card-image idr-card"></div>
+            <div class="post-card-content">
+              <h3>IDR: O que é e para que serve o Interruptor Diferencial Residual</h3>
+              <p>A Gênesis Elétrica, empresa especializada em instalações elétricas de baixa tensão, aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual, popularmente conhecido como IDR. Este equipamento, muitas vezes subestimado, desempenha um papel vital na proteção de pessoas contra choques elétricos e na prevenção de incêndios causados por fugas de corrente... <span>Leia mais</span></p>
+            </div>
           </article>
         </a>
-
       </div>
 
-      <!-- Seção Quem Somos -->
-      <section class="about-section" id="sobre" aria-labelledby="titulo-sobre">
+      <section class="about-section" id="sobre">
         <div class="about-header">
-          <img class="logo-genesis" src="imagens/logo-cobre-eletrica.png" alt="Ícone Gênesis Elétrica"/>
-          <h2 id="titulo-sobre">BLOG GÊNESIS ELÉTRICA</h2>
+          <img class="logo-genesis" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis"/>
+          <h2>Gênesis Elétrica</h2>
         </div>
-        <p>
-          A Gênesis Elétrica atua com excelência e comprometimento no setor de instalações elétricas.
-          Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes
-          para residências e comércios. Atendemos priorizando a qualidade, agilidade, transparência e total
-          comprometimento com nossos clientes.
-        </p>
-        <p>
-          Pensando nisso criamos esse espaço exclusivo com conteúdos profissionais direcionados para o
-          aperfeiçoamento da sua carreira. Aqui você encontra dicas e soluções práticas para o dia a dia
-          de trabalho, agregando conhecimento às últimas tendências do setor. E trazemos ainda curiosidades
-          que ampliam seu conhecimento e o ajudam a se destacar no mercado.
-        </p>
-        <p><em>“Sua satisfação, nossa missão!”</em></p>
+        <p>Bem-vindo(a) ao Blog Gênesis Elétrica! Com uma trajetória ascendente no mercado, a Gênesis Elétrica entende a importância do conhecimento compartilhado. Nosso compromisso é oferecer conteúdo confiável de alta qualidade para garantir mais segurança e conforto.</p>
+        <p>Equipe, Gênesis Elétrica!</p>
       </section>
     </main>
 
-    <!-- Sidebar (30%) -->
     <aside class="sidebar">
-      <!-- Buscar -->
-      <form id="search-form" class="search-box" action="search-results.html" method="GET" style="position:relative">
+      <form id="search-form" class="search-box" action="search-results.html" method="GET">
         <input type="text" id="search-input-sidebar" name="query" placeholder="Buscar no blog..." required/>
-        <span class="search-icon" aria-hidden="true">🔎</span>
+        <button id="search-button-sidebar" type="submit" aria-label="Botão de busca">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
       </form>
 
-      <!-- Últimos Posts (lista clicável, sem imagens) -->
       <div class="recent-posts">
         <h3>Últimos Posts</h3>
         <ul>
-          <li><a href="quedaenergia.html">Interrupções de energia em períodos chuvosos</a> <small>16/05/2025</small></li>
-          <li><a href="disjuntor.html">Disjuntores: Fundamentos e Aplicações</a> <small>31/07/2025</small></li>
-          <li><a href="idr.html">IDR: O que é e para que serve</a> <small>31/07/2025</small></li>
+          <li><a href="disjuntor.html">Disjuntor: fundamentos e aplicações</a></li>
+          <li><a href="idr.html">IDR: o que é e para que serve</a></li>
         </ul>
       </div>
 
-      <!-- Widgets interativos (calculadoras/quiz) se quiser manter -->
-      <!-- Se não estiver usando agora, pode remover estes 2 scripts no final -->
+      <!-- CALCULADORAS INTERATIVAS -->
+      <div class="sidebar-interactive">
+        <h3 class="interactive-title">Calculadoras Elétricas</h3>
+
+        <div class="sidebar-calculator">
+          <div class="calculator-tabs">
+            <button class="tab-button active" data-tab="consumo">Consumo</button>
+            <button class="tab-button" data-tab="cabo">Cabos</button>
+          </div>
+
+          <!-- Calculadora de Consumo -->
+          <div id="calc-consumo" class="calc-content active">
+            <h4 style="margin-bottom:10px;font-size:1em;">Consumo de Energia</h4>
+            <div class="sidebar-calc-row">
+              <input type="number" id="potencia" class="sidebar-calc-input" placeholder="Potência (W)"/>
+              <input type="number" id="horas" class="sidebar-calc-input" placeholder="Horas/dia"/>
+              <input type="number" id="tarifa" class="sidebar-calc-input" placeholder="R$/kWh" value="0.75"/>
+            </div>
+            <div class="sidebar-calc-actions">
+              <button class="sidebar-calc-button" id="btn-calc-consumo">Calcular</button>
+              <button class="sidebar-calc-button pdf" id="btn-pdf-consumo">PDF</button>
+              <!-- botão ícone limpar -->
+              <button class="icon-btn" id="btn-reset-consumo" title="Limpar">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
+                </svg>
+              </button>
+            </div>
+            <div id="consumo-result" class="sidebar-calc-result" style="display:none;"></div>
+          </div>
+
+          <!-- Calculadora de Cabos -->
+          <div id="calc-cabo" class="calc-content">
+            <h4 style="margin-bottom:10px;font-size:1em;">Dimensionamento</h4>
+            <div class="sidebar-calc-row">
+              <input type="number" id="corrente" class="sidebar-calc-input" placeholder="Corrente (A)"/>
+              <input type="number" id="distancia" class="sidebar-calc-input" placeholder="Distância (m)"/>
+              <select id="tensao" class="sidebar-calc-select">
+                <option value="127">127V</option>
+                <option value="220">220V</option>
+                <option value="380">380V</option>
+              </select>
+              <select id="instalacao" class="sidebar-calc-select">
+                <option value="">Método</option>
+                <option value="A1">A1 - Eletroduto</option>
+                <option value="B1">B1 - Multipolar</option>
+                <option value="C">C - Enterrado</option>
+              </select>
+            </div>
+            <div class="sidebar-calc-actions">
+              <button class="sidebar-calc-button" id="btn-calc-cabo">Calcular</button>
+              <button class="sidebar-calc-button pdf" id="btn-pdf-cabo">PDF</button>
+              <button class="icon-btn" id="btn-reset-cabo" title="Limpar">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
+                </svg>
+              </button>
+            </div>
+            <div id="cabo-result" class="sidebar-calc-result" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUIZ INTERATIVO -->
+      <div class="sidebar-interactive">
+        <h3 class="interactive-title">Quiz NBR 5410</h3>
+
+        <div class="sidebar-alert warning">
+          ⚠️ <strong>IMPORTANTE:</strong> Este quiz é educativo. Para trabalhos elétricos, sempre contrate profissionais qualificados!
+        </div>
+
+        <div class="sidebar-quiz">
+          <div class="sidebar-quiz-progress">
+            <span id="quiz-counter">Pergunta 1 de 10</span>
+          </div>
+
+          <div id="quiz-container">
+            <div class="sidebar-quiz-question" id="question"></div>
+            <div class="sidebar-quiz-options" id="options"></div>
+          </div>
+
+          <button id="next-question" class="sidebar-next-button">Próxima →</button>
+
+          <!-- Likes/Dislikes e Participantes (estilo YouTube minimal) -->
+          <div id="quiz-reactions" style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:10px;">
+            <div class="reaction-wrap">
+              <button class="icon-btn" id="quiz-like" aria-label="Curtir">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-1 7H5a2 2 0 0 0-2 2l1 9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-7a2 2 0 0 0-2-2h-1z"/>
+                </svg>
+              </button>
+              <span class="reaction-count" id="like-count">0</span>
+
+              <button class="icon-btn" id="quiz-dislike" aria-label="Não curti">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="transform:rotate(180deg)">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-1 7H5a2 2 0 0 0-2 2l1 9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-7a2 2 0 0 0-2-2h-1z"/>
+                </svg>
+              </button>
+              <span class="reaction-count" id="dislike-count">0</span>
+            </div>
+
+            <div style="font-size:.85em;color:#475569;">
+              Participantes: <strong id="participants-count">0</strong>
+            </div>
+          </div>
+
+          <div class="sidebar-quiz-score" id="quiz-score" style="display:none;">
+            <h4>Resultado</h4>
+            <div class="sidebar-score-details" id="score-details"></div>
+            <div class="sidebar-score-bar">
+              <div class="sidebar-score-fill" id="score-fill"></div>
+            </div>
+            <div id="performance-message" style="margin-top:8px;font-size:.9em;"></div>
+            <button class="sidebar-calc-button" id="btn-refazer" style="margin-top:10px;">Refazer</button>
+          </div>
+        </div>
+      </div>
     </aside>
   </section>
 
-  <!-- Rodapé azul -->
   <footer class="footer-vertical" id="contato">
-    <p>
-      <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">WhatsApp</a>    |
+      <a href="https://wa.me/5531975002129" target="_blank">WhatsApp</a>    |
       <a href="mailto:genesiseletricca@gmail.com">E-mail</a>    |
-      <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://instagram.com/genesis_eletrica" target="_blank">Instagram</a>
     </p>
     <p class="footer-copy">© 2025 Gênesis Elétrica - Todos os direitos reservados</p>
   </footer>
 
-  <!-- Interativos locais (se usar calculadoras/quiz na sidebar) -->
+  <!-- JS dos interativos (calculadoras + quiz) -->
   <script src="interativos.js?v=3" defer></script>
 </body>
 </html>
