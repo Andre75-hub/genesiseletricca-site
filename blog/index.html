@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gênesis Elétrica | Clube do Eletricista</title>
 
-  <!-- Favicon em PNG -->
+  <!-- Favicon PNG -->
   <link rel="icon" href="imagens/logo-cobre-eletrica.png" type="image/png">
 
-  <!-- jsPDF (calculadoras) -->
+  <!-- jsPDF (usado em calculadoras no site) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- CSS / JS -->
+  <!-- CSS / JS do blog -->
   <link rel="stylesheet" href="style-blog.css"/>
   <script src="script-blog.js" defer></script>
 </head>
@@ -20,7 +20,7 @@
   <header class="header-white">
     <div class="header-container">
       <img class="logo-cobre" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis Elétrica"/>
-      <span class="brand-title">Gênesis Elétrica</span>
+      <span class="brand-title">GÊNESIS ELÉTRICA</span>
     </div>
   </header>
 
@@ -32,17 +32,15 @@
     <a href="#contato">Siga-nos</a>
   </nav>
 
-  <!-- Autor/Data (logo abaixo do menu) -->
-  <div style="background:#f7f7f7;border-bottom:1px solid #e5e5e5;">
-    <div style="max-width:1200px;margin:0 auto;padding:8px 20px;text-align:center;font-size:.95rem;color:#555;">
-      Por <strong>Gênesis Elétrica</strong> • <time datetime="2025-05-16">16 de maio de 2025</time>
-    </div>
+  <!-- Barra autor/data (logo abaixo do menu) -->
+  <div class="meta-bar">
+    Por <strong>Gênesis Elétrica</strong> • <time datetime="2025-07-31">31 de julho de 2025</time>
   </div>
 
-  <!-- Hero da home (usa blog-instalacoes-eletrica.jpeg + máscara do CSS) -->
+  <!-- Hero da home (usa blog-instalacoes-eletrica.jpeg) -->
   <div class="post-hero main-page-hero">
     <div class="post-meta">
-      <h1>Clube do eletricista</h1>
+      <h1>Clube do Eletricista</h1>
       <p>Tudo sobre elétrica, inovações e dicas de instalação</p>
     </div>
   </div>
@@ -56,8 +54,8 @@
           <article class="post-card">
             <div class="post-card-image disjuntor-card"></div>
             <div class="post-card-content">
-              <h3>Disjuntor: Fundamentos e aplicações</h3>
-              <p>A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores... <span>Leia mais</span></p>
+              <h3>Disjuntores: Fundamentos e Aplicações</h3>
+              <p>O disjuntor é peça-chave na proteção contra curtos e sobrecargas. Veja princípios de funcionamento, curvas B/C/D, capacidade de interrupção e critérios de dimensionamento... <span>Leia mais</span></p>
             </div>
           </article>
         </a>
@@ -67,8 +65,8 @@
           <article class="post-card">
             <div class="post-card-image idr-card"></div>
             <div class="post-card-content">
-              <h3>IDR: O que é e para que serve o Interruptor Diferencial Residual</h3>
-              <p>A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança: o IDR. Proteção de pessoas e prevenção de incêndios causados por fugas de corrente... <span>Leia mais</span></p>
+              <h3>IDR: o que é e para que serve o Interruptor Diferencial Residual</h3>
+              <p>Proteção de pessoas e prevenção de incêndios: como o IDR detecta fuga de corrente, onde é obrigatório pela NBR 5410 e boas práticas de instalação... <span>Leia mais</span></p>
             </div>
           </article>
         </a>
@@ -80,8 +78,8 @@
           <img class="logo-genesis" src="imagens/logo-cobre-eletrica.png" alt="Logo Gênesis"/>
           <h2>Gênesis Elétrica</h2>
         </div>
-        <p>Bem-vindo(a) ao Blog Gênesis Elétrica! Com uma trajetória ascendente no mercado, a Gênesis Elétrica entende a importância do conhecimento compartilhado. Nosso compromisso é oferecer conteúdo confiável de alta qualidade para garantir mais segurança e conforto.</p>
-        <p>Equipe, Gênesis Elétrica!</p>
+        <p>Bem-vindo(a) ao Blog Gênesis Elétrica! Criamos este espaço para compartilhar conteúdo técnico confiável, com foco em segurança, qualidade e boas práticas de instalação.</p>
+        <p>Equipe, Gênesis Elétrica.</p>
       </section>
     </main>
 
@@ -95,10 +93,11 @@
         </button>
       </form>
 
+      <!-- Últimos Posts (somente os dois existentes) -->
       <div class="recent-posts">
         <h3>Últimos Posts</h3>
         <ul>
-          <li><a href="disjuntor.html">Disjuntor: fundamentos e aplicações</a></li>
+          <li><a href="disjuntor.html">Disjuntores: Fundamentos e Aplicações</a></li>
           <li><a href="idr.html">IDR: o que é e para que serve</a></li>
         </ul>
       </div>
