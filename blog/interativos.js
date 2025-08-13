@@ -236,7 +236,7 @@ const perguntasQuiz = [
   { pergunta: "Sensibilidade típica do DR para uso residencial:", alternativas: ["10 mA","30 mA","100 mA","300 mA"], correta: 1, explicacao: "Residencial: 30 mA." },
   { pergunta: "Condutor 2,5 mm² (método B1) suporta até aprox.:", alternativas: ["15 A","19 A","21 A","24 A"], correta: 1, explicacao: "B1 ~ 19 A (aprox.)." },
   { pergunta: "Queda de tensão máxima recomendada em circuito terminal:", alternativas: ["1%","2%","3%","4%"], correta: 3, explicacao: "Recomendação usual: até 4% nos terminais." },
-  { pergunta: "Altura recomendada para interruptores (centro da peça):", alternativas: ["1,20 m","1,30 m","1,50 m","1,60 m"], correta: 2, explicacao: "Prática comum ~1,50 m." },
+  { pergunta: "Altura recomendada para interruptores (pé direito):", alternativas: ["1,20 m","1,30 m","1,50 m","1,60 m"], correta: 2, explicacao: "Prática comum ~1,50 m." },
   { pergunta: "Número mínimo de tomadas (TUG) em sala até 6 m de perímetro:", alternativas: ["1","2","3","4"], correta: 1, explicacao: "Regra base: a cada 5 m de perímetro (mín. 2)." },
   { pergunta: "Aterramento: resistência típica buscada em residencial:", alternativas: ["≤ 10 Ω","≤ 15 Ω","≤ 25 Ω","≤ 50 Ω"], correta: 2, explicacao: "Valor de referência comum: ≤ 25 Ω." },
   { pergunta: "Circuitos de chuveiro elétrico devem ser:", alternativas: ["Compartilhados","Exclusivos","Em paralelo com iluminação","Em série com TUGs"], correta: 1, explicacao: "Circuito dedicado." },
