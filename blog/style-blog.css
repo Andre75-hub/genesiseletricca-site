@@ -119,3 +119,10 @@ body{font-family:Arial, sans-serif;line-height:1.6;background-color:#f4f4f4;colo
   .post-previews{flex-direction:column}
   .sidebar-calc-row{grid-template-columns:1fr}
 }
+
+/* ====== AJUSTES CIRÚRGICOS SOLICITADOS ====== */
+/* 1) evitar overflow dos campos à direita da calculadora */
+.sidebar{max-width:100%;overflow:visible}
+.sidebar-calc-row{grid-template-columns:1fr 1fr}
+.sidebar-calc-row > *{min-width:0}
+.sidebar-calc-input,.sidebar-calc-select{width:100%;max-width:100%}
