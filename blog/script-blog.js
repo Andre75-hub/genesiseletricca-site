@@ -105,7 +105,7 @@ function copyLink() {
     document.execCommand('copy');
     document.body.removeChild(el);
 
-    const copyBtn = document.querySelector('.social-btn.copy');
+    const copyBtn = document.querySelector('.social-btn.copy'); 
     if (copyBtn) {
         copyBtn.classList.add('copied');
         setTimeout(() => {
