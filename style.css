@@ -79,12 +79,14 @@ body { margin: 0; font-family: Arial, sans-serif; color: #333; background: #fff;
 .footer-bottom { text-align:center; margin-top:12px; opacity:.9; }
 .footer-bottom small { font-weight:400; }
 .footer-address {
-  grid-column: 1 / -1 !important;
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   text-align: center !important;
-  margin: 0 0 16px 0 !important;
-  font-weight: 400 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  color: #fff !important;
 }
-
 /* ===== Mobile ===== */
 @media (max-width: 768px){
   .main-nav { flex-wrap:wrap; justify-content:center; }
