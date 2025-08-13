@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
             summary: "A Gênesis Elétrica, empresa especializada em instalações elétricas de baixa tensão, aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual, popularmente conhecido como IDR. Este equipamento, muitas vezes subestimado, desempenha um papel vital na proteção de pessoas contra choques elétricos e na prevenção de incêndios causados por fugas de corrente...",
             url: "idr.html",
             keywords: ["idr", "interruptor", "diferencial", "residual", "fuga de corrente", "choque elétrico", "segurança", "eletricidade"]
+        },
+        {
+            title: "Compreendendo as interrupções no fornecimento de energia durante períodos chuvosos:",
+            summary: "A interrupção do fornecimento de energia elétrica durante períodos chuvosos é um desafio constante que afeta a vida urbana e rural, impactando diretamente residências, comércios e o complexo entramado industrial. Embora a queda de energia seja uma experiência comum, os mecanismos subjacentes a essas falhas são de uma complexidade notável,englobando desde fenômenos naturais...",
+            url: "idr.html",
+            keywords: ["idr", "interruptor", "diferencial", "residual", "fuga de corrente", "choque elétrico", "segurança", "eletricidade"]
         }
     ];
 
