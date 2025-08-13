@@ -87,10 +87,11 @@ body{font-family:Arial, sans-serif;line-height:1.6;background-color:#f4f4f4;colo
 .share{margin:16px 0}
 .share h4{margin-bottom:8px;color:#0a2e6e}
 .share-icons{display:flex;gap:10px;align-items:center}
-.share-icons img, .share-icons svg{width:24px;height:24px;display:block} /* <- reduz ícones */
+.share-icons a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e5e7eb}
+.share-icons img,.share-icons svg{width:28px;height:28px;max-width:28px;max-height:28px;display:block} /* força tamanho dos ícones */
 
 /* Comentários (posts) */
-.comments{margin:20px 0;padding:12px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#fff}
+.comments{margin:20px 0;padding:12px;border:1px solid #e5e7eb;border-radius:10px;background:#fff}
 
 /* Sobre (home e posts) */
 .about-section{margin:30px 0;padding:20px;background:#f9f9f9;border:1px solid #eee;border-radius:10px}
@@ -117,7 +118,7 @@ body{font-family:Arial, sans-serif;line-height:1.6;background-color:#f4f4f4;colo
   .sidebar-calc-row{grid-template-columns:1fr}
 }
 
-/* Ajustes de overflow específicos da calculadora */
+/* Ajustes de overflow da calculadora */
 .sidebar{max-width:100%;overflow:visible}
 .sidebar-calc-row > *{min-width:0}
 .sidebar-calc-input,.sidebar-calc-select{width:100%;max-width:100%}
