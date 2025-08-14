@@ -1,4 +1,4 @@
-/* script-blog.js — Home + Busca */
+/* script-blog.js — HOME do blog */
 
 /* Utils */
 function getQueryParam(name){
@@ -6,7 +6,7 @@ function getQueryParam(name){
   return (params.get(name) || "").trim();
 }
 
-/* Posts existentes */
+/* Posts (cards da home) */
 const POSTS = [
   {
     slug: "disjuntor.html",
@@ -26,7 +26,7 @@ const POSTS = [
   },
 ];
 
-/* Filtro de busca */
+/* Filtro de busca (compatível com search-results.html) */
 function filterPosts(query){
   if(!query) return POSTS;
   const q = query.toLowerCase();
@@ -37,7 +37,7 @@ function filterPosts(query){
   );
 }
 
-/* Renderização de cards */
+/* Renderização de cards (usada na página de resultados) */
 function renderCards(container, posts){
   if(!container) return;
   container.innerHTML = "";
@@ -104,7 +104,7 @@ function initSidebarSearch(){
   });
 }
 
-/* >>> AJUSTE: limpar o campo de busca ao voltar para a home <<< */
+/* Limpar o campo de busca quando estamos na HOME */
 function resetSearchOnHome(){
   const isHome = !!document.querySelector('.post-hero.main-page-hero');
   if(!isHome) return;
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function(){
   try{
     initSidebarSearch();
     initSearchResultsPage();
-    resetSearchOnHome(); // <— mantém a home com o campo limpo/atualizado
+    resetSearchOnHome();   // mantém a home com o campo limpo ao retornar
   }catch(err){
     console.error("script-blog.js error:", err);
   }
