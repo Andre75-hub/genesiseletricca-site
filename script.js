@@ -176,3 +176,42 @@ function setErr(id, show, text){
     if(id.startsWith('u-')) validate(true);
   });
 })();
+<!-- Cole APENAS ESTE TRECHO AO FINAL DO /script.js existente -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // 1) Força o link do menu "Blog" para abrir em nova aba no domínio solicitado
+  const navLinks = document.querySelectorAll('.main-nav a');
+  navLinks.forEach(a => {
+    if (a.textContent.trim().toLowerCase() === 'blog') {
+      a.href = 'https://clubedaeletricabrasil.com.br/';
+      a.target = '_blank';
+      a.rel = 'noopener';
+    }
+  });
+
+  // 2) Atualiza os links da seção "FIQUE POR DENTRO"
+  const mapping = {
+    'disjuntor': 'https://clubedaeletricabrasil.com.br/disjuntor/',
+    'idr': 'https://clubedaeletricabrasil.com.br/idr/'
+  };
+
+  // Para cada card, ajusta href do thumbnail, título e "Leia mais"
+  document.querySelectorAll('#blog .post-card').forEach(card => {
+    const isDisjuntor = /disjuntor/i.test(card.textContent);
+    const isIdr = /idr/i.test(card.textContent);
+
+    let url = null;
+    if (isDisjuntor) url = mapping.disjuntor;
+    if (isIdr) url = mapping.idr;
+
+    if (url) {
+      card.querySelectorAll('a').forEach(a => {
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+      });
+    }
+  });
+});
+</script>
+
