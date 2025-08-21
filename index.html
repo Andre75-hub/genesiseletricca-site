@@ -32,7 +32,8 @@
     <div class="header-inner">
       <img src="/icone-ge.png" alt="Ícone Gênesis Elétrica" class="header-logo"/>
       <nav class="main-nav" aria-label="Menu principal">
-        <a href="#">Blog</a>
+        <!-- Blog: abre em nova aba para o domínio solicitado -->
+        <a href="https://clubedaeletricabrasil.com.br/" target="_blank" rel="noopener">Blog</a>
         <a href="#formulario">Serviços</a>
         <a href="#quemsomos">Empresa</a>
         <a href="#localizacao">Localização</a>
@@ -54,7 +55,7 @@
 
     <!-- Texto institucional -->
     <section class="form-section" id="formulario" style="background-color:#fff; text-align:center; padding:30px 20px;">
-      <p style="max-width:900px; margin:0 auto; font-size:1.1em; line-height:1.6; font-weight:400;">
+      <p style="max-width:900px; margin:0 auto; font-size:1.1em; line-height:1.6;">
         A <strong>Gênesis Elétrica</strong> atua com excelência e comprometimento no setor de instalações elétricas.
         Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências, comércios e indústrias.
         Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
@@ -65,7 +66,7 @@
 
     <!-- Seleção de serviço + Formulários -->
     <section class="form-section" id="servico">
-      <p style="font-weight:400;"><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO<strong></p>
+      <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
 
       <select id="tipoServico" onchange="preencherTipoServico(this.value)">
         <option value="">Selecione uma opção</option>
@@ -158,7 +159,7 @@
 
     <!-- FORMULÁRIO: URGÊNCIA (separado) -->
     <section class="form-section" id="formUrgencia" style="display:none; margin-top:10px;">
-      <h3 style="margin:0 0 8px; font-weight:700;">Atendimento de urgência</h3>
+      <h3 style="margin:0 0 8px;">Atendimento de urgência</h3>
 
       <div class="field">
         <input id="u-nome" type="text" placeholder="Seu nome">
@@ -231,33 +232,35 @@
     <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
       <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Clube do eletricista</h2>
       <div class="blog-cards">
+        <!-- Card DISJUNTOR -->
         <article class="post-card">
-          <a class="post-media" href="/blog/disjuntor.html" target="_blank" rel="noopener">
+          <a class="post-media" href="https://clubedaeletricabrasil.com.br/disjuntor/" target="_blank" rel="noopener">
             <img loading="lazy" src="/blog/imagens/disjuntor-quadro-distribuicao.jpg" alt="Disjuntor: Fundamentos e aplicações" onerror="this.style.display='none'"/>
           </a>
           <div class="post-body">
             <h3 class="post-title">
-              <a href="/blog/disjuntor.html" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a>
+              <a href="https://clubedaeletricabrasil.com.br/disjuntor/" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a>
             </h3>
             <p class="post-excerpt">
               A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas.
             </p>
-            <a class="post-readmore" href="/blog/disjuntor.html" target="_blank" rel="noopener">Leia mais</a>
+            <a class="post-readmore" href="https://clubedaeletricabrasil.com.br/disjuntor/" target="_blank" rel="noopener">Leia mais</a>
           </div>
         </article>
 
+        <!-- Card IDR -->
         <article class="post-card">
-          <a class="post-media" href="/blog/idr.html" target="_blank" rel="noopener">
+          <a class="post-media" href="https://clubedaeletricabrasil.com.br/idr/" target="_blank" rel="noopener">
             <img loading="lazy" src="/blog/imagens/idr-painel-eletrico.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual" onerror="this.style.display='none'"/>
           </a>
           <div class="post-body">
             <h3 class="post-title">
-              <a href="/blog/idr.html" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a>
+              <a href="https://clubedaeletricabrasil.com.br/idr/" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a>
             </h3>
             <p class="post-excerpt">
               A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual (IDR). Este equipamento protege pessoas contra choques elétricos e ajuda a prevenir incêndios causados por fugas de corrente.
             </p>
-            <a class="post-readmore" href="/blog/idr.html" target="_blank" rel="noopener">Leia mais</a>
+            <a class="post-readmore" href="https://clubedaeletricabrasil.com.br/idr/" target="_blank" rel="noopener">Leia mais</a>
           </div>
         </article>
       </div>
@@ -268,7 +271,7 @@
   <footer id="contato" class="site-footer">
     <div class="section-inner">
       <div class="footer-top">
-       <p class="footer-address">Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem - MG, 32280-620</p>
+        <p class="footer-address">Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem - MG, 32280-620</p>
         <ul class="footer-contacts">
           <li>WhatsApp: <a href="https://wa.me/5531975002129" rel="noopener" target="_blank">(31) 97500-2129</a></li>
           <li>E-mail: <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></li>
