@@ -21,19 +21,16 @@
 
   <link rel="stylesheet" href="/style.css"/>
 
-  <!-- Overrides rápidos (reduzir cabeçalho, aumentar logo, ajustes gerais) -->
+  <!-- Overrides rápidos -->
   <style>
     .site-header{padding:6px 10px !important;}
     .site-header .header-inner{
       max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;
     }
-    /* Ícone maior e nítido no cabeçalho */
-    .header-logo{
-      height:44px !important;width:auto;image-rendering:-webkit-optimize-contrast;
-      image-rendering:crisp-edges;
-    }
+    /* Ícone GRANDE no cabeçalho (robusto) */
+    .site-header .header-logo{height:75px !important;width:auto !important;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;}
     @media (max-width:640px){
-      .header-logo{height:38px !important;}
+      .site-header .header-logo{height:60px !important;}
     }
 
     .main-nav a{padding:6px 8px !important;font-size:.95rem !important}
@@ -57,8 +54,10 @@
   <!-- Cabeçalho (azul, menu centralizado) -->
   <header class="site-header">
     <div class="header-inner">
-      <img src="/icone-ge.png" alt="Ícone Gênesis Elétrica" class="header-logo"/>
+      <!-- inline como fallback para vencer quaisquer estilos antigos -->
+      <img src="/icone-ge.png" alt="Ícone Gênesis Elétrica" class="header-logo" style="height:75px;width:auto;"/>
       <nav class="main-nav" aria-label="Menu principal">
+        <!-- Blog / Contato → novo domínio (abre em nova aba) -->
         <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
         <a href="#formulario">Serviços</a>
         <a href="#quemsomos">Empresa</a>
@@ -323,6 +322,7 @@
     function mostrarFormularioPedido(){
       document.getElementById('formularioPedido').style.display = 'block';
       document.getElementById('formUrgencia').style.display = 'none';
+      // Se já escolheu no select, preenche
       preencherTipoServico(document.getElementById('tipoServico').value);
     }
 
@@ -344,6 +344,7 @@
       const digits = v.replace(/\D/g,'');
       return digits.length === 10 || digits.length === 11;
     }
+    // Aplicar máscara nos campos de telefone
     ['telefone','u-telefone'].forEach(id=>{
       const el = document.getElementById(id);
       if (el){
@@ -359,12 +360,13 @@
       if (el) el.hidden = !show;
     }
 
-    // Abre WhatsApp com mensagem formatada
+    // WhatsApp (abre chat com mensagem pronta)
     function openWhatsApp(titulo, corpo){
       const numero = '5531975002129';
       const texto = `*${titulo}*\n\n${corpo}`;
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-      window.open(url, '_blank', 'noopener');
+      // Usar location.href ajuda no mobile a abrir o app diretamente
+      window.location.href = url;
     }
 
     // Pedido normal -> WhatsApp
@@ -377,6 +379,7 @@
       const email = document.getElementById('email').value.trim();
       const obs = document.getElementById('observacao').value.trim();
 
+      // validação
       let ok = true;
       showErr('err-nome', !nome); if(!nome) ok=false;
       showErr('err-telefone', !isValidPhoneBR(telefone)); if(!isValidPhoneBR(telefone)) ok=false;
@@ -385,7 +388,7 @@
       showErr('err-tipo', !tipo); if(!tipo) ok=false;
       if(!ok) return;
 
-      const titulo = `Pedido de serviço – ${tipo}`;
+      const assunto = `Pedido de serviço – ${tipo}`;
       const corpo =
 `Nome: ${nome}
 Telefone: ${telefone}
@@ -395,8 +398,7 @@ Tipo de serviço: ${tipo}
 E-mail: ${email || '(não informado)'}
 Observação: ${obs || '(sem observações)'}
 Fonte: Formulário do site (Pedido)`;
-
-      openWhatsApp(titulo, corpo);
+      openWhatsApp(assunto, corpo);
     }
 
     // Urgência -> WhatsApp
@@ -416,7 +418,7 @@ Fonte: Formulário do site (Pedido)`;
       showErr('u-err-tipo', !tipo); if(!tipo) ok=false;
       if(!ok) return;
 
-      const titulo = `URGÊNCIA – ${tipo}`;
+      const assunto = `URGÊNCIA – ${tipo}`;
       const corpo =
 `[URGÊNCIA]
 Nome: ${nome}
@@ -426,8 +428,7 @@ Município: ${municipio}
 Tipo de serviço (urgência): ${tipo}
 Observação: ${obs || '(sem observações)'}
 Fonte: Formulário do site (Urgência)`;
-
-      openWhatsApp(titulo, corpo);
+      openWhatsApp(assunto, corpo);
     }
   </script>
 
