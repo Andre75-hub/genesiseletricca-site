@@ -1,335 +1,562 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gênesis Elétrica</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gênesis Elétrica | Serviços elétricos em Contagem e Região Metropolitana</title>
 
-<!-- (Opcional) Google Analytics GA4
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7CGNS9C1H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-X7CGNS9C1H');
-</script>
--->
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/icone-ge.png">
+  <link rel="apple-touch-icon" href="/icone-ge.png">
 
-<style>
-  :root{
-    --azul: #0A57D8;          /* barra superior */
-    --azul-escuro:#0C46AA;
-    --cinza-fundo:#F3F5F7;    /* fundo das áreas */
-    --texto:#1f2328;
-    --rodape-bg:#1C1F24;      /* barra inferior do rodapé */
-    --rodape-txt:#C9CFD6;
-    --link:#0A57D8;
-  }
-  html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--texto);background:#fff}
-  a{color:var(--link);text-decoration:none}
-  a:hover{opacity:.9}
+  <!-- Google tag (opcional) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7CGNS9C1H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X7CGNS9C1H');
+  </script>
 
-  /* ===== CABEÇALHO (igual ao blog) ===== */
-  .topbar{
-    background:var(--azul);
-    background:linear-gradient(180deg,var(--azul) 0%, var(--azul-escuro) 100%);
-    position:sticky;top:0;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.08);
-  }
-  .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:24px;padding:14px 18px}
-  .brand{display:flex;align-items:center;gap:14px}
-  .brand img{height:72px;width:auto;flex-shrink:0;display:block} /* LOGO visível e nítida */
-  .brand .title{color:#fff;font-weight:700;letter-spacing:.3px}
-  nav.main{margin-left:auto;display:flex;align-items:center;gap:24px}
-  nav.main a{color:#fff;font-weight:600;letter-spacing:.3px}
-  /* menu com dropdown "Categorias" */
-  .dropdown{position:relative}
-  .dropdown > a:after{content:"▾";margin-left:6px;font-size:.8em}
-  .dropdown-menu{
-    position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid #e5e7eb;border-radius:6px;
-    min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:6px 0;display:none;
-  }
-  .dropdown:hover .dropdown-menu{display:block}
-  .dropdown-menu a{color:#111;display:block;padding:10px 14px}
-  .dropdown-menu a:hover{background:#f3f4f6}
+  <link rel="stylesheet" href="/style.css"/>
 
-  /* mobile */
-  .hamb{display:none;cursor:pointer;color:#fff;font-size:1.1rem;border:1px solid rgba(255,255,255,.35);padding:6px 10px;border-radius:6px}
-  @media (max-width:900px){
-    nav.main{display:none}
-    .hamb{display:block;margin-left:auto}
-    .drawer{display:none;background:#fff;border-bottom:1px solid #e5e7eb}
-    .drawer a{display:block;padding:12px 16px;color:#111;border-top:1px solid #f1f5f9}
-    .drawer .drawer-title{padding:10px 16px;font-weight:700;background:#f8fafc}
-    .dropdown-menu{position:static;border:none;box-shadow:none;padding:0}
-    .dropdown > a:after{display:none}
-  }
+  <!-- ====== ESTILO DO CABEÇALHO + RODAPÉ ====== -->
+  <style>
+    /* ===== TOPO ===== */
+    /* Faixa do topo AGORA PRETA */
+    .brand-bar{background:#000}
+    .brand-bar .inner{
+      max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px;color:#fff;
+    }
+    .brand-bar .logo{height:88px;width:auto}
+    .brand-bar strong{color:#fff}
+    .brand-bar span{color:#ffffffcc}
+    @media (max-width:640px){ .brand-bar .logo{height:70px} }
 
-  /* ===== CONTEÚDO DEMO ===== */
-  .wrap{max-width:1200px;margin:0 auto;padding:24px 18px}
-  .hero{background:var(--cinza-fundo);border-radius:12px;padding:20px}
-  .hero h1{margin:0 0 10px}
-  .grid{display:grid;grid-template-columns:3fr 1.3fr;gap:28px;margin-top:20px}
-  .card{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden}
-  .card img{width:100%;display:block}
-  .card .pad{padding:14px}
-  .side-box{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px}
+    /* Tarja azul do menu (mantida) */
+    .nav-bar{background:#0a57a3}
+    .nav-bar .inner{
+      max-width:1200px;margin:0 auto;display:flex;gap:12px;align-items:center;padding:8px 12px;
+      justify-content:center;   /* === MENU CENTRALIZADO === */
+    }
+    .nav-bar a{
+      color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;
+      font-weight:600;letter-spacing:.2px;display:inline-block
+    }
+    .nav-bar a:hover, .nav-bar a:focus{background:rgba(255,255,255,.12)}
+    .nav-bar a:active{transform:translateY(1px)}
 
-  /* ===== RODAPÉ SUPERIOR ===== */
-  .footer-top{
-    background:#fff;border-top:1px solid #e5e7eb;margin-top:40px
-  }
-  .footer-top .wrap{padding-top:28px;padding-bottom:28px}
-  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:32px}
-  .footer-section h3{margin:0 0 14px;font-size:1.05rem}
-  .post-list{display:grid;gap:14px}
-  .post-item{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center}
-  .post-item img{width:72px;height:48px;object-fit:cover;border-radius:6px;border:1px solid #e5e7eb}
-  .post-item .p-title{font-weight:600;line-height:1.25}
-  .post-item .p-date{font-size:.9rem;color:#6b7280}
+    /* ===== RODAPÉ ===== */
+    .blog-footer{background:#0a57a3;color:#fff}
+    .blog-footer .inner{max-width:1200px;margin:0 auto;padding:28px 12px}
+    .footer-widgets{display:grid;grid-template-columns:2fr 1.3fr;gap:28px}
+    @media (max-width:800px){ .footer-widgets{grid-template-columns:1fr;gap:18px} }
 
-  .contact-list{display:grid;gap:10px;color:#111}
-  .contact-list .label{font-weight:700}
-  .contact-entry{display:grid;grid-template-columns:160px 1fr;gap:8px}
-  @media (max-width:900px){
-    .grid{grid-template-columns:1fr}
-    .footer-grid{grid-template-columns:1fr}
-    .contact-entry{grid-template-columns:1fr}
-  }
+    .widget-title{font-size:1.05rem;margin:0 0 10px;font-weight:700}
 
-  /* ===== RODAPÉ INFERIOR ===== */
-  .footer-bottom{background:var(--rodape-bg);color:var(--rodape-txt)}
-  .footer-bottom .wrap{padding:14px 18px}
-  .foot-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
-  .foot-links a{color:#e6ebf0;font-weight:600}
-  .copy{font-size:.92rem;text-align:center;color:#b8c2cc}
+    /* Cards de Postagem recomendada */
+    .rec-list{display:grid;gap:12px}
+    .rec-post{
+      display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,.06)
+    }
+    .rec-post img{width:120px;height:82px;object-fit:cover;border-radius:8px;flex-shrink:0}
+    .rec-post a{color:#fff;text-decoration:none;font-weight:700;line-height:1.25}
+    .rec-post a:hover{text-decoration:underline}
+    .rec-post p{margin:.35rem 0 0;opacity:.9;font-size:.92rem;line-height:1.35}
 
-  /* Botão voltar ao topo */
-  .to-top{position:fixed;right:14px;bottom:14px;background:var(--azul);color:#fff;border:none;border-radius:8px;padding:10px 12px;cursor:pointer;box-shadow:0 6px 18px rgba(10,87,216,.35)}
-</style>
+    /* Lista de contato com ícones (igual ao blog) */
+    .contact-box{background:rgba(255,255,255,.06);border-radius:10px;padding:14px}
+    .contact-box p{margin:0 0 10px}
+    .contact-list{display:grid;gap:10px;margin-top:10px}
+    .contact-item{display:grid;grid-template-columns:22px 1fr;align-items:start;gap:10px}
+    .contact-item svg{width:18px;height:18px;fill:#fff;opacity:.95;margin-top:2px}
+    .contact-item a{color:#fff;text-decoration:none}
+    .contact-item a:hover{text-decoration:underline}
+
+    .footer-menu{
+      border-top:1px solid rgba(255,255,255,.18);
+      border-bottom:1px solid rgba(255,255,255,.18);
+      margin:22px 0;padding:12px 0;text-align:center
+    }
+    .footer-menu a{color:#fff;text-decoration:none;margin:0 10px;font-weight:600}
+    .footer-menu a:hover{text-decoration:underline}
+
+    .footer-copy{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .footer-copy small{opacity:.9}
+    @media (max-width:640px){
+      .footer-copy{flex-direction:column;align-items:flex-start}
+    }
+
+    /* Utilitários já existentes */
+    .field{margin-bottom:10px}
+    .field.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .input-error{color:#c0392b;font-size:.85rem}
+    .btn-enviar,.btn-urgencia{cursor:pointer}
+    @media (max-width:640px){ .field.two-cols{grid-template-columns:1fr} }
+  </style>
+
+  <meta name="description" content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência.">
+  <meta name="keywords" content="eletricistas Contagem, Gênesis Elétrica, padrão Cemig, instalações elétricas, manutenção elétrica, eletricista residencial, eletricista comercial, eletricista industrial">
+  <meta name="author" content="Gênesis Elétrica">
 </head>
 <body>
 
-<!-- ====== CABEÇALHO ====== -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <!-- use o mesmo arquivo do blog para ficar idêntico -->
-      <img src="/icone-ge.png" alt="Gênesis Elétrica" />
-      <div class="title" aria-hidden="true"></div>
-    </div>
-
-    <nav class="main" aria-label="Menu principal">
-      <a href="https://genesiseletricablog.com.br/">INÍCIO</a>
-      <a href="https://genesiseletricca.com.br/">SITE</a>
-      <div class="dropdown">
-        <a href="https://genesiseletricablog.com.br/categorias/">CATEGORIAS</a>
-        <div class="dropdown-menu" role="menu">
-          <a href="https://genesiseletricablog.com.br/category/seguranca-eletrica/">Segurança Elétrica</a>
-          <a href="https://genesiseletricablog.com.br/category/curiosidades-e-tecnologias/">Curiosidades e Tecnologias</a>
-          <a href="https://genesiseletricablog.com.br/category/genesis-eletrica/">Gênesis Elétrica</a>
+  <!-- =================== HEADER =================== -->
+  <header>
+    <!-- Faixa agora PRETA com logo e título -->
+    <div class="brand-bar">
+      <div class="inner">
+        <img src="/icone-ge.png" alt="Gênesis Elétrica" class="logo" />
+        <div>
+          <strong style="font-size:1.2rem;display:block;line-height:1">Gênesis Elétrica</strong>
+          <span style="opacity:.9;font-size:.95rem">Energia com segurança, profissionalismo e excelência</span>
         </div>
       </div>
-      <a href="https://genesiseletricablog.com.br/contato/">CONTATO</a>
+    </div>
+
+    <!-- Tarja azul com menu CENTRALIZADO -->
+    <nav class="nav-bar" aria-label="Menu principal">
+      <div class="inner">
+        <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
+        <a href="#formulario">Serviços</a>
+        <a href="#quemsomos">Empresa</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#blog">Postagem</a>
+        <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
+      </div>
     </nav>
+  </header>
 
-    <button class="hamb" id="hambBtn" aria-label="Abrir menu">Menu</button>
-  </div>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <img src="QDC-principal.jpg" alt="QDC principal"/>
+      <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
+    </section>
 
-  <div class="drawer" id="drawer">
-    <div class="drawer-title">Menu</div>
-    <a href="https://genesiseletricablog.com.br/">INÍCIO</a>
-    <a href="https://genesiseletricca.com.br/">SITE</a>
-    <div class="dropdown">
-      <a href="https://genesiseletricablog.com.br/categorias/">CATEGORIAS</a>
-      <div class="dropdown-menu">
-        <a href="https://genesiseletricablog.com.br/category/seguranca-eletrica/">Segurança Elétrica</a>
-        <a href="https://genesiseletricablog.com.br/category/curiosidades-e-tecnologias/">Curiosidades e Tecnologias</a>
-        <a href="https://genesiseletricablog.com.br/category/genesis-eletrica/">Gênesis Elétrica</a>
+    <!-- QUEM SOMOS -->
+    <section class="section-title" id="quemsomos">QUEM SOMOS</section>
+
+    <!-- Texto institucional -->
+    <section class="form-section" id="formulario" style="background-color:#fff; text-align:center; padding:30px 20px;">
+      <p style="max-width:900px; margin:0 auto; font-size:1.1em; line-height:1.6;">
+        A <strong>Gênesis Elétrica</strong> atua com excelência e comprometimento no setor de instalações elétricas.
+        Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências, comércios e indústrias.
+        Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
+        <br><br>
+        <em>“Sua satisfação, nossa missão!”<br><br>______________________________________________</em>
+      </p>
+    </section>
+
+    <!-- Seleção de serviço + Formulários -->
+    <section class="form-section" id="servico">
+      <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
+
+      <select id="tipoServico" onchange="preencherTipoServico(this.value)">
+        <option value="">Selecione uma opção</option>
+        <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
+        <option value="Painéis de comando">Painéis de comando</option>
+        <option value="Inversores de frequência">Inversores de frequência</option>
+        <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">Instalação e manutenção em contator, relé térmico, temporizador e falta de fase</option>
+        <option value="Elétrica industrial (Outros)">Elétrica industrial (Outros)</option>
+        <option value="Painel solar">Painel solar</option>
+        <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
+        <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
+        <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
+        <option value="Sistema de aterramento">Sistema de aterramento</option>
+        <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
+        <option value="Padrão CEMIG">Padrão CEMIG</option>
+        <option value="Restauração elétrica">Restauração elétrica</option>
+        <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
+        <option value="Passagem de fiação">Passagem de fiação</option>
+        <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
+        <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
+        <option value="Manutenção elétrica">Manutenção elétrica</option>
+        <option value="Instalação de tomada simples">Instalação de tomada simples</option>
+        <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
+        <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
+        <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
+        <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
+        <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
+        <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
+        <option value="Instalação de arandela">Instalação de arandela</option>
+        <option value="Iluminação para jardim">Iluminação para jardim</option>
+        <option value="Iluminação externa">Iluminação externa</option>
+        <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
+        <option value="Instalação de perfil de led">Instalação de perfil de led</option>
+        <option value="Instalação de spot">Instalação de spot</option>
+        <option value="Instalação de chuveiro">Instalação de chuveiro</option>
+        <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
+        <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
+        <option value="Outros">Outros</option>
+      </select>
+
+      <input id="suporte" type="text" placeholder="Ou digite aqui qual suporte precisa"/>
+
+      <!-- Botões principais -->
+      <button class="btn-enviar" type="button" onclick="mostrarFormularioPedido()">Enviar pedido</button>
+
+      <div id="botaoUrgencia" style="margin-top:8px;">
+        <img src="alerta.jpg" alt="Serviço de urgência" style="max-height:40px;vertical-align:middle;"/>
+        <button class="btn-urgencia" type="button" onclick="abrirUrgencia()">Serviço de urgência</button>
       </div>
-    </div>
-    <a href="https://genesiseletricablog.com.br/contato/">CONTATO</a>
-  </div>
-</header>
 
-<!-- ====== CONTEÚDO (exemplo) ====== -->
-<main class="wrap">
-  <section class="hero">
-    <h1>Energia com segurança, profissionalismo e excelência!</h1>
-    <p>Substitua este bloco pelo seu conteúdo de página inicial (cards, serviços etc.).</p>
-  </section>
-
-  <section class="grid">
-    <div>
-      <article class="card">
-        <img src="QDC-principal.jpg" alt="Quadro de Distribuição">
-        <div class="pad">
-          <h2>Quadro de Distribuição — Centro de Controle e Proteção</h2>
-          <p>Exemplo de bloco de conteúdo. Você pode remover esta seção; ela está aqui apenas para demonstrar o espaçamento igual ao blog.</p>
+      <!-- FORMULÁRIO: PEDIDO (normal) -->
+      <div id="formularioPedido" style="display:none; margin-top:20px;">
+        <div class="field">
+          <input id="nome" type="text" placeholder="Seu nome" required>
+          <small class="input-error" id="err-nome" hidden>Informe seu nome.</small>
         </div>
-      </article>
-    </div>
-    <aside>
-      <div class="side-box">
-        <h3 style="margin-top:0;">Posts recentes</h3>
-        <ul style="margin:10px 0 0 18px; padding:0; line-height:1.5;">
-          <li><a href="https://genesiseletricablog.com.br/veiculos-eletricos-ia-transformacoes/">Descubra tudo sobre a nova era dos veículos elétricos, IA’s e suas transformações revolucionárias</a></li>
-          <li><a href="https://genesiseletricablog.com.br/quadro-de-distribuicao-centro-de-controle/">Quadro de Distribuição: Centro de Controle e Proteção de Instalações Elétricas</a></li>
-          <li><a href="https://genesiseletricablog.com.br/protecao-contra-raios-e-picos-de-tensao/">Proteção contra raios e picos de tensão</a></li>
-          <li><a href="https://genesiseletricablog.com.br/aterramento-eletrico-fundamentos/">Aterramento elétrico: Fundamentos do sistema de proteção</a></li>
-          <li><a href="https://genesiseletricablog.com.br/disjuntor/">Disjuntor: Fundamentos e aplicações</a></li>
-        </ul>
-      </div>
-    </aside>
-  </section>
 
-  <!-- (Opcional) Formulário → WhatsApp (mantido, se quiser retiro) -->
-  <section style="margin-top:26px" id="orcamento">
-    <h2>Solicite um orçamento</h2>
-    <div class="card" style="padding:14px">
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-        <input id="nome" placeholder="Seu nome" />
-        <input id="telefone" placeholder="Telefone (DDD + número)" inputmode="tel"/>
-        <input id="bairro" placeholder="Bairro"/>
-        <input id="municipio" placeholder="Município"/>
-        <input id="tipoFinal" placeholder="Tipo de serviço"/>
-        <input id="email" placeholder="E-mail (opcional)" type="email"/>
-      </div>
-      <textarea id="observacao" placeholder="Observações (opcional)" style="margin-top:10px;height:70px;width:100%"></textarea>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-        <button onclick="enviarWhatsAppPedido()" style="background:var(--azul);color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer">Enviar via WhatsApp</button>
-        <button onclick="enviarWhatsAppUrgencia()" style="background:#E11D48;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer">Urgência via WhatsApp</button>
-      </div>
-    </div>
-  </section>
-</main>
+        <div class="field">
+          <input id="telefone" type="text" inputmode="tel" placeholder="Telefone (DDD + número)" required>
+          <small class="input-error" id="err-telefone" hidden>Informe um telefone válido (ex.: (31) 98888-7777).</small>
+        </div>
 
-<!-- ====== RODAPÉ (igual ao blog) ====== -->
-<section class="footer-top">
-  <div class="wrap footer-grid">
-    <div class="footer-section">
-      <h3>Postagem recomendada</h3>
-      <div class="post-list">
-        <a class="post-item" href="https://genesiseletricablog.com.br/veiculos-eletricos-ia-transformacoes/">
-          <img src="post1.jpg" alt="">
+        <div class="field two-cols">
           <div>
-            <div class="p-title">Descubra tudo sobre a nova era dos veículos elétricos, IA’s e suas transformações revolucionárias</div>
-            <div class="p-date">30 de agosto de 2025</div>
+            <input id="bairro" type="text" placeholder="Bairro" required>
+            <small class="input-error" id="err-bairro" hidden>Informe o bairro.</small>
           </div>
-        </a>
-        <a class="post-item" href="https://genesiseletricablog.com.br/quadro-de-distribuicao-centro-de-controle/">
-          <img src="post2.jpg" alt="">
           <div>
-            <div class="p-title">Quadro de Distribuição: Centro de Controle e Proteção de Instalações Elétricas</div>
-            <div class="p-date">20 de agosto de 2025</div>
+            <input id="municipio" type="text" placeholder="Município" required>
+            <small class="input-error" id="err-municipio" hidden>Informe o município.</small>
           </div>
-        </a>
-        <a class="post-item" href="https://genesiseletricablog.com.br/dps-protecao-raios-picos/">
-          <img src="post3.jpg" alt="">
-          <div>
-            <div class="p-title">Proteção contra raios e picos de tensão: por que o DPS é essencial</div>
-            <div class="p-date">19 de agosto de 2025</div>
-          </div>
-        </a>
+        </div>
+
+        <div class="field">
+          <input id="tipoFinal" type="text" placeholder="Tipo de serviço" required>
+          <small class="input-error" id="err-tipo" hidden>Selecione ou digite o serviço.</small>
+        </div>
+
+        <div class="field">
+          <input id="email" type="email" placeholder="E-mail (opcional)">
+        </div>
+
+        <div class="field">
+          <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
+        </div>
+
+        <button type="button" class="btn-enviar" onclick="enviarWhatsAppPedido()">Enviar via WhatsApp</button>
+      </div>
+    </section>
+
+    <!-- FORMULÁRIO: URGÊNCIA (separado) -->
+    <section class="form-section" id="formUrgencia" style="display:none; margin-top:10px;">
+      <h3 style="margin:0 0 8px;">Atendimento de urgência</h3>
+
+      <div class="field">
+        <input id="u-nome" type="text" placeholder="Seu nome" required>
+        <small class="input-error" id="u-err-nome" hidden>Informe seu nome.</small>
+      </div>
+
+      <div class="field">
+        <input id="u-telefone" type="text" inputmode="tel" placeholder="Telefone (DDD + número)" required>
+        <small class="input-error" id="u-err-telefone" hidden>Informe um telefone válido.</small>
+      </div>
+
+      <div class="field two-cols">
+        <div>
+          <input id="u-bairro" type="text" placeholder="Bairro" required>
+          <small class="input-error" id="u-err-bairro" hidden>Informe o bairro.</small>
+        </div>
+        <div>
+          <input id="u-municipio" type="text" placeholder="Município" required>
+          <small class="input-error" id="u-err-municipio" hidden>Informe o município.</small>
+        </div>
+      </div>
+
+      <div class="field">
+        <input id="u-tipo" type="text" placeholder="Tipo de serviço (urgência)" required>
+        <small class="input-error" id="u-err-tipo" hidden>Informe o tipo de serviço.</small>
+      </div>
+
+      <div class="field">
+        <textarea id="u-observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
+      </div>
+
+      <button type="button" class="btn-urgencia" onclick="enviarWhatsAppUrgencia()">Enviar urgência via WhatsApp</button>
+    </section>
+
+    <!-- Cards de serviços -->
+    <div class="services-grid">
+      <div class="service-box">
+        <img src="QDC Site.jpg" alt="Quadro de distribuição"/>
+        <h3>Quadro de Distribuição</h3>
+        <p>Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.</p>
+      </div>
+      <div class="service-box">
+        <img src="cabos.jpg" alt="Instalação elétrica do zero"/>
+        <h3>Instalação Elétrica do Zero</h3>
+        <p>Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.</p>
+      </div>
+      <div class="service-box">
+        <img src="projeto eletrico.jpg" alt="Projeto elétrico"/>
+        <h3>Projeto Elétrico</h3>
+        <p>Desenvolvemos projetos personalizados para residências e comércios.</p>
+      </div>
+      <div class="service-box">
+        <img src="aterrammento.png" alt="Aterramento"/>
+        <h3>Sistema de Aterramento</h3>
+        <p>Instalação completa com haste, condutores e medições conforme NBR 5410.</p>
+      </div>
+      <div class="service-box">
+        <img src="CVE.jpg" alt="Carregadores EV"/>
+        <h3>Instalação de CVEs</h3>
+        <p>Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.</p>
       </div>
     </div>
 
-    <div class="footer-section">
-      <h3>Informações de contato:</h3>
-      <div class="contact-list">
-        <div class="contact-entry">
-          <div class="label">Gênesis Elétrica</div>
-          <div>Nossa equipe é especializada em projetos, manutenções e soluções elétricas para residências, comércios e indústrias.</div>
-        </div>
-        <div class="contact-entry">
-          <div class="label">Endereço:</div>
-          <div>Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
-        </div>
-        <div class="contact-entry">
-          <div class="label">Site</div>
-          <div><a href="https://genesiseletricca.com.br/">Gênesis Elétrica</a></div>
-        </div>
-        <div class="contact-entry">
-          <div class="label">Horário de funcionamento:</div>
-          <div>Atendimento 24h</div>
-        </div>
-        <div class="contact-entry">
-          <div class="label">E-mail:</div>
-          <div><a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
-        </div>
-        <div class="contact-entry">
-          <div class="label">WhatsApp</div>
-          <div><a href="https://wa.me/5531975002129">(31) 97500-2129</a></div>
-        </div>
+    <!-- Localização -->
+    <section class="highlight-section" id="localizacao">
+      Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
+    </section>
+
+    <!-- Blog (mantido) -->
+    <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
+      <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Clube do eletricista</h2>
+      <div class="blog-cards">
+        <!-- Card DISJUNTOR -->
+        <article class="post-card">
+          <a class="post-media" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">
+            <img loading="lazy" src="disjuntor.jpg" alt="Disjuntor: Fundamentos e aplicações"/>
+          </a>
+          <div class="post-body">
+            <h3 class="post-title">
+              <a href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a>
+            </h3>
+            <p class="post-excerpt">
+              A proteção adequada de circuitos elétricos é um dos pilares fundamentais da engenharia elétrica moderna. Entre os dispositivos de proteção mais essenciais encontram-se os disjuntores, que desempenham um papel crucial na preservação da integridade de instalações elétricas e na proteção de vidas humanas.
+            </p>
+            <a class="post-readmore" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Leia mais</a>
+          </div>
+        </article>
+
+        <!-- Card IDR -->
+        <article class="post-card">
+          <a class="post-media" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">
+            <img loading="lazy" src="idr.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual"/>
+          </a>
+          <div class="post-body">
+            <h3 class="post-title">
+              <a href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a>
+            </h3>
+            <p class="post-excerpt">
+              A Gênesis Elétrica aborda um dos componentes mais cruciais para a segurança em instalações elétricas: o Interruptor Diferencial Residual (IDR). Este equipamento protege pessoas contra choques elétricos e ajuda a prevenir incêndios causados por fugas de corrente.
+            </p>
+            <a class="post-readmore" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">Leia mais</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== RODAPÉ =================== -->
+  <footer id="contato" class="blog-footer">
+    <div class="inner">
+      <!-- Widgets: esquerda = Postagem recomendada | direita = Informações de contato -->
+      <div class="footer-widgets">
+        <section>
+          <h4 class="widget-title">Postagem recomendada</h4>
+          <div class="rec-list">
+            <!-- Card 1 -->
+            <article class="rec-post">
+              <img src="carroeletrico.jpg" alt="Nova era dos veículos elétricos e IA’s">
+              <div>
+                <a href="https://genesiseletricablog.com.br/carros-eletricos/" target="_blank" rel="noopener">
+                  Descubra tudo sobre a nova era dos veículos elétricos, IA’s e suas transformações revolucionárias.
+                </a>
+                <p>Os carros elétricos e IA’s não são mais uma promessa futurística – eles representam a realidade presente da mobilidade sustentável. Com o mercado brasileiro registrando crescimentos expressivos e inovações tecnológicas aceleradas...</p>
+              </div>
+            </article>
+            <!-- Card 2 -->
+            <article class="rec-post">
+              <img src="aterramento.jpg" alt="Aterramento elétrico: Fundamentos do sistema de proteção">
+              <div>
+                <a href="https://genesiseletricablog.com.br/aterramento/" target="_blank" rel="noopener">
+                  Aterramento elétrico: Fundamentos do sistema de proteção.
+                </a>
+                <p>Muitas vezes, a causa desses problemas está na ausência ou na má qualidade de um dos pilares mais fundamentais de proteção de qualquer instalação elétrica: o aterramento...</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <h4 class="widget-title">Informações de contato</h4>
+          <div class="contact-box">
+            <p><strong>Gênesis Elétrica</strong> - Nossa equipe é especializada em projetos, manutenções e soluções elétricas para residências, comércios e industrias. Entre em contato e tenha a certeza de um trabalho feito com profissionalismo e responsabilidade.</p>
+
+            <div class="contact-list">
+              <!-- Endereço -->
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                <div>Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
+              </div>
+              <!-- Blog -->
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-1 17.93A8.001 8.001 0 0 1 4.07 13H11v6.93zM13 11V4.07A8.001 8.001 0 0 1 19.93 11H13zM13 13h6.93A8.001 8.001 0 0 1 13 19.93V13zM11 11H4.07A8.001 8.001 0 0 1 11 4.07V11z"/></svg>
+                <div>Blog <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Gênesis elétrica</a></div>
+              </div>
+              <!-- Horário -->
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5zm.75 10.25V6a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 .22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28z"/></svg>
+                <div>Horário de funcionamento: Atendimento 24h</div>
+              </div>
+              <!-- Email -->
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 3.2-8 5.2L4 7.2V6l8 5.2L20 6v1.2z"/></svg>
+                <div>E-mail: <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
+              </div>
+              <!-- WhatsApp -->
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.43 0 .04 5.39.04 12.03c0 2.12.55 4.2 1.6 6.03L0 24l6.1-1.58a12.03 12.03 0 0 0 5.97 1.52h.01c6.64 0 12.03-5.39 12.03-12.03 0-3.21-1.26-6.22-3.59-8.43zM12.08 22.06h-.01a9.97 9.97 0 0 1-5.08-1.39l-.36-.21-3.62.94.97-3.53-.24-.37a9.97 9.97 0 0 1-1.53-5.36C2.21 6.53 6.76 2 12.07 2c2.67 0 5.18 1.04 7.07 2.94a9.96 9.96 0 0 1 2.94 7.07c0 5.31-4.54 9.95-10 9.95zm5.64-7.47c-.31-.15-1.83-.9-2.11-1.01-.28-.1-.49-.15-.69.15-.2.31-.79 1.01-.97 1.22-.18.2-.36.23-.67.08-.31-.15-1.31-.48-2.5-1.52-.92-.82-1.54-1.82-1.72-2.13-.18-.31-.02-.48.13-.63.13-.13.31-.36.46-.54.15-.18.2-.31.31-.51.1-.2.05-.38-.03-.54-.08-.15-.69-1.67-.95-2.29-.25-.6-.5-.52-.69-.53l-.59-.01c-.2 0-.52.08-.79.38-.27.31-1.03 1.01-1.03 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.19 5.07 4.48.71.31 1.26.49 1.69.62.71.23 1.36.2 1.88.12.57-.08 1.83-.75 2.09-1.48.26-.74.26-1.37.18-1.5-.08-.13-.28-.21-.59-.36z"/></svg>
+                <div>WhatsApp <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Menu institucional -->
+      <div class="footer-menu" aria-label="Menu institucional">
+        <a href="#quemsomos">Quem Somos</a>
+        <a href="https://genesiseletricablog.com.br/institucional/" target="_blank" rel="noopener">Institucional</a>
+        <a href="https://genesiseletricablog.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>
+        <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-copy">
+        <small>© 2025 Gênesis Elétrica — Energia com segurança, profissionalismo e excelência.</small>
+        <small>Contagem e Região Metropolitana • Atendimento 24h</small>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<footer class="footer-bottom">
-  <div class="wrap">
-    <nav class="foot-links" aria-label="Links do rodapé">
-      <a href="#quemsomos">QUEM SOMOS</a>
-      <a href="https://genesiseletricablog.com.br/institucional/">INSTITUCIONAL</a>
-      <a href="https://genesiseletricablog.com.br/politica-de-privacidade/">POLÍTICA DE PRIVACIDADE</a>
-      <a href="https://genesiseletricablog.com.br/contato/">CONTATO</a>
-    </nav>
-    <div class="copy">Copyright © Gênesis Elétrica - Energia Com Segurança, Profissionalismo E Excelência.</div>
-  </div>
-</footer>
+  <!-- JS (WhatsApp e máscara) -->
+  <script>
+    // Preenche "Tipo de serviço" com a seleção
+    function preencherTipoServico(valor){
+      const campo = document.getElementById('tipoFinal');
+      if (!campo) return;
+      campo.value = valor || document.getElementById('suporte').value || '';
+    }
+    function mostrarFormularioPedido(){
+      document.getElementById('formularioPedido').style.display = 'block';
+      document.getElementById('formUrgencia').style.display = 'none';
+      preencherTipoServico(document.getElementById('tipoServico').value);
+    }
+    function abrirUrgencia(){
+      document.getElementById('formUrgencia').style.display = 'block';
+      document.getElementById('formularioPedido').style.display = 'none';
+    }
 
-<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
+    // Máscara + validação telefone BR
+    function maskPhoneBR(v){
+      v = v.replace(/\D/g,'');
+      if (v.length > 11) v = v.slice(0,11);
+      if (v.length >= 3){ v = '(' + v.slice(0,2) + ') ' + v.slice(2); }
+      if (v.length >= 10){ v = v.replace(/(\d)(\d{4})$/,'$1-$2'); }
+      return v;
+    }
+    function isValidPhoneBR(v){
+      const digits = v.replace(/\D/g,'');
+      return digits.length === 10 || digits.length === 11;
+    }
+    ['telefone','u-telefone'].forEach(id=>{
+      const el = document.getElementById(id);
+      if (el){
+        el.addEventListener('input', e=>{
+          e.target.value = maskPhoneBR(e.target.value);
+        });
+      }
+    });
 
-<script>
-  // Menu mobile
-  const hambBtn = document.getElementById('hambBtn');
-  const drawer = document.getElementById('drawer');
-  hambBtn?.addEventListener('click', ()=> {
-    const open = drawer.style.display === 'block';
-    drawer.style.display = open ? 'none' : 'block';
-  });
+    // Disparo robusto para WhatsApp (mobile/desktop + fallback)
+    function openWhatsAppRobusto(numeroE164, texto){
+      const enc = encodeURIComponent(texto);
+      const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+      const primary = isMobile
+        ? `https://api.whatsapp.com/send?phone=${numeroE164}&text=${enc}`
+        : `https://wa.me/${numeroE164}?text=${enc}`;
+      const fallback = `https://api.whatsapp.com/send?phone=${numeroE164}&text=${enc}`;
 
-  // Máscara telefone BR
-  function maskPhoneBR(v){
-    v=v.replace(/\D/g,''); if(v.length>11) v=v.slice(0,11);
-    if(v.length>=3) v='('+v.slice(0,2)+') '+v.slice(2);
-    if(v.length>=10) v=v.replace(/(\d)(\d{4})$/,'$1-$2');
-    return v;
-  }
-  document.getElementById('telefone')?.addEventListener('input',e=>e.target.value=maskPhoneBR(e.target.value));
+      try { window.location.href = primary; } catch(e) {}
+      const a = document.createElement('a');
+      a.href = primary;
+      a.rel = 'noopener';
+      a.target = '_blank';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{ window.open(fallback, '_blank', 'noopener'); }, 900);
+    }
 
-  function isValidPhoneBR(v){const d=v.replace(/\D/g,'');return d.length===10||d.length===11;}
+    function montarTextoPedido(titulo, dados){
+      return `*${titulo}*\n\n` +
+             `Nome: ${dados.nome}\n` +
+             `Telefone: ${dados.telefone}\n` +
+             `Bairro: ${dados.bairro}\n` +
+             `Município: ${dados.municipio}\n` +
+             (dados.tipo ? `Tipo de serviço: ${dados.tipo}\n` : '') +
+             (dados.email ? `E-mail: ${dados.email}\n` : '') +
+             `Observação: ${dados.obs || '(sem observações)'}\n` +
+             `Fonte: Formulário do site (${dados.origem})`;
+    }
 
-  // WhatsApp robusto
-  function openWhatsApp(numero,texto){
-    const enc=encodeURIComponent(texto);
-    const url1=`https://wa.me/${numero}?text=${enc}`;
-    const url2=`https://api.whatsapp.com/send?phone=${numero}&text=${enc}`;
-    try{window.location.href=url1;}catch(e){}
-    setTimeout(()=>{window.open(url2,'_blank','noopener');},700);
-  }
+    // Pedido normal
+    function enviarWhatsAppPedido(){
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const bairro = document.getElementById('bairro').value.trim();
+      const municipio = document.getElementById('municipio').value.trim();
+      const tipo = (document.getElementById('tipoFinal').value || '').trim();
+      const email = document.getElementById('email').value.trim();
+      const obs = document.getElementById('observacao').value.trim();
 
-  function enviarWhatsAppPedido(){
-    const nome=document.getElementById('nome').value.trim();
-    const telefone=document.getElementById('telefone').value.trim();
-    const bairro=document.getElementById('bairro').value.trim();
-    const municipio=document.getElementById('municipio').value.trim();
-    const tipo=document.getElementById('tipoFinal').value.trim();
-    const email=document.getElementById('email').value.trim();
-    const obs=document.getElementById('observacao').value.trim();
-    if(!nome||!isValidPhoneBR(telefone)||!bairro||!municipio||!tipo){alert('Preencha os campos obrigatórios.');return;}
-    const txt = `*Pedido de serviço – ${tipo}*\n\nNome: ${nome}\nTelefone: ${telefone}\nBairro: ${bairro}\nMunicípio: ${municipio}\nE-mail: ${email||'(não informado)'}\nObservação: ${obs||'(sem observações)'}\nFonte: Página estática (Pedido)`;
-    openWhatsApp('5531975002129', txt);
-  }
-  function enviarWhatsAppUrgencia(){
-    const nome=prompt('Seu nome:')||''; if(!nome) return;
-    const telefone=prompt('Telefone (DDD + número):')||''; if(!isValidPhoneBR(telefone)) return alert('Telefone inválido');
-    const tipo=prompt('Tipo de serviço (urgência):')||'';
-    const bairro=prompt('Bairro:')||'';
-    const municipio=prompt('Município:')||'';
-    const obs=prompt('Observações (opcional):')||'';
-    const txt = `*URGÊNCIA – ${tipo}*\n\nNome: ${nome}\nTelefone: ${telefone}\nBairro: ${bairro}\nMunicípio: ${municipio}\nObservação: ${obs||'(sem observações)'}\nFonte: Página estática (Urgência)`;
-    openWhatsApp('5531975002129', txt);
-  }
-</script>
+      let ok = true;
+      document.getElementById('err-nome').hidden = !!nome; if(!nome) ok=false;
+      document.getElementById('err-telefone').hidden = isValidPhoneBR(telefone); if(!isValidPhoneBR(telefone)) ok=false;
+      document.getElementById('err-bairro').hidden = !!bairro; if(!bairro) ok=false;
+      document.getElementById('err-municipio').hidden = !!municipio; if(!municipio) ok=false;
+      document.getElementById('err-tipo').hidden = !!tipo; if(!tipo) ok=false;
+      if(!ok) return;
+
+      const titulo = `Pedido de serviço – ${tipo}`;
+      const texto = montarTextoPedido(titulo, {
+        nome, telefone, bairro, municipio, tipo, email, obs, origem: 'Pedido'
+      });
+      openWhatsAppRobusto('5531975002129', texto);
+    }
+
+    // Urgência
+    function enviarWhatsAppUrgencia(){
+      const nome = document.getElementById('u-nome').value.trim();
+      const telefone = document.getElementById('u-telefone').value.trim();
+      const bairro = document.getElementById('u-bairro').value.trim();
+      const municipio = document.getElementById('u-municipio').value.trim();
+      const tipo = document.getElementById('u-tipo').value.trim();
+      const obs = document.getElementById('u-observacao').value.trim();
+
+      let ok = true;
+      document.getElementById('u-err-nome').hidden = !!nome; if(!nome) ok=false;
+      document.getElementById('u-err-telefone').hidden = isValidPhoneBR(telefone); if(!isValidPhoneBR(telefone)) ok=false;
+      document.getElementById('u-err-bairro').hidden = !!bairro; if(!bairro) ok=false;
+      document.getElementById('u-err-municipio').hidden = !!municipio; if(!municipio) ok=false;
+      document.getElementById('u-err-tipo').hidden = !!tipo; if(!tipo) ok=false;
+      if(!ok) return;
+
+      const titulo = `URGÊNCIA – ${tipo}`;
+      const texto = montarTextoPedido(titulo, {
+        nome, telefone, bairro, municipio, tipo, email:'', obs, origem: 'Urgência'
+      });
+      openWhatsAppRobusto('5531975002129', texto);
+    }
+  </script>
+
+  <!-- JS global (se existir) -->
+  <script src="/script.js"></script>
 </body>
 </html>
