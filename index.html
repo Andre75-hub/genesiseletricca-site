@@ -21,34 +21,70 @@
 
   <link rel="stylesheet" href="/style.css"/>
 
-  <!-- Overrides para garantir logo GRANDE e formularios -->
+  <!-- ====== ESTILO DO MENU (layout do blog) + RODAPÉ DO BLOG ====== -->
   <style>
-    .site-header{padding:6px 10px !important;}
-    .site-header .header-inner{
-      max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;
+    /* Faixa branca com logo e título (topo do blog) */
+    .brand-bar{background:#fff}
+    .brand-bar .inner{
+      max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px
     }
-    /* Força o tamanho da logo acima de qualquer regra existente */
-    header.site-header img.header-logo{
-      height:96px !important;      /* Aumentado de verdade */
-      max-height:none !important;  /* anula limites anteriores */
-      width:auto !important;
-      flex-shrink:0 !important;
-      image-rendering:-webkit-optimize-contrast;
-      image-rendering:crisp-edges;
-    }
-    @media (max-width:640px){
-      header.site-header img.header-logo{height:72px !important;}
-    }
-    .main-nav a{padding:6px 8px !important;font-size:.95rem !important}
+    .brand-bar .logo{height:88px;width:auto}
+    @media (max-width:640px){ .brand-bar .logo{height:70px} }
 
-    /* Campos e erros */
+    /* Tarja azul do menu (igual ao blog) */
+    .nav-bar{background:#0a57a3}
+    .nav-bar .inner{
+      max-width:1200px;margin:0 auto;display:flex;gap:12px;align-items:center;padding:8px 12px
+    }
+    .nav-bar a{
+      color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;
+      font-weight:600;letter-spacing:.2px;display:inline-block
+    }
+    .nav-bar a:hover, .nav-bar a:focus{background:rgba(255,255,255,.12)}
+    .nav-bar a:active{transform:translateY(1px)}
+
+    /* Rodapé estilo blog */
+    .blog-footer{background:#0a57a3;color:#fff}
+    .blog-footer .inner{max-width:1200px;margin:0 auto;padding:28px 12px}
+    .footer-widgets{display:grid;grid-template-columns:2fr 1.3fr;gap:28px}
+    @media (max-width:800px){ .footer-widgets{grid-template-columns:1fr;gap:18px} }
+
+    .widget-title{font-size:1.05rem;margin:0 0 10px;font-weight:700}
+    .rec-post{display:flex;gap:12px;padding:10px;border-radius:10px;background:rgba(255,255,255,.06)}
+    .rec-post img{width:86px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0}
+    .rec-post a{color:#fff;text-decoration:none;font-weight:600}
+    .rec-post a:hover{text-decoration:underline}
+
+    .contact-list{display:grid;gap:10px}
+    .cta{
+      display:inline-flex;align-items:center;gap:10px;justify-content:center;
+      padding:10px 14px;border-radius:999px;background:#fff;color:#0a57a3;
+      text-decoration:none;font-weight:700
+    }
+    .cta:hover{filter:brightness(.95)}
+    .cta:active{transform:translateY(1px)}
+    .cta small{font-weight:600;opacity:.85}
+
+    .footer-menu{
+      border-top:1px solid rgba(255,255,255,.18);
+      border-bottom:1px solid rgba(255,255,255,.18);
+      margin:22px 0;padding:12px 0;text-align:center
+    }
+    .footer-menu a{color:#fff;text-decoration:none;margin:0 10px;font-weight:600}
+    .footer-menu a:hover{text-decoration:underline}
+
+    .footer-copy{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .footer-copy small{opacity:.9}
+    @media (max-width:640px){
+      .footer-copy{flex-direction:column;align-items:flex-start}
+    }
+
+    /* Seus utilitários já existentes mantidos */
     .field{margin-bottom:10px}
     .field.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .input-error{color:#c0392b;font-size:.85rem}
     .btn-enviar,.btn-urgencia{cursor:pointer}
-    @media (max-width:640px){
-      .field.two-cols{grid-template-columns:1fr}
-    }
+    @media (max-width:640px){ .field.two-cols{grid-template-columns:1fr} }
   </style>
 
   <meta name="description" content="Eletricistas 24h em Contagem e região metropolitana. Instalações, manutenções, padrões Cemig e projetos elétricos com segurança e excelência.">
@@ -57,20 +93,30 @@
 </head>
 <body>
 
-  <!-- Cabeçalho -->
-  <header class="site-header">
-    <div class="header-inner">
-      <!-- inline como fallback final -->
-      <img src="/icone-ge.png" alt="Ícone Gênesis Elétrica" class="header-logo" style="height:96px;width:auto;"/>
-      <nav class="main-nav" aria-label="Menu principal">
+  <!-- =================== HEADER (layout do blog + botões do site) =================== -->
+  <header>
+    <!-- Faixa branca com logo e título -->
+    <div class="brand-bar">
+      <div class="inner">
+        <img src="/icone-ge.png" alt="Gênesis Elétrica" class="logo" />
+        <div>
+          <strong style="font-size:1.2rem;display:block;line-height:1">Gênesis Elétrica</strong>
+          <span style="opacity:.8;font-size:.95rem">Energia com segurança, profissionalismo e excelência</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarja azul com menu -->
+    <nav class="nav-bar" aria-label="Menu principal">
+      <div class="inner">
         <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
         <a href="#formulario">Serviços</a>
         <a href="#quemsomos">Empresa</a>
         <a href="#localizacao">Localização</a>
         <a href="#blog">Postagem</a>
         <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -297,19 +343,57 @@
     </section>
   </main>
 
-  <!-- Rodapé -->
-  <footer id="contato" class="site-footer">
-    <div class="section-inner">
-      <div class="footer-top">
-        <p class="footer-address">Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem - MG, 32280-620</p>
-        <ul class="footer-contacts">
-          <li>WhatsApp: <a href="https://wa.me/5531975002129" rel="noopener" target="_blank">(31) 97500-2129</a></li>
-          <li>E-mail: <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></li>
-          <li>Instagram: <a href="https://instagram.com/genesis_eletrica" rel="noopener" target="_blank">@genesis_eletrica</a></li>
-        </ul>
+  <!-- =================== RODAPÉ (igual ao do blog) =================== -->
+  <footer id="contato" class="blog-footer">
+    <div class="inner">
+      <!-- Widgets: esquerda = Postagem recomendada | direita = contato -->
+      <div class="footer-widgets">
+        <section>
+          <h4 class="widget-title">Postagem recomendada</h4>
+          <article class="rec-post">
+            <img src="/blog/imagens/disjuntor.jpg" alt="Disjuntor: Fundamentos e aplicações" onerror="this.src='disjuntor.jpg'">
+            <div>
+              <a href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">
+                Disjuntor: Fundamentos e aplicações
+              </a>
+              <p style="margin:.35rem 0 0;opacity:.9;font-size:.92rem">
+                Entenda o papel do disjuntor na proteção dos circuitos e como escolher o modelo ideal.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section>
+          <h4 class="widget-title">Informações de contato</h4>
+          <div class="contact-list">
+            <a class="cta" href="https://wa.me/5531975002129?text=Olá%2C%20vim%20pelo%20site%20Gênesis%20Elétrica%20e%20gostaria%20de%20um%20orçamento." target="_blank" rel="noopener">
+              <span>💬</span> WhatsApp <small>(31) 97500-2129</small>
+            </a>
+            <a class="cta" href="mailto:genesiseletricca@gmail.com">
+              <span>✉️</span> E-mail <small>genesiseletricca@gmail.com</small>
+            </a>
+            <a class="cta" href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener">
+              <span>📸</span> Instagram <small>@genesis_eletrica</small>
+            </a>
+            <a class="cta" href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">
+              <span>📰</span> Blog <small>genesiseletricablog.com.br</small>
+            </a>
+          </div>
+        </section>
       </div>
-      <div class="footer-bottom">
+
+      <!-- Menu institucional (todos para o mesmo endereço) -->
+      <div class="footer-menu" aria-label="Menu institucional">
+        <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Quem Somos</a>
+        <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Institucional</a>
+        <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Política de Privacidade</a>
+        <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Contato</a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-copy">
         <small>© 2025 Gênesis Elétrica — Energia com segurança, profissionalismo e excelência.</small>
+        <small>Contagem e Região Metropolitana • Atendimento 24h</small>
       </div>
     </div>
   </footer>
@@ -362,10 +446,7 @@
         : `https://wa.me/${numeroE164}?text=${enc}`;
       const fallback = `https://api.whatsapp.com/send?phone=${numeroE164}&text=${enc}`;
 
-      // Tenta redirecionar direto (melhor para mobile)
       try { window.location.href = primary; } catch(e) {}
-
-      // Cria um <a> oculto e "clica", útil se popup for bloqueado
       const a = document.createElement('a');
       a.href = primary;
       a.rel = 'noopener';
@@ -373,8 +454,6 @@
       a.style.display = 'none';
       document.body.appendChild(a);
       a.click();
-
-      // Fallback após pequeno atraso
       setTimeout(()=>{ window.open(fallback, '_blank', 'noopener'); }, 900);
     }
 
