@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/style.css"/>
 
   <style>
-    /* ===== HEADER ===== */
+    /* ===== HEADER (fixo) ===== */
     header{position:sticky; top:0; z-index:1000}
     .brand-bar{background:#000}
     .brand-bar .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px;color:#fff}
@@ -32,7 +32,7 @@
     .hamb .bars::after{top:6px}
     @media (max-width:980px){.nav-bar .inner{display:none!important}.hamb{display:block!important}}
 
-    /* ===== DRAWER ===== */
+    /* ===== DRAWER (menu sanduíche) ===== */
     .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:1100}
     .drawer-backdrop.show{display:block}
     .drawer{position:fixed;top:0;right:0;height:100%;width:78%;max-width:380px;background:#0b0f14;color:#e5ecf3;box-shadow:-6px 0 24px rgba(0,0,0,.35);transform:translateX(100%);transition:transform .28s ease;z-index:1110}
@@ -49,7 +49,7 @@
     .drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
     .drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3;text-decoration:none}
 
-    /* ===== LOCALIZAÇÃO — menor (50% + 30% extra p/ mobile já aplicado) ===== */
+    /* ===== LOCALIZAÇÃO — compacta ===== */
     #localizacao{ background:#000;color:#fff;text-align:center;padding:5px 8px;font-weight:800 }
     @media (max-width:640px){ #localizacao{ padding:3px 6px } }
 
@@ -59,7 +59,10 @@
     .select-row .select-box{
       position:relative; flex:1 1 320px; min-width:260px;
       background:#eceff3;border:1px solid #d8dee6;border-radius:999px;padding:6px 12px;
+      transition: box-shadow .15s ease, border-color .15s ease, background .15s ease; cursor:pointer;
     }
+    .select-row .select-box:hover{ background:#e4e9f0; border-color:#cfd6df; box-shadow:0 0 0 3px rgba(156,192,255,.25) }
+    .select-row .select-box:active{ transform:translateY(1px) }
     .select-row .select-box select{
       appearance:none;-webkit-appearance:none;-moz-appearance:none;
       width:100%;padding:10px 40px 10px 10px;border:0;background:transparent;
@@ -148,31 +151,31 @@
       <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener" onclick="closeDrawer()">Contato</a>
     </nav>
 
-    <!-- Informações + Redes (com ícones SVG) -->
+    <!-- Informações + Redes (ícones SVG) -->
     <div class="drawer-section">
       <h4>Informações</h4>
       <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
         <div><strong>Endereço:</strong> Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
       </div>
       <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
         <div><strong>E-mail:</strong> <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
       </div>
       <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
         <div><strong>Telefone/WhatsApp:</strong> <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
       </div>
 
       <div class="drawer-social" aria-label="Redes sociais">
         <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.5A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.75-8.25a1.25 1.25 0 1 0-1.25-1.25 1.25 1.25 0 0 0 1.25 1.25z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.5A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.75-8.25a1.25 1.25 0 1 0-1.25-1.25 1.25 1.25 0 0 0 1.25 1.25z"/></svg>
         </a>
         <a href="https://wa.me/5531975002129" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4.11-.55s.26-.32.39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68.32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07.77.77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4.11-.55s.26-.32.39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68.32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07.77.77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/></svg>
         </a>
         <a href="mailto:genesiseletricca@gmail.com" aria-label="E-mail" title="E-mail">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7.8 3.7 9.2 12 14l8.3-4.8-.8-1.4L12 12.2z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7.8 3.7 9.2 12 14l8.3-4.8-.8-1.4L12 12.2z"/></svg>
         </a>
       </div>
     </div>
@@ -199,14 +202,14 @@
       </p>
     </section>
 
-    <!-- ===== SELECIONE O TIPO DE SERVIÇO (dropdown restaurado) ===== -->
+    <!-- ===== SELECIONE O TIPO DE SERVIÇO (dropdown em contêiner) ===== -->
     <section class="form-section" id="servico">
       <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
 
       <div class="select-wrap">
         <div class="select-row">
-          <div class="select-box" title="Clique para escolher o serviço">
-            <select id="tipoServico" onchange="preencherTipoServico(this.value)">
+          <div class="select-box" id="selectBox" title="Clique para escolher o serviço">
+            <select id="tipoServico" aria-label="Tipo de serviço" onchange="preencherTipoServico(this.value)">
               <option value="">Selecione uma opção</option>
               <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
               <option value="Painéis de comando">Painéis de comando</option>
@@ -250,7 +253,7 @@
         </div>
       </div>
 
-      <!-- FORMULÁRIO: PEDIDO -->
+      <!-- FORMULÁRIO: PEDIDO (único) -->
       <div id="formularioPedido" style="display:none; margin-top:20px;">
         <div class="field">
           <input id="nome" type="text" placeholder="Seu nome" required>
@@ -285,38 +288,7 @@
       </div>
     </section>
 
-    <!-- FORMULÁRIO: URGÊNCIA (inalterado) -->
-    <section class="form-section" id="formUrgencia" style="display:none; margin-top:10px;">
-      <h3 style="margin:0 0 8px;">Atendimento de urgência</h3>
-      <div class="field">
-        <input id="u-nome" type="text" placeholder="Seu nome" required>
-        <small class="input-error" id="u-err-nome" hidden>Informe seu nome.</small>
-      </div>
-      <div class="field">
-        <input id="u-telefone" type="text" inputmode="tel" placeholder="Telefone (DDD + número)" required>
-        <small class="input-error" id="u-err-telefone" hidden>Informe um telefone válido.</small>
-      </div>
-      <div class="field two-cols">
-        <div>
-          <input id="u-bairro" type="text" placeholder="Bairro" required>
-          <small class="input-error" id="u-err-bairro" hidden>Informe o bairro.</small>
-        </div>
-        <div>
-          <input id="u-municipio" type="text" placeholder="Município" required>
-          <small class="input-error" id="u-err-municipio" hidden>Informe o município.</small>
-        </div>
-      </div>
-      <div class="field">
-        <input id="u-tipo" type="text" placeholder="Tipo de serviço (urgência)" required>
-        <small class="input-error" id="u-err-tipo" hidden>Informe o tipo de serviço.</small>
-      </div>
-      <div class="field">
-        <textarea id="u-observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
-      </div>
-      <button type="button" class="btn-enviar" onclick="enviarWhatsAppUrgencia()">Enviar urgência via WhatsApp</button>
-    </section>
-
-    <!-- Cards de serviços (mantidos) -->
+    <!-- Cards de serviços -->
     <div class="services-grid">
       <div class="service-box">
         <img src="QDC Site.jpg" alt="Quadro de distribuição"/>
@@ -345,7 +317,7 @@
       </div>
     </div>
 
-    <!-- Localização (reduzida) -->
+    <!-- Localização -->
     <section class="highlight-section" id="localizacao">
       Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
     </section>
@@ -354,7 +326,6 @@
     <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
       <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Blog Gênesis elétrica</h2>
       <div class="blog-cards">
-        <!-- Card DISJUNTOR -->
         <article class="post-card">
           <a class="post-media" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">
             <img loading="lazy" src="disjuntor.jpg" alt="Disjuntor: Fundamentos e aplicações"/>
@@ -363,14 +334,11 @@
             <h3 class="post-title">
               <a href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a>
             </h3>
-            <p class="post-excerpt">
-              Os carros elétricos e IA’s não são mais uma promessa futurística...
-            </p>
+            <p class="post-excerpt">Os carros elétricos e IA’s não são mais uma promessa futurística...</p>
             <a class="post-readmore" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Leia mais</a>
           </div>
         </article>
 
-        <!-- Card IDR -->
         <article class="post-card">
           <a class="post-media" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">
             <img loading="lazy" src="idr.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual"/>
@@ -379,9 +347,7 @@
             <h3 class="post-title">
               <a href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a>
             </h3>
-            <p class="post-excerpt">
-              A causa desses problemas está na ausência ou na má qualidade de um dos pilares...
-            </p>
+            <p class="post-excerpt">A causa desses problemas está na ausência ou na má qualidade de um dos pilares...</p>
             <a class="post-readmore" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">Leia mais</a>
           </div>
         </article>
@@ -424,23 +390,23 @@
 
             <div class="contact-list">
               <div class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
                 <div>Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
               </div>
               <div class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-1 17.93A8.001 8.001 0 0 1 4.07 13H11v6.93zM13 11V4.07A8.001 8.001 0 0 1 19.93 11H13zM13 13h6.93A8.001 8.001 0 0 1 13 19.93V13zM11 11H4.07A8.001 8.001 0 0 1 11 4.07V11z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-1 17.93A8.001 8.001 0 0 1 4.07 13H11v6.93zM13 11V4.07A8.001 8.001 0 0 1 19.93 11H13zM13 13h6.93A8.001 8.001 0 0 1 13 19.93V13zM11 11H4.07A8.001 8.001 0 0 1 11 4.07V11z"/></svg>
                 <div>Blog <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Gênesis elétrica</a></div>
               </div>
               <div class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5zm.75 10.25V6a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 .22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5zm.75 10.25V6a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 .22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28z"/></svg>
                 <div>Horário de funcionamento: Atendimento 24h</div>
               </div>
               <div class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 3.2-8 5.2L4 7.2V6l8 5.2L20 6v1.2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 3.2-8 5.2L4 7.2V6l8 5.2L20 6v1.2z"/></svg>
                 <div>E-mail: <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
               </div>
               <div class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.43 0 .04 5.39.04 12.03c0 2.12.55 4.2 1.6 6.03L0 24l6.1-1.58a12.03 12.03 0 0 0 5.97 1.52h.01c6.64 0 12.03-5.39 12.03-12.03 0-3.21-1.26-6.22-3.59-8.43zM12.08 22.06h-.01a9.97 9.97 0 0 1-5.08-1.39l-.36-.21-3.62.94.97-3.53-.24-.37a9.97 9.97 0 0 1-1.53-5.36C2.21 6.53 6.76 2 12.07 2c2.67 0 5.18 1.04 7.07 2.94a9.96 9.96 0 0 1 2.94 7.07c0 5.31-4.54 9.95-10 9.95zm5.64-7.47c-.31-.15-1.83-.9-2.11-1.01-.28-.1-.49-.15-.69.15-.2.31-.79 1.01-.97 1.22-.18.2-.36.23-.67.08-.31-.15-1.31-.48-2.5-1.52-.92-.82-1.54-1.82-1.72-2.13-.18-.31-.02-.48.13-.63.13-.13.31-.36.46-.54.15-.18.2-.31.31-.51.1-.2.05-.38-.03-.54-.08-.15-.69-1.67-.95-2.29-.25-.6-.5-.52-.69-.53l-.59-.01c-.2 0-.52.08-.79.38-.27.31-1.03 1.01-1.03 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.19 5.07 4.48.71.31 1.26.49 1.69.62.71.23 1.36.2 1.88.12.57-.08 1.83-.75 2.09-1.48.26-.74.26-1.37.18-1.5-.08-.13-.28-.21-.59-.36z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.43 0 .04 5.39.04 12.03c0 2.12.55 4.2 1.6 6.03L0 24l6.1-1.58a12.03 12.03 0 0 0 5.97 1.52h.01c6.64 0 12.03-5.39 12.03-12.03 0-3.21-1.26-6.22-3.59-8.43z"/></svg>
                 <div>WhatsApp <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
               </div>
             </div>
@@ -464,7 +430,7 @@
 
   <!-- ===== JS ===== -->
   <script>
-    // Menu sanduíche
+    // ===== Menu sanduíche
     const hamb=document.getElementById('hambBtn');
     const drawer=document.getElementById('drawer');
     const backdrop=document.getElementById('drawerBackdrop');
@@ -476,23 +442,50 @@
     backdrop?.addEventListener('click',closeDrawer);
     window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 
-    // ===== Dropdown -> campo "tipoFinal" do formulário
+    // ===== Seletor: hover + clique em QUALQUER parte abre a lista
+    (function() {
+      const box = document.getElementById('selectBox');
+      const sel = document.getElementById('tipoServico');
+      if (!box || !sel) return;
+
+      // Clique em qualquer parte do contêiner abre o select
+      box.addEventListener('click', (e)=>{
+        if (e.target !== sel) {
+          try { sel.showPicker && sel.showPicker(); } catch(_){}
+          sel.focus();
+          try { sel.dispatchEvent(new MouseEvent('mousedown', {bubbles:true})); } catch(_){}
+          try { sel.click(); } catch(_){}
+        }
+      });
+
+      // Acessibilidade: Enter/Espaço no contêiner também abre
+      box.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          try { sel.showPicker && sel.showPicker(); } catch(_){}
+          sel.focus(); try { sel.click(); } catch(_){}
+        }
+      });
+      box.tabIndex = 0; // permite foco para teclado
+    })();
+
+    // ===== Sincroniza seleção no campo do formulário
     function preencherTipoServico(valor){
       const campo = document.getElementById('tipoFinal');
       if (!campo) return;
       campo.value = valor || '';
     }
-
     function mostrarFormularioPedido(){
       document.getElementById('formularioPedido').style.display = 'block';
-      document.getElementById('formUrgencia').style.display = 'none';
       const sel = document.getElementById('tipoServico');
       if (sel && sel.value && document.getElementById('tipoFinal')) {
         document.getElementById('tipoFinal').value = sel.value;
       }
+      // foca no primeiro campo
+      setTimeout(()=>{ document.getElementById('nome')?.focus(); }, 50);
     }
 
-    // ===== Máscara de telefone
+    // ===== Máscara & validação de telefone BR
     function maskPhoneBR(v){
       v = v.replace(/\D/g,'');
       if (v.length > 11) v = v.slice(0,11);
@@ -500,30 +493,14 @@
       if (v.length >= 10){ v = v.replace(/(\d)(\d{4})$/,'$1-$2'); }
       return v;
     }
-    function isValidPhoneBR(v){
-      const digits = v.replace(/\D/g,'');
-      return digits.length === 10 || digits.length === 11;
-    }
-    ['telefone','u-telefone'].forEach(id=>{
-      const el = document.getElementById(id);
-      if (el){ el.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); }); }
-    });
+    function isValidPhoneBR(v){ const d = v.replace(/\D/g,''); return d.length===10 || d.length===11; }
+    const tel = document.getElementById('telefone');
+    tel?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
 
-    // ===== Envio ao WhatsApp (abre UMA aba com mensagem preenchida)
+    // ===== WhatsApp (abre UMA aba com a mensagem)
     function abrirWhats(telefoneE164, texto){
       const url = `https://wa.me/${telefoneE164}?text=${encodeURIComponent(texto)}`;
-      window.open(url, '_blank', 'noopener'); // uma aba
-    }
-    function montarTextoPedido(titulo, dados){
-      return `*${titulo}*\n\n` +
-             `Nome: ${dados.nome}\n` +
-             `Telefone: ${dados.telefone}\n` +
-             `Bairro: ${dados.bairro}\n` +
-             `Município: ${dados.municipio}\n` +
-             (dados.tipo ? `Tipo de serviço: ${dados.tipo}\n` : '') +
-             (dados.email ? `E-mail: ${dados.email}\n` : '') +
-             `Observação: ${dados.obs || '(sem observações)'}\n` +
-             `Fonte: Formulário do site (Pedido)`;
+      window.open(url, '_blank', 'noopener'); // 1 aba
     }
     function enviarWhatsAppPedido(){
       const nome = document.getElementById('nome').value.trim();
@@ -542,32 +519,18 @@
       document.getElementById('err-tipo').hidden = !!tipo; if(!tipo) ok=false;
       if(!ok) return;
 
-      const titulo = `Pedido de serviço – ${tipo}`;
-      const texto = montarTextoPedido(titulo, {nome, telefone, bairro, municipio, tipo, email, obs});
-      abrirWhats('5531975002129', texto);
-    }
-    function enviarWhatsAppUrgencia(){
-      const nome = document.getElementById('u-nome').value.trim();
-      const telefone = document.getElementById('u-telefone').value.trim();
-      const bairro = document.getElementById('u-bairro').value.trim();
-      const municipio = document.getElementById('u-municipio').value.trim();
-      const tipo = document.getElementById('u-tipo').value.trim();
-      const obs = document.getElementById('u-observacao').value.trim();
+      const mensagem =
+        `Olá! Gostaria de solicitar um serviço.\n\n` +
+        `Nome: ${nome}\n` +
+        `Telefone: ${telefone}\n` +
+        `Bairro: ${bairro}\n` +
+        `Município: ${municipio}\n` +
+        (email ? `E-mail: ${email}\n` : '') +
+        `Serviço: ${tipo}\n` +
+        (obs ? `Observação: ${obs}` : '');
 
-      let ok = true;
-      document.getElementById('u-err-nome').hidden = !!nome; if(!nome) ok=false;
-      document.getElementById('u-err-telefone').hidden = isValidPhoneBR(telefone); if(!isValidPhoneBR(telefone)) ok=false;
-      document.getElementById('u-err-bairro').hidden = !!bairro; if(!bairro) ok=false;
-      document.getElementById('u-err-municipio').hidden = !!municipio; if(!municipio) ok=false;
-      document.getElementById('u-err-tipo').hidden = !!tipo; if(!tipo) ok=false;
-      if(!ok) return;
-
-      const titulo = `URGÊNCIA – ${tipo}`;
-      const texto = montarTextoPedido(titulo, {nome, telefone, bairro, municipio, tipo, email:'', obs});
-      abrirWhats('5531975002129', texto);
+      abrirWhats('5531975002129', mensagem);
     }
   </script>
-
-  <script src="/script.js"></script>
 </body>
 </html>
