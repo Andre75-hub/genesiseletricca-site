@@ -16,6 +16,7 @@
     --texto:#111;
     --cinza:#eef3f7;
     --white:#fff;
+    --borda:#e6eef6;
   }
   html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--texto);background:#fff}
   img{max-width:100%;height:auto;display:block}
@@ -25,7 +26,6 @@
   /* ===== HEADER ===== */
   .brand-bar{background:var(--preto);color:#fff;position:sticky;top:0;z-index:1000}
   .brand-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px}
-  /* logo maior e nítido */
   .brand-logo{height:96px;width:auto;flex-shrink:0;image-rendering:-webkit-optimize-contrast}
   .brand-title{display:flex;flex-direction:column}
   .brand-title strong{color:#fff;line-height:1;font-size:1.25rem}
@@ -77,27 +77,36 @@
 
   /* ===== HERO ===== */
   .hero{position:relative;overflow:hidden;background:#0b0f14}
-  .hero img{width:100%;height:clamp(220px,48vw,520px);object-fit:cover;display:block}
-  .hero-text{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.45);padding:10px 14px;border-radius:10px;font-weight:700;text-align:center}
-  @media (max-width:640px){.hero img{height:clamp(180px,44vw,380px)}.hero-text{font-size:.95rem;bottom:12px}}
+  .hero img{width:100%;height:clamp(220px,48vw,520px);object-fit:cover}
+  .hero-text{
+    position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+    color:#fff;background:rgba(0,0,0,.45);padding:10px 14px;border-radius:10px;
+    font-weight:800;text-align:center;line-height:1.35;z-index:2;
+    max-width:min(900px, calc(100% - 24px));
+  }
+  @media (max-width:640px){
+    .hero img{height:clamp(180px,44vw,380px)}
+    .hero-text{font-size:.95rem;bottom:12px}
+  }
 
   /* ===== Seções e utilitários ===== */
   .section-title{padding:16px 12px;text-align:center;font-weight:900;letter-spacing:.5px}
-  .form-section{padding:24px 12px}
+  .form-section{padding:24px 12px;max-width:1200px;margin:0 auto}
   .field{margin-bottom:10px}
   .field.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   @media (max-width:640px){.field.two-cols{grid-template-columns:1fr}}
   .input-error{color:#c0392b;font-size:.85rem}
   input,select,textarea,button{font:inherit}
-  input,select,textarea{width:100%;padding:10px;border:1px solid #dfe7f0;border-radius:10px}
-  button.btn-enviar,button.btn-urgencia{background:#0a57a3;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:800}
+  select, input, textarea{width:100%;padding:12px;border:1px solid #dfe7f0;border-radius:10px;background:#fff}
+  button.btn-enviar,button.btn-urgencia{background:#0a57a3;color:#fff;border:0;border-radius:10px;padding:12px 16px;font-weight:800}
   button.btn-urgencia{background:#d9534f}
+  .form-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 
   /* ===== Grid tipos de serviço ===== */
   .services-grid{max-width:1200px;margin:24px auto;padding:0 12px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
   @media (max-width:1000px){.services-grid{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:640px){.services-grid{grid-template-columns:repeat(2,1fr)}}
-  .service-box{background:#fff;border:1px solid #e6eef6;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.04);display:flex;flex-direction:column}
+  .service-box{background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.04);display:flex;flex-direction:column}
   .service-box img{width:100%;aspect-ratio:4/3;object-fit:cover}
   .service-box h3{font-size:1rem;margin:10px 12px 0}
   .service-box p{font-size:.92rem;margin:8px 12px 14px;color:#333}
@@ -106,8 +115,8 @@
   .blog-cards-wrap{background:#eef3f7}
   .blog-cards{max-width:1200px;margin:0 auto;padding:0 12px 24px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   @media (max-width:860px){.blog-cards{grid-template-columns:1fr}}
-  .post-card{background:#fff;border:1px solid #e6eef6;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.04);display:flex;flex-direction:column}
-  .post-card .post-media img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .post-card{background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.04);display:flex;flex-direction:column}
+  .post-card .post-media img{width:100%;aspect-ratio:16/9;object-fit:cover}
   .post-body{padding:12px}
   .post-title{margin:0 0 6px;font-size:1.05rem}
   .post-title a{color:#0a57a3}
@@ -176,10 +185,10 @@
   </div>
   <nav class="drawer-nav" aria-label="Navegação móvel">
     <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
-    <a href="#servico">Serviços</a>
-    <a href="#quemsomos">Empresa</a>
-    <a href="#localizacao">Localização</a>
-    <a href="#blog">Postagem</a>
+    <a href="#servico" onclick="closeDrawer()">Serviços</a>
+    <a href="#quemsomos" onclick="closeDrawer()">Empresa</a>
+    <a href="#localizacao" onclick="closeDrawer()">Localização</a>
+    <a href="#blog" onclick="closeDrawer()">Postagem</a>
     <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
   </nav>
   <div class="drawer-section">
@@ -224,50 +233,56 @@
 
   <!-- SELECIONE O TIPO / FORMULÁRIOS -->
   <section class="form-section" id="servico">
-    <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
-    <select id="tipoServico" onchange="preencherTipoServico(this.value)">
-      <option value="">Selecione uma opção</option>
-      <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
-      <option value="Painéis de comando">Painéis de comando</option>
-      <option value="Inversores de frequência">Inversores de frequência</option>
-      <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">Instalação e manutenção em contator, relé térmico, temporizador e falta de fase</option>
-      <option value="Elétrica industrial (Outros)">Elétrica industrial (Outros)</option>
-      <option value="Painel solar">Painel solar</option>
-      <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
-      <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
-      <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
-      <option value="Sistema de aterramento">Sistema de aterramento</option>
-      <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
-      <option value="Padrão CEMIG">Padrão CEMIG</option>
-      <option value="Restauração elétrica">Restauração elétrica</option>
-      <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
-      <option value="Passagem de fiação">Passagem de fiação</option>
-      <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
-      <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
-      <option value="Manutenção elétrica">Manutenção elétrica</option>
-      <option value="Instalação de tomada simples">Instalação de tomada simples</option>
-      <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
-      <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
-      <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
-      <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
-      <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
-      <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
-      <option value="Instalação de arandela">Instalação de arandela</option>
-      <option value="Iluminação para jardim">Iluminação para jardim</option>
-      <option value="Iluminação externa">Iluminação externa</option>
-      <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
-      <option value="Instalação de perfil de led">Instalação de perfil de led</option>
-      <option value="Instalação de spot">Instalação de spot</option>
-      <option value="Instalação de chuveiro">Instalação de chuveiro</option>
-      <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
-      <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
-      <option value="Outros">Outros</option>
-    </select>
+    <p style="font-weight:800;margin:0 0 10px;"><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
 
-    <input id="suporte" type="text" placeholder="Ou digite aqui qual suporte precisa"/>
-    <button class="btn-enviar" type="button" onclick="mostrarFormularioPedido()">Enviar pedido</button>
-    <div style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <img src="alerta.jpg" alt="Serviço de urgência" style="max-height:40px;vertical-align:middle;"/>
+    <div class="field">
+      <select id="tipoServico" onchange="preencherTipoServico(this.value)">
+        <option value="">Selecione uma opção</option>
+        <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
+        <option value="Painéis de comando">Painéis de comando</option>
+        <option value="Inversores de frequência">Inversores de frequência</option>
+        <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">Instalação e manutenção em contator, relé térmico, temporizador e falta de fase</option>
+        <option value="Elétrica industrial (Outros)">Elétrica industrial (Outros)</option>
+        <option value="Painel solar">Painel solar</option>
+        <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
+        <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
+        <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
+        <option value="Sistema de aterramento">Sistema de aterramento</option>
+        <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
+        <option value="Padrão CEMIG">Padrão CEMIG</option>
+        <option value="Restauração elétrica">Restauração elétrica</option>
+        <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
+        <option value="Passagem de fiação">Passagem de fiação</option>
+        <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
+        <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
+        <option value="Manutenção elétrica">Manutenção elétrica</option>
+        <option value="Instalação de tomada simples">Instalação de tomada simples</option>
+        <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
+        <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
+        <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
+        <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
+        <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
+        <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
+        <option value="Instalação de arandela">Instalação de arandela</option>
+        <option value="Iluminação para jardim">Iluminação para jardim</option>
+        <option value="Iluminação externa">Iluminação externa</option>
+        <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
+        <option value="Instalação de perfil de led">Instalação de perfil de led</option>
+        <option value="Instalação de spot">Instalação de spot</option>
+        <option value="Instalação de chuveiro">Instalação de chuveiro</option>
+        <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
+        <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
+        <option value="Outros">Outros</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <input id="suporte" type="text" placeholder="Ou digite aqui qual suporte precisa"/>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-enviar" type="button" onclick="mostrarFormularioPedido()">Enviar pedido</button>
+      <img src="alerta.jpg" alt="Serviço de urgência" style="max-height:40px"/>
       <button class="btn-urgencia" type="button" onclick="abrirUrgencia()">Serviço de urgência</button>
     </div>
 
@@ -451,17 +466,21 @@
   /* Helpers do formulário */
   function preencherTipoServico(valor){
     const campo=document.getElementById('tipoFinal');
+    const suporte=document.getElementById('suporte');
     if(!campo) return;
-    campo.value = valor || document.getElementById('suporte').value || '';
+    campo.value = valor || (suporte?suporte.value:'') || '';
   }
   function mostrarFormularioPedido(){
     document.getElementById('formularioPedido').style.display='block';
     document.getElementById('formUrgencia').style.display='none';
     preencherTipoServico(document.getElementById('tipoServico').value);
+    // rolar até o formulário para garantir visibilidade em mobile
+    document.getElementById('formularioPedido').scrollIntoView({behavior:'smooth',block:'start'});
   }
   function abrirUrgencia(){
     document.getElementById('formUrgencia').style.display='block';
     document.getElementById('formularioPedido').style.display='none';
+    document.getElementById('formUrgencia').scrollIntoView({behavior:'smooth',block:'start'});
   }
 
   function maskPhoneBR(v){v=v.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length>=3)v='('+v.slice(0,2)+') '+v.slice(2);if(v.length>=10)v=v.replace(/(\d)(\d{4})$/,'$1-$2');return v;}
