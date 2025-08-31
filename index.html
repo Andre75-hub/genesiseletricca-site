@@ -8,24 +8,21 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/icone-ge.png">
 <link rel="apple-touch-icon" href="/icone-ge.png">
-
 <link rel="stylesheet" href="/style.css"/>
 
 <style>
   :root{
     --azul:#0a57a3;
-    --azul2:#0a57d8;
     --preto:#000;
     --texto:#111;
     --cinza:#eef3f7;
-    --rodape-azul:#0a57a3;
     --white:#fff;
   }
   html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--texto);background:#fff}
-  a{color:var(--azul2);text-decoration:none}
+  a{color:#0a57d8;text-decoration:none}
   a:hover{opacity:.9}
 
-  /* ===== HEADER ===== */
+  /* ====== TOPO (DESKTOP MANTIDO) ====== */
   .brand-bar{background:var(--preto);color:#fff;position:sticky;top:0;z-index:1000}
   .brand-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px}
   .brand-logo{height:80px;width:auto;flex-shrink:0}
@@ -33,20 +30,20 @@
   .brand-title strong{color:#fff;line-height:1;font-size:1.2rem}
   .brand-title span{color:#ffffffcc;font-size:.95rem}
 
-  /* nav azul */
   .nav-bar{background:var(--azul)}
-  .nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:10px;padding:8px 12px}
+  .nav-inner{
+    max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:10px;padding:8px 12px
+  }
   .nav-inner a{color:#fff;font-weight:600;letter-spacing:.2px;padding:8px 12px;border-radius:6px}
   .nav-inner a:hover{background:rgba(255,255,255,.12)}
 
-  /* Hamburger (mobile) */
+  /* ====== APENAS MOBILE (não altera desktop) ====== */
   .hamb{margin-left:auto;border:1px solid rgba(255,255,255,.35);padding:8px 10px;border-radius:8px;background:transparent;color:#fff;display:none;cursor:pointer}
   .hamb .bars{display:block;width:20px;height:2px;background:#fff;position:relative}
   .hamb .bars::before,.hamb .bars::after{content:"";position:absolute;left:0;width:20px;height:2px;background:#fff}
   .hamb .bars::before{top:-6px}
   .hamb .bars::after{top:6px}
 
-  /* Drawer lateral (menu mobile ao estilo do blog) */
   .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:1100}
   .drawer{position:fixed;top:0;right:0;height:100%;width:78%;max-width:380px;background:#0b0f14;color:#e5ecf3;box-shadow:-6px 0 24px rgba(0,0,0,.35);transform:translateX(100%);transition:transform .28s ease;z-index:1110}
   .drawer.open{transform:translateX(0)}
@@ -55,7 +52,6 @@
   .drawer-head img{height:26px}
   .drawer-close{background:transparent;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
   .drawer-nav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);color:#dce6f2;font-weight:700}
-  .drawer-nav a:first-child{color:#4ea0ff}
   .drawer-section{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
   .drawer-section h4{margin:0 0 10px}
   .info-item{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:8px 0}
@@ -63,7 +59,7 @@
   .drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
   .drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px 8px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3}
 
-  /* Responsividade header */
+  /* Ativar hambúrguer somente <980px */
   @media (max-width:980px){
     .nav-inner{display:none}
     .hamb{display:block}
@@ -74,7 +70,7 @@
     .brand-title span{font-size:.9rem}
   }
 
-  /* ===== HERO e conteúdo base (mantido do seu site) ===== */
+  /* ====== CONTEÚDO EXISTENTE ====== */
   .hero{position:relative}
   .hero img{width:100%;height:auto;display:block}
   .hero-text{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.45);padding:10px 14px;border-radius:10px}
@@ -82,8 +78,8 @@
   .section-title{padding:16px 12px;text-align:center;font-weight:800}
   .form-section{padding:24px 12px}
 
-  /* ===== RODAPÉ (com postagens e contato à direita) ===== */
-  .blog-footer{background:var(--rodape-azul);color:#fff;margin-top:24px}
+  /* ====== RODAPÉ ====== */
+  .blog-footer{background:var(--azul);color:#fff;margin-top:24px}
   .bf-inner{max-width:1200px;margin:0 auto;padding:28px 12px}
   .bf-grid{display:grid;grid-template-columns:2fr 1.3fr;gap:28px}
   @media (max-width:900px){.bf-grid{grid-template-columns:1fr}}
@@ -109,7 +105,7 @@
   .footer-copy small{opacity:.9}
   @media (max-width:640px){.footer-copy{flex-direction:column;align-items:flex-start}}
 
-  /* utilitários do formulário */
+  /* utilitários formulário */
   .field{margin-bottom:10px}
   .field.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   @media (max-width:640px){.field.two-cols{grid-template-columns:1fr}}
@@ -119,7 +115,7 @@
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- ====== HEADER ====== -->
 <header class="brand-bar">
   <div class="brand-inner">
     <img src="/icone-ge.png" class="brand-logo" alt="Gênesis Elétrica">
@@ -127,6 +123,7 @@
       <strong>Gênesis Elétrica</strong>
       <span>Energia com segurança, profissionalismo e excelência</span>
     </div>
+    <!-- Ícone hambúrguer só aparece no mobile -->
     <button class="hamb" id="hambBtn" aria-label="Abrir menu"><span class="bars"></span></button>
   </div>
   <nav class="nav-bar" aria-label="Menu principal">
@@ -197,7 +194,7 @@
     </p>
   </section>
 
-  <!-- ===== FORMULÁRIOS (mantidos) ===== -->
+  <!-- ===== FORMULÁRIOS ===== -->
   <section class="form-section" id="servico">
     <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
     <select id="tipoServico" onchange="preencherTipoServico(this.value)">
@@ -275,21 +272,13 @@
     <button type="button" class="btn-urgencia" onclick="enviarWhatsAppUrgencia()">Enviar urgência via WhatsApp</button>
   </section>
 
-  <!-- Seções já existentes (serviços / localização / blog) ficam aqui... -->
-
   <!-- Localização -->
   <section class="section-title" id="localizacao">
     Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
   </section>
-
-  <!-- Blog cards anteriores (se desejar manter) -->
-  <section id="blog" class="form-section" style="background:var(--cinza)">
-    <h2 style="text-align:center;margin:0 0 16px;">FIQUE POR DENTRO - Clube do eletricista</h2>
-    <!-- … seus cards existentes … -->
-  </section>
 </main>
 
-<!-- ===== RODAPÉ ===== -->
+<!-- ====== RODAPÉ ====== -->
 <footer class="blog-footer" id="contato">
   <div class="bf-inner">
     <div class="bf-grid">
@@ -360,9 +349,9 @@
   </div>
 </footer>
 
-<!-- ===== JS ===== -->
+<!-- ====== JS ====== -->
 <script>
-  /* Drawer mobile */
+  /* Drawer mobile (não impacta desktop) */
   const hamb = document.getElementById('hambBtn');
   const drawer = document.getElementById('drawer');
   const backdrop = document.getElementById('drawerBackdrop');
@@ -383,7 +372,7 @@
   backdrop?.addEventListener('click', closeDrawer);
   window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDrawer(); });
 
-  /* Form fill */
+  /* Preenchimento serviço */
   function preencherTipoServico(valor){
     const campo = document.getElementById('tipoFinal');
     if (!campo) return;
@@ -410,7 +399,7 @@
   document.getElementById('telefone')?.addEventListener('input',e=>e.target.value=maskPhoneBR(e.target.value));
   document.getElementById('u-telefone')?.addEventListener('input',e=>e.target.value=maskPhoneBR(e.target.value));
 
-  /* WhatsApp robusto */
+  /* WhatsApp */
   function openWhatsApp(numero,texto){
     const enc=encodeURIComponent(texto);
     const url1=`https://wa.me/${numero}?text=${enc}`;
@@ -423,7 +412,6 @@
            (d.tipo?`Tipo de serviço: ${d.tipo}\n`:'')+(d.email?`E-mail: ${d.email}\n`:'')+
            `Observação: ${d.obs||'(sem observações)'}\nFonte: Formulário do site (${d.origem})`;
   }
-
   function enviarWhatsAppPedido(){
     const nome=document.getElementById('nome').value.trim();
     const telefone=document.getElementById('telefone').value.trim();
@@ -444,7 +432,6 @@
     const texto=montarTexto(`Pedido de serviço – ${tipo}`,{nome,telefone,bairro,municipio,tipo,email,obs,origem:'Pedido'});
     openWhatsApp('5531975002129',texto);
   }
-
   function enviarWhatsAppUrgencia(){
     const nome=document.getElementById('u-nome').value.trim();
     const telefone=document.getElementById('u-telefone').value.trim();
