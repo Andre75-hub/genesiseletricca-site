@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/style.css"/>
 
   <style>
-    /* ===== HEADER (mantido como estava neste arquivo) ===== */
+    /* ===== HEADER (fixo) ===== */
     header{position:sticky; top:0; z-index:1000}
     .brand-bar{background:#000}
     .brand-bar .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px;color:#fff}
@@ -49,92 +49,37 @@
     .drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
     .drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3;text-decoration:none}
 
-    /* ===== HERO: reduzir altura + máscara degradê para o título ===== */
-    .hero{position:relative}
-    .hero img{
-      width:100%;
-      height:clamp(220px, 42vw, 460px); /* reduzido em desktop e mobile */
-      object-fit:cover; object-position:center;
-      display:block;
-    }
-    .hero::after{
-      content:"";
-      position:absolute; left:0; right:0; bottom:0; height:40%;
-      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.75) 100%);
-      pointer-events:none;
-    }
-    .hero-text{
-      position:absolute; left:0; right:0; bottom:8%;
-      text-align:center; color:#fff; font-weight:900;
-      font-size:clamp(18px,3.2vw,34px);
-      text-shadow:0 2px 18px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.45);
-      padding:0 12px;
-    }
+    /* ===== LOCALIZAÇÃO — compacta ===== */
+    #localizacao{ background:#000;color:#fff;text-align:center;padding:5px 8px;font-weight:800 }
+    @media (max-width:640px){ #localizacao{ padding:3px 6px } }
 
-    /* ===== LOCALIZAÇÃO — +70% (tamanho e legibilidade) ===== */
-    #localizacao{
-      background:#000;color:#fff;text-align:center;
-      padding:9px 14px;          /* antes 5px 8px → ~+70% */
-      font-weight:800;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      font-size:clamp(13px,1.9vw,18px);
-      line-height:1.2;
-    }
-    @media (max-width:640px){
-      #localizacao{ padding:8px 12px; font-size:clamp(12px,3.8vw,16px) }
-    }
-
-    /* ===== CONTÊINER DO SELETOR + BOTÃO (reduzido) ===== */
-    .select-wrap{
-      padding:14px 12px;background:#f5f7fa;border-radius:12px;max-width:900px;margin:0 auto; /* 1000→900 */
-    }
+    /* ===== CONTÊINER DO SELETOR + BOTÃO ===== */
+    .select-wrap{padding:16px 12px;background:#f5f7fa;border-radius:12px;max-width:1000px;margin:0 auto}
     .select-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .select-row .select-box{
-      position:relative; flex:1 1 280px; min-width:240px; /* menor */
-      background:#eceff3;border:1px solid #d8dee6;border-radius:16px; /* menos arredondado p/ parecer menor */
-      padding:4px 10px;
+      position:relative; flex:1 1 320px; min-width:260px;
+      background:#eceff3;border:1px solid #d8dee6;border-radius:999px;padding:6px 12px;
       transition: box-shadow .15s ease, border-color .15s ease, background .15s ease; cursor:pointer;
     }
     .select-row .select-box:hover{ background:#e4e9f0; border-color:#cfd6df; box-shadow:0 0 0 3px rgba(156,192,255,.25) }
+    .select-row .select-box:active{ transform:translateY(1px) }
     .select-row .select-box select{
       appearance:none;-webkit-appearance:none;-moz-appearance:none;
-      width:100%;padding:8px 36px 8px 8px;border:0;background:transparent;
-      font-weight:600;font-size:.92rem;outline:none;cursor:pointer; /* menor tipografia */
+      width:100%;padding:10px 40px 10px 10px;border:0;background:transparent;
+      font-weight:600;font-size:.95rem;outline:none;cursor:pointer;
     }
     .select-row .select-box:after{
-      content:"▾"; position:absolute; right:12px; top:50%; transform:translateY(-50%);
+      content:"▾"; position:absolute; right:14px; top:50%; transform:translateY(-50%);
       pointer-events:none; opacity:.75;
     }
     .btn-enviar{
-      flex:0 0 auto; padding:9px 14px;border-radius:999px;border:1px solid #cfd6df;
+      flex:0 0 auto; padding:10px 16px;border-radius:999px;border:1px solid #cfd6df;
       background:#eceff3;font-weight:800;cursor:pointer;transition:background .15s ease, transform .06s ease;
     }
     .btn-enviar:hover{background:#e4e9f0}
     .btn-enviar:active{transform:translateY(1px)}
 
-    /* ===== Grid de serviços (mantido) ===== */
-    .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1200px;margin:24px auto;padding:0 12px}
-    @media (max-width:1024px){ .services-grid{grid-template-columns:repeat(3,1fr)} }
-    @media (max-width:640px){ .services-grid{grid-template-columns:repeat(2,1fr)} }
-    .service-box{background:#f6f8fb;border:1px solid #e3e8ef;border-radius:12px;padding:10px;transition:transform .12s ease,box-shadow .12s ease}
-    .service-box:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
-    .service-box h3{margin:.5rem 0 .25rem;font-size:1rem}
-    .service-box p{margin:0 0 .3rem;color:#333;font-size:.9rem}
-
-    /* ===== Blog cards: hover + fundo consistente ===== */
-    .blog-cards-wrap{padding:24px 12px; background:#eef3f7;}
-    .blog-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:1200px;margin:0 auto}
-    @media (max-width:800px){ .blog-cards{grid-template-columns:1fr} }
-    .post-card{
-      display:flex;gap:12px;background:#fff;border:1px solid #e3e8ef;border-radius:12px;padding:10px;
-      transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-    .post-card:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(2,12,27,.07); border-color:#d9e2ee }
-    .post-card .post-media img{width:160px;height:110px;object-fit:cover;border-radius:10px}
-    .post-title{margin:.2rem 0 .3rem;font-size:1rem}
-    .post-excerpt{margin:.2rem 0 .5rem;opacity:.9}
-
-    /* ===== Rodapé (mantido) ===== */
+    /* ===== RODAPÉ ===== */
     .blog-footer{background:#0a57a3;color:#fff}
     .blog-footer .inner{max-width:1200px;margin:0 auto;padding:28px 12px}
     .footer-widgets{display:grid;grid-template-columns:2fr 1.3fr;gap:28px}
@@ -218,7 +163,7 @@
         <div><strong>E-mail:</strong> <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
       </div>
       <div class="info-item">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3 .8 .8V20c0 .4-.3 .8-.8 .8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4 .3-.8 .8-.8H6c.4 0 .8 .3 .8 .8 0 1 .2 2 .5 3 .1 .3 0 .6-.2 .8L6.6 10.8z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
         <div><strong>Telefone/WhatsApp:</strong> <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
       </div>
 
@@ -227,7 +172,7 @@
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.5A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.75-8.25a1.25 1.25 0 1 0-1.25-1.25 1.25 1.25 0 0 0 1.25 1.25z"/></svg>
         </a>
         <a href="https://wa.me/5531975002129" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4.11-.55s.26-.32.39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68.32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07 .77 .77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4.11-.55s.26-.32.39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68.32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07.77.77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/></svg>
         </a>
         <a href="mailto:genesiseletricca@gmail.com" aria-label="E-mail" title="E-mail">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7.8 3.7 9.2 12 14l8.3-4.8-.8-1.4L12 12.2z"/></svg>
@@ -372,13 +317,13 @@
       </div>
     </div>
 
-    <!-- Localização (aumentada ~70%) -->
+    <!-- Localização -->
     <section class="highlight-section" id="localizacao">
       Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
     </section>
 
     <!-- Blog -->
-    <section id="blog" class="blog-cards-wrap">
+    <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
       <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Blog Gênesis elétrica</h2>
       <div class="blog-cards">
         <article class="post-card">
@@ -503,6 +448,7 @@
       const sel = document.getElementById('tipoServico');
       if (!box || !sel) return;
 
+      // Clique em qualquer parte do contêiner abre o select
       box.addEventListener('click', (e)=>{
         if (e.target !== sel) {
           try { sel.showPicker && sel.showPicker(); } catch(_){}
@@ -512,6 +458,7 @@
         }
       });
 
+      // Acessibilidade: Enter/Espaço no contêiner também abre
       box.addEventListener('keydown', (e)=>{
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -519,7 +466,7 @@
           sel.focus(); try { sel.click(); } catch(_){}
         }
       });
-      box.tabIndex = 0;
+      box.tabIndex = 0; // permite foco para teclado
     })();
 
     // ===== Sincroniza seleção no campo do formulário
@@ -548,15 +495,17 @@
     function isValidPhoneBR(v){ const d = v.replace(/\D/g,''); return d.length===10 || d.length===11; }
     document.getElementById('telefone')?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
 
-    // ===== Envio imediato para WhatsApp
+    // ===== Envio imediato para WhatsApp (prioriza app no celular)
     function go(url){ try{ window.location.assign(url); } catch(_){ window.location.href=url; } }
     function tryOpenWhats(phone, text){
       const enc = encodeURIComponent(text);
       const urls = [
-        `https://api.whatsapp.com/send?phone=${phone}&text=${enc}`,
-        `https://wa.me/${phone}?text=${enc}`
+        `https://api.whatsapp.com/send?phone=${phone}&text=${enc}`, // app / web
+        `https://wa.me/${phone}?text=${enc}`                        // fallback
       ];
+      // navega na MESMA aba (evita bloqueio e dá sensação de "direto")
       go(urls[0]);
+      // segurança extra: se algo impedir, tenta abrir numa nova aba depois de um pequeno delay
       setTimeout(()=>{ try{ window.open(urls[1], '_blank', 'noopener'); }catch(_){} }, 1200);
     }
 
@@ -589,6 +538,7 @@
         `Serviço: ${tipo}\n` +
         (obs ? `Observação: ${obs}` : '');
 
+      // Envia direto
       tryOpenWhats('5531975002129', mensagem);
     }
   </script>
