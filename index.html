@@ -74,7 +74,7 @@
     .drawer-close{background:transparent;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
     .drawer-nav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);color:#dce6f2;font-weight:800;text-decoration:none}
 
-    /* NOVO: bloco de informações e redes no drawer */
+    /* Bloco de informações e redes no drawer */
     .drawer-section{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
     .drawer-section h4{margin:0 0 10px}
     .info-item{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:8px 0}
@@ -120,10 +120,10 @@
       .footer-copy{flex-direction:column;align-items:flex-start}
     }
 
-    /* ===== LOCALIZAÇÃO — FUNDO PRETO (50% menor) ===== */
+    /* ===== LOCALIZAÇÃO — FUNDO PRETO (reduzido novamente) ===== */
     #localizacao{
       background:#000 !important; color:#fff !important;
-      text-align:center; padding:9px 12px; font-weight:800; /* era 18px, reduzido para 9px */
+      text-align:center; padding:5px 8px; font-weight:800; /* reduzido mais 50% em relação ao anterior (9px) */
     }
 
     /* Utilitários existentes (mantidos) */
@@ -181,29 +181,47 @@
       <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener" onclick="closeDrawer()">Contato</a>
     </nav>
 
-    <!-- NOVO: Bloco de informações e redes sociais -->
+    <!-- Bloco de informações e redes sociais (com ícones SVG) -->
     <div class="drawer-section">
       <h4>Informações</h4>
 
       <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <!-- pin -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
         <div><strong>Endereço:</strong> Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
       </div>
 
       <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
+        <!-- envelope -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
         <div><strong>E-mail:</strong> <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
       </div>
 
       <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
+        <!-- phone -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
         <div><strong>Telefone/WhatsApp:</strong> <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
       </div>
 
       <div class="drawer-social">
-        <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:genesiseletricca@gmail.com">E-mail</a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.5A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.75-8.25a1.25 1.25 0 1 0-1.25-1.25 1.25 1.25 0 0 0 1.25 1.25z"/>
+          </svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5531975002129" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4.11-.55s.26-.32.39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68.32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07.77.77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/>
+          </svg>
+        </a>
+        <!-- E-mail -->
+        <a href="mailto:genesiseletricca@gmail.com" aria-label="E-mail" title="E-mail">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7.8 3.7 9.2 12 14l8.3-4.8-.8-1.4L12 12.2z"/>
+          </svg>
+        </a>
       </div>
     </div>
   </aside>
@@ -212,7 +230,7 @@
     <!-- HERO -->
     <section class="hero">
       <img src="QDC-principal.jpg" alt="QDC principal"/>
-      <div class="hero-text">Energia com sustentabilidade, profissionalismo e excelência!</div>
+      <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
     </section>
 
     <!-- QUEM SOMOS -->
@@ -388,7 +406,7 @@
       </div>
     </div>
 
-    <!-- Localização (50% menor) -->
+    <!-- Localização (reduzida) -->
     <section class="highlight-section" id="localizacao">
       Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
     </section>
