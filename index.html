@@ -21,11 +21,10 @@
 
   <link rel="stylesheet" href="/style.css"/>
 
-  <!-- ====== ESTILO DO CABEÇALHO + RODAPÉ + AJUSTES SOLICITADOS ====== -->
+  <!-- ====== ESTILO DO CABEÇALHO + RODAPÉ + AJUSTES ====== -->
   <style>
     /* ===== HEADER FIXO ===== */
     header{position:sticky; top:0; z-index:1000}
-    /* Faixa do topo PRETA (como no anexo) */
     .brand-bar{background:#000}
     .brand-bar .inner{
       max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px;color:#fff;
@@ -57,8 +56,6 @@
     .hamb .bars::before,.hamb .bars::after{content:"";position:absolute;left:0;width:22px;height:2px;background:#fff}
     .hamb .bars::before{top:-6px}
     .hamb .bars::after{top:6px}
-
-    /* Mostrar hambúrguer e esconder menu em telas menores */
     @media (max-width:980px){
       .nav-bar .inner{display:none!important;}
       .hamb{display:block!important;}
@@ -76,6 +73,14 @@
     .drawer-head img{height:28px}
     .drawer-close{background:transparent;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
     .drawer-nav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);color:#dce6f2;font-weight:800;text-decoration:none}
+
+    /* NOVO: bloco de informações e redes no drawer */
+    .drawer-section{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
+    .drawer-section h4{margin:0 0 10px}
+    .info-item{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:8px 0}
+    .info-item svg{width:18px;height:18px;fill:#a6b4c6;margin-top:2px}
+    .drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+    .drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3;text-decoration:none}
 
     /* ===== RODAPÉ (como no anexo) ===== */
     .blog-footer{background:#0a57a3;color:#fff}
@@ -107,7 +112,7 @@
       margin:22px 0;padding:12px 0;text-align:center
     }
     .footer-menu a{color:#fff;text-decoration:none;margin:0 10px;font-weight:600;position:relative}
-    .footer-menu a:hover{ text-decoration:underline }  /* sublinhado no hover */
+    .footer-menu a:hover{ text-decoration:underline }
 
     .footer-copy{display:flex;justify-content:space-between;gap:12px;align-items:center}
     .footer-copy small{opacity:.9}
@@ -115,10 +120,10 @@
       .footer-copy{flex-direction:column;align-items:flex-start}
     }
 
-    /* ===== LOCALIZAÇÃO — FUNDO PRETO ===== */
+    /* ===== LOCALIZAÇÃO — FUNDO PRETO (50% menor) ===== */
     #localizacao{
       background:#000 !important; color:#fff !important;
-      text-align:center; padding:18px 12px; font-weight:800
+      text-align:center; padding:9px 12px; font-weight:800; /* era 18px, reduzido para 9px */
     }
 
     /* Utilitários existentes (mantidos) */
@@ -137,7 +142,6 @@
 
   <!-- =================== HEADER =================== -->
   <header>
-    <!-- Faixa PRETA com logo e título (inalterada) -->
     <div class="brand-bar">
       <div class="inner">
         <img src="/icone-ge.png" alt="Gênesis Elétrica" class="logo" />
@@ -145,12 +149,10 @@
           <strong style="font-size:1.2rem;display:block;line-height:1">Gênesis Elétrica</strong>
           <span style="opacity:.9;font-size:.95rem">Energia com sustentabilidade, profissionalismo e excelência</span>
         </div>
-        <!-- Botão hambúrguer (apenas mobile) -->
         <button class="hamb" id="hambBtn" aria-label="Abrir menu" style="margin-left:auto;"><span class="bars"></span></button>
       </div>
     </div>
 
-    <!-- Tarja azul com menu CENTRALIZADO (inalterada) -->
     <nav class="nav-bar" aria-label="Menu principal">
       <div class="inner">
         <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
@@ -163,7 +165,7 @@
     </nav>
   </header>
 
-  <!-- Drawer mobile (novo, sem alterar resto do site) -->
+  <!-- Drawer mobile -->
   <div class="drawer-backdrop" id="drawerBackdrop"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-head">
@@ -178,13 +180,39 @@
       <a href="#blog" onclick="closeDrawer()">Postagem</a>
       <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener" onclick="closeDrawer()">Contato</a>
     </nav>
+
+    <!-- NOVO: Bloco de informações e redes sociais -->
+    <div class="drawer-section">
+      <h4>Informações</h4>
+
+      <div class="info-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <div><strong>Endereço:</strong> Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
+      </div>
+
+      <div class="info-item">
+        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
+        <div><strong>E-mail:</strong> <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
+      </div>
+
+      <div class="info-item">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
+        <div><strong>Telefone/WhatsApp:</strong> <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
+      </div>
+
+      <div class="drawer-social">
+        <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:genesiseletricca@gmail.com">E-mail</a>
+      </div>
+    </div>
   </aside>
 
   <main>
     <!-- HERO -->
     <section class="hero">
       <img src="QDC-principal.jpg" alt="QDC principal"/>
-      <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
+      <div class="hero-text">Energia com sustentabilidade, profissionalismo e excelência!</div>
     </section>
 
     <!-- QUEM SOMOS -->
@@ -331,7 +359,7 @@
       <button type="button" class="btn-urgencia" onclick="enviarWhatsAppUrgencia()">Enviar urgência via WhatsApp</button>
     </section>
 
-    <!-- Cards de serviços (mantidos) -->
+    <!-- Cards de serviços -->
     <div class="services-grid">
       <div class="service-box">
         <img src="QDC Site.jpg" alt="Quadro de distribuição"/>
@@ -360,16 +388,15 @@
       </div>
     </div>
 
-    <!-- Localização (agora com fundo preto) -->
+    <!-- Localização (50% menor) -->
     <section class="highlight-section" id="localizacao">
       Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
     </section>
 
-    <!-- Blog (mantido) -->
+    <!-- Blog -->
     <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
       <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Blog Gênesis elétrica</h2>
       <div class="blog-cards">
-        <!-- Card DISJUNTOR -->
         <article class="post-card">
           <a class="post-media" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">
             <img loading="lazy" src="disjuntor.jpg" alt="Disjuntor: Fundamentos e aplicações"/>
@@ -385,7 +412,6 @@
           </div>
         </article>
 
-        <!-- Card IDR -->
         <article class="post-card">
           <a class="post-media" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">
             <img loading="lazy" src="idr.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual"/>
@@ -463,7 +489,6 @@
         </section>
       </div>
 
-      <!-- Menu institucional (hover sublinhado aplicado) -->
       <div class="footer-menu" aria-label="Menu institucional">
         <a href="https://genesiseletricablog.com.br/quem-somos/" target="_blank" rel="noopener">Quem somos</a>
         <a href="https://genesiseletricablog.com.br/institucional/" target="_blank" rel="noopener">Institucional</a>
@@ -478,9 +503,8 @@
     </div>
   </footer>
 
-  <!-- JS já existente (mantido) + JS do menu sanduíche -->
+  <!-- JS do menu sanduíche -->
   <script>
-    // === MENU SANDUÍCHE ===
     const hamb=document.getElementById('hambBtn');
     const drawer=document.getElementById('drawer');
     const backdrop=document.getElementById('drawerBackdrop');
@@ -495,7 +519,7 @@
     window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
   </script>
 
-  <!-- JS (WhatsApp e máscara) ORIGINAL do seu arquivo (mantido) -->
+  <!-- JS (WhatsApp e máscara) ORIGINAL -->
   <script>
     function preencherTipoServico(valor){
       const campo = document.getElementById('tipoFinal');
@@ -601,7 +625,6 @@
     }
   </script>
 
-  <!-- JS global (se existir) -->
   <script src="/script.js"></script>
 </body>
 </html>
