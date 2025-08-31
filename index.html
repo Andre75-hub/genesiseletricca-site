@@ -16,9 +16,15 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/icone-ge.png">
   <link rel="apple-touch-icon" href="/icone-ge.png">
-  <link rel="stylesheet" href="/style.css"/>
 
+  <!-- ===== CSS EMBUTIDO ===== -->
   <style>
+    /* ===== RESET BÁSICO ===== */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+
     /* ===== HEADER (fixo) ===== */
     header{position:sticky; top:0; z-index:1000}
     .brand-bar{background:#000}
@@ -57,16 +63,26 @@
     .drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
     .drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3;text-decoration:none}
 
-    /* ===== LOCALIZAÇÃO — ultra compacta | sempre 1 linha ===== */
-    #localizacao{
-      background:#000; color:#fff; text-align:center;
-      padding:1px 4px; font-weight:800; line-height:1;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      font-size:clamp(9px, 1.1vw, 11px); letter-spacing:-0.2px;
+    /* ===== HERO ===== */
+    .hero{position:relative}
+    .hero img{width:100%;height:auto}
+    .hero-text{
+      position:absolute;inset:auto 0 10%;display:flex;justify-content:center;
+      color:#fff;font-weight:800;font-size:clamp(18px,3.5vw,36px);text-align:center;
+      text-shadow:0 2px 18px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.45);
+      padding:0 12px;
     }
-    @media (max-width:640px){ #localizacao{ font-size:10px; padding:1px 3px } }
 
-    /* ===== CONTÊINER DO SELETOR + BOTÕES ===== */
+    /* ===== TÍTULO SEÇÃO ===== */
+    .section-title{
+      text-align:center;font-weight:900;letter-spacing:.12em;
+      padding:16px 12px;margin:0;background:#0a57a3;color:#fff
+    }
+
+    /* ===== BLOCO TEXTO ===== */
+    .form-section p{margin:0}
+
+    /* ===== SELETOR + FORM ===== */
     .select-wrap{padding:16px 12px;background:#f5f7fa;border-radius:12px;max-width:1000px;margin:0 auto}
     .select-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .select-row .select-box{
@@ -94,9 +110,28 @@
     .btn-enviar:hover{background:#e4e9f0}
     .btn-enviar:active{transform:translateY(1px)}
 
-    /* AVISO (só desktop) */
     .wa-desktop-hint{display:none;color:#555;margin:10px 0 6px;font-size:.95rem}
     @media (min-width:981px){ .wa-desktop-hint{display:block} }
+
+    /* ===== GRID DE SERVIÇOS ===== */
+    .services-grid{
+      display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+      max-width:1200px;margin:24px auto;padding:0 12px
+    }
+    @media (max-width:1024px){ .services-grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:640px){ .services-grid{grid-template-columns:repeat(2,1fr)} }
+    .service-box{background:#f6f8fb;border:1px solid #e3e8ef;border-radius:12px;padding:10px;transition:transform .12s ease, box-shadow .12s ease}
+    .service-box:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+    .service-box h3{margin:.5rem 0 .25rem;font-size:1rem}
+    .service-box p{margin:0 0 .3rem;color:#333;font-size:.9rem}
+
+    /* ===== BLOG ===== */
+    .blog-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:1200px;margin:0 auto}
+    @media (max-width:800px){ .blog-cards{grid-template-columns:1fr} }
+    .post-card{display:flex;gap:12px;background:#fff;border:1px solid #e3e8ef;border-radius:12px;padding:10px}
+    .post-card .post-media img{width:160px;height:110px;object-fit:cover;border-radius:10px}
+    .post-title{margin:.2rem 0 .3rem;font-size:1rem}
+    .post-excerpt{margin:.2rem 0 .5rem;opacity:.9}
 
     /* ===== RODAPÉ ===== */
     .blog-footer{background:#0a57a3;color:#fff}
@@ -126,7 +161,15 @@
     .footer-copy small{opacity:.9}
     @media (max-width:640px){ .footer-copy{flex-direction:column;align-items:flex-start} }
 
-    /* feedback de cópia */
+    /* ===== FORM CAMPOS ===== */
+    .field{margin:10px 0}
+    .two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:640px){ .two-cols{grid-template-columns:1fr} }
+    input,textarea{
+      width:100%;border:1px solid #d8dee6;border-radius:10px;padding:10px 12px;
+      font-size:1rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial
+    }
+    .input-error{color:#b00020;font-size:.9rem}
     .copy-hint{font-size:.9rem; margin-top:8px; opacity:.8}
   </style>
 </head>
@@ -312,14 +355,13 @@
           <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
         </div>
 
-        <!-- Botões com MESMO estilo -->
         <a id="waBtn" class="btn-enviar" href="#" role="button">Enviar via WhatsApp</a>
         <a id="copyBtn" class="btn-enviar" href="#" role="button" style="margin-left:8px;">Copiar mensagem</a>
         <div id="copyHint" class="copy-hint" aria-live="polite"></div>
       </form>
     </section>
 
-    <!-- Cards de serviços -->
+    <!-- Grid de serviços -->
     <div class="services-grid">
       <div class="service-box">
         <img src="QDC Site.jpg" alt="Quadro de distribuição"/>
@@ -348,8 +390,9 @@
       </div>
     </div>
 
-    <!-- Localização (ultra compacta, 1 linha) -->
-    <section class="highlight-section" id="localizacao">
+    <!-- Localização — super compacta (inline para ter prioridade máxima) -->
+    <section id="localizacao" class="highlight-section"
+      style="background:#000;color:#fff;text-align:center;padding:1px 4px;font-weight:800;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;letter-spacing:-0.2px;">
       Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
     </section>
 
@@ -459,7 +502,7 @@
     </div>
   </footer>
 
-  <!-- ===== JS ===== -->
+  <!-- ===== JS EMBUTIDO ===== -->
   <script>
     // ===== Menu sanduíche
     const hamb=document.getElementById('hambBtn');
@@ -522,7 +565,7 @@
     function isValidPhoneBR(v){ const d = v.replace(/\D/g,''); return d.length===10 || d.length===11; }
     document.getElementById('telefone')?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
 
-    // ===== Utilitário para montar a mensagem (reutilizado pelos dois botões)
+    // ===== Monta mensagem
     function montarMensagem() {
       const nome = document.getElementById('nome').value.trim();
       const telefone = document.getElementById('telefone').value.trim();
@@ -553,37 +596,33 @@
       return { ok:true, mensagem };
     }
 
-    // ===== Botão WhatsApp (abre app/web)
+    // ===== WhatsApp
     const waBtn = document.getElementById('waBtn');
     waBtn?.addEventListener('click', function(e){
       const res = montarMensagem();
       if (!res.ok){ e.preventDefault(); return; }
-
       const phone='5531975002129';
       const enc = encodeURIComponent(res.mensagem);
       const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent || '');
       const url = isMobile
         ? `whatsapp://send?phone=${phone}&text=${enc}`
         : `https://api.whatsapp.com/send?phone=${phone}&text=${enc}`;
-
       this.setAttribute('href', url);
       this.setAttribute('target', '_self');
     });
 
-    // ===== Botão Copiar Mensagem (mesmo estilo)
+    // ===== Copiar mensagem
     const copyBtn = document.getElementById('copyBtn');
     const copyHint = document.getElementById('copyHint');
     copyBtn?.addEventListener('click', async function(e){
       e.preventDefault();
       const res = montarMensagem();
       if (!res.ok){ copyHint.textContent = 'Preencha os campos obrigatórios antes de copiar.'; return; }
-
       try{
         await navigator.clipboard.writeText(res.mensagem);
         copyHint.textContent = 'Mensagem copiada! Abra o WhatsApp e cole para enviar.';
         setTimeout(()=>{ copyHint.textContent=''; }, 3500);
       }catch(_){
-        // Fallback se clipboard estiver bloqueado
         const ta = document.createElement('textarea');
         ta.value = res.mensagem;
         document.body.appendChild(ta);
