@@ -1,590 +1,546 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Gênesis Elétrica | Serviços elétricos em Contagem e Região Metropolitana</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gênesis Elétrica | Serviços elétricos em Contagem e Região Metropolitana</title>
 
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="/icone-ge.png">
-<link rel="apple-touch-icon" href="/icone-ge.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/icone-ge.png">
+  <link rel="apple-touch-icon" href="/icone-ge.png">
+  <link rel="stylesheet" href="/style.css"/>
 
-<style>
-/* ===== Base / Reset ===== */
-*,*::before,*::after{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:#fff;color:#111}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
+  <style>
+    /* ===== HEADER (fixo) ===== */
+    header{position:sticky; top:0; z-index:1000}
+    .brand-bar{background:#000}
+    .brand-bar .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px;color:#fff}
+    .brand-bar .logo{height:88px;width:auto}
+    .brand-bar strong{color:#fff}
+    .brand-bar span{color:#ffffffcc}
+    @media (max-width:640px){ .brand-bar .logo{height:70px} }
 
-/* ===== HEADER (SEM MEXER NA ESTRUTURA) ===== */
-header{position:static}
-.brand-bar{background:#000}
-.brand-bar .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 12px;color:#fff}
-.brand-bar .logo{height:88px;width:auto}
-@media (max-width:640px){ .brand-bar .logo{height:70px} }
-.brand-bar strong{display:block;line-height:1;font-weight:800}
-.brand-bar span{opacity:.9;font-size:.95rem}
+    .nav-bar{background:#0a57a3}
+    .nav-bar .inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:12px;padding:8px 12px}
+    .nav-bar a{color:#fff;padding:8px 12px;border-radius:6px;font-weight:600;text-decoration:none}
+    .nav-bar a:hover{background:rgba(255,255,255,.12)}
 
-.nav-bar{background:#0a57a3}
-.nav-bar .inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:12px;padding:8px 12px}
-.nav-bar a{color:#fff;padding:8px 12px;border-radius:6px;font-weight:700}
-.nav-bar a:hover{background:rgba(255,255,255,.12)}
+    .hamb{margin-left:auto;border:1px solid rgba(255,255,255,.35);padding:10px 12px;border-radius:10px;background:transparent;color:#fff;display:none;cursor:pointer}
+    .hamb .bars{display:block;width:22px;height:2px;background:#fff;position:relative}
+    .hamb .bars::before,.hamb .bars::after{content:"";position:absolute;left:0;width:22px;height:2px;background:#fff}
+    .hamb .bars::before{top:-6px}
+    .hamb .bars::after{top:6px}
+    @media (max-width:980px){.nav-bar .inner{display:none!important}.hamb{display:block!important}}
 
-.hamb{margin-left:auto;border:1px solid rgba(255,255,255,.35);padding:10px 12px;border-radius:10px;background:transparent;color:#fff;display:none;cursor:pointer}
-.hamb .bars{display:block;width:22px;height:2px;background:#fff;position:relative}
-.hamb .bars::before,.hamb .bars::after{content:"";position:absolute;left:0;width:22px;height:2px;background:#fff}
-.hamb .bars::before{top:-6px}.hamb .bars::after{top:6px}
-@media (max-width:980px){.nav-bar .inner{display:none!important}.hamb{display:block!important}}
+    /* ===== DRAWER (menu sanduíche) ===== */
+    .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:1100}
+    .drawer-backdrop.show{display:block}
+    .drawer{position:fixed;top:0;right:0;height:100%;width:78%;max-width:380px;background:#0b0f14;color:#e5ecf3;box-shadow:-6px 0 24px rgba(0,0,0,.35);transform:translateX(100%);transition:transform .28s ease;z-index:1110}
+    .drawer.open{transform:translateX(0)}
+    .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .drawer-head img{height:28px}
+    .drawer-close{background:transparent;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
+    .drawer-nav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);color:#dce6f2;font-weight:800;text-decoration:none}
 
-.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:1100}
-.drawer-backdrop.show{display:block}
-.drawer{position:fixed;top:0;right:0;height:100%;width:78%;max-width:380px;background:#0b0f14;color:#e5ecf3;box-shadow:-6px 0 24px rgba(0,0,0,.35);transform:translateX(100%);transition:transform .28s ease;z-index:1110}
-.drawer.open{transform:translateX(0)}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}
-.drawer-head img{height:28px}
-.drawer-close{background:transparent;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
-.drawer-nav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);color:#dce6f2;font-weight:800}
-.drawer-section{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
-.drawer-section h4{margin:0 0 10px}
-.info-item{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:8px 0}
-.info-item svg{width:18px;height:18px;fill:#a6b4c6;margin-top:2px}
-.drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3}
+    .drawer-section{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
+    .drawer-section h4{margin:0 0 10px}
+    .info-item{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:8px 0}
+    .info-item svg{width:18px;height:18px;fill:#a6b4c6;margin-top:2px}
+    .drawer-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+    .drawer-social a{display:flex;align-items:center;justify-content:center;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#dbe6f3;text-decoration:none}
 
-/* ===== RODAPÉ (SEM MEXER) ===== */
-.blog-footer{background:#0a57a3;color:#fff}
-.blog-footer .inner{max-width:1200px;margin:0 auto;padding:28px 12px}
-.footer-widgets{display:grid;grid-template-columns:2fr 1.3fr;gap:28px}
-@media (max-width:800px){ .footer-widgets{grid-template-columns:1fr;gap:18px} }
-.widget-title{font-size:1.05rem;margin:0 0 10px;font-weight:700}
-.rec-list{display:grid;gap:12px}
-.rec-post{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,.06)}
-.rec-post img{width:120px;height:82px;object-fit:cover;border-radius:8px;flex-shrink:0}
-.rec-post a{color:#fff;text-decoration:none;font-weight:700;line-height:1.25}
-.rec-post a:hover{text-decoration:underline}
-.rec-post p{margin:.35rem 0 0;opacity:.9;font-size:.92rem;line-height:1.35}
-.contact-box{background:rgba(255,255,255,.06);border-radius:10px;padding:14px}
-.contact-box p{margin:0 0 10px}
-.contact-list{display:grid;gap:10px;margin-top:10px}
-.contact-item{display:grid;grid-template-columns:22px 1fr;align-items:start;gap:10px}
-.contact-item svg{width:18px;height:18px;fill:#fff;opacity:.95;margin-top:2px}
-.contact-item a{color:#fff;text-decoration:none}
-.contact-item a:hover{text-decoration:underline}
-.footer-menu{border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);margin:22px 0;padding:12px 0;text-align:center}
-.footer-menu a{color:#fff;margin:0 10px;font-weight:600}
-.footer-menu a:hover{text-decoration:underline}
-.footer-copy{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.footer-copy small{opacity:.9}
-@media (max-width:640px){ .footer-copy{flex-direction:column;align-items:flex-start} }
+    /* ===== LOCALIZAÇÃO — compacta ===== */
+    #localizacao{ background:#000;color:#fff;text-align:center;padding:5px 8px;font-weight:800 }
+    @media (max-width:640px){ #localizacao{ padding:3px 6px } }
 
-/* ======== MIÔLO (APENAS AQUI) ======== */
-main{isolation:isolate}
+    /* ===== CONTÊINER DO SELETOR + BOTÃO ===== */
+    .select-wrap{padding:16px 12px;background:#f5f7fa;border-radius:12px;max-width:1000px;margin:0 auto}
+    .select-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .select-row .select-box{
+      position:relative; flex:1 1 320px; min-width:260px;
+      background:#eceff3;border:1px solid #d8dee6;border-radius:999px;padding:6px 12px;
+      transition: box-shadow .15s ease, border-color .15s ease, background .15s ease; cursor:pointer;
+    }
+    .select-row .select-box:hover{ background:#e4e9f0; border-color:#cfd6df; box-shadow:0 0 0 3px rgba(156,192,255,.25) }
+    .select-row .select-box:active{ transform:translateY(1px) }
+    .select-row .select-box select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      width:100%;padding:10px 40px 10px 10px;border:0;background:transparent;
+      font-weight:600;font-size:.95rem;outline:none;cursor:pointer;
+    }
+    .select-row .select-box:after{
+      content:"▾"; position:absolute; right:14px; top:50%; transform:translateY(-50%);
+      pointer-events:none; opacity:.75;
+    }
+    .btn-enviar{
+      flex:0 0 auto; padding:10px 16px;border-radius:999px;border:1px solid #cfd6df;
+      background:#eceff3;font-weight:800;cursor:pointer;transition:background .15s ease, transform .06s ease;
+    }
+    .btn-enviar:hover{background:#e4e9f0}
+    .btn-enviar:active{transform:translateY(1px)}
 
-/* HERO – altura moderada + degradê + título legível */
-.hero{position:relative}
-.hero img{
-  width:100%;
-  height:clamp(240px, 40vw, 440px);
-  object-fit:cover; object-position:center;
-}
-.hero::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:44%;
-  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.85) 100%);
-  pointer-events:none;
-}
-.hero-text{
-  position:absolute; left:0; right:0; bottom:8%;
-  text-align:center; color:#fff; font-weight:900;
-  font-size:clamp(18px,3.1vw,34px);
-  text-shadow:0 2px 18px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.45);
-  padding:0 12px;
-}
+    /* ===== RODAPÉ ===== */
+    .blog-footer{background:#0a57a3;color:#fff}
+    .blog-footer .inner{max-width:1200px;margin:0 auto;padding:28px 12px}
+    .footer-widgets{display:grid;grid-template-columns:2fr 1.3fr;gap:28px}
+    @media (max-width:800px){ .footer-widgets{grid-template-columns:1fr;gap:18px} }
+    .widget-title{font-size:1.05rem;margin:0 0 10px;font-weight:700}
+    .rec-list{display:grid;gap:12px}
+    .rec-post{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,.06)}
+    .rec-post img{width:120px;height:82px;object-fit:cover;border-radius:8px;flex-shrink:0}
+    .rec-post a{color:#fff;text-decoration:none;font-weight:700;line-height:1.25}
+    .rec-post a:hover{text-decoration:underline}
+    .rec-post p{margin:.35rem 0 0;opacity:.9;font-size:.92rem;line-height:1.35}
 
-/* Títulos de seção */
-.section-title{text-align:center;font-weight:900;letter-spacing:.12em;padding:16px 12px;margin:0;background:#0a57a3;color:#fff}
+    .contact-box{background:rgba(255,255,255,.06);border-radius:10px;padding:14px}
+    .contact-box p{margin:0 0 10px}
+    .contact-list{display:grid;gap:10px;margin-top:10px}
+    .contact-item{display:grid;grid-template-columns:22px 1fr;align-items:start;gap:10px}
+    .contact-item svg{width:18px;height:18px;fill:#fff;opacity:.95;margin-top:2px}
+    .contact-item a{color:#fff;text-decoration:none}
+    .contact-item a:hover{text-decoration:underline}
 
-/* Texto institucional */
-.form-section{padding:30px 20px;text-align:center}
-.form-section p{margin:0 auto;max-width:900px;font-size:1.1em;line-height:1.6}
-
-/* Seletor + botão — compacto e com hover */
-.select-wrap{padding:14px 12px;background:#f5f7fa;border-radius:12px;max-width:900px;margin:0 auto}
-.select-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.select-box{
-  position:relative; flex:1 1 280px; min-width:240px;
-  background:#eceff3;border:1px solid #d8dee6;border-radius:16px;
-  padding:4px 10px; cursor:pointer;
-  transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
-}
-.select-box:hover{ background:#e4e9f0; border-color:#cfd6df; box-shadow:0 0 0 3px rgba(156,192,255,.25) }
-.select-box select{
-  appearance:none;width:100%;padding:8px 36px 8px 8px;border:0;background:transparent;
-  font-weight:600;font-size:.92rem;outline:none;cursor:pointer;
-}
-.select-box:after{content:"▾"; position:absolute; right:12px; top:50%; transform:translateY(-50%); pointer-events:none; opacity:.75}
-.btn-enviar{
-  flex:0 0 auto; padding:9px 14px;border-radius:999px;border:1px solid #cfd6df;
-  background:#eceff3;font-weight:800;cursor:pointer;transition:background .15s ease, transform .06s ease;
-}
-.btn-enviar:hover{background:#e4e9f0}
-.btn-enviar:active{transform:translateY(1px)}
-.field{margin:10px 0}
-.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:640px){ .two-cols{grid-template-columns:1fr} }
-input,textarea{width:100%;border:1px solid #d8dee6;border-radius:10px;padding:10px 12px;font-size:1rem}
-.input-error{color:#b00020;font-size:.9rem}
-
-/* GRID SERVIÇOS – como estava, com hover leve */
-.services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1200px;margin:24px auto;padding:0 12px}
-@media (max-width:1024px){ .services-grid{grid-template-columns:repeat(3,1fr)} }
-@media (max-width:640px){ .services-grid{grid-template-columns:repeat(2,1fr)} }
-.service-box{background:#f6f8fb;border:1px solid #e3e8ef;border-radius:12px;padding:10px;transition:transform .12s ease,box-shadow .12s ease}
-.service-box:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
-.service-box h3{margin:.5rem 0 .25rem;font-size:1rem}
-.service-box p{margin:0 0 .3rem;color:#333;font-size:.9rem}
-
-/* LOCALIZAÇÃO – tamanho equilibrado (maior que o mínimo, menor que gigante) */
-#localizacao{
-  background:#000;color:#fff;text-align:center;
-  padding:9px 14px; /* ~+70% em relação ao mínimo */
-  font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  font-size:clamp(13px,1.9vw,18px); line-height:1.2;
-}
-@media (max-width:640px){
-  #localizacao{ padding:8px 12px; font-size:clamp(12px,3.8vw,16px) }
-}
-
-/* BLOG CARDS – fundo branco + hover */
-.blog-cards-wrap{padding:24px 12px; background:#eef3f7;}
-.blog-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:1200px;margin:0 auto}
-@media (max-width:800px){ .blog-cards{grid-template-columns:1fr} }
-.post-card{
-  display:flex;gap:12px;background:#fff;border:1px solid #e3e8ef;border-radius:12px;padding:10px;
-  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-}
-.post-card:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(2,12,27,.07); border-color:#d9e2ee }
-.post-card .post-media img{width:160px;height:110px;object-fit:cover;border-radius:10px}
-.post-title{margin:.2rem 0 .3rem;font-size:1rem}
-.post-excerpt{margin:.2rem 0 .5rem;opacity:.9}
-</style>
+    .footer-menu{border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);margin:22px 0;padding:12px 0;text-align:center}
+    .footer-menu a{color:#fff;text-decoration:none;margin:0 10px;font-weight:600;position:relative}
+    .footer-menu a:hover{text-decoration:underline}
+    .footer-copy{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .footer-copy small{opacity:.9}
+    @media (max-width:640px){ .footer-copy{flex-direction:column;align-items:flex-start} }
+  </style>
 </head>
 <body>
 
-<!-- ===== HEADER (mantido) ===== -->
-<header>
-  <div class="brand-bar">
-    <div class="inner">
-      <img src="/icone-ge.png" alt="Gênesis Elétrica" class="logo" />
-      <div>
-        <strong>Gênesis Elétrica</strong>
-        <span>Energia com sustentabilidade, profissionalismo, segurança e excelência</span>
-      </div>
-      <button class="hamb" id="hambBtn" aria-label="Abrir menu"><span class="bars"></span></button>
-    </div>
-  </div>
-
-  <nav class="nav-bar" aria-label="Menu principal">
-    <div class="inner">
-      <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
-      <a href="#formulario">Serviços</a>
-      <a href="#quemsomos">Empresa</a>
-      <a href="#localizacao">Localização</a>
-      <a href="#blog">Postagem</a>
-      <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
-    </div>
-  </nav>
-</header>
-
-<!-- ===== Drawer (menu mobile) ===== -->
-<div class="drawer-backdrop" id="drawerBackdrop"></div>
-<aside class="drawer" id="drawer" aria-hidden="true">
-  <div class="drawer-head">
-    <img src="/icone-ge.png" alt="Gênesis">
-    <button class="drawer-close" id="drawerClose" aria-label="Fechar">✕</button>
-  </div>
-  <nav class="drawer-nav" aria-label="Navegação móvel">
-    <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener" onclick="closeDrawer()">Blog</a>
-    <a href="#formulario" onclick="closeDrawer()">Serviços</a>
-    <a href="#quemsomos" onclick="closeDrawer()">Empresa</a>
-    <a href="#localizacao" onclick="closeDrawer()">Localização</a>
-    <a href="#blog" onclick="closeDrawer()">Postagem</a>
-    <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener" onclick="closeDrawer()">Contato</a>
-  </nav>
-
-  <div class="drawer-section">
-    <h4>Informações</h4>
-    <div class="info-item">
-      <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-      <div><strong>Endereço:</strong> Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
-    </div>
-    <div class="info-item">
-      <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
-      <div><strong>E-mail:</strong> <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
-    </div>
-    <div class="info-item">
-      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3 .8 .8V20c0 .4-.3 .8-.8 .8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4 .3-.8 .8-.8H6c.4 0 .8 .3 .8 .8 0 1 .2 2 .5 3 .1 .3 0 .6-.2 .8L6.6 10.8z"/></svg>
-      <div><strong>WhatsApp:</strong> <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
-    </div>
-    <div class="drawer-social" aria-label="Redes sociais">
-      <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.5A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.75-8.25a1.25 1.25 0 1 0-1.25-1.25 1.25 1.25 0 0 0 1.25 1.25z"/></svg>
-      </a>
-      <a href="https://wa.me/5531975002129" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4 .11-.55s.26-.32 .39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68 .32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07 .77 .77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/></svg>
-      </a>
-      <a href="mailto:genesiseletricca@gmail.com" aria-label="E-mail" title="E-mail">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7.8 3.7 9.2 12 14l8.3-4.8-.8-1.4L12 12.2z"/></svg>
-      </a>
-    </div>
-  </div>
-</aside>
-
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <img src="QDC-principal.jpg" alt="QDC principal"/>
-    <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
-  </section>
-
-  <!-- QUEM SOMOS -->
-  <section class="section-title" id="quemsomos">QUEM SOMOS</section>
-  <section class="form-section" id="formulario">
-    <p>
-      A <strong>Gênesis Elétrica</strong> atua com excelência e comprometimento no setor de instalações elétricas.
-      Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências, comércios e indústrias.
-      Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
-      <br><br>
-      <em>“Sua satisfação, nossa missão!”<br><br>______________________________________________</em>
-    </p>
-  </section>
-
-  <!-- SELECIONE O TIPO DE SERVIÇO -->
-  <section class="form-section" id="servico">
-    <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
-    <div class="select-wrap">
-      <div class="select-row">
-        <div class="select-box" id="selectBox" title="Clique para escolher o serviço">
-          <select id="tipoServico" aria-label="Tipo de serviço" onchange="preencherTipoServico(this.value)">
-            <option value="">Selecione uma opção</option>
-            <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
-            <option value="Painéis de comando">Painéis de comando</option>
-            <option value="Inversores de frequência">Inversores de frequência</option>
-            <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">Instalação e manutenção em contator, relé térmico, temporizador e falta de fase</option>
-            <option value="Elétrica industrial (Outros)">Elétrica industrial (Outros)</option>
-            <option value="Painel solar">Painel solar</option>
-            <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
-            <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
-            <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
-            <option value="Sistema de aterramento">Sistema de aterramento</option>
-            <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
-            <option value="Padrão CEMIG">Padrão CEMIG</option>
-            <option value="Restauração elétrica">Restauração elétrica</option>
-            <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
-            <option value="Passagem de fiação">Passagem de fiação</option>
-            <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
-            <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
-            <option value="Manutenção elétrica">Manutenção elétrica</option>
-            <option value="Instalação de tomada simples">Instalação de tomada simples</option>
-            <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
-            <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
-            <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
-            <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
-            <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
-            <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
-            <option value="Instalação de arandela">Instalação de arandela</option>
-            <option value="Iluminação para jardim">Iluminação para jardim</option>
-            <option value="Iluminação externa">Iluminação externa</option>
-            <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
-            <option value="Instalação de perfil de led">Instalação de perfil de led</option>
-            <option value="Instalação de spot">Instalação de spot</option>
-            <option value="Instalação de chuveiro">Instalação de chuveiro</option>
-            <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
-            <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
-            <option value="Outros">Outros</option>
-          </select>
-        </div>
-        <button class="btn-enviar" type="button" onclick="mostrarFormularioPedido()">Enviar pedido</button>
-      </div>
-    </div>
-
-    <!-- Formulário -->
-    <form id="formularioPedido" style="display:none; margin-top:20px;" onsubmit="enviarWhatsAppPedido(event)">
-      <div class="field">
-        <input id="nome" type="text" placeholder="Seu nome" required>
-        <small class="input-error" id="err-nome" hidden>Informe seu nome.</small>
-      </div>
-      <div class="field">
-        <input id="telefone" type="text" inputmode="tel" placeholder="Telefone (DDD + número)" required>
-        <small class="input-error" id="err-telefone" hidden>Informe um telefone válido (ex.: (31) 98888-7777).</small>
-      </div>
-      <div class="field two-cols">
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="brand-bar">
+      <div class="inner">
+        <img src="/icone-ge.png" alt="Gênesis Elétrica" class="logo" />
         <div>
-          <input id="bairro" type="text" placeholder="Bairro" required>
-          <small class="input-error" id="err-bairro" hidden>Informe o bairro.</small>
+          <strong style="font-size:1.2rem;display:block;line-height:1">Gênesis Elétrica</strong>
+          <span style="opacity:.9;font-size:.95rem">Energia com sustentabilidade, profissionalismo, segurança e excelência</span>
         </div>
-        <div>
-          <input id="municipio" type="text" placeholder="Município" required>
-          <small class="input-error" id="err-municipio" hidden>Informe o município.</small>
-        </div>
+        <button class="hamb" id="hambBtn" aria-label="Abrir menu" style="margin-left:auto;"><span class="bars"></span></button>
       </div>
-      <div class="field">
-        <input id="tipoFinal" type="text" placeholder="Tipo de serviço" required>
-        <small class="input-error" id="err-tipo" hidden>Selecione ou digite o serviço.</small>
-      </div>
-      <div class="field">
-        <input id="email" type="email" placeholder="E-mail (opcional)">
-      </div>
-      <div class="field">
-        <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
-      </div>
-      <button type="submit" class="btn-enviar">Enviar via WhatsApp</button>
-    </form>
-  </section>
+    </div>
 
-  <!-- CARDS DE SERVIÇOS -->
-  <div class="services-grid">
-    <div class="service-box">
-      <img src="QDC Site.jpg" alt="Quadro de distribuição"/>
-      <h3>Quadro de Distribuição</h3>
-      <p>Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.</p>
-    </div>
-    <div class="service-box">
-      <img src="cabos.jpg" alt="Instalação elétrica do zero"/>
-      <h3>Instalação Elétrica do Zero</h3>
-      <p>Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.</p>
-    </div>
-    <div class="service-box">
-      <img src="projeto eletrico.jpg" alt="Projeto elétrico"/>
-      <h3>Projeto Elétrico</h3>
-      <p>Desenvolvemos projetos personalizados para residências e comércios.</p>
-    </div>
-    <div class="service-box">
-      <img src="aterrammento.png" alt="Aterramento"/>
-      <h3>Sistema de Aterramento</h3>
-      <p>Instalação completa com haste, condutores e medições conforme NBR 5410.</p>
-    </div>
-    <div class="service-box">
-      <img src="CVE.jpg" alt="Carregadores EV"/>
-      <h3>Instalação de CVEs</h3>
-      <p>Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.</p>
-    </div>
-  </div>
+    <nav class="nav-bar" aria-label="Menu principal">
+      <div class="inner">
+        <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Blog</a>
+        <a href="#formulario">Serviços</a>
+        <a href="#quemsomos">Empresa</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#blog">Postagem</a>
+        <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
+      </div>
+    </nav>
+  </header>
 
-  <!-- LOCALIZAÇÃO -->
-  <section id="localizacao">
-    Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
-  </section>
+  <!-- ===== Drawer (menu sanduíche) ===== -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <img src="/icone-ge.png" alt="Gênesis">
+      <button class="drawer-close" id="drawerClose" aria-label="Fechar">✕</button>
+    </div>
+    <nav class="drawer-nav" aria-label="Navegação móvel">
+      <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener" onclick="closeDrawer()">Blog</a>
+      <a href="#formulario" onclick="closeDrawer()">Serviços</a>
+      <a href="#quemsomos" onclick="closeDrawer()">Empresa</a>
+      <a href="#localizacao" onclick="closeDrawer()">Localização</a>
+      <a href="#blog" onclick="closeDrawer()">Postagem</a>
+      <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener" onclick="closeDrawer()">Contato</a>
+    </nav>
 
-  <!-- BLOG / FIQUE POR DENTRO -->
-  <section id="blog" class="blog-cards-wrap">
-    <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Blog Gênesis elétrica</h2>
-    <div class="blog-cards">
-      <article class="post-card">
-        <a class="post-media" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">
-          <img loading="lazy" src="disjuntor.jpg" alt="Disjuntor: Fundamentos e aplicações"/>
+    <!-- Informações + Redes (ícones SVG) -->
+    <div class="drawer-section">
+      <h4>Informações</h4>
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <div><strong>Endereço:</strong> Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
+      </div>
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20v16H2V4zm2 2v.2l8 5.2 8-5.2V6l-8 5.2L4 6.2z"/></svg>
+        <div><strong>E-mail:</strong> <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
+      </div>
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.4 0 .8.3.8.8V20c0 .4-.3.8-.8.8C9.3 20.8 3.2 14.7 3.2 7.2c0-.4.3-.8.8-.8H6c.4 0 .8.3.8.8 0 1 .2 2 .5 3 .1.3 0 .6-.2.8L6.6 10.8z"/></svg>
+        <div><strong>Telefone/WhatsApp:</strong> <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
+      </div>
+
+      <div class="drawer-social" aria-label="Redes sociais">
+        <a href="https://instagram.com/genesis_eletrica" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.5A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.75-8.25a1.25 1.25 0 1 0-1.25-1.25 1.25 1.25 0 0 0 1.25 1.25z"/></svg>
         </a>
-        <div class="post-body">
-          <h3 class="post-title">
-            <a href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a>
-          </h3>
-          <p class="post-excerpt">Os carros elétricos e IA’s não são mais uma promessa futurística...</p>
-          <a class="post-readmore" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Leia mais</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <a class="post-media" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">
-          <img loading="lazy" src="idr.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual"/>
+        <a href="https://wa.me/5531975002129" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5A10.5 10.5 0 0 0 2.2 17.6L1 23l5.6-1.5A10.5 10.5 0 1 0 20.5 3.5ZM12 20.3a8.3 8.3 0 1 1 0-16.6 8.3 8.3 0 0 1 0 16.6Zm4.6-6.4c-.26-.13-1.53-.76-1.76-.85s-.41-.13-.58.13-.66.85-.8 1-.29.19-.54.06a6.8 6.8 0 0 1-2-1.23 7.5 7.5 0 0 1-1.39-1.74c-.15-.26 0-.4.11-.55s.26-.32.39-.49a.45.45 0 0 0 .09-.45c0-.13-.58-1.4-.8-1.92s-.42-.44-.58-.45h-.49a.94.94 0 0 0-.68.32 2.3 2.3 0 0 0-.72 1.71 3.93 3.93 0 0 0 .82 2.07 8.9 8.9 0 0 0 3.4 3 7.6 7.6 0 0 0 1.88.7 1.6 1.6 0 0 0 1.05-.17 2.7 2.7 0 0 0 .87-1.07.77.77 0 0 0-.04-.78c-.12-.17-.46-.28-.72-.4Z"/></svg>
         </a>
-        <div class="post-body">
-          <h3 class="post-title">
-            <a href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a>
-          </h3>
-          <p class="post-excerpt">A causa desses problemas está na ausência ou na má qualidade de um dos pilares...</p>
-          <a class="post-readmore" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">Leia mais</a>
-        </div>
-      </article>
+        <a href="mailto:genesiseletricca@gmail.com" aria-label="E-mail" title="E-mail">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7.8 3.7 9.2 12 14l8.3-4.8-.8-1.4L12 12.2z"/></svg>
+        </a>
+      </div>
     </div>
-  </section>
-</main>
+  </aside>
 
-<!-- ===== RODAPÉ (mantido) ===== -->
-<footer id="contato" class="blog-footer">
-  <div class="inner">
-    <div class="footer-widgets">
-      <section>
-        <h4 class="widget-title">Postagem recomendada</h4>
-        <div class="rec-list">
-          <article class="rec-post">
-            <img src="carroeletrico.jpg" alt="Nova era dos veículos elétricos e IA’s">
-            <div>
-              <a href="https://genesiseletricablog.com.br/carros-eletricos/" target="_blank" rel="noopener">
-                Descubra tudo sobre a nova era dos veículos elétricos, IA’s e suas transformações revolucionárias.
-              </a>
-              <p>Os carros elétricos e IA’s não são mais uma promessa futurística...</p>
-            </div>
-          </article>
-          <article class="rec-post">
-            <img src="aterramento.jpg" alt="Aterramento elétrico: Fundamentos do sistema de proteção">
-            <div>
-              <a href="https://genesiseletricablog.com.br/aterramento/" target="_blank" rel="noopener">
-                Aterramento elétrico: Fundamentos do sistema de proteção.
-              </a>
-              <p>A causa desses problemas está na ausência ou na má qualidade de um dos pilares...</p>
-            </div>
-          </article>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <img src="QDC-principal.jpg" alt="QDC principal"/>
+      <div class="hero-text">Energia com sustentabilidade, profissionalismo, segurança e excelência!</div>
+    </section>
+
+    <!-- QUEM SOMOS -->
+    <section class="section-title" id="quemsomos">QUEM SOMOS</section>
+
+    <!-- Texto institucional -->
+    <section class="form-section" id="formulario" style="background-color:#fff; text-align:center; padding:30px 20px;">
+      <p style="max-width:900px; margin:0 auto; font-size:1.1em; line-height:1.6;">
+        A <strong>Gênesis Elétrica</strong> atua com excelência e comprometimento no setor de instalações elétricas.
+        Com experiência e atenção às normas técnicas, oferecemos soluções seguras, modernas e eficientes para residências, comércios e indústrias.
+        Atendemos priorizando a qualidade, agilidade, transparência e total comprometimento com nossos clientes.
+        <br><br>
+        <em>“Sua satisfação, nossa missão!”<br><br>______________________________________________</em>
+      </p>
+    </section>
+
+    <!-- ===== SELECIONE O TIPO DE SERVIÇO (dropdown em contêiner) ===== -->
+    <section class="form-section" id="servico">
+      <p><strong>SELECIONE O TIPO DE SERVIÇO ELÉTRICO QUE ESTÁ PRECISANDO</strong></p>
+
+      <div class="select-wrap">
+        <div class="select-row">
+          <div class="select-box" id="selectBox" title="Clique para escolher o serviço">
+            <select id="tipoServico" aria-label="Tipo de serviço" onchange="preencherTipoServico(this.value)">
+              <option value="">Selecione uma opção</option>
+              <option value="CLPs / IHMs / SCADA">CLPs / IHMs / SCADA</option>
+              <option value="Painéis de comando">Painéis de comando</option>
+              <option value="Inversores de frequência">Inversores de frequência</option>
+              <option value="Instalação e manutenção em contator, relé térmico, temporizador e falta de fase">Instalação e manutenção em contator, relé térmico, temporizador e falta de fase</option>
+              <option value="Elétrica industrial (Outros)">Elétrica industrial (Outros)</option>
+              <option value="Painel solar">Painel solar</option>
+              <option value="Instalação ou restauração de quadros de distribuição">Instalação ou restauração de quadros de distribuição</option>
+              <option value="Instalação elétrica do zero">Instalação elétrica do zero</option>
+              <option value="Criação de projeto elétrico residencial e comercial">Criação de projeto elétrico residencial e comercial</option>
+              <option value="Sistema de aterramento">Sistema de aterramento</option>
+              <option value="Instalação de CVEs – carregadores veiculares elétricos">Instalação de CVEs – carregadores veiculares elétricos</option>
+              <option value="Padrão CEMIG">Padrão CEMIG</option>
+              <option value="Restauração elétrica">Restauração elétrica</option>
+              <option value="Reparação de pontos elétrico">Reparação de pontos elétrico</option>
+              <option value="Passagem de fiação">Passagem de fiação</option>
+              <option value="Troca de disjuntor, IDR, DPS">Troca de disjuntor, IDR, DPS</option>
+              <option value="Instalação e dimensionamento de disjuntor, IDR, DPS">Instalação e dimensionamento de disjuntor, IDR, DPS</option>
+              <option value="Manutenção elétrica">Manutenção elétrica</option>
+              <option value="Instalação de tomada simples">Instalação de tomada simples</option>
+              <option value="Instalação de tomada dupla">Instalação de tomada dupla</option>
+              <option value="Instalação de interruptor simples">Instalação de interruptor simples</option>
+              <option value="Instalação de interruptor three way">Instalação de interruptor three way</option>
+              <option value="Instalação de interruptor four way">Instalação de interruptor four way</option>
+              <option value="Instalação de plafon soquete teto">Instalação de plafon soquete teto</option>
+              <option value="Instalação de plafon led teto ou parede">Instalação de plafon led teto ou parede</option>
+              <option value="Instalação de arandela">Instalação de arandela</option>
+              <option value="Iluminação para jardim">Iluminação para jardim</option>
+              <option value="Iluminação externa">Iluminação externa</option>
+              <option value="Instalação de sinaleiros para jardim ou piscina">Instalação de sinaleiros para jardim ou piscina</option>
+              <option value="Instalação de perfil de led">Instalação de perfil de led</option>
+              <option value="Instalação de spot">Instalação de spot</option>
+              <option value="Instalação de chuveiro">Instalação de chuveiro</option>
+              <option value="Instalação de ventilador de parede ou teto">Instalação de ventilador de parede ou teto</option>
+              <option value="Preparação e criação de circuito elétrico para ar condicionado">Preparação e criação de circuito elétrico para ar condicionado</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <button class="btn-enviar" type="button" onclick="mostrarFormularioPedido()">Enviar pedido</button>
         </div>
-      </section>
+      </div>
 
-      <section>
-        <h4 class="widget-title">Informações de contato</h4>
-        <div class="contact-box">
-          <p><strong>Gênesis Elétrica</strong> - Nossa equipe é especializada em projetos, manutenções e soluções elétricas para residências, comércios e industrias. Entre em contato e tenha a certeza de um trabalho feito com profissionalismo e responsabilidade.</p>
-
-          <div class="contact-list">
-            <div class="contact-item">
-              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-              <div>Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
-            </div>
-            <div class="contact-item">
-              <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-1 17.93A8.001 8.001 0 0 1 4.07 13H11v6.93zM13 11V4.07A8.001 8.001 0 0 1 19.93 11H13zM13 13h6.93A8.001 8.001 0 0 1 13 19.93V13zM11 11H4.07A8.001 8.001 0 0 1 11 4.07V11z"/></svg>
-              <div>Blog <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Gênesis elétrica</a></div>
-            </div>
-            <div class="contact-item">
-              <svg viewBox="0 0 24 24"><path d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5zm.75 10.25V6a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 .22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28z"/></svg>
-              <div>Horário de funcionamento: Atendimento 24h</div>
-            </div>
-            <div class="contact-item">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 3.2-8 5.2L4 7.2V6l8 5.2L20 6v1.2z"/></svg>
-              <div>E-mail: <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
-            </div>
-            <div class="contact-item">
-              <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.43 0 .04 5.39.04 12.03c0 2.12.55 4.2 1.6 6.03L0 24l6.1-1.58a12.03 12.03 0 0 0 5.97 1.52h.01c6.64 0 12.03-5.39 12.03-12.03 0-3.21-1.26-6.22-3.59-8.43z"/></svg>
-              <div>WhatsApp <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
-            </div>
+      <!-- FORMULÁRIO: PEDIDO (único) -->
+      <form id="formularioPedido" style="display:none; margin-top:20px;" onsubmit="enviarWhatsAppPedido(event)">
+        <div class="field">
+          <input id="nome" type="text" placeholder="Seu nome" required>
+          <small class="input-error" id="err-nome" hidden>Informe seu nome.</small>
+        </div>
+        <div class="field">
+          <input id="telefone" type="text" inputmode="tel" placeholder="Telefone (DDD + número)" required>
+          <small class="input-error" id="err-telefone" hidden>Informe um telefone válido (ex.: (31) 98888-7777).</small>
+        </div>
+        <div class="field two-cols">
+          <div>
+            <input id="bairro" type="text" placeholder="Bairro" required>
+            <small class="input-error" id="err-bairro" hidden>Informe o bairro.</small>
+          </div>
+          <div>
+            <input id="municipio" type="text" placeholder="Município" required>
+            <small class="input-error" id="err-municipio" hidden>Informe o município.</small>
           </div>
         </div>
-      </section>
+        <div class="field">
+          <input id="tipoFinal" type="text" placeholder="Tipo de serviço" required>
+          <small class="input-error" id="err-tipo" hidden>Selecione ou digite o serviço.</small>
+        </div>
+        <div class="field">
+          <input id="email" type="email" placeholder="E-mail (opcional)">
+        </div>
+        <div class="field">
+          <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar via WhatsApp</button>
+      </form>
+    </section>
+
+    <!-- Cards de serviços -->
+    <div class="services-grid">
+      <div class="service-box">
+        <img src="QDC Site.jpg" alt="Quadro de distribuição"/>
+        <h3>Quadro de Distribuição</h3>
+        <p>Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.</p>
+      </div>
+      <div class="service-box">
+        <img src="cabos.jpg" alt="Instalação elétrica do devido zero"/>
+        <h3>Instalação Elétrica do Zero</h3>
+        <p>Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.</p>
+      </div>
+      <div class="service-box">
+        <img src="projeto eletrico.jpg" alt="Projeto elétrico"/>
+        <h3>Projeto Elétrico</h3>
+        <p>Desenvolvemos projetos personalizados para residências e comércios.</p>
+      </div>
+      <div class="service-box">
+        <img src="aterrammento.png" alt="Aterramento"/>
+        <h3>Sistema de Aterramento</h3>
+        <p>Instalação completa com haste, condutores e medições conforme NBR 5410.</p>
+      </div>
+      <div class="service-box">
+        <img src="CVE.jpg" alt="Carregadores EV"/>
+        <h3>Instalação de CVEs</h3>
+        <p>Infraestrutura e ligação de carregadores para veículos elétricos com segurança e praticidade.</p>
+      </div>
     </div>
 
-    <div class="footer-menu" aria-label="Menu institucional">
-      <a href="https://genesiseletricablog.com.br/quem-somos/" target="_blank" rel="noopener">Quem somos</a>
-      <a href="https://genesiseletricablog.com.br/institucional/" target="_blank" rel="noopener">Institucional</a>
-      <a href="https://genesiseletricablog.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>
-      <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
+    <!-- Localização -->
+    <section class="highlight-section" id="localizacao">
+      Serviços elétricos em Contagem e região metropolitana - Atendimento 24h - Elétrica residencial, comercial e industrial.
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="blog-cards-wrap" style="padding:24px 12px; background:#eef3f7;">
+      <h2 style="text-align:center; margin:0 0 16px;">FIQUE POR DENTRO - Blog Gênesis elétrica</h2>
+      <div class="blog-cards">
+        <article class="post-card">
+          <a class="post-media" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">
+            <img loading="lazy" src="disjuntor.jpg" alt="Disjuntor: Fundamentos e aplicações"/>
+          </a>
+          <div class="post-body">
+            <h3 class="post-title">
+              <a href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Disjuntor: Fundamentos e aplicações</a>
+            </h3>
+            <p class="post-excerpt">Os carros elétricos e IA’s não são mais uma promessa futurística...</p>
+            <a class="post-readmore" href="https://genesiseletricablog.com.br/disjuntor/" target="_blank" rel="noopener">Leia mais</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <a class="post-media" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">
+            <img loading="lazy" src="idr.jpg" alt="IDR: o que é e para que serve o Interruptor Diferencial Residual"/>
+          </a>
+          <div class="post-body">
+            <h3 class="post-title">
+              <a href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">IDR: o que é e para que serve o Interruptor Diferencial Residual</a>
+            </h3>
+            <p class="post-excerpt">A causa desses problemas está na ausência ou na má qualidade de um dos pilares...</p>
+            <a class="post-readmore" href="https://genesiseletricablog.com.br/idr/" target="_blank" rel="noopener">Leia mais</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer id="contato" class="blog-footer">
+    <div class="inner">
+      <div class="footer-widgets">
+        <section>
+          <h4 class="widget-title">Postagem recomendada</h4>
+          <div class="rec-list">
+            <article class="rec-post">
+              <img src="carroeletrico.jpg" alt="Nova era dos veículos elétricos e IA’s">
+              <div>
+                <a href="https://genesiseletricablog.com.br/carros-eletricos/" target="_blank" rel="noopener">
+                  Descubra tudo sobre a nova era dos veículos elétricos, IA’s e suas transformações revolucionárias.
+                </a>
+                <p>Os carros elétricos e IA’s não são mais uma promessa futurística...</p>
+              </div>
+            </article>
+            <article class="rec-post">
+              <img src="aterramento.jpg" alt="Aterramento elétrico: Fundamentos do sistema de proteção">
+              <div>
+                <a href="https://genesiseletricablog.com.br/aterramento/" target="_blank" rel="noopener">
+                  Aterramento elétrico: Fundamentos do sistema de proteção.
+                </a>
+                <p>A causa desses problemas está na ausência ou na má qualidade de um dos pilares...</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <h4 class="widget-title">Informações de contato</h4>
+          <div class="contact-box">
+            <p><strong>Gênesis Elétrica</strong> - Nossa equipe é especializada em projetos, manutenções e soluções elétricas para residências, comércios e industrias. Entre em contato e tenha a certeza de um trabalho feito com profissionalismo e responsabilidade.</p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                <div>Endereço: Rua Rio Mantiqueira, 898 - Novo Riacho, Contagem/MG</div>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-1 17.93A8.001 8.001 0 0 1 4.07 13H11v6.93zM13 11V4.07A8.001 8.001 0 0 1 19.93 11H13zM13 13h6.93A8.001 8.001 0 0 1 13 19.93V13zM11 11H4.07A8.001 8.001 0 0 1 11 4.07V11z"/></svg>
+                <div>Blog <a href="https://genesiseletricablog.com.br/" target="_blank" rel="noopener">Gênesis elétrica</a></div>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5zm.75 10.25V6a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 .22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28z"/></svg>
+                <div>Horário de funcionamento: Atendimento 24h</div>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 3.2-8 5.2L4 7.2V6l8 5.2L20 6v1.2z"/></svg>
+                <div>E-mail: <a href="mailto:genesiseletricca@gmail.com">genesiseletricca@gmail.com</a></div>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.43 0 .04 5.39.04 12.03c0 2.12.55 4.2 1.6 6.03L0 24l6.1-1.58a12.03 12.03 0 0 0 5.97 1.52h.01c6.64 0 12.03-5.39 12.03-12.03 0-3.21-1.26-6.22-3.59-8.43z"/></svg>
+                <div>WhatsApp <a href="https://wa.me/5531975002129" target="_blank" rel="noopener">(31) 97500-2129</a></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer-menu" aria-label="Menu institucional">
+        <a href="https://genesiseletricablog.com.br/quem-somos/" target="_blank" rel="noopener">Quem somos</a>
+        <a href="https://genesiseletricablog.com.br/institucional/" target="_blank" rel="noopener">Institucional</a>
+        <a href="https://genesiseletricablog.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>
+        <a href="https://genesiseletricablog.com.br/contato/" target="_blank" rel="noopener">Contato</a>
+      </div>
+
+      <div class="footer-copy">
+        <small>© 2025 Gênesis Elétrica — Energia com segurança, profissionalismo e excelência.</small>
+        <small>Contagem e Região Metropolitana • Atendimento 24h</small>
+      </div>
     </div>
+  </footer>
 
-    <div class="footer-copy">
-      <small>© 2025 Gênesis Elétrica — Energia com segurança, profissionalismo e excelência.</small>
-      <small>Contagem e Região Metropolitana • Atendimento 24h</small>
-    </div>
-  </div>
-</footer>
+  <!-- ===== JS ===== -->
+  <script>
+    // ===== Menu sanduíche
+    const hamb=document.getElementById('hambBtn');
+    const drawer=document.getElementById('drawer');
+    const backdrop=document.getElementById('drawerBackdrop');
+    const closeBtn=document.getElementById('drawerClose');
+    function openDrawer(){drawer.classList.add('open');backdrop.classList.add('show');drawer.setAttribute('aria-hidden','false');}
+    function closeDrawer(){drawer.classList.remove('open');backdrop.classList.remove('show');drawer.setAttribute('aria-hidden','true');}
+    hamb?.addEventListener('click',openDrawer);
+    closeBtn?.addEventListener('click',closeDrawer);
+    backdrop?.addEventListener('click',closeDrawer);
+    window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 
-<script>
-/* Drawer */
-const hamb=document.getElementById('hambBtn');
-const drawer=document.getElementById('drawer');
-const backdrop=document.getElementById('drawerBackdrop');
-const closeBtn=document.getElementById('drawerClose');
-function openDrawer(){drawer.classList.add('open');backdrop.classList.add('show');drawer.setAttribute('aria-hidden','false');}
-function closeDrawer(){drawer.classList.remove('open');backdrop.classList.remove('show');drawer.setAttribute('aria-hidden','true');}
-hamb?.addEventListener('click',openDrawer);
-closeBtn?.addEventListener('click',closeDrawer);
-backdrop?.addEventListener('click',closeDrawer);
-window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+    // ===== Seletor: hover + clique em QUALQUER parte abre a lista
+    (function() {
+      const box = document.getElementById('selectBox');
+      const sel = document.getElementById('tipoServico');
+      if (!box || !sel) return;
 
-/* Seletor abre ao clicar em qualquer parte */
-(function() {
-  const box = document.getElementById('selectBox');
-  const sel = document.getElementById('tipoServico');
-  if (!box || !sel) return;
-  box.addEventListener('click', (e)=>{
-    if (e.target !== sel) {
-      try { sel.showPicker && sel.showPicker(); } catch(_){}
-      sel.focus();
-      try { sel.dispatchEvent(new MouseEvent('mousedown', {bubbles:true})); } catch(_){}
-      try { sel.click(); } catch(_){}
+      // Clique em qualquer parte do contêiner abre o select
+      box.addEventListener('click', (e)=>{
+        if (e.target !== sel) {
+          try { sel.showPicker && sel.showPicker(); } catch(_){}
+          sel.focus();
+          try { sel.dispatchEvent(new MouseEvent('mousedown', {bubbles:true})); } catch(_){}
+          try { sel.click(); } catch(_){}
+        }
+      });
+
+      // Acessibilidade: Enter/Espaço no contêiner também abre
+      box.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          try { sel.showPicker && sel.showPicker(); } catch(_){}
+          sel.focus(); try { sel.click(); } catch(_){}
+        }
+      });
+      box.tabIndex = 0; // permite foco para teclado
+    })();
+
+    // ===== Sincroniza seleção no campo do formulário
+    function preencherTipoServico(valor){
+      const campo = document.getElementById('tipoFinal');
+      if (!campo) return;
+      campo.value = valor || '';
     }
-  });
-  box.addEventListener('keydown', (e)=>{
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      try { sel.showPicker && sel.showPicker(); } catch(_){}
-      sel.focus(); try { sel.click(); } catch(_){}
+    function mostrarFormularioPedido(){
+      document.getElementById('formularioPedido').style.display = 'block';
+      const sel = document.getElementById('tipoServico');
+      if (sel && sel.value && document.getElementById('tipoFinal')) {
+        document.getElementById('tipoFinal').value = sel.value;
+      }
+      setTimeout(()=>{ document.getElementById('nome')?.focus(); }, 50);
     }
-  });
-  box.tabIndex = 0;
-})();
 
-/* Sincroniza serviço selecionado no campo do formulário */
-function preencherTipoServico(valor){
-  const campo = document.getElementById('tipoFinal');
-  if (!campo) return;
-  campo.value = valor || '';
-}
-function mostrarFormularioPedido(){
-  document.getElementById('formularioPedido').style.display = 'block';
-  const sel = document.getElementById('tipoServico');
-  if (sel && sel.value && document.getElementById('tipoFinal')) {
-    document.getElementById('tipoFinal').value = sel.value;
-  }
-  setTimeout(()=>{ document.getElementById('nome')?.focus(); }, 50);
-}
+    // ===== Máscara & validação de telefone BR
+    function maskPhoneBR(v){
+      v = v.replace(/\D/g,'');
+      if (v.length > 11) v = v.slice(0,11);
+      if (v.length >= 3){ v = '(' + v.slice(0,2) + ') ' + v.slice(2); }
+      if (v.length >= 10){ v = v.replace(/(\d)(\d{4})$/,'$1-$2'); }
+      return v;
+    }
+    function isValidPhoneBR(v){ const d = v.replace(/\D/g,''); return d.length===10 || d.length===11; }
+    document.getElementById('telefone')?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
 
-/* Telefone BR */
-function maskPhoneBR(v){
-  v = v.replace(/\D/g,'');
-  if (v.length > 11) v = v.slice(0,11);
-  if (v.length >= 3){ v = '(' + v.slice(0,2) + ') ' + v.slice(2); }
-  if (v.length >= 10){ v = v.replace(/(\d)(\d{4})$/,'$1-$2'); }
-  return v;
-}
-function isValidPhoneBR(v){ const d = v.replace(/\D/g,''); return d.length===10 || d.length===11; }
-document.getElementById('telefone')?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
+    // ===== Envio imediato para WhatsApp (prioriza app no celular)
+    function go(url){ try{ window.location.assign(url); } catch(_){ window.location.href=url; } }
+    function tryOpenWhats(phone, text){
+      const enc = encodeURIComponent(text);
+      const urls = [
+        `https://api.whatsapp.com/send?phone=${phone}&text=${enc}`, // app / web
+        `https://wa.me/${phone}?text=${enc}`                        // fallback
+      ];
+      // navega na MESMA aba (evita bloqueio e dá sensação de "direto")
+      go(urls[0]);
+      // segurança extra: se algo impedir, tenta abrir numa nova aba depois de um pequeno delay
+      setTimeout(()=>{ try{ window.open(urls[1], '_blank', 'noopener'); }catch(_){} }, 1200);
+    }
 
-/* WhatsApp */
-function go(url){ try{ window.location.assign(url); } catch(_){ window.location.href=url; } }
-function tryOpenWhats(phone, text){
-  const enc = encodeURIComponent(text);
-  const urls = [
-    `https://api.whatsapp.com/send?phone=${phone}&text=${enc}`,
-    `https://wa.me/${phone}?text=${enc}`
-  ];
-  go(urls[0]);
-  setTimeout(()=>{ try{ window.open(urls[1], '_blank', 'noopener'); }catch(_){} }, 1200);
-}
-function enviarWhatsAppPedido(ev){
-  ev?.preventDefault();
+    function enviarWhatsAppPedido(ev){
+      ev?.preventDefault();
 
-  const nome = document.getElementById('nome').value.trim();
-  const telefone = document.getElementById('telefone').value.trim();
-  const bairro = document.getElementById('bairro').value.trim();
-  const municipio = document.getElementById('municipio').value.trim();
-  const tipo = (document.getElementById('tipoFinal').value || '').trim();
-  const email = document.getElementById('email').value.trim();
-  const obs = document.getElementById('observacao').value.trim();
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const bairro = document.getElementById('bairro').value.trim();
+      const municipio = document.getElementById('municipio').value.trim();
+      const tipo = (document.getElementById('tipoFinal').value || '').trim();
+      const email = document.getElementById('email').value.trim();
+      const obs = document.getElementById('observacao').value.trim();
 
-  let ok = true;
-  document.getElementById('err-nome').hidden = !!nome; if(!nome) ok=false;
-  document.getElementById('err-telefone').hidden = isValidPhoneBR(telefone); if(!isValidPhoneBR(telefone)) ok=false;
-  document.getElementById('err-bairro').hidden = !!bairro; if(!bairro) ok=false;
-  document.getElementById('err-municipio').hidden = !!municipio; if(!municipio) ok=false;
-  document.getElementById('err-tipo').hidden = !!tipo; if(!tipo) ok=false;
-  if(!ok) return;
+      let ok = true;
+      document.getElementById('err-nome').hidden = !!nome; if(!nome) ok=false;
+      document.getElementById('err-telefone').hidden = isValidPhoneBR(telefone); if(!isValidPhoneBR(telefone)) ok=false;
+      document.getElementById('err-bairro').hidden = !!bairro; if(!bairro) ok=false;
+      document.getElementById('err-municipio').hidden = !!municipio; if(!municipio) ok=false;
+      document.getElementById('err-tipo').hidden = !!tipo; if(!tipo) ok=false;
+      if(!ok) return;
 
-  const mensagem =
-    `Olá! Gostaria de solicitar um serviço.\n\n` +
-    `Nome: ${nome}\n` +
-    `Telefone: ${telefone}\n` +
-    `Bairro: ${bairro}\n` +
-    `Município: ${municipio}\n` +
-    (email ? `E-mail: ${email}\n` : '') +
-    `Serviço: ${tipo}\n` +
-    (obs ? `Observação: ${obs}` : '');
+      const mensagem =
+        `Olá! Gostaria de solicitar um serviço.\n\n` +
+        `Nome: ${nome}\n` +
+        `Telefone: ${telefone}\n` +
+        `Bairro: ${bairro}\n` +
+        `Município: ${municipio}\n` +
+        (email ? `E-mail: ${email}\n` : '') +
+        `Serviço: ${tipo}\n` +
+        (obs ? `Observação: ${obs}` : '');
 
-  tryOpenWhats('5531975002129', mensagem);
-}
-</script>
+      // Envia direto
+      tryOpenWhats('5531975002129', mensagem);
+    }
+  </script>
 </body>
 </html>
