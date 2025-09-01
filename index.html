@@ -254,7 +254,7 @@
       </div>
 
       <!-- FORMULÁRIO: PEDIDO (único) -->
-      <form id="formularioPedido" style="display:none; margin-top:20px;" onsubmit="enviarWhatsAppPedido(event)">
+      <div id="formularioPedido" style="display:none; margin-top:20px;">
         <div class="field">
           <input id="nome" type="text" placeholder="Seu nome" required>
           <small class="input-error" id="err-nome" hidden>Informe seu nome.</small>
@@ -284,8 +284,8 @@
           <textarea id="observacao" placeholder="Observação relevante (opcional)" style="height:60px;"></textarea>
         </div>
 
-        <button type="submit" class="btn-enviar">Enviar via WhatsApp</button>
-      </form>
+        <button type="button" class="btn-enviar" onclick="enviarWhatsAppPedido()">Enviar via WhatsApp</button>
+      </div>
     </section>
 
     <!-- Cards de serviços -->
@@ -296,7 +296,7 @@
         <p>Organização e proteção elétrica com disjuntores, DPS e IDR bem instalados e identificados.</p>
       </div>
       <div class="service-box">
-        <img src="cabos.jpg" alt="Instalação elétrica do devido zero"/>
+        <img src="cabos.jpg" alt="Instalação elétrica do zero"/>
         <h3>Instalação Elétrica do Zero</h3>
         <p>Executamos toda a infraestrutura elétrica com segurança e normas atualizadas.</p>
       </div>
@@ -481,6 +481,7 @@
       if (sel && sel.value && document.getElementById('tipoFinal')) {
         document.getElementById('tipoFinal').value = sel.value;
       }
+      // foca no primeiro campo
       setTimeout(()=>{ document.getElementById('nome')?.focus(); }, 50);
     }
 
@@ -493,25 +494,15 @@
       return v;
     }
     function isValidPhoneBR(v){ const d = v.replace(/\D/g,''); return d.length===10 || d.length===11; }
-    document.getElementById('telefone')?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
+    const tel = document.getElementById('telefone');
+    tel?.addEventListener('input', e=>{ e.target.value = maskPhoneBR(e.target.value); });
 
-    // ===== Envio imediato para WhatsApp (prioriza app no celular)
-    function go(url){ try{ window.location.assign(url); } catch(_){ window.location.href=url; } }
-    function tryOpenWhats(phone, text){
-      const enc = encodeURIComponent(text);
-      const urls = [
-        `https://api.whatsapp.com/send?phone=${phone}&text=${enc}`, // app / web
-        `https://wa.me/${phone}?text=${enc}`                        // fallback
-      ];
-      // navega na MESMA aba (evita bloqueio e dá sensação de "direto")
-      go(urls[0]);
-      // segurança extra: se algo impedir, tenta abrir numa nova aba depois de um pequeno delay
-      setTimeout(()=>{ try{ window.open(urls[1], '_blank', 'noopener'); }catch(_){} }, 1200);
+    // ===== WhatsApp (abre UMA aba com a mensagem)
+    function abrirWhats(telefoneE164, texto){
+      const url = `https://wa.me/${telefoneE164}?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank', 'noopener'); // 1 aba
     }
-
-    function enviarWhatsAppPedido(ev){
-      ev?.preventDefault();
-
+    function enviarWhatsAppPedido(){
       const nome = document.getElementById('nome').value.trim();
       const telefone = document.getElementById('telefone').value.trim();
       const bairro = document.getElementById('bairro').value.trim();
@@ -538,8 +529,7 @@
         `Serviço: ${tipo}\n` +
         (obs ? `Observação: ${obs}` : '');
 
-      // Envia direto
-      tryOpenWhats('5531975002129', mensagem);
+      abrirWhats('5531975002129', mensagem);
     }
   </script>
 </body>
